@@ -9,6 +9,7 @@ set(DURA2D_SOURCE_FILES
         math/d2VecN.cpp
         kinetics/d2World.cpp
         collision/d2NSquaredBroad.cpp
+        common/d2BlockAllocator.cpp
 )
 
 set(DURA2D_HEADER_FILES
@@ -26,6 +27,8 @@ set(DURA2D_HEADER_FILES
         ../include/dura2d/d2World.h
         ../include/dura2d/d2NSquaredBroad.h
         ../include/dura2d/dura2d.h
+        ../include/dura2d/memory/d2BlockAllocator.h
+        ../include/dura2d/d2Types.h
 )
 
 add_library(dura2d ${DURA2D_SOURCE_FILES} ${DURA2D_HEADER_FILES} )
