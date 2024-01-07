@@ -3,7 +3,7 @@
 #include <algorithm>
 
 ///////////////////////////////////////////////////////////////////////////////
-// Mat6x6 with the all inverse mass and inverse I of bodies "a" and "b"
+// Mat6x6 with the all inverse mass and inverse I of m_bodiesList "a" and "b"
 ///////////////////////////////////////////////////////////////////////////////
 //  [ 1/ma  0     0     0     0     0    ]
 //  [ 0     1/ma  0     0     0     0    ]
@@ -27,7 +27,7 @@ d2Constraint::GetInvM() const
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// d2VecN with the all linear and angular velocities of bodies "a" and "b"
+// d2VecN with the all linear and angular velocities of m_bodiesList "a" and "b"
 ///////////////////////////////////////////////////////////////////////////////
 //  [ va.x ]
 //  [ va.y ]
@@ -95,7 +95,7 @@ d2JointConstraint::PreSolve(const float dt)
     const d2MatMN Jt = jacobian.Transpose();
     d2VecN impulses = Jt * cachedLambda;
 
-    // Apply the impulses to both bodies 
+    // Apply the impulses to both m_bodiesList
     a->ApplyImpulseLinear(d2Vec2(impulses[0], impulses[1])); // A linear impulse
     a->ApplyImpulseAngular(impulses[2]);                   // A angular impulse
     b->ApplyImpulseLinear(d2Vec2(impulses[3], impulses[4])); // B linear impulse
@@ -127,7 +127,7 @@ d2JointConstraint::Solve()
     // Compute the impulses with both direction and magnitude
     d2VecN impulses = Jt * lambda;
 
-    // Apply the impulses to both bodies 
+    // Apply the impulses to both m_bodiesList
     a->ApplyImpulseLinear(d2Vec2(impulses[0], impulses[1])); // A linear impulse
     a->ApplyImpulseAngular(impulses[2]);                   // A angular impulse
     b->ApplyImpulseLinear(d2Vec2(impulses[3], impulses[4])); // B linear impulse
@@ -200,7 +200,7 @@ d2PenetrationConstraint::PreSolve(const float dt)
     const d2MatMN Jt = jacobian.Transpose();
     d2VecN impulses = Jt * cachedLambda;
 
-    // Apply the impulses to both bodies 
+    // Apply the impulses to both m_bodiesList
     a->ApplyImpulseLinear(d2Vec2(impulses[0], impulses[1])); // A linear impulse
     a->ApplyImpulseAngular(impulses[2]);                   // A angular impulse
     b->ApplyImpulseLinear(d2Vec2(impulses[3], impulses[4])); // B linear impulse
@@ -244,7 +244,7 @@ d2PenetrationConstraint::Solve()
     // Compute the impulses with both direction and magnitude
     d2VecN impulses = Jt * lambda;
 
-    // Apply the impulses to both bodies 
+    // Apply the impulses to both m_bodiesList
     a->ApplyImpulseLinear(d2Vec2(impulses[0], impulses[1])); // A linear impulse
     a->ApplyImpulseAngular(impulses[2]);                   // A angular impulse
     b->ApplyImpulseLinear(d2Vec2(impulses[3], impulses[4])); // B linear impulse

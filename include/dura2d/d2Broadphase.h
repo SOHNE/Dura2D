@@ -1,6 +1,7 @@
 #ifndef DURA2D_D2BROADPHASE_H
 #define DURA2D_D2BROADPHASE_H
 
+#include <memory>
 #include <utility>
 #include <list>
 
@@ -9,7 +10,7 @@
 
 class AABB;
 
-typedef std::pair<std::shared_ptr<d2Body>, std::shared_ptr<d2Body>> ColliderPair;
+typedef std::pair<d2Body*, d2Body*> ColliderPair;
 typedef std::list<ColliderPair> ColliderPairList;
 
 class d2Broadphase
@@ -19,7 +20,7 @@ public:
     virtual ~d2Broadphase() = default;
 
     // adds a new AABB to the broadphase
-    virtual void Add(std::shared_ptr<d2Body> body) = 0;
+    virtual void Add(d2Body* body) = 0;
 
     // updates broadphase to react to changes to AABB
     virtual void Update(void) = 0;

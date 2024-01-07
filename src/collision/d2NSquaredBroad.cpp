@@ -4,7 +4,7 @@
 #include "dura2d/d2AABB.h"
 
 void
-d2NSquaredBroad::Add(std::shared_ptr<d2Body> body)
+d2NSquaredBroad::Add(d2Body *body)
 {
     bodies.push_back(body);
 }
@@ -22,8 +22,8 @@ d2NSquaredBroad::ComputePairs(void)
 
     for (auto i = 0; i < bodies.size(); ++i) {
         for (auto j = i + 1; j < bodies.size(); ++j) {
-            AABB *a = bodies[i].get()->GetAABB();
-            AABB *b = bodies[j].get()->GetAABB();
+            AABB *a = bodies[i]->GetAABB();
+            AABB *b = bodies[j]->GetAABB();
 
             if (bodies[i] == bodies[j]) continue;
 
@@ -41,7 +41,7 @@ d2NSquaredBroad::Pick(const d2Vec2 &point) const
 {
     for (const auto &body : bodies) {
         if (body->GetAABB()->Contains(point)) {
-            return body.get();
+            return body;
         }
     }
     return nullptr;
@@ -52,7 +52,7 @@ d2NSquaredBroad::Query(const AABB &aabb, d2NSquaredBroad::ColliderList &output) 
 {
     for (const auto &body : bodies) {
         if (body->GetAABB()->Overlaps(aabb)) {
-            output.push_back(body.get());
+            output.push_back(body);
         }
     }
 }

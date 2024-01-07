@@ -42,6 +42,9 @@ struct D2_API d2Body
     // Pointer to the shape/geometry of this rigid body
     d2Shape *shape = nullptr;
 
+    d2Body* prev = nullptr;
+    d2Body* next = nullptr;
+
     d2Body(const d2Shape &shape, float x, float y, float mass);
 
     ~d2Body();

@@ -36,11 +36,13 @@ struct D2_API d2Vec2
     d2Vec2 operator+(const d2Vec2 &v) const;   // v1 + v2
     d2Vec2 operator-(const d2Vec2 &v) const;   // v1 - v2
     d2Vec2 operator*(const float n) const;   // v1 * n
+    d2Vec2 operator*(const d2Vec2 &v) const;   // v1 * v2
     d2Vec2 operator/(const float n) const;   // v1 / n
     d2Vec2 operator-();                      // -v1
 
     d2Vec2 &operator+=(const d2Vec2 &v);       // v1 += v2
     d2Vec2 &operator-=(const d2Vec2 &v);       // v1 -= v2
+    d2Vec2 &operator*=(const d2Vec2 &v);       // v1 *= v2
     d2Vec2 &operator*=(const float n);       // v1 *= n
     d2Vec2 &operator/=(const float n);       // v1 /= n
 };

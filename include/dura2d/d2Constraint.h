@@ -55,7 +55,7 @@ private:
     d2VecN cachedLambda;
     float bias;
     d2Vec2 normal;    // Normal direction of the penetration in A's local space
-    float friction; // Friction coefficient between the two penetrating bodies
+    float friction; // Friction coefficient between the two penetrating m_bodiesList
 
 public:
     d2PenetrationConstraint();

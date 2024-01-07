@@ -2,38 +2,45 @@
 #include "dura2d/d2Constants.h"
 #include "dura2d/d2CollisionDetection.h"
 
-#include "dura2d/d2NSquaredBroad.h"
-
-d2World::d2World(float gravity) : G(-gravity)
+d2World::d2World(const d2Vec2 &gravity)
 {
+    m_gravity = gravity * -1.0f;
     broadphase = std::make_unique<d2NSquaredBroad>();
+    allocator = d2BlockAllocator();
 }
 
 d2World::~d2World()
 {
-    for (auto body: bodies) {
-        body.reset();
+    // delete all m_bodiesList
+    for (auto body = m_bodiesList; body != nullptr; body = body->next) {
+        body->~d2Body();
+        allocator.Free(body, sizeof(d2Body));
     }
-    for (auto constraint: constraints) {
-        delete constraint;
-    }
-    bodies.clear();
+
     constraints.clear();
-
     broadphase.reset();
+    allocator.Clear();
 }
 
-void
-d2World::AddBody(const std::shared_ptr<d2Body>& body)
+d2Body*
+d2World::CreateBody(const d2Shape &shape, d2Vec2 position, float mass)
 {
-    bodies.push_back(body);
+    void* ptr = allocator.Allocate(sizeof(d2Body));
+    d2Body* body = new(ptr) d2Body(shape, position.x, position.y, mass);
+
+    // Add to world doubly linked list.
+    body->prev = nullptr;
+    body->next = m_bodiesList;
+    if (m_bodiesList) {
+        m_bodiesList->prev = body;
+    }
+    m_bodiesList = body;
+    ++m_bodyCount;
+
+    // add to broadphase
     broadphase->Add(body);
-}
 
-std::vector<std::shared_ptr<d2Body>> &
-d2World::GetBodies()
-{
-    return bodies;
+    return body;
 }
 
 void
@@ -68,17 +75,17 @@ d2World::Update(float dt)
 
     penetrations.clear();
 
-    // Loop all bodies of the world applying forces
-    for (auto &body: bodies) {
-        // Apply the weight force to all bodies
-        d2Vec2 weight = d2Vec2(0.0, body->mass * G * PIXELS_PER_METER);
+    // Loop all m_bodiesList of the world applying forces
+    for (auto body = m_bodiesList; body; body = body->next) {
+        // Apply the weight force to all m_bodiesList
+        d2Vec2 weight = d2Vec2(0.0, body->mass * PIXELS_PER_METER) * m_gravity;
         body->AddForce(weight);
 
-        // Apply forces to all bodies
+        // Apply forces to all m_bodiesList
         for (auto& force: forces)
             body->AddForce(force);
 
-        // Apply torque to all bodies
+        // Apply torque to all m_bodiesList
         for (auto& torque: torques)
             body->AddTorque(torque);
 
@@ -89,8 +96,8 @@ d2World::Update(float dt)
     {
         auto &pairs = broadphase->ComputePairs();
         for (const auto &pair: pairs) {
-            auto a = pair.first.get();
-            auto b = pair.second.get();
+            auto a = pair.first;
+            auto b = pair.second;
 
             std::vector<d2Contact> contacts{};
             if (!d2CollisionDetection::IsColliding(a, b, contacts)) continue;
@@ -127,7 +134,7 @@ d2World::Update(float dt)
     }
 
     // Integrate all the velocities
-    for (auto &body: bodies) {
+    for (auto body = m_bodiesList; body; body = body->next) {
         body->IntegrateVelocities(dt);
     }
 }

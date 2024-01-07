@@ -7,7 +7,7 @@ class d2NSquaredBroad : public d2Broadphase
 {
 public:
         // adds a new AABB to the broadphase
-        void Add(std::shared_ptr<d2Body> body) override;
+        void Add(d2Body* body) override;
 
         // updates broadphase to react to changes to AABB
         void Update(void) override;
@@ -25,7 +25,7 @@ public:
         void Query(const AABB &aabb, ColliderList &output) const override;
 
 private:
-        std::vector<std::shared_ptr<d2Body>> bodies{};
+        std::vector<d2Body *> bodies{};
         ColliderPairList m_pairs{};
 };
 
