@@ -28,7 +28,7 @@ public:
 
     void Destroy();
 
-    void DrawObject(const std::shared_ptr<d2Body>& body);
+    static void DrawObject(const d2Body* body);
 
 private:
     float rotation = 0.0f;
@@ -37,7 +37,7 @@ protected:
     static constexpr int screenWidth = 800;
     static constexpr int screenHeight = 600;
 
-    const std::unique_ptr<d2World> world {std::make_unique<d2World>(-9.8F) };
+    const std::unique_ptr<d2World> world {std::make_unique<d2World>(d2Vec2(0.0f, -9.8f))};
 
     //d2Body* player {nullptr};
 };
