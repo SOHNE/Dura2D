@@ -142,6 +142,15 @@ d2Vec2::operator*(const float n) const
 }
 
 d2Vec2
+d2Vec2::operator*(const d2Vec2 &v) const
+{
+    d2Vec2 result;
+    result.x = x * v.x;
+    result.y = y * v.y;
+    return result;
+}
+
+d2Vec2
 d2Vec2::operator/(const float n) const
 {
     d2Vec2 result;
@@ -175,6 +184,14 @@ d2Vec2::operator*=(const float n)
 }
 
 d2Vec2 &
+d2Vec2::operator*=(const d2Vec2 &v)
+{
+    x *= v.x;
+    y *= v.y;
+    return *this;
+}
+
+d2Vec2 &
 d2Vec2::operator/=(const float n)
 {
     x /= n;
@@ -186,7 +203,7 @@ d2Vec2
 d2Vec2::operator-()
 {
     d2Vec2 result;
-    result.x = x * -1;
-    result.y = y * -1;
+    result.x = -x;
+    result.y = -y;
     return result;
 }
