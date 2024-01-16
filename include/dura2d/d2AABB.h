@@ -3,7 +3,7 @@
 
 #include "dura2d/d2Vec2.h"
 
-class AABB
+class d2AABB
 {
 public:
     float minX{};
@@ -11,12 +11,12 @@ public:
     float maxX{};
     float maxY{};
 
-    AABB(float minX, float minY, float maxX, float maxY)
+    d2AABB(float minX, float minY, float maxX, float maxY)
             : minX(minX), minY(minY), maxX(maxX), maxY(maxY) {}
 
-    AABB() : minX(0), minY(0), maxX(0), maxY(0) {}
+    d2AABB() : minX(0), minY(0), maxX(0), maxY(0) {}
 
-    bool Overlaps(const AABB &other) const
+    bool Overlaps(const d2AABB &other) const
     {
         return (minX <= other.maxX && maxX >= other.minX) &&
                (minY <= other.maxY && maxY >= other.minY);

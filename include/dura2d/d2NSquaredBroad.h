@@ -6,10 +6,10 @@
 class d2NSquaredBroad : public d2Broadphase
 {
 public:
-        // adds a new AABB to the broadphase
+        // adds a new d2AABB to the broadphase
         void Add(d2Body* body) override;
 
-        // updates broadphase to react to changes to AABB
+        // updates broadphase to react to changes to d2AABB
         void Update(void) override;
 
         // returns a list of possibly colliding colliders
@@ -20,9 +20,9 @@ public:
         d2Body *Pick(const d2Vec2 &point) const override;
 
         // returns a list of colliders whose AABBs collide
-        // with a query AABB
+        // with a query d2AABB
         typedef std::vector<d2Body *> ColliderList;
-        void Query(const AABB &aabb, ColliderList &output) const override;
+        void Query(const d2AABB &aabb, ColliderList &output) const override;
 
 private:
         std::vector<d2Body *> bodies{};

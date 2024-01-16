@@ -8,7 +8,7 @@
 #include "dura2d/d2Vec2.h"
 #include "dura2d/d2Body.h"
 
-class AABB;
+class d2AABB;
 
 typedef std::pair<d2Body*, d2Body*> ColliderPair;
 typedef std::list<ColliderPair> ColliderPairList;
@@ -19,10 +19,10 @@ public:
 
     virtual ~d2Broadphase() = default;
 
-    // adds a new AABB to the broadphase
+    // adds a new d2AABB to the broadphase
     virtual void Add(d2Body* body) = 0;
 
-    // updates broadphase to react to changes to AABB
+    // updates broadphase to react to changes to d2AABB
     virtual void Update(void) = 0;
 
     // returns a list of possibly colliding colliders
@@ -33,9 +33,9 @@ public:
     virtual d2Body *Pick(const d2Vec2 &point) const = 0;
 
     // returns a list of colliders whose AABBs collide
-    // with a query AABB
+    // with a query d2AABB
     typedef std::vector<d2Body *> ColliderList;
-    virtual void Query(const AABB &aabb, ColliderList &output) const = 0;
+    virtual void Query(const d2AABB &aabb, ColliderList &output) const = 0;
 };
 
 
