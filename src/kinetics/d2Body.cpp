@@ -4,7 +4,7 @@
 
 #include "dura2d/d2AABB.h"
 
-d2Body::d2Body(const d2Shape &shape, float x, float y, float mass)
+d2Body::d2Body(const d2Shape &shape, float x, float y, float mass, d2World *world) : world(world)
 {
     this->shape = shape.Clone();
     this->position = d2Vec2(x, y);
@@ -18,52 +18,13 @@ d2Body::d2Body(const d2Shape &shape, float x, float y, float mass)
     this->restitution = 0.6;
     this->friction = 0.7;
     this->mass = mass;
-    if (mass != 0.0) {
-        this->invMass = 1.0f / mass;
-    } else {
-        this->invMass = 0.0;
-    }
-    I = shape.GetMomentOfInertia() * mass;
-    if (I != 0.0) {
-        this->invI = 1.0f / I;
-    } else {
-        this->invI = 0.0;
-    }
+    this->invMass = (mass != 0.0) ? 1.F / mass : 0.F;
+    this->I = shape.GetMomentOfInertia() * mass;
+    this->invI = (I != 0.0) ? 1.F / I : 0.F;
     this->shape->UpdateVertices(rotation, position);
 
-    // Create the AABB for this body
-    switch (shape.GetType())
-    {
-        case BOX:
-        {
-            auto* box = dynamic_cast<d2BoxShape*>(this->shape);
-            auto minX = std::min(box->worldVertices[0].x, std::min(box->worldVertices[1].x, std::min(box->worldVertices[2].x, box->worldVertices[3].x)));
-            auto minY = std::min(box->worldVertices[0].y, std::min(box->worldVertices[1].y, std::min(box->worldVertices[2].y, box->worldVertices[3].y)));
-            auto maxX = std::max(box->worldVertices[0].x, std::max(box->worldVertices[1].x, std::max(box->worldVertices[2].x, box->worldVertices[3].x)));
-            auto maxY = std::max(box->worldVertices[0].y, std::max(box->worldVertices[1].y, std::max(box->worldVertices[2].y, box->worldVertices[3].y)));
-            aabb = new AABB(minX, minY, maxX, maxY);
-            break;
-        }
-        case POLYGON:
-        {
-            auto* polygon = dynamic_cast<d2PolygonShape*>(this->shape);
-            auto minX = std::min(polygon->worldVertices[0].x, std::min(polygon->worldVertices[1].x, std::min(polygon->worldVertices[2].x, polygon->worldVertices[3].x)));
-            auto minY = std::min(polygon->worldVertices[0].y, std::min(polygon->worldVertices[1].y, std::min(polygon->worldVertices[2].y, polygon->worldVertices[3].y)));
-            auto maxX = std::max(polygon->worldVertices[0].x, std::max(polygon->worldVertices[1].x, std::max(polygon->worldVertices[2].x, polygon->worldVertices[3].x)));
-            auto maxY = std::max(polygon->worldVertices[0].y, std::max(polygon->worldVertices[1].y, std::max(polygon->worldVertices[2].y, polygon->worldVertices[3].y)));
-            aabb = new AABB(minX, minY, maxX, maxY);
-            break;
-        }
-        case CIRCLE:
-        {
-            auto* circle = dynamic_cast<d2CircleShape*>(this->shape);
-            aabb = new AABB(x - circle->radius, y - circle->radius, x + circle->radius, y + circle->radius);
-            break;
-        }
-        default:
-            std::cout << "d2Shape type not supported" << std::endl;
-            break;
-    }
+    // Create the d2AABB for this body
+    ComputeAABB();
 }
 
 d2Body::~d2Body()
@@ -82,6 +43,8 @@ d2Body::IsStatic() const
 void
 d2Body::ComputeAABB()
 {
+    if (aabb != nullptr) delete aabb;
+
     switch (shape->GetType())
     {
         case POLYGON:
@@ -92,13 +55,13 @@ d2Body::ComputeAABB()
             auto minY = std::min(box->worldVertices[0].y, std::min(box->worldVertices[1].y, std::min(box->worldVertices[2].y, box->worldVertices[3].y)));
             auto maxX = std::max(box->worldVertices[0].x, std::max(box->worldVertices[1].x, std::max(box->worldVertices[2].x, box->worldVertices[3].x)));
             auto maxY = std::max(box->worldVertices[0].y, std::max(box->worldVertices[1].y, std::max(box->worldVertices[2].y, box->worldVertices[3].y)));
-            aabb = new AABB(minX, minY, maxX, maxY);
+            aabb = new d2AABB(minX, minY, maxX, maxY);
             break;
         }
         case CIRCLE:
         {
             auto* circle = dynamic_cast<d2CircleShape*>(this->shape);
-            aabb = new AABB(position.x - circle->radius, position.y - circle->radius, position.x + circle->radius, position.y + circle->radius);
+            aabb = new d2AABB(position.x - circle->radius, position.y - circle->radius, position.x + circle->radius, position.y + circle->radius);
             break;
         }
         default:
@@ -146,7 +109,7 @@ d2Body::WorldSpaceToLocalSpace(const d2Vec2 &point) const
     float translatedY = point.y - position.y;
     float rotatedX = cos(-rotation) * translatedX - sin(-rotation) * translatedY;
     float rotatedY = cos(-rotation) * translatedY + sin(-rotation) * translatedX;
-    return d2Vec2(rotatedX, rotatedY);
+    return {rotatedX, rotatedY};
 }
 
 void

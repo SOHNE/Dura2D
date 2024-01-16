@@ -6,27 +6,27 @@ d2World::d2World(const d2Vec2 &gravity)
 {
     m_gravity = gravity * -1.0f;
     broadphase = std::make_unique<d2NSquaredBroad>();
-    allocator = d2BlockAllocator();
+    m_blockAllocator = d2BlockAllocator();
 }
 
 d2World::~d2World()
 {
     // delete all m_bodiesList
-    for (auto body = m_bodiesList; body != nullptr; body = body->next) {
+    for (auto body = m_bodiesList; body; body = body->next) {
         body->~d2Body();
-        allocator.Free(body, sizeof(d2Body));
+        m_blockAllocator.Free(body, sizeof(d2Body));
     }
 
     constraints.clear();
     broadphase.reset();
-    allocator.Clear();
+    m_blockAllocator.Clear();
 }
 
 d2Body*
 d2World::CreateBody(const d2Shape &shape, d2Vec2 position, float mass)
 {
-    void* ptr = allocator.Allocate(sizeof(d2Body));
-    d2Body* body = new(ptr) d2Body(shape, position.x, position.y, mass);
+    void* ptr = m_blockAllocator.Allocate(sizeof(d2Body));
+    d2Body* body = new(ptr) d2Body(shape, position.x, position.y, mass, this);
 
     // Add to world doubly linked list.
     body->prev = nullptr;
@@ -102,7 +102,7 @@ d2World::Update(float dt)
             std::vector<d2Contact> contacts{};
             if (!d2CollisionDetection::IsColliding(a, b, contacts)) continue;
 
-            for (auto &contact: contacts) {
+            for (const auto &contact: contacts) {
                 // Create a new penetration constraint
                 d2PenetrationConstraint penetration(contact.a, contact.b, contact.start, contact.end, contact.normal);
                 penetrations.push_back(penetration);

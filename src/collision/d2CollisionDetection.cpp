@@ -4,10 +4,10 @@
 bool
 d2CollisionDetection::IsColliding(d2Body *a, d2Body *b, std::vector<d2Contact> &contacts)
 {
-    bool aIsCircle = a->shape->GetType() == CIRCLE;
-    bool bIsCircle = b->shape->GetType() == CIRCLE;
-    bool aIsPolygon = a->shape->GetType() == POLYGON || a->shape->GetType() == BOX;
-    bool bIsPolygon = b->shape->GetType() == POLYGON || b->shape->GetType() == BOX;
+    bool aIsCircle = a->GetShape()->GetType() == CIRCLE;
+    bool bIsCircle = b->GetShape()->GetType() == CIRCLE;
+    bool aIsPolygon = a->GetShape()->GetType() == POLYGON || a->GetShape()->GetType() == BOX;
+    bool bIsPolygon = b->GetShape()->GetType() == POLYGON || b->GetShape()->GetType() == BOX;
 
     if (aIsCircle && bIsCircle) {
         return IsCollidingCircleCircle(a, b, contacts);
@@ -27,10 +27,10 @@ d2CollisionDetection::IsColliding(d2Body *a, d2Body *b, std::vector<d2Contact> &
 bool
 d2CollisionDetection::IsCollidingCircleCircle(d2Body *a, d2Body *b, std::vector<d2Contact> &contacts)
 {
-    d2CircleShape *aCircleShape = (d2CircleShape *) a->shape;
-    d2CircleShape *bCircleShape = (d2CircleShape *) b->shape;
+    d2CircleShape *aCircleShape = (d2CircleShape *) a->GetShape();
+    d2CircleShape *bCircleShape = (d2CircleShape *) b->GetShape();
 
-    const d2Vec2 ab = b->position - a->position;
+    const d2Vec2 ab = b->GetPosition() - a->GetPosition();
     const float radiusSum = aCircleShape->radius + bCircleShape->radius;
 
     bool isColliding = ab.MagnitudeSquared() <= (radiusSum * radiusSum);
@@ -45,8 +45,8 @@ d2CollisionDetection::IsCollidingCircleCircle(d2Body *a, d2Body *b, std::vector<
     contact.normal = ab;
     contact.normal.Normalize();
 
-    contact.start = b->position - contact.normal * bCircleShape->radius;
-    contact.end = a->position + contact.normal * aCircleShape->radius;
+    contact.start = b->GetPosition() - contact.normal * bCircleShape->radius;
+    contact.end = a->GetPosition() + contact.normal * aCircleShape->radius;
 
     contact.depth = (contact.end - contact.start).Magnitude();
 
@@ -58,8 +58,8 @@ d2CollisionDetection::IsCollidingCircleCircle(d2Body *a, d2Body *b, std::vector<
 bool
 d2CollisionDetection::IsCollidingPolygonPolygon(d2Body *a, d2Body *b, std::vector<d2Contact> &contacts)
 {
-    auto *aPolygonShape = (d2PolygonShape *) a->shape;
-    auto *bPolygonShape = (d2PolygonShape *) b->shape;
+    auto *aPolygonShape = (d2PolygonShape *) a->GetShape();
+    auto *bPolygonShape = (d2PolygonShape *) b->GetShape();
     int aIndexReferenceEdge, bIndexReferenceEdge;
     d2Vec2 aSupportPoint, bSupportPoint;
     float abSeparation = aPolygonShape->FindMinSeparation(bPolygonShape, aIndexReferenceEdge, aSupportPoint);
@@ -136,8 +136,8 @@ d2CollisionDetection::IsCollidingPolygonPolygon(d2Body *a, d2Body *b, std::vecto
 bool
 d2CollisionDetection::IsCollidingPolygonCircle(d2Body *polygon, d2Body *circle, std::vector<d2Contact> &contacts)
 {
-    const d2PolygonShape *polygonShape = (d2PolygonShape *) polygon->shape;
-    const d2CircleShape *circleShape = (d2CircleShape *) circle->shape;
+    const d2PolygonShape *polygonShape = (d2PolygonShape *) polygon->GetShape();
+    const d2CircleShape *circleShape = (d2CircleShape *) circle->GetShape();
     const std::vector<d2Vec2> &polygonVertices = polygonShape->worldVertices;
 
     bool isOutside = false;
@@ -153,7 +153,7 @@ d2CollisionDetection::IsCollidingPolygonCircle(d2Body *polygon, d2Body *circle, 
         d2Vec2 normal = edge.Normal();
 
         // Compare the circle center with the rectangle vertex
-        d2Vec2 vertexToCircleCenter = circle->position - polygonVertices[currVertex];
+        d2Vec2 vertexToCircleCenter = circle->GetPosition() - polygonVertices[currVertex];
         float projection = vertexToCircleCenter.Dot(normal);
 
         // If we found a dot product projection that is in the positive/outside side of the normal
@@ -180,7 +180,7 @@ d2CollisionDetection::IsCollidingPolygonCircle(d2Body *polygon, d2Body *circle, 
         ///////////////////////////////////////
         // Check if we are inside region A:
         ///////////////////////////////////////
-        d2Vec2 v1 = circle->position - minCurrVertex; // vector from the nearest vertex to the circle center
+        d2Vec2 v1 = circle->GetPosition() - minCurrVertex; // vector from the nearest vertex to the circle center
         d2Vec2 v2 = minNextVertex - minCurrVertex; // the nearest edge (from curr vertex to next vertex)
         if (v1.Dot(v2) < 0) {
             // Distance from vertex to circle center is greater than radius... no collision
@@ -192,14 +192,14 @@ d2CollisionDetection::IsCollidingPolygonCircle(d2Body *polygon, d2Body *circle, 
                 contact.b = circle;
                 contact.depth = circleShape->radius - v1.Magnitude();
                 contact.normal = v1.Normalize();
-                contact.start = circle->position + (contact.normal * -circleShape->radius);
+                contact.start = circle->GetPosition() + (contact.normal * -circleShape->radius);
                 contact.end = contact.start + (contact.normal * contact.depth);
             }
         } else {
             ///////////////////////////////////////
             // Check if we are inside region B:
             ///////////////////////////////////////
-            v1 = circle->position - minNextVertex; // vector from the next nearest vertex to the circle center
+            v1 = circle->GetPosition() - minNextVertex; // vector from the next nearest vertex to the circle center
             v2 = minCurrVertex - minNextVertex;   // the nearest edge
             if (v1.Dot(v2) < 0) {
                 // Distance from vertex to circle center is greater than radius... no collision
@@ -211,7 +211,7 @@ d2CollisionDetection::IsCollidingPolygonCircle(d2Body *polygon, d2Body *circle, 
                     contact.b = circle;
                     contact.depth = circleShape->radius - v1.Magnitude();
                     contact.normal = v1.Normalize();
-                    contact.start = circle->position + (contact.normal * -circleShape->radius);
+                    contact.start = circle->GetPosition() + (contact.normal * -circleShape->radius);
                     contact.end = contact.start + (contact.normal * contact.depth);
                 }
             } else {
@@ -227,7 +227,7 @@ d2CollisionDetection::IsCollidingPolygonCircle(d2Body *polygon, d2Body *circle, 
                     contact.b = circle;
                     contact.depth = circleShape->radius - distanceCircleEdge;
                     contact.normal = (minNextVertex - minCurrVertex).Normal();
-                    contact.start = circle->position - (contact.normal * circleShape->radius);
+                    contact.start = circle->GetPosition() - (contact.normal * circleShape->radius);
                     contact.end = contact.start + (contact.normal * contact.depth);
                 }
             }
@@ -238,7 +238,7 @@ d2CollisionDetection::IsCollidingPolygonCircle(d2Body *polygon, d2Body *circle, 
         contact.b = circle;
         contact.depth = circleShape->radius - distanceCircleEdge;
         contact.normal = (minNextVertex - minCurrVertex).Normal();
-        contact.start = circle->position - (contact.normal * circleShape->radius);
+        contact.start = circle->GetPosition() - (contact.normal * circleShape->radius);
         contact.end = contact.start + (contact.normal * contact.depth);
     }
 

@@ -20,10 +20,14 @@ d2NSquaredBroad::ComputePairs(void)
 {
     m_pairs.clear();
 
-    for (auto i = 0; i < bodies.size(); ++i) {
-        for (auto j = i + 1; j < bodies.size(); ++j) {
-            AABB *a = bodies[i]->GetAABB();
-            AABB *b = bodies[j]->GetAABB();
+    for (auto i = 0; i < bodies.size(); ++i)
+    {
+        //if (!bodies[i]->IsAwake()) continue;
+
+        for (auto j = i + 1; j < bodies.size(); ++j)
+        {
+            d2AABB *a = bodies[i]->GetAABB();
+            d2AABB *b = bodies[j]->GetAABB();
 
             if (bodies[i] == bodies[j]) continue;
 
@@ -48,7 +52,7 @@ d2NSquaredBroad::Pick(const d2Vec2 &point) const
 }
 
 void
-d2NSquaredBroad::Query(const AABB &aabb, d2NSquaredBroad::ColliderList &output) const
+d2NSquaredBroad::Query(const d2AABB &aabb, d2NSquaredBroad::ColliderList &output) const
 {
     for (const auto &body : bodies) {
         if (body->GetAABB()->Overlaps(aabb)) {

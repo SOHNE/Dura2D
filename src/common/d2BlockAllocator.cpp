@@ -5,27 +5,27 @@
 #include <cstddef>
 #include <cstdlib>
 
-constexpr int d2_chunkSize = 16 * 1024;
-constexpr int d2_maxBlockSize = 640;
-constexpr int d2_chunkArrayIncrement = 128;
+static constexpr int d2_chunkSize = 16 * 1024;
+static constexpr int d2_maxBlockSize = 640;
+static constexpr int d2_chunkArrayIncrement = 128;
 
-constexpr int d2_blockSizes[] =
-        {
-                16,     // 0
-                32,     // 1
-                64,     // 2
-                96,     // 3
-                128,    // 4
-                160,    // 5
-                192,    // 6
-                224,    // 7
-                256,    // 8
-                320,    // 9
-                384,    // 10
-                448,    // 11
-                512,    // 12
-                640,    // 13
-        };
+static constexpr int d2_blockSizes[d2_blockSizeCount] =
+{
+        16,     // 0
+        32,     // 1
+        64,     // 2
+        96,     // 3
+        128,    // 4
+        160,    // 5
+        192,    // 6
+        224,    // 7
+        256,    // 8
+        320,    // 9
+        384,    // 10
+        448,    // 11
+        512,    // 12
+        640,    // 13
+};
 
 struct d2SizeMap
 {

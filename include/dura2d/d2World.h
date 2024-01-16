@@ -35,6 +35,13 @@ public:
     d2Body* CreateBody(const d2Shape& shape, d2Vec2 position, float mass);
 
     /**
+     * @brief Destroy a body.
+     * @param body The body to destroy.
+     * @warning This will automatically remove the body from the world, along with its shape.
+     */
+    void DestroyBody(d2Body* body);
+
+    /**
      * @brief Add a constraint to the world.
      * @param constraint The constraint to add.
      */
@@ -65,6 +72,12 @@ public:
     void Update(float dt);
 
     /**
+     * @brief Solve the world simulation by a specified time step.
+     * @param dt The time step for the solve.
+     */
+    void Solve(float dt);
+
+    /**
      * @brief Check for collisions between m_bodiesList.
      */
     void CheckCollisions();
@@ -90,9 +103,9 @@ private:
     std::vector<d2Vec2> forces; /**< List of external forces acting on m_bodiesList. */
     std::vector<float> torques; /**< List of external torques acting on m_bodiesList. */
     std::unique_ptr<d2Broadphase> broadphase; /**< Broad-phase collision detection algorithm. */
-    d2BlockAllocator allocator; /**< Memory allocator for small objects. */
+    d2BlockAllocator m_blockAllocator; /**< Memory m_blockAllocator for small objects. */
 
-    d2Body* m_bodiesList {nullptr }; /**< Array of m_bodiesList in the world. */
+    d2Body* m_bodiesList { nullptr }; /**< Array of m_bodiesList in the world. */
     int m_bodyCount { 0 }; /**< Number of m_bodiesList in the world. */
 };
 

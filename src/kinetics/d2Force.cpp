@@ -5,12 +5,12 @@ d2Vec2
 d2Force::GenerateDragForce(const d2Body &body, float k)
 {
     d2Vec2 dragForce = d2Vec2(0, 0);
-    if (body.velocity.MagnitudeSquared() > 0) {
+    if (body.GetVelocity().MagnitudeSquared() > 0) {
         // Calculate the drag direction (inverse of velocity unit vector)
-        d2Vec2 dragDirection = body.velocity.UnitVector() * -1.0;
+        d2Vec2 dragDirection = body.GetVelocity().UnitVector() * -1.0;
 
         // Calculate the drag magnitude, k * |v|^2
-        float dragMagnitude = k * body.velocity.MagnitudeSquared();
+        float dragMagnitude = k * body.GetVelocity().MagnitudeSquared();
 
         // Generate the final drag force with direction and magnitude
         dragForce = dragDirection * dragMagnitude;
@@ -22,7 +22,7 @@ d2Vec2
 d2Force::GenerateFrictionForce(const d2Body &body, float k)
 {
     // Calculate the friction direction (inverse of velocity unit vector)
-    d2Vec2 frictionDirection = body.velocity.UnitVector() * -1.0;
+    d2Vec2 frictionDirection = body.GetVelocity().UnitVector() * -1.0;
 
     // Calculate the friction magnitude (just k, for now)
     float frictionMagnitude = k;
@@ -36,7 +36,7 @@ d2Vec2
 d2Force::GenerateGravitationalForce(const d2Body &a, const d2Body &b, float G, float minDistance, float maxDistance)
 {
     // Calculate the distance between the two objects
-    d2Vec2 d = (b.position - a.position);
+    d2Vec2 d = (b.GetPosition() - a.GetPosition());
 
     float distanceSquared = d.MagnitudeSquared();
 
@@ -47,7 +47,7 @@ d2Force::GenerateGravitationalForce(const d2Body &a, const d2Body &b, float G, f
     d2Vec2 attractionDirection = d.UnitVector();
 
     // Calculate the strength of the attraction force
-    float attractionMagnitude = G * (a.mass * b.mass) / distanceSquared;
+    float attractionMagnitude = G * (a.GetMass() * b.GetMass()) / distanceSquared;
 
     // Calculate the final resulting attraction force vector
     d2Vec2 attractionForce = attractionDirection * attractionMagnitude;
@@ -58,7 +58,7 @@ d2Vec2
 d2Force::GenerateSpringForce(const d2Body &body, d2Vec2 anchor, float restLength, float k)
 {
     // Calculate the distance between the anchor and the object
-    d2Vec2 d = body.position - anchor;
+    d2Vec2 d = body.GetPosition() - anchor;
 
     // Find the spring displacement considering the rest length
     float displacement = d.Magnitude() - restLength;

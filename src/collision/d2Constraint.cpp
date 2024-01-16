@@ -17,12 +17,12 @@ d2Constraint::GetInvM() const
 {
     d2MatMN invM(6, 6);
     invM.Zero();
-    invM.rows[0][0] = a->invMass;
-    invM.rows[1][1] = a->invMass;
-    invM.rows[2][2] = a->invI;
-    invM.rows[3][3] = b->invMass;
-    invM.rows[4][4] = b->invMass;
-    invM.rows[5][5] = b->invI;
+    invM.rows[0][0] = a->GetInvMass();
+    invM.rows[1][1] = a->GetInvMass();
+    invM.rows[2][2] = a->GetInvI();
+    invM.rows[3][3] = b->GetInvMass();
+    invM.rows[4][4] = b->GetInvMass();
+    invM.rows[5][5] = b->GetInvI();
     return invM;
 }
 
@@ -41,12 +41,12 @@ d2Constraint::GetVelocities() const
 {
     d2VecN V(6);
     V.Zero();
-    V[0] = a->velocity.x;
-    V[1] = a->velocity.y;
-    V[2] = a->angularVelocity;
-    V[3] = b->velocity.x;
-    V[4] = b->velocity.y;
-    V[5] = b->angularVelocity;
+    V[0] = a->GetVelocity().x;
+    V[1] = a->GetVelocity().y;
+    V[2] = a->GetAngularVelocity();
+    V[3] = b->GetVelocity().x;
+    V[4] = b->GetVelocity().y;
+    V[5] = b->GetAngularVelocity();
     return V;
 }
 
@@ -72,8 +72,8 @@ d2JointConstraint::PreSolve(const float dt)
     const d2Vec2 pa = a->LocalSpaceToWorldSpace(aPoint);
     const d2Vec2 pb = b->LocalSpaceToWorldSpace(bPoint);
 
-    const d2Vec2 ra = pa - a->position;
-    const d2Vec2 rb = pb - b->position;
+    const d2Vec2 ra = pa - a->GetPosition();
+    const d2Vec2 rb = pb - b->GetPosition();
 
     jacobian.Zero();
 
@@ -171,8 +171,8 @@ d2PenetrationConstraint::PreSolve(const float dt)
     const d2Vec2 pb = b->LocalSpaceToWorldSpace(bPoint);
     d2Vec2 n = a->LocalSpaceToWorldSpace(normal);
 
-    const d2Vec2 ra = pa - a->position;
-    const d2Vec2 rb = pb - b->position;
+    const d2Vec2 ra = pa - a->GetPosition();
+    const d2Vec2 rb = pb - b->GetPosition();
 
     jacobian.Zero();
 
@@ -185,7 +185,7 @@ d2PenetrationConstraint::PreSolve(const float dt)
     jacobian.rows[0][5] = rb.Cross(n);  // B angular velocity
 
     // Populate the second row of the Jacobian (tangent vector)
-    friction = std::max(a->friction, b->friction);
+    friction = std::max(a->GetFriction(), b->GetFriction());
     if (friction > 0.0) {
         d2Vec2 t = n.Normal(); // The tangent is the vector perpendicular to the normal
         jacobian.rows[1][0] = -t.x;          // A linear velocity.x
@@ -216,6 +216,7 @@ d2PenetrationConstraint::PreSolve(const float dt)
 void
 d2PenetrationConstraint::Solve()
 {
+    // check awake state
     const d2VecN V = GetVelocities();
     const d2MatMN invM = GetInvM();
 
