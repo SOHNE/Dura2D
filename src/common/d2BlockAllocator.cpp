@@ -1,8 +1,6 @@
 #include "dura2d/memory/d2BlockAllocator.h"
 
-#include <climits>
 #include <cstring>
-#include <cstddef>
 #include <cstdlib>
 
 static constexpr int d2_chunkSize = 16 * 1024;
@@ -67,7 +65,7 @@ d2BlockAllocator::d2BlockAllocator()
 {
     m_chunkSpacing = d2_chunkArrayIncrement;
     m_chunkCount = 0;
-    m_chunks = static_cast<d2Chunk*>(malloc(m_chunkSpacing * sizeof(d2Chunk)));
+    m_chunks = (d2Chunk*)(malloc(m_chunkSpacing * sizeof(d2Chunk)));
 
     std::memset(m_chunks, 0, m_chunkSpacing * sizeof(d2Chunk));
     std::memset(m_freeLists, 0, sizeof(m_freeLists));
@@ -75,7 +73,7 @@ d2BlockAllocator::d2BlockAllocator()
 
 d2BlockAllocator::~d2BlockAllocator()
 {
-    for (int i = 0; i < m_chunkCount; ++i)
+    for (signed int i = 0; i < m_chunkCount; ++i)
     {
         std::free(m_chunks[i].blocks);
     }
@@ -103,14 +101,14 @@ void* d2BlockAllocator::Allocate(int32 size)
         {
             d2Chunk* oldInitializer = m_chunks;
             m_chunkSpacing += d2_chunkArrayIncrement;
-            m_chunks = static_cast<d2Chunk*>(malloc(m_chunkSpacing * sizeof(d2Chunk)));
+            m_chunks = (d2Chunk*)(malloc(m_chunkSpacing * sizeof(d2Chunk)));
             std::memcpy(m_chunks, oldInitializer, m_chunkCount * sizeof(d2Chunk));
             std::memset(m_chunks + m_chunkCount, 0, d2_chunkArrayIncrement * sizeof(d2Chunk));
             free(oldInitializer);
         }
 
         d2Chunk* chunk = m_chunks + m_chunkCount;
-        chunk->blocks = static_cast<d2Block*>(malloc(d2_chunkSize));
+        chunk->blocks = (d2Block*)(malloc(d2_chunkSize));
 
         int32 blockSize = d2_blockSizes[index];
         chunk->blockSize = blockSize;
@@ -118,11 +116,11 @@ void* d2BlockAllocator::Allocate(int32 size)
 
         for (int i = 0; i < blockCount - 1; ++i)
         {
-            d2Block* block = reinterpret_cast<d2Block*>(reinterpret_cast<uint8*>(chunk->blocks) + blockSize * i);
-            d2Block* next = reinterpret_cast<d2Block*>(reinterpret_cast<uint8*>(chunk->blocks) + blockSize * (i + 1));
+            d2Block* block = (d2Block*)((uint8*)(chunk->blocks) + blockSize * i);
+            d2Block* next = (d2Block*)((uint8*)(chunk->blocks) + blockSize * (i + 1));
             block->next = next;
         }
-        d2Block* last = reinterpret_cast<d2Block*>(reinterpret_cast<uint8*>(chunk->blocks) + blockSize * (blockCount - 1));
+        d2Block* last = (d2Block*)((uint8*)(chunk->blocks) + blockSize * (blockCount - 1));
         last->next = nullptr;
 
         m_freeLists[index] = chunk->blocks->next;
@@ -144,7 +142,7 @@ void d2BlockAllocator::Free(void* p, int32 size)
 
     int index = d2_sizeMap.values[size];
 
-    d2Block* block = static_cast<d2Block*>(p);
+    d2Block* block = (d2Block*)(p);
     block->next = m_freeLists[index];
     m_freeLists[index] = block;
 }

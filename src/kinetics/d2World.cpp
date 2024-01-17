@@ -16,10 +16,10 @@ d2World::~d2World()
         body->~d2Body();
         m_blockAllocator.Free(body, sizeof(d2Body));
     }
+    m_bodiesList = nullptr;
 
     constraints.clear();
     broadphase.reset();
-    m_blockAllocator.Clear();
 }
 
 d2Body*
