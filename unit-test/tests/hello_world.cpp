@@ -11,7 +11,7 @@ DOCTEST_TEST_CASE("hello world")
     d2World world(gravity);
 
     d2Body *pBody = world.CreateBody(d2CircleShape(45), {0, 0}, 10.0F);
-    pBody->angularVelocity = 10.0F;
+    pBody->SetAngularVelocity(10.0F);
 
     constexpr float timeStep = 1.F / 60.F;
 
@@ -22,8 +22,8 @@ DOCTEST_TEST_CASE("hello world")
     for (int32_t i = 0; i < 60; ++i)
     {
         // Print the position and angle of the body.
-        position = pBody->position;
-        angle = pBody->rotation;
+        position = pBody->GetPosition();
+        angle = pBody->GetRotation();
         printf("X: %4.2f | Y: %4.2f | Angle: %4.2f\n", position.x, position.y, angle);
 
         // Instruct the world to perform a single step of simulation.
