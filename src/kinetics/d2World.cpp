@@ -78,7 +78,7 @@ d2World::Update(float dt)
     // Loop all m_bodiesList of the world applying forces
     for (auto body = m_bodiesList; body; body = body->next) {
         // Apply the weight force to all m_bodiesList
-        d2Vec2 weight = d2Vec2(0.0, body->mass * PIXELS_PER_METER) * m_gravity;
+        d2Vec2 weight = d2Vec2(1.0, body->mass * PIXELS_PER_METER) * m_gravity;
         body->AddForce(weight);
 
         // Apply forces to all m_bodiesList
