@@ -4,6 +4,8 @@ Dura2D is an educational 2D physics engine project developed alongside the [Piku
 
 Drawing inspiration from [Game Engine Architecture] by Jason Gregory, Dura2D focuses on learning and continuous development, offering features like a robust constraint system for realistic simulations, warm starting for improved simulation speed, and a stable performance foundation.
 
+[![Live demo](https://img.shields.io/badge/-Live%20Demo-8f60fc?style=for-the-badge&logo=glitch&logoColor=white&colorA=392467&colorB=7E30E1)](https://dura2d.glitch.me/)
+
 ## Features
 
 - **Constraint System**: A robust system that enables realistic simulations of physical interactions.
