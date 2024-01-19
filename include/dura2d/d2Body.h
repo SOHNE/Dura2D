@@ -315,7 +315,7 @@ inline const d2Vec2& d2Body::GetVelocity() const
 
 inline void d2Body::SetAngularVelocity(float angularVelocity)
 {
-    this->angularAcceleration = angularVelocity;
+    this->angularVelocity = angularVelocity;
 }
 
 inline float d2Body::GetAngularVelocity() const
