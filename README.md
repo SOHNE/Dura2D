@@ -1,6 +1,6 @@
 # SOHNE | Dura2D
 
-Dura2D is an educational 2D physics engine project developed alongside the [Pikuma's course] and [Allen Game Physics] blog series, aiming to provide a deep understanding of physics simulation principles.
+Dura2D is a learning-focused 2D physics engine project. It was developed as a hands-on experiment alongside the [Pikuma's course] and [Allen Game Physics] blog series, aiming to provide a deep understanding of physics simulation principles.
 
 Drawing inspiration from [Game Engine Architecture] by Jason Gregory, Dura2D focuses on learning and continuous development, offering features like a robust constraint system for realistic simulations, warm starting for improved simulation speed, and a stable performance foundation.
 
