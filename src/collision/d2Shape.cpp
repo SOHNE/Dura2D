@@ -28,7 +28,7 @@ d2CircleShape::GetMomentOfInertia() const
 {
     // For solid circles, the moment of inertia is 1/2 * r^2
     // But this still needs to be multiplied by the rigidbody's mass
-    return 0.5 * (radius * radius);
+    return 0.5F * (radius * radius);
 }
 
 d2PolygonShape::d2PolygonShape(const d2Vec2* vertices, int vertexCount)
@@ -48,10 +48,10 @@ d2PolygonShape::d2PolygonShape(const d2Vec2* vertices, int vertexCount)
         worldVertices[i] = vertices[i];
 
         // Find min and max X and Y to calculate polygon width and height
-        minX = std::min(minX, vertices[i].x);
-        maxX = std::max(maxX, vertices[i].x);
-        minY = std::min(minY, vertices[i].y);
-        maxY = std::max(maxY, vertices[i].y);
+        minX = d2Min(minX, vertices[i].x);
+        maxX = d2Max(maxX, vertices[i].x);
+        minY = d2Min(minY, vertices[i].y);
+        maxY = d2Max(maxY, vertices[i].y);
     }
 
     width = maxX - minX;
@@ -86,7 +86,7 @@ d2PolygonShape::PolygonArea() const
         int j = (i + 1) % m_vertexCount;
         area += localVertices[i].Cross(localVertices[j]);
     }
-    return area / 2.0;
+    return area / 2.0F;
 }
 
 d2Vec2
@@ -108,7 +108,7 @@ d2PolygonShape::GetMomentOfInertia() const
     for (int i = 0; i < m_vertexCount; i++) {
         auto a = localVertices[i];
         auto b = localVertices[(i + 1) % m_vertexCount];
-        auto cross = abs(a.Cross(b));
+        auto cross = d2Abs(a.Cross(b));
         acc0 += cross * (a.Dot(a) + b.Dot(b) + a.Dot(b));
         acc1 += cross;
     }
@@ -219,17 +219,17 @@ d2BoxShape::d2BoxShape(float width, float height)
     // Load the vertices of the box polygon
     m_vertexCount = 4;
     localVertices = new d2Vec2[m_vertexCount] {
-        d2Vec2(-width / 2.0, -height / 2.0),
-        d2Vec2(+width / 2.0, -height / 2.0),
-        d2Vec2(+width / 2.0, +height / 2.0),
-        d2Vec2(-width / 2.0, +height / 2.0)
+        d2Vec2(-width / 2.0F, -height / 2.0F),
+        d2Vec2(+width / 2.0F, -height / 2.0F),
+        d2Vec2(+width / 2.0F, +height / 2.0F),
+        d2Vec2(-width / 2.0F, +height / 2.0F)
     };
 
     worldVertices = new d2Vec2[m_vertexCount] {
-        d2Vec2(-width / 2.0, -height / 2.0),
-        d2Vec2(+width / 2.0, -height / 2.0),
-        d2Vec2(+width / 2.0, +height / 2.0),
-        d2Vec2(-width / 2.0, +height / 2.0)
+        d2Vec2(-width / 2.0F, -height / 2.0F),
+        d2Vec2(+width / 2.0F, -height / 2.0F),
+        d2Vec2(+width / 2.0F, +height / 2.0F),
+        d2Vec2(-width / 2.0F, +height / 2.0F)
     };
 }
 

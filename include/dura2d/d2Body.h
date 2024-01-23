@@ -5,6 +5,7 @@
 
 #include "d2Vec2.h"
 #include "d2Shape.h"
+#include "d2Math.h"
 #include "d2Types.h"
 
 // Forward declarations
@@ -279,11 +280,11 @@ private:
 
     uint16 m_flags;
 
-    d2Vec2 position {}; ///< The position of the body in 2D space.
+    d2Transform m_transform; ///< The transformation of the body.
+
     d2Vec2 velocity {}; ///< The velocity of the body.
     d2Vec2 acceleration {}; ///< The acceleration of the body.
 
-    float rotation {}; ///< The rotation of the body.
     float angularVelocity {}; ///< The angular velocity of the body.
     float angularAcceleration {}; ///< The angular acceleration of the body.
 
@@ -312,12 +313,12 @@ private:
 
 inline const d2Vec2& d2Body::GetPosition() const
 {
-    return position;
+    return m_transform.p;
 }
 
 inline void d2Body::SetPosition(const d2Vec2& position)
 {
-    this->position = position;
+    m_transform.p = position;
 }
 
 inline const d2Vec2& d2Body::GetVelocity() const
@@ -337,7 +338,7 @@ inline float d2Body::GetAngularVelocity() const
 
 inline float d2Body::GetRotation() const
 {
-    return rotation;
+    return m_transform.q.GetAngle();
 }
 
 inline float d2Body::GetMass() const

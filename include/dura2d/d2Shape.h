@@ -2,6 +2,7 @@
 #define SHAPE_H
 
 #include "d2api.h"
+#include "d2Math.h"
 #include "d2Vec2.h"
 #include <vector>
 

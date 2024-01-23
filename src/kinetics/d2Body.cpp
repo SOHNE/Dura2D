@@ -7,10 +7,9 @@
 
 d2Body::d2Body(const d2Shape &shape, float x, float y, float mass, d2World *world) : world(world)
 {
-    this->position = d2Vec2(x, y);
+    this->m_transform = d2Transform((d2Vec2(x, y)), d2Rot(0.0));
     this->velocity = d2Vec2(0, 0);
     this->acceleration = d2Vec2(0, 0);
-    this->rotation = 0.0;
     this->angularVelocity = 0.0;
     this->angularAcceleration = 0.0;
     this->sumForces = d2Vec2(0, 0);
@@ -22,7 +21,7 @@ d2Body::d2Body(const d2Shape &shape, float x, float y, float mass, d2World *worl
     this->I = shape.GetMomentOfInertia() * mass;
     this->invI = (I != 0.0) ? 1.F / I : 0.F;
     this->shape = shape.Clone();
-    this->shape->UpdateVertices(rotation, position);
+    this->shape->UpdateVertices(m_transform.q.GetAngle(), m_transform.p);
 
     // Create the d2AABB for this body
     ComputeAABB();
@@ -62,7 +61,8 @@ d2Body::ComputeAABB()
         case CIRCLE:
         {
             auto* circle = dynamic_cast<d2CircleShape*>(this->shape);
-            aabb = new d2AABB(position.x - circle->radius, position.y - circle->radius, position.x + circle->radius, position.y + circle->radius);
+            //aabb = new d2AABB(position.x - circle->radius, position.y - circle->radius, position.x + circle->radius, position.y + circle->radius);
+            aabb = new d2AABB(m_transform.p.x - circle->radius, m_transform.p.y - circle->radius, m_transform.p.x + circle->radius, m_transform.p.y + circle->radius);
             break;
         }
         default:
@@ -99,33 +99,32 @@ d2Body::ClearTorque()
 d2Vec2
 d2Body::LocalSpaceToWorldSpace(const d2Vec2 &point) const
 {
-    d2Vec2 rotated = point.Rotate(rotation);
-    return rotated + position;
+    d2Vec2 rotated
+    {
+        m_transform.q.c * point.x - m_transform.q.s * point.y,
+        m_transform.q.s * point.x + m_transform.q.c * point.y
+    };
+    return rotated + m_transform.p;
 }
 
 d2Vec2
 d2Body::WorldSpaceToLocalSpace(const d2Vec2 &point) const
 {
-    float translatedX = point.x - position.x;
-    float translatedY = point.y - position.y;
-    float rotatedX = cos(-rotation) * translatedX - sin(-rotation) * translatedY;
-    float rotatedY = cos(-rotation) * translatedY + sin(-rotation) * translatedX;
-    return {rotatedX, rotatedY};
+    const d2Vec2 translated = point - m_transform.p;
+    return { m_transform.q.GetXAxis().Dot(translated), m_transform.q.GetYAxis().Dot(translated) };
 }
 
 void
 d2Body::ApplyImpulseLinear(const d2Vec2 &j)
 {
-    if (IsStatic())
-        return;
+    if (IsStatic()) return;
     velocity += j * invMass;
 }
 
 void
 d2Body::ApplyImpulseAngular(const float j)
 {
-    if (IsStatic())
-        return;
+    if (IsStatic()) return;
     angularVelocity += j * invI;
 }
 
@@ -163,15 +162,14 @@ d2Body::IntegrateForces(const float dt)
 void
 d2Body::IntegrateVelocities(const float dt)
 {
-    if (IsStatic())
-        return;
+    if (IsStatic()) return;
 
     // Integrate the velocity to find the new position
-    position += velocity * dt;
+    m_transform.p += velocity * dt;
 
     // Integrate the angular velocity to find the new rotation angle
-    rotation += angularVelocity * dt;
+    m_transform.q += d2Rot(angularVelocity * dt);
 
     // Update the vertices to adjust them to the new position/rotation
-    shape->UpdateVertices(rotation, position);
+    shape->UpdateVertices(m_transform.q.GetAngle(), m_transform.p);
 }
