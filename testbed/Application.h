@@ -1,24 +1,26 @@
-#ifndef DURA2D_APPLICATION_H
-#define DURA2D_APPLICATION_H
+#ifndef APPLICATION_H
+#define APPLICATION_H
 
 #include <iostream>
 #include <cstdint>
 
-#include "dura2d/d2World.h"
+#include "dura2d/dura2d.h"
+#include "raylib.h"
+#include "Test.h"
 
+#include "imgui.h"
+#include "rlImGui.h"
+
+// Forward declarations
+class draw;
+class Test;
 
 class Application
 {
 public:
-    Application() = default;
-    ~Application() = default;
+    Application();
 
-    uint8_t _isRunning : 1 { false };
-
-
-    inline bool IsRunning() const { return _isRunning; }
-
-    void Setup();
+    ~Application();
 
     void Run();
 
@@ -28,19 +30,32 @@ public:
 
     void Destroy();
 
-    static void DrawObject(const d2Body* body);
+public:
+    inline void TogglePause() { isPaused = !isPaused; }
+    inline void SetPaused(bool paused) { isPaused = paused; }
+    inline bool IsRunning() const { return !WindowShouldClose() && _isRunning; }
 
 private:
-    float rotation = 0.0f;
+    static inline bool CompareTests(const TestEntry& a, const TestEntry& b);
+    static void SortTests();
 
-protected:
+private:
+    float fps_values[180]{0};
+    int32 fps_values_offset{0};
+
+    float frametime_values[180]{0};
+    int32 frametime_values_offset{0};
+
+    int32 fps{60};
+    uint8 _isRunning: 1 {false};
+    uint8 isPaused: 1 {false};
+
+    ImGuiIO* io {nullptr};
+
+public:
     static constexpr int screenWidth = 800;
     static constexpr int screenHeight = 600;
-
-    const std::unique_ptr<d2World> world {std::make_unique<d2World>(d2Vec2(0.0f, -9.8f))};
-
-    //d2Body* player {nullptr};
 };
 
 
-#endif //DURA2D_APPLICATION_H
+#endif //APPLICATION_H
