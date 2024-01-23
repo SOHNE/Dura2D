@@ -5,6 +5,8 @@
 #include "d2Vec2.h"
 #include <vector>
 
+#include "memory/d2BlockAllocator.h"
+
 enum D2_API d2ShapeType
 {
     CIRCLE,
@@ -18,6 +20,7 @@ struct D2_API d2Shape
 
     virtual d2ShapeType GetType() const = 0;
 
+    // clone with block allocator as parameter
     virtual d2Shape *Clone() const = 0;
 
     virtual void UpdateVertices(float angle, const d2Vec2 &position) = 0;
@@ -47,12 +50,14 @@ struct D2_API d2PolygonShape : public d2Shape
     float width;
     float height;
 
-    std::vector<d2Vec2> localVertices;
-    std::vector<d2Vec2> worldVertices;
+    int m_vertexCount;
+
+    d2Vec2* localVertices;
+    d2Vec2* worldVertices;
 
     d2PolygonShape() = default;
 
-    d2PolygonShape(const std::vector<d2Vec2> vertices);
+    d2PolygonShape(const d2Vec2* vertices, int vertexCount);
 
     virtual ~d2PolygonShape();
 
@@ -78,6 +83,8 @@ struct D2_API d2PolygonShape : public d2Shape
     float GetMomentOfInertia() const override;
 
     void UpdateVertices(float angle, const d2Vec2 &position) override;
+
+    friend class d2World;
 };
 
 struct D2_API d2BoxShape : public d2PolygonShape
