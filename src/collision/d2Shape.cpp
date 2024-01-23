@@ -31,31 +31,41 @@ d2CircleShape::GetMomentOfInertia() const
     return 0.5 * (radius * radius);
 }
 
-d2PolygonShape::d2PolygonShape(const std::vector<d2Vec2> vertices)
+d2PolygonShape::d2PolygonShape(const d2Vec2* vertices, int vertexCount)
 {
     float minX = std::numeric_limits<float>::max();
     float minY = std::numeric_limits<float>::max();
     float maxX = std::numeric_limits<float>::lowest();
     float maxY = std::numeric_limits<float>::lowest();
 
+    localVertices = new d2Vec2[vertexCount];
+    worldVertices = new d2Vec2[vertexCount];
+
     // Initialize the vertices of the polygon shape and set width and height
-    for (auto vertex: vertices) {
-        localVertices.push_back(vertex);
-        worldVertices.push_back(vertex);
+    for (int i = 0; i < vertexCount; ++i)
+    {
+        localVertices[i] = vertices[i];
+        worldVertices[i] = vertices[i];
 
         // Find min and max X and Y to calculate polygon width and height
-        minX = std::min(minX, vertex.x);
-        maxX = std::max(maxX, vertex.x);
-        minY = std::min(minY, vertex.y);
-        maxY = std::max(maxY, vertex.y);
+        minX = std::min(minX, vertices[i].x);
+        maxX = std::max(maxX, vertices[i].x);
+        minY = std::min(minY, vertices[i].y);
+        maxY = std::max(maxY, vertices[i].y);
     }
+
+    localVertices[0];
+
     width = maxX - minX;
     height = maxY - minY;
+
+    m_vertexCount = vertexCount;
 }
 
 d2PolygonShape::~d2PolygonShape()
 {
-
+    delete localVertices;
+    delete worldVertices;
 }
 
 d2ShapeType
@@ -67,15 +77,15 @@ d2PolygonShape::GetType() const
 d2Shape *
 d2PolygonShape::Clone() const
 {
-    return new d2PolygonShape(localVertices);
+    return new d2PolygonShape(localVertices, m_vertexCount);
 }
 
 float
 d2PolygonShape::PolygonArea() const
 {
     float area = 0.0;
-    for (int i = 0; i < localVertices.size(); i++) {
-        int j = (i + 1) % localVertices.size();
+    for (int i = 0; i < m_vertexCount; i++) {
+        int j = (i + 1) % m_vertexCount;
         area += localVertices[i].Cross(localVertices[j]);
     }
     return area / 2.0;
@@ -85,8 +95,8 @@ d2Vec2
 d2PolygonShape::PolygonCentroid() const
 {
     d2Vec2 cg{0, 0};
-    for (int i = 0; i < localVertices.size(); i++) {
-        int j = (i + 1) % localVertices.size();
+    for (int i = 0; i < m_vertexCount; i++) {
+        int j = (i + 1) % m_vertexCount;
         cg += (localVertices[i] + localVertices[j]) * localVertices[i].Cross(localVertices[j]);
     }
     return cg / 6 / PolygonArea();
@@ -97,9 +107,9 @@ d2PolygonShape::GetMomentOfInertia() const
 {
     float acc0 = 0;
     float acc1 = 0;
-    for (int i = 0; i < localVertices.size(); i++) {
+    for (int i = 0; i < m_vertexCount; i++) {
         auto a = localVertices[i];
-        auto b = localVertices[(i + 1) % localVertices.size()];
+        auto b = localVertices[(i + 1) % m_vertexCount];
         auto cross = abs(a.Cross(b));
         acc0 += cross * (a.Dot(a) + b.Dot(b) + a.Dot(b));
         acc1 += cross;
@@ -111,7 +121,7 @@ d2Vec2
 d2PolygonShape::EdgeAt(int index) const
 {
     int currVertex = index;
-    int nextVertex = (index + 1) % worldVertices.size();
+    int nextVertex = (index + 1) % m_vertexCount;
     return worldVertices[nextVertex] - worldVertices[currVertex];
 }
 
@@ -120,13 +130,13 @@ d2PolygonShape::FindMinSeparation(const d2PolygonShape *other, int &indexReferen
 {
     float separation = std::numeric_limits<float>::lowest();
     // Loop all the vertices of "this" polygon
-    for (int i = 0; i < this->worldVertices.size(); i++) {
+    for (int i = 0; i < this->m_vertexCount; i++) {
         d2Vec2 va = this->worldVertices[i];
         d2Vec2 normal = this->EdgeAt(i).Normal();
         // Loop all the vertices of the "other" polygon
         float minSep = std::numeric_limits<float>::max();
         d2Vec2 minVertex;
-        for (int j = 0; j < other->worldVertices.size(); j++) {
+        for (int j = 0; j < other->m_vertexCount; j++) {
             d2Vec2 vb = other->worldVertices[j];
             float proj = (vb - va).Dot(normal);
             if (proj < minSep) {
@@ -148,8 +158,8 @@ d2PolygonShape::FindIncidentEdge(const d2Vec2 &normal) const
 {
     int indexIncidentEdge;
     float minProj = std::numeric_limits<float>::max();
-    for (int i = 0; i < this->worldVertices.size(); ++i) {
-        auto edgeNormal = this->EdgeAt(i).Normal();
+    for (int i = 0; i < m_vertexCount; ++i) {
+        auto edgeNormal = EdgeAt(i).Normal();
         auto proj = edgeNormal.Dot(normal);
         if (proj < minProj) {
             minProj = proj;
@@ -196,7 +206,7 @@ void
 d2PolygonShape::UpdateVertices(float angle, const d2Vec2 &position)
 {
     // Loop all the vertices, transforming from local to world space
-    for (int i = 0; i < localVertices.size(); i++) {
+    for (int i = 0; i < m_vertexCount; i++) {
         // First rotate, then we translate
         worldVertices[i] = localVertices[i].Rotate(angle);
         worldVertices[i] += position;
@@ -209,15 +219,20 @@ d2BoxShape::d2BoxShape(float width, float height)
     this->height = height;
 
     // Load the vertices of the box polygon
-    localVertices.push_back(d2Vec2(-width / 2.0, -height / 2.0));
-    localVertices.push_back(d2Vec2(+width / 2.0, -height / 2.0));
-    localVertices.push_back(d2Vec2(+width / 2.0, +height / 2.0));
-    localVertices.push_back(d2Vec2(-width / 2.0, +height / 2.0));
+    m_vertexCount = 4;
+    localVertices = new d2Vec2[m_vertexCount] {
+        d2Vec2(-width / 2.0, -height / 2.0),
+        d2Vec2(+width / 2.0, -height / 2.0),
+        d2Vec2(+width / 2.0, +height / 2.0),
+        d2Vec2(-width / 2.0, +height / 2.0)
+    };
 
-    worldVertices.push_back(d2Vec2(-width / 2.0, -height / 2.0));
-    worldVertices.push_back(d2Vec2(+width / 2.0, -height / 2.0));
-    worldVertices.push_back(d2Vec2(+width / 2.0, +height / 2.0));
-    worldVertices.push_back(d2Vec2(-width / 2.0, +height / 2.0));
+    worldVertices = new d2Vec2[m_vertexCount] {
+        d2Vec2(-width / 2.0, -height / 2.0),
+        d2Vec2(+width / 2.0, -height / 2.0),
+        d2Vec2(+width / 2.0, +height / 2.0),
+        d2Vec2(-width / 2.0, +height / 2.0)
+    };
 }
 
 d2BoxShape::~d2BoxShape()
