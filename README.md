@@ -1,6 +1,6 @@
 # SOHNE | Dura2D
 
-Dura2D is a learning-focused 2D physics engine project. It was developed as a hands-on experiment alongside the [Pikuma's course] and [Allen Game Physics] blog series, aiming to provide a deep understanding of physics simulation principles.
+Dura2D is a learning-focused 2D physics engine project. It was developed as a hands-on experiment alongside the [Pikuma's course] and [Allen Game Physics] blog series, aiming to provide a deep understanding of physics simulation principles. Some of the architecture and logic decisions were based on code studies on [Box2D] by Erin Catto, further enhancing the robustness and efficiency of the engine.
 
 Drawing inspiration from [Game Engine Architecture] by Jason Gregory, Dura2D focuses on learning and continuous development, offering features like a robust constraint system for realistic simulations, warm starting for improved simulation speed, and a stable performance foundation.
 
@@ -56,26 +56,27 @@ main()
     d2World world(gravity);
 
     // Create a circular body (Shape, Position, Mass)
-    d2Body *pBody = world.CreateBody(d2CircleShape(45), {0, 0}, 10.0F);
+    d2Body* pBody = world.CreateBody(d2CircleShape(45), {0, 0}, 10.0F);
+    pBody->SetAngularVelocity(10.0F);
 
     // Game loop
     {
         // Time step for the simulation
-        constexpr float timeStep = 1.F / 60.F;
+        constexpr float timeStep = 1.0F / 60.0F;
 
         // Position and angle of the body
         d2Vec2 position {};
         float angle {};
     
         // Simulate the physics for 60 frames
-        for (int32_t i = 0; i < 60; ++i)
+        for (int32 i = 0; i < 60; ++i)
         {
             // Update the world for the next time step
-            world.Update(timeStep);
+            world.Step(timeStep);
             
             // Print the position and angle of the body
-            position = pBody->position;
-            angle = pBody->rotation;
+            position = pBody->GetPosition();
+            angle = pBody->GetRotation();
             printf("Position: (%.2f, %.2f) | Angle: %.2f\n", position.x, position.y, angle);
         }
     }
@@ -91,24 +92,26 @@ Dura2D provides several configuration options that you can set when running CMak
 
 - `DURA2D_BUILD_UNIT_TESTS`: Build the Dura2D unit tests. Default is `ON`.
 - `DURA2D_BUILD_TESTBED`: Build the Dura2D testbed. Default is `ON`.
-- `DURA2D_MACOSX_BUNDLE`: Build Dura2D as a macOS bundle. Default is `ON`.
 - `BUILD_SHARED_LIBS`: Build Dura2D as a shared library. Default is `OFF`.
 
 You can set these options when configuring the project with CMake. For example, to build the unit tests and the testbed, but not the macOS bundle or the shared library, you would run:
 
 ```bash
-cmake .. -DDURA2D_BUILD_UNIT_TESTS=ON -DDURA2D_BUILD_TESTBED=ON -DDURA2D_MACOSX_BUNDLE=OFF -DBUILD_SHARED_LIBS=OFF
+cmake .. -DDURA2D_BUILD_UNIT_TESTS=ON -DDURA2D_BUILD_TESTBED=ON -DBUILD_SHARED_LIBS=OFF
 ```
 
 ## Todos
 
-- [ ] **Broadphase Collision Detection**: Improve the efficiency of the engine by reducing the number of collision checks.
+- [ ] **Proper Broadphase and Narrow Phase Collision Detection**: Improve the efficiency of the engine by reducing the number of collision checks and ensuring accurate collision responses.
 - [ ] **Contact Caching**: Optimize the engine by storing collision information and reusing it in subsequent frames.
-- [ ] **Memory Arena**: Implement a custom memory management system to optimize memory usage and performance.
+- [ ] **Island State**: Implement an island state for bodies to improve the efficiency of the simulation.
+- [ ] **Awake State**: Add an awake state for bodies to control their activity in the simulation.
+- [ ] **Manifold Implementation**: Implement a contact manifold to hold information about the contact points between two colliding bodies.
 
 [//]:  (Externals)
 [Pikuma's course]: https://pikuma.com/courses/game-physics-engine-programming
 [Allen Game Physics]: https://allenchou.net/game-physics-series/
+[Box2D]: https://box2d.org/
 [Game Engine Architecture]: https://www.gameenginebook.com/
 [CMake]: https://cmake.org/
 [//]:  (EOF)
