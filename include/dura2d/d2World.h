@@ -2,11 +2,18 @@
 #define D2WORLD_H
 
 #include <vector>
+
 #include "d2api.h"
-#include "./d2Body.h"
-#include "./d2Constraint.h"
-#include "./dura2d/d2NSquaredBroad.h"
-#include "./dura2d/memory/d2BlockAllocator.h"
+#include "d2Vec2.h"
+#include "memory/d2BlockAllocator.h"
+
+// Forward declarations
+struct d2Color;
+class d2Body;
+class d2Shape;
+class d2Broadphase;
+class d2Constraint;
+class d2Draw;
 
 /**
  * @brief Represents a 2D physics world.
@@ -42,16 +49,32 @@ public:
     void DestroyBody(d2Body* body);
 
     /**
-     * @brief Add a constraint to the world.
-     * @param constraint The constraint to add.
+     * @brief Create a joint between two bodies.
+     * @param bodyA The first body.
+     * @param bodyB The second body.
+     * @param anchorPoint The anchor point for the joint.
+     * @return Pointer to the created joint.
      */
-    void AddConstraint(d2Constraint* constraint);
+    d2Constraint* CreateJoint(d2Body* bodyA, d2Body* bodyB, d2Vec2 anchorPoint);
+
+    /**
+     * @brief Destroy a joint.
+     * @param joint The joint to destroy.
+     * @warning This will automatically remove the joint from the world.
+     */
+    void DestroyJoint(d2Constraint* joint);
 
     /**
      * @brief Get a reference to the list of constraints.
      * @return Reference to the list of constraints.
      */
-    std::vector<d2Constraint*>& GetConstraints();
+    d2Constraint*& GetConstraints();
+
+    /**
+     * @brief Get the number of constraints in the world.
+     * @return The number of constraints in the world.
+     */
+    int32 GetConstraintCount() const;
 
     /**
      * @brief Add an external force to be applied to m_bodiesList.
@@ -92,25 +115,43 @@ public:
      * @brief Get the number of m_bodiesList in the world.
      * @return The number of m_bodiesList in the world.
      */
-    int GetBodyCount() const;
+    int32 GetBodyCount() const;
 
-private:
+    /** @brief
+     * Set the debug draw object.
+     * @param debugDraw The debug draw object.
+     */
+    void SetDebugDraw(d2Draw* debugDraw);
+
+    /** @brief Draw a shape. */
+    void DrawShape(const d2Body* body,const d2Color& color);
+
+    /** @brief Debug draw the world. */
+    void DebugDraw();
+
+public:
     d2World(const d2World& other) = delete;
     d2World& operator=(const d2World& other) = delete;
 
     d2Vec2 m_gravity {0.0f, -9.8f }; /**< Acceleration due to gravity. */
-    std::vector<d2Constraint *> constraints; /**< List of constraints in the world. */
     std::vector<d2Vec2> forces; /**< List of external forces acting on m_bodiesList. */
     std::vector<float> torques; /**< List of external torques acting on m_bodiesList. */
-    std::unique_ptr<d2Broadphase> broadphase; /**< Broad-phase collision detection algorithm. */
+    d2Broadphase* broadphase; /**< Broad-phase collision detection algorithm. */
     d2BlockAllocator m_blockAllocator; /**< Memory m_blockAllocator for small objects. */
 
     d2Body* m_bodiesList { nullptr }; /**< Array of m_bodiesList in the world. */
-    int m_bodyCount { 0 }; /**< Number of m_bodiesList in the world. */
+    int32 m_bodyCount { 0 }; /**< Number of m_bodiesList in the world. */
+
+    d2Constraint *m_constraints { nullptr }; /**< List of constraints in the world. */
+    int32 m_constraintCount { 0 }; /**< Number of constraints in the world. */
+
+    d2Draw* m_debugDraw { nullptr }; /**< Debug draw object. */
 };
 
 inline d2Body* d2World::GetBodies() const   { return m_bodiesList; }
 
-inline int d2World::GetBodyCount() const    { return m_bodyCount; }
+inline int32 d2World::GetBodyCount() const    { return m_bodyCount; }
+
+inline int32 d2World::GetConstraintCount() const { return m_constraintCount; }
 
 #endif // D2WORLD_H
