@@ -9,6 +9,9 @@ public:
         // adds a new d2AABB to the broadphase
         void Add(d2Body* body) override;
 
+        // removes a d2AABB from the broadphase
+        void Remove(d2Body* body) override;
+
         // updates broadphase to react to changes to d2AABB
         void Update(void) override;
 

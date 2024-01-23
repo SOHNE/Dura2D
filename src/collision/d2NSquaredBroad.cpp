@@ -10,6 +10,17 @@ d2NSquaredBroad::Add(d2Body *body)
 }
 
 void
+d2NSquaredBroad::Remove(d2Body *body)
+{
+    for (auto i = 0; i < bodies.size(); ++i) {
+        if (bodies[i] == body) {
+            bodies.erase(bodies.begin() + i);
+            break;
+        }
+    }
+}
+
+void
 d2NSquaredBroad::Update(void)
 {
 

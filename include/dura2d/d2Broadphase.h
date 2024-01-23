@@ -22,6 +22,9 @@ public:
     // adds a new d2AABB to the broadphase
     virtual void Add(d2Body* body) = 0;
 
+    // removes a d2AABB from the broadphase
+    virtual void Remove(d2Body* body) = 0;
+
     // updates broadphase to react to changes to d2AABB
     virtual void Update(void) = 0;
 
