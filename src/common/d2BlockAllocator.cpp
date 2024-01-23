@@ -2,6 +2,7 @@
 
 #include <cstring>
 #include <cstdlib>
+#include <cassert>
 
 static constexpr int d2_chunkSize = 16 * 1024;
 static constexpr int d2_maxBlockSize = 640;
@@ -27,14 +28,13 @@ static constexpr int d2_blockSizes[d2_blockSizeCount] =
 
 struct d2SizeMap
 {
-    uint8 values[d2_maxBlockSize + 1]{};
-
     d2SizeMap()
     {
         int j = 0;
         values[0] = 0;
-        for (int i = 1; i <= d2_maxBlockSize; ++i)
+        for (int32 i = 1; i <= d2_maxBlockSize; ++i)
         {
+            assert(j < d2_blockSizeCount);
             if (i <= d2_blockSizes[j])
             {
                 values[i] = static_cast<uint8>(j);
@@ -46,6 +46,8 @@ struct d2SizeMap
             }
         }
     }
+
+    uint8 values[d2_maxBlockSize + 1];
 };
 
 static const d2SizeMap d2_sizeMap;
@@ -63,6 +65,8 @@ struct d2Chunk
 
 d2BlockAllocator::d2BlockAllocator()
 {
+    assert(d2_blockSizeCount < UCHAR_MAX);
+
     m_chunkSpacing = d2_chunkArrayIncrement;
     m_chunkCount = 0;
     m_chunks = (d2Chunk*)(malloc(m_chunkSpacing * sizeof(d2Chunk)));
@@ -85,9 +89,12 @@ void* d2BlockAllocator::Allocate(int32 size)
 {
     if (size == 0) return nullptr;
 
+    assert(0 < size);
+
     if (size > d2_maxBlockSize) return malloc(size);
 
     int index = d2_sizeMap.values[size];
+    assert(0 <= index && index < d2_blockSizeCount);
 
     if (m_freeLists[index])
     {
@@ -110,9 +117,14 @@ void* d2BlockAllocator::Allocate(int32 size)
         d2Chunk* chunk = m_chunks + m_chunkCount;
         chunk->blocks = (d2Block*)(malloc(d2_chunkSize));
 
+#if defined(_DEBUG)
+        memset(chunk->blocks, 0xcd, d2_chunkSize);
+#endif
+
         int32 blockSize = d2_blockSizes[index];
         chunk->blockSize = blockSize;
         int32 blockCount = d2_chunkSize / blockSize;
+        assert(blockCount * blockSize <= d2_chunkSize);
 
         for (int i = 0; i < blockCount - 1; ++i)
         {
@@ -134,6 +146,8 @@ void d2BlockAllocator::Free(void* p, int32 size)
 {
     if (size == 0) return;
 
+    assert(0 < size);
+
     if (size > d2_maxBlockSize)
     {
         std::free(p);
@@ -141,6 +155,33 @@ void d2BlockAllocator::Free(void* p, int32 size)
     }
 
     int index = d2_sizeMap.values[size];
+    assert(0 <= index && index < d2_blockSizeCount);
+
+#if defined(_DEBUG)
+    // Verify the memory address and size is valid.
+    int32 blockSize = d2_blockSizes[index];
+    bool found = false;
+    for (int32 i = 0; i < m_chunkCount; ++i)
+    {
+        d2Chunk* chunk = m_chunks + i;
+        if (chunk->blockSize != blockSize)
+        {
+            assert(	(int8*)p + blockSize <= (int8*)chunk->blocks ||
+                         (int8*)chunk->blocks + d2_chunkSize <= (int8*)p);
+        }
+        else
+        {
+            if ((int8*)chunk->blocks <= (int8*)p && (int8*)p + blockSize <= (int8*)chunk->blocks + d2_chunkSize)
+            {
+                found = true;
+            }
+        }
+    }
+
+    assert(found);
+
+    memset(p, 0xfd, blockSize);
+#endif
 
     d2Block* block = (d2Block*)(p);
     block->next = m_freeLists[index];
