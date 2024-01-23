@@ -1,6 +1,10 @@
 #ifndef DURA2D_H
 #define DURA2D_H
 
+#include "d2Types.h"
+
+#include "d2Draw.h"
+
 #include "d2MatMN.h"
 #include "d2VecN.h"
 #include "d2Vec2.h"
