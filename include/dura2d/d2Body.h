@@ -139,6 +139,13 @@ public:
     inline const d2Vec2& GetPosition() const;
 
     /**
+     * @brief Sets the position of the body.
+     *
+     * @param position The position of the body.
+     */
+    inline void SetPosition(const d2Vec2& position);
+
+    /**
      * @brief Gets the velocity of the body.
      *
      * @return The velocity of the body.
@@ -306,6 +313,11 @@ private:
 inline const d2Vec2& d2Body::GetPosition() const
 {
     return position;
+}
+
+inline void d2Body::SetPosition(const d2Vec2& position)
+{
+    this->position = position;
 }
 
 inline const d2Vec2& d2Body::GetVelocity() const
