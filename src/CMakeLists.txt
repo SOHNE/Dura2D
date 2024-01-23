@@ -29,6 +29,7 @@ set(DURA2D_HEADER_FILES
         ../include/dura2d/dura2d.h
         ../include/dura2d/memory/d2BlockAllocator.h
         ../include/dura2d/d2Types.h
+        ../include/dura2d/d2Draw.h
 )
 
 add_library(dura2d ${DURA2D_SOURCE_FILES} ${DURA2D_HEADER_FILES} )
