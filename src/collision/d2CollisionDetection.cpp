@@ -91,17 +91,17 @@ d2CollisionDetection::IsCollidingPolygonPolygon(d2Body *a, d2Body *b, std::vecto
     // Clipping 
     /////////////////////////////////////
     int incidentIndex = incidentShape->FindIncidentEdge(referenceEdge.Normal());
-    int incidentNextIndex = (incidentIndex + 1) % incidentShape->worldVertices.size();
+    int incidentNextIndex = (incidentIndex + 1) % incidentShape->m_vertexCount;
     d2Vec2 v0 = incidentShape->worldVertices[incidentIndex];
     d2Vec2 v1 = incidentShape->worldVertices[incidentNextIndex];
 
     std::vector<d2Vec2> contactPoints = {v0, v1};
     std::vector<d2Vec2> clippedPoints = contactPoints;
-    for (int i = 0; i < referenceShape->worldVertices.size(); i++) {
+    for (int i = 0; i < referenceShape->m_vertexCount; i++) {
         if (i == indexReferenceEdge)
             continue;
         d2Vec2 c0 = referenceShape->worldVertices[i];
-        d2Vec2 c1 = referenceShape->worldVertices[(i + 1) % referenceShape->worldVertices.size()];
+        d2Vec2 c1 = referenceShape->worldVertices[(i + 1) % referenceShape->m_vertexCount];
         int numClipped = referenceShape->ClipSegmentToLine(contactPoints, clippedPoints, c0, c1);
         if (numClipped < 2) {
             break;
@@ -138,7 +138,8 @@ d2CollisionDetection::IsCollidingPolygonCircle(d2Body *polygon, d2Body *circle, 
 {
     const d2PolygonShape *polygonShape = (d2PolygonShape *) polygon->GetShape();
     const d2CircleShape *circleShape = (d2CircleShape *) circle->GetShape();
-    const std::vector<d2Vec2> &polygonVertices = polygonShape->worldVertices;
+    const d2Vec2 *polygonVertices = polygonShape->worldVertices;
+    const int vertexCount = polygonShape->m_vertexCount;
 
     bool isOutside = false;
     d2Vec2 minCurrVertex;
@@ -146,9 +147,9 @@ d2CollisionDetection::IsCollidingPolygonCircle(d2Body *polygon, d2Body *circle, 
     float distanceCircleEdge = std::numeric_limits<float>::lowest();
 
     // Loop all the edges of the polygon/box finding the nearest edge to the circle center
-    for (int i = 0; i < polygonVertices.size(); i++) {
+    for (int i = 0; i < vertexCount; i++) {
         int currVertex = i;
-        int nextVertex = (i + 1) % polygonVertices.size();
+        int nextVertex = (i + 1) % vertexCount;
         d2Vec2 edge = polygonShape->EdgeAt(currVertex);
         d2Vec2 normal = edge.Normal();
 
