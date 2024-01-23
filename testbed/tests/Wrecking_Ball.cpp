@@ -37,7 +37,7 @@ public:
 
         // Create wrecking ball
         float ballRadius = 50.0f;
-        float x = anchor->GetPosition().x - 275.0f;  // place the ball to the left of the chain
+        float x = anchor->GetPosition().x - (0.35f * screenWidth);  // place the ball to the left of the chain based on screen width
         float y = anchor->GetPosition().y;
         d2Body *wreckingBall = world->CreateBody(d2CircleShape(ballRadius), (d2Vec2) {x, y}, 100.0f);
 

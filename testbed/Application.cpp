@@ -13,9 +13,9 @@ Application::Application()
 
     IMGUI_CHECKVERSION();
     rlImGuiSetup(false);
-    io = &ImGui::GetIO();
+    m_io = &ImGui::GetIO();
 
-    _isRunning = true;
+    m_isRunning = true;
 
     SortTests();
     s_test = g_availableTests[s_selectedTest].createFcn();
@@ -40,13 +40,26 @@ Application::Run()
 void
 Application::Input()
 {
+    if (IsKeyPressed(KEY_F1)) {
+        m_showUI = !m_showUI;
+    }
+
+    if (IsKeyPressed(KEY_P)) {
+        TogglePause();
+    }
+
+    if (IsKeyPressed(KEY_S)) {
+        m_isPaused = true;
+        s_test->Step();
+    }
+
     if (IsKeyPressed(KEY_R)) {
         delete s_test;
         s_test = g_availableTests[s_selectedTest].createFcn();
-        isPaused = false;
+        m_isPaused = false;
     }
 
-    if (io->WantCaptureMouse) return;
+    if (m_io->WantCaptureMouse) return;
 
     s_test->Input();
 }
@@ -54,7 +67,7 @@ Application::Input()
 void
 Application::Update()
 {
-    if (isPaused) return;
+    if (m_isPaused) return;
 
     s_test->Step();
 }
@@ -67,7 +80,7 @@ Application::Render()
     s_test->Render();
 
     // rlimgui
-    {
+    if (m_showUI) {
         const float deltaTime = GetFrameTime();
         const float frameTimeInMs = GetFrameTime() * 1000.0f;
 
@@ -99,22 +112,23 @@ Application::Render()
 
         // Bodies count
         ImGui::Text("Bodies: %d", s_test->world->GetBodyCount());
+        ImGui::SameLine();
         ImGui::Text("Joints: %d", s_test->world->GetConstraintCount());
 
         // Pause/Resume button (use font awesome)
-        if (isPaused) {
+        if (m_isPaused) {
             if (ImGui::Button(ICON_FA_PLAY)) {
-                isPaused = false;
+                m_isPaused = false;
             }
             if (ImGui::IsItemHovered(ImGuiHoveredFlags_AllowWhenDisabled)) {
-                ImGui::SetTooltip("Resume");
+                ImGui::SetTooltip("[P]lay/Resume");
             }
         } else {
             if (ImGui::Button(ICON_FA_PAUSE)) {
-                isPaused = true;
+                m_isPaused = true;
             }
             if (ImGui::IsItemHovered(ImGuiHoveredFlags_AllowWhenDisabled)) {
-                ImGui::SetTooltip("Pause");
+                ImGui::SetTooltip("[P]ause");
             }
         }
 
@@ -122,11 +136,11 @@ Application::Render()
 
         // Step button (use font awesome)
         if (ImGui::Button(ICON_FA_RIGHT_TO_BRACKET)) {
-            isPaused = true;
+            m_isPaused = true;
             s_test->Step();
         }
         if (ImGui::IsItemHovered(ImGuiHoveredFlags_AllowWhenDisabled)) {
-            ImGui::SetTooltip("Step forward");
+            ImGui::SetTooltip("[S]tep forward");
         }
 
         ImGui::SameLine();
@@ -135,10 +149,10 @@ Application::Render()
         if (ImGui::Button(ICON_FA_ROTATE)) {
             delete s_test;
             s_test = g_availableTests[s_selectedTest].createFcn();
-            isPaused = false;
+            m_isPaused = false;
         }
         if (ImGui::IsItemHovered(ImGuiHoveredFlags_AllowWhenDisabled)) {
-            ImGui::SetTooltip("Reset");
+            ImGui::SetTooltip("[R]eset");
         }
 
         if (ImGui::BeginTabBar("TabBar")) {

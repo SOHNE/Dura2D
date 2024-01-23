@@ -61,10 +61,15 @@ public:
             auto mousePos = GetMousePosition();
             world->CreateBody(d2BoxShape(50.0f, 50.0f), (d2Vec2) {mousePos.x, mousePos.y}, 5.0f);
         }
+
+        if (IsMouseButtonPressed(MOUSE_RIGHT_BUTTON)) {
+            auto mousePos = GetMousePosition();
+            d2Body *body = world->broadphase->Pick((d2Vec2) {mousePos.x, mousePos.y});
+            if (body) world->DestroyBody(body);
+        }
     }
 
-    static Test *Create()
-    { return new Bridge; }
+    static Test *Create() { return new Bridge; }
 };
 
 static int testIndex = RegisterTest("Examples", "Bridge", Bridge::Create);
