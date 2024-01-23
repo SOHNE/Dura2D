@@ -1,30 +1,41 @@
-#if __EMSCRIPTEN__
-#include <emscripten.h>
-#endif
-
 #include "Application.h"
 
-Application app;
-void Loop(void);
-
-int
-main()
-{
-    app.Setup();
-
-#if __EMSCRIPTEN__
-    emscripten_set_main_loop(Loop, 0, 1);
-#else
-    Loop();
+#ifdef __EMSCRIPTEN__
+#include <emscripten.h>
+#include <emscripten/bind.h>
 #endif
 
-    app.Destroy();
+void MainLoop(void *);
+
+int
+main(int argc, char **argv)
+{
+    Application game;
+
+#ifdef __EMSCRIPTEN__
+    emscripten_set_main_loop_arg(MainLoop, &game, 0, 1);
+#else
+    while (game.IsRunning())
+        MainLoop(&game);
+#endif
+
+    game.Destroy();
 
     return 0;
 }
 
 void
-Loop()
+MainLoop(void* arg) // void* arg __attribute__((unused))
 {
-    app.Run();
+    Application* game = static_cast<Application*>(arg);
+    game->Input();
+    game->Update();
+    game->Render();
+
+#ifdef __EMSCRIPTEN__
+    if (!game->IsRunning())
+    {
+        emscripten_cancel_main_loop();
+    }
+#endif
 }
