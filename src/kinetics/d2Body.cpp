@@ -3,10 +3,10 @@
 #include <iostream>
 
 #include "dura2d/d2AABB.h"
+#include "dura2d/d2World.h"
 
 d2Body::d2Body(const d2Shape &shape, float x, float y, float mass, d2World *world) : world(world)
 {
-    this->shape = shape.Clone();
     this->position = d2Vec2(x, y);
     this->velocity = d2Vec2(0, 0);
     this->acceleration = d2Vec2(0, 0);
@@ -21,6 +21,7 @@ d2Body::d2Body(const d2Shape &shape, float x, float y, float mass, d2World *worl
     this->invMass = (mass != 0.0) ? 1.F / mass : 0.F;
     this->I = shape.GetMomentOfInertia() * mass;
     this->invI = (I != 0.0) ? 1.F / I : 0.F;
+    this->shape = shape.Clone();
     this->shape->UpdateVertices(rotation, position);
 
     // Create the d2AABB for this body
@@ -50,7 +51,7 @@ d2Body::ComputeAABB()
         case POLYGON:
         case BOX:
         {
-            auto* box = dynamic_cast<d2BoxShape*>(this->shape);
+            auto* box = dynamic_cast<d2PolygonShape*>(this->shape);
             auto minX = std::min(box->worldVertices[0].x, std::min(box->worldVertices[1].x, std::min(box->worldVertices[2].x, box->worldVertices[3].x)));
             auto minY = std::min(box->worldVertices[0].y, std::min(box->worldVertices[1].y, std::min(box->worldVertices[2].y, box->worldVertices[3].y)));
             auto maxX = std::max(box->worldVertices[0].x, std::max(box->worldVertices[1].x, std::max(box->worldVertices[2].x, box->worldVertices[3].x)));
