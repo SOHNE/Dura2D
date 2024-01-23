@@ -13,20 +13,30 @@ public:
     d2Vec2 aPoint; // The constraint point in A's local space
     d2Vec2 bPoint; // The constraint point in B's local space
 
+    d2Constraint* next;
+    d2Constraint* prev;
+
     virtual ~d2Constraint() = default;
 
     d2MatMN GetInvM() const;
 
     d2VecN GetVelocities() const;
 
-    virtual void PreSolve(const float dt)
-    {}
+    virtual void PreSolve(const float dt) {}
 
-    virtual void Solve()
-    {}
+    virtual void Solve() {}
 
-    virtual void PostSolve()
-    {}
+    virtual void PostSolve() {}
+
+    void SetNext(d2Constraint* next) { this->next = next; }
+
+    void SetPrev(d2Constraint* prev) { this->prev = prev; }
+
+    d2Constraint* GetNext() { return next; }
+    const d2Constraint* GetNext() const { return next; }
+
+    d2Constraint* GetPrev() { return prev; }
+    const d2Constraint* GetPrev() const { return prev; }
 };
 
 class d2JointConstraint : public d2Constraint
