@@ -54,8 +54,6 @@ d2PolygonShape::d2PolygonShape(const d2Vec2* vertices, int vertexCount)
         maxY = std::max(maxY, vertices[i].y);
     }
 
-    localVertices[0];
-
     width = maxX - minX;
     height = maxY - minY;
 
@@ -64,8 +62,8 @@ d2PolygonShape::d2PolygonShape(const d2Vec2* vertices, int vertexCount)
 
 d2PolygonShape::~d2PolygonShape()
 {
-    delete localVertices;
-    delete worldVertices;
+    delete[] localVertices;
+    delete[] worldVertices;
 }
 
 d2ShapeType
