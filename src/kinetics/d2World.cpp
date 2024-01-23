@@ -263,18 +263,12 @@ d2World::DebugDraw()
 
     if (flags & d2Draw::e_shapeBit)
     {
+        d2Color staticColor(1.0f, 0.721568627f, 0.423529412f); // #ffb86c
+        d2Color dynamicColor(0.545098039f, 0.91372549f, 0.992156863f); // #8be9fd
+
         for (auto body = m_bodiesList; body; body = body->GetNext())
         {
-            d2Color color;
-            if (body->IsStatic())
-            {
-                color = d2Color(1.0f, 0.721568627f, 0.423529412f); // #ffb86c
-            }
-            else
-            {
-                color = d2Color(0.545098039f, 0.91372549f, 0.992156863f); // #8be9fd
-            }
-
+            d2Color color = body->IsStatic() ? staticColor : dynamicColor;
             DrawShape(body, color);
         }
     }
@@ -300,16 +294,22 @@ d2World::DebugDraw()
         for (auto body = m_bodiesList; body; body = body->GetNext())
         {
             d2ShapeType sType = body->GetShape()->GetType();
-            if (sType == d2ShapeType::POLYGON || sType == d2ShapeType::BOX)
+            d2Transform transform = body->m_transform;
+
+            switch (sType)
             {
-                d2PolygonShape* polygon = (d2PolygonShape*)body->GetShape();
-                d2Transform transform = body->m_transform;
-                transform.p += polygon->PolygonCentroid();
-                m_debugDraw->DrawTransform(transform);
-            } else
-            {
-                m_debugDraw->DrawTransform(body->m_transform);
+                case d2ShapeType::POLYGON:
+                case d2ShapeType::BOX:
+                {
+                    d2PolygonShape* polygon = (d2PolygonShape*)body->GetShape();
+                    transform.p += polygon->PolygonCentroid();
+                    break;
+                }
+                default:
+                    break;
             }
+
+            m_debugDraw->DrawTransform(transform);
         }
     }
 
