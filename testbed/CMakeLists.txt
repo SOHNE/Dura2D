@@ -1,10 +1,17 @@
 set(TESTBED_SOURCE_FILES
         Application.cpp
+        draw.cpp
+        Test.cpp
+
+        tests/Playground.cpp
+        tests/Bridge.cpp
+        tests/Wrecking_Ball.cpp
 )
 
 set(TESTBED_HEADER_FILES
-        raygui.h
         Application.h
+        draw.h
+        Test.h
 )
 
 add_executable(testbed)
@@ -45,7 +52,8 @@ if( EMSCRIPTEN )
     endif ()
 
     # Tell Emscripten to build an example.html file.
-    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} --emrun -s DEMANGLE_SUPPORT=1 -sUSE_GLFW=3 -sASSERTIONS=1 -sWASM=1 -sASYNCIFY")
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} --emrun -s DEMANGLE_SUPPORT=1 -s USE_GLFW=3 -s ASSERTIONS=1 -s WASM=1 -s ASYNCIFY -s GL_ENABLE_GET_PROC_ADDRESS=1")
+    set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O3")
     set_target_properties(testbed PROPERTIES SUFFIX ".html")
     set_target_properties(testbed PROPERTIES OUTPUT_NAME "index")
 endif ()
@@ -61,4 +69,4 @@ if (APPLE)
     target_link_libraries(testbed PRIVATE ${APPLE_FRAMEWORKS})
 endif ()
 
-source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${TESTBED_SOURCE_FILES})
+source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${TESTBED_SOURCE_FILES} ${TESTBED_HEADER_FILES})
