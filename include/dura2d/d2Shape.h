@@ -3,7 +3,6 @@
 
 #include "d2api.h"
 #include "d2Math.h"
-#include "d2Vec2.h"
 #include <vector>
 
 #include "memory/d2BlockAllocator.h"
@@ -24,7 +23,7 @@ struct D2_API d2Shape
     // clone with block allocator as parameter
     virtual d2Shape *Clone() const = 0;
 
-    virtual void UpdateVertices(float angle, const d2Vec2 &position) = 0;
+    virtual void UpdateVertices(const d2Transform &transform) = 0;
 
     virtual float GetMomentOfInertia() const = 0;
 };
@@ -41,7 +40,7 @@ struct D2_API d2CircleShape : public d2Shape
 
     d2Shape *Clone() const override;
 
-    void UpdateVertices(float angle, const d2Vec2 &position) override { };
+    void UpdateVertices(const d2Transform &transform) override { };
 
     float GetMomentOfInertia() const override;
 };
@@ -83,7 +82,7 @@ struct D2_API d2PolygonShape : public d2Shape
 
     float GetMomentOfInertia() const override;
 
-    void UpdateVertices(float angle, const d2Vec2 &position) override;
+    void UpdateVertices(const d2Transform &transform) override;
 
     friend class d2World;
 };

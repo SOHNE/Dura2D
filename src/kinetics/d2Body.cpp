@@ -21,7 +21,7 @@ d2Body::d2Body(const d2Shape &shape, float x, float y, float mass, d2World *worl
     this->I = shape.GetMomentOfInertia() * mass;
     this->invI = (I != 0.0) ? 1.F / I : 0.F;
     this->shape = shape.Clone();
-    this->shape->UpdateVertices(m_transform.q.GetAngle(), m_transform.p);
+    this->shape->UpdateVertices(m_transform);
 
     // Create the d2AABB for this body
     ComputeAABB();
@@ -171,5 +171,5 @@ d2Body::IntegrateVelocities(const float dt)
     m_transform.q += d2Rot(angularVelocity * dt);
 
     // Update the vertices to adjust them to the new position/rotation
-    shape->UpdateVertices(m_transform.q.GetAngle(), m_transform.p);
+    shape->UpdateVertices(m_transform);
 }

@@ -19,7 +19,7 @@ public:
 
     void DrawSolidCircle(const d2Vec2 &center, float radius, const float &angle, const d2Color &color) override;
 
-    void DrawTransform(const d2Vec2 &position, float angle) override;
+    void DrawTransform(const d2Transform &transform) override;
 
     void DrawSegment(const d2Vec2 &p1, const d2Vec2 &p2, const d2Color &color) override;
 

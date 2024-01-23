@@ -299,26 +299,24 @@ d2World::DebugDraw()
     {
         for (auto body = m_bodiesList; body; body = body->GetNext())
         {
-            float angle = body->GetRotation();
-
-            // if polygon, calculate the centroid
-            if (body->GetShape()->GetType() == d2ShapeType::POLYGON || body->GetShape()->GetType() == d2ShapeType::BOX)
+            d2ShapeType sType = body->GetShape()->GetType();
+            if (sType == d2ShapeType::POLYGON || sType == d2ShapeType::BOX)
             {
                 d2PolygonShape* polygon = (d2PolygonShape*)body->GetShape();
-                d2Vec2 centroid = polygon->PolygonCentroid();
-
-                m_debugDraw->DrawTransform(body->GetPosition() + centroid, angle);
+                d2Transform transform = body->m_transform;
+                transform.p += polygon->PolygonCentroid();
+                m_debugDraw->DrawTransform(transform);
             } else
             {
-                d2Vec2 position = body->GetPosition();
-                m_debugDraw->DrawTransform(position, angle);
+                m_debugDraw->DrawTransform(body->m_transform);
             }
         }
     }
 
     if (flags & d2Draw::e_jointBit)
     {
-        for (d2Constraint *constraint = m_constraints; constraint; constraint = constraint->GetNext()) {
+        for (d2Constraint *constraint = m_constraints; constraint; constraint = constraint->GetNext())
+        {
             m_debugDraw->DrawSegment(constraint->a->GetPosition(), constraint->b->GetPosition(), d2Color(1.0f, 0.474509804f, 0.776470588f));
         }
     }

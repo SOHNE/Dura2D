@@ -201,13 +201,15 @@ d2PolygonShape::ClipSegmentToLine(const std::vector<d2Vec2> &contactsIn,
 }
 
 void
-d2PolygonShape::UpdateVertices(float angle, const d2Vec2 &position)
+d2PolygonShape::UpdateVertices(const d2Transform &transform)
 {
     // Loop all the vertices, transforming from local to world space
     for (int i = 0; i < m_vertexCount; i++) {
-        // First rotate, then we translate
-        worldVertices[i] = localVertices[i].Rotate(angle);
-        worldVertices[i] += position;
+        d2Vec2 rotated = {
+                transform.q.c * localVertices[i].x - transform.q.s * localVertices[i].y,
+                transform.q.s * localVertices[i].x + transform.q.c * localVertices[i].y
+        };
+        worldVertices[i] = rotated + transform.p;
     }
 }
 
@@ -218,19 +220,20 @@ d2BoxShape::d2BoxShape(float width, float height)
 
     // Load the vertices of the box polygon
     m_vertexCount = 4;
-    localVertices = new d2Vec2[m_vertexCount] {
+    d2Vec2 vertices[4] = {
         d2Vec2(-width / 2.0F, -height / 2.0F),
         d2Vec2(+width / 2.0F, -height / 2.0F),
         d2Vec2(+width / 2.0F, +height / 2.0F),
         d2Vec2(-width / 2.0F, +height / 2.0F)
     };
 
-    worldVertices = new d2Vec2[m_vertexCount] {
-        d2Vec2(-width / 2.0F, -height / 2.0F),
-        d2Vec2(+width / 2.0F, -height / 2.0F),
-        d2Vec2(+width / 2.0F, +height / 2.0F),
-        d2Vec2(-width / 2.0F, +height / 2.0F)
-    };
+    // Allocate memory for the local and world vertices
+    localVertices = new d2Vec2[m_vertexCount];
+    worldVertices = new d2Vec2[m_vertexCount];
+
+    // Copy the calculated vertices to both arrays
+    std::copy(std::begin(vertices), std::end(vertices), localVertices);
+    std::copy(std::begin(vertices), std::end(vertices), worldVertices);
 }
 
 d2BoxShape::~d2BoxShape()

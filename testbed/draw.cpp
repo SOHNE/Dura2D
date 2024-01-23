@@ -72,15 +72,19 @@ draw::DrawSolidCircle(const d2Vec2 &center, float radius, const float &angle, co
 }
 
 void
-draw::DrawTransform(const d2Vec2 &position, float angle)
+draw::DrawTransform(const d2Transform &transform)
 {
-    // Draw the center
-    ::DrawCircleV((Vector2) {position.x, position.y}, 2.5f, YELLOW);
+    constexpr float axisScale = 25.0f;
+    constexpr Color red = {255, 85, 85, 255};
+    constexpr Color green = {80, 250, 123, 255};
+    constexpr Color yellow = {241, 250, 140, 255};
 
     // Draw the angle (X and Y components)
-    Vector2 angleVector = (Vector2) {std::cos(angle), std::sin(angle)};
-    ::DrawLineV((Vector2) {position.x, position.y}, (Vector2) {position.x + std::cos(angle) * 25.0f, position.y + std::sin(angle) * 25.0f}, RED);
-    ::DrawLineV((Vector2) {position.x, position.y}, (Vector2) {position.x + angleVector.y * 25.0f, position.y - angleVector.x * 25.0f}, GREEN);
+    ::DrawLineV((Vector2) {transform.p.x, transform.p.y}, (Vector2) {transform.p.x + transform.q.c * axisScale, transform.p.y + transform.q.s * axisScale}, red);
+    ::DrawLineV((Vector2) {transform.p.x, transform.p.y}, (Vector2) {transform.p.x + transform.q.s * axisScale, transform.p.y - transform.q.c * axisScale}, green);
+
+    // Draw center (or center of mass for dynamic bodies)
+    ::DrawCircleV((Vector2) {transform.p.x, transform.p.y}, 3.0f, yellow);
 }
 
 void

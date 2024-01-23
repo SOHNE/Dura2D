@@ -2,7 +2,7 @@
 #define D2DRAW_H
 
 #include "d2api.h"
-#include "d2Vec2.h"
+#include "d2Math.h"
 #include "d2Types.h"
 
 /**
@@ -94,7 +94,7 @@ public:
 
     virtual void DrawSolidCircle(const d2Vec2 &center, float radius, const float &angle, const d2Color &color) = 0;
 
-    virtual void DrawTransform(const d2Vec2 &position, float angle) = 0;
+    virtual void DrawTransform(const d2Transform & transform) = 0;
 
     virtual void DrawSegment(const d2Vec2 &p1, const d2Vec2 &p2, const d2Color &color) = 0;
 
