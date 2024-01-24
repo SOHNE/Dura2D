@@ -33,6 +33,11 @@ public:
         }
     }
 
+    ~Collisions() override
+    {
+        delete movingBody;
+    }
+
     void Step() override
     {
         Test::Step();
