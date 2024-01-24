@@ -1,7 +1,5 @@
 #include "Test.h"
 
-#include <iostream>
-
 Test::Test()
 {
     world = new d2World((d2Vec2){0.0f, -9.81f});
@@ -12,7 +10,6 @@ Test::~Test()
 {
     delete world;
     world = NULL;
-    Destroy();
 }
 
 void

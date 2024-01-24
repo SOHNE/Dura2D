@@ -16,20 +16,6 @@ d2World::d2World(const d2Vec2 &gravity)
 
 d2World::~d2World()
 {
-    // delete all m_bodiesList
-    for (auto body = m_bodiesList; body; body = body->next) {
-        body->~d2Body();
-        m_blockAllocator.Free(body, sizeof(d2Body));
-    }
-    m_bodiesList = nullptr;
-
-    // delete all constraints
-    for (d2Constraint *constraint = m_constraints; constraint; constraint = constraint->GetNext()) {
-        constraint->~d2Constraint();
-        m_blockAllocator.Free(constraint, sizeof(d2Constraint));
-    }
-    m_constraints = nullptr;
-
     delete broadphase;
 }
 

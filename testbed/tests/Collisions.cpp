@@ -1,5 +1,3 @@
-#include <cmath>
-
 #include "Test.h"
 
 class Collisions : public Test
@@ -31,11 +29,6 @@ public:
             body->SetRestitution(1.0f);
             body->SetGravityScale(0.f);
         }
-    }
-
-    void Destroy() override
-    {
-        delete movingBody;
     }
 
     void Step() override
