@@ -134,8 +134,6 @@ public:
     d2World& operator=(const d2World& other) = delete;
 
     d2Vec2 m_gravity {0.0f, -9.8f }; /**< Acceleration due to gravity. */
-    std::vector<d2Vec2> forces; /**< List of external forces acting on m_bodiesList. */
-    std::vector<float> torques; /**< List of external torques acting on m_bodiesList. */
     d2Broadphase* broadphase; /**< Broad-phase collision detection algorithm. */
     d2BlockAllocator m_blockAllocator; /**< Memory m_blockAllocator for small objects. */
 
@@ -148,10 +146,24 @@ public:
     d2Draw* m_debugDraw { nullptr }; /**< Debug draw object. */
 };
 
-inline d2Body* d2World::GetBodies() const   { return m_bodiesList; }
+inline d2Body* d2World::GetBodies() const
+{
+    return m_bodiesList;
+}
 
-inline int32 d2World::GetBodyCount() const    { return m_bodyCount; }
+inline int32 d2World::GetBodyCount() const
+{
+    return m_bodyCount;
+}
 
-inline int32 d2World::GetConstraintCount() const { return m_constraintCount; }
+inline d2Constraint*& d2World::GetConstraints()
+{
+    return m_constraints;
+}
+
+inline int32 d2World::GetConstraintCount() const
+{
+    return m_constraintCount;
+}
 
 #endif // D2WORLD_H

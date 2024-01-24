@@ -11,6 +11,10 @@
 #define d2Abs(x) ((x) > 0.0F ? (x) : -(x))
 #define d2Min(a, b) ((a) < (b) ? (a) : (b))
 #define d2Max(a, b) ((a) > (b) ? (a) : (b))
+#define d2Clamp(a, low, high) (d2Max(low, d2Min(a, high)))
+
+#define PI 3.14159265359f
+#define TAU 6.28318530718f
 
 /** @brief Represents a rotation of a body in 2D space. */
 struct D2_API d2Rot
@@ -97,6 +101,12 @@ struct D2_API d2Rot
     d2Rot& operator+=(const d2Rot& other)
     {
         this->Add(other);
+        return *this;
+    }
+
+    d2Rot& operator+=(float angle)
+    {
+        this->Add(d2Rot(angle));
         return *this;
     }
 };

@@ -12,6 +12,13 @@
 class d2World;
 class d2AABB;
 
+// enums
+enum d2BodyType
+{
+    d2_staticBody = 0,      //< A static body does not move or rotate.
+    d2_dynamicBody      //< A dynamic body is fully simulated.
+};
+
 /**
  * @class d2Body
  * @brief A class representing a 2D rigid body.
@@ -35,13 +42,6 @@ public:
      * @brief Destructor for the d2Body class.
      */
     ~d2Body();
-
-    /**
-     * @brief Checks if the body is static.
-     *
-     * @return True if the body is static, false otherwise.
-     */
-    bool IsStatic() const;
 
     /** @brief Computes the Axis-Aligned Bounding Box of the body. */
     void ComputeAABB();
@@ -152,6 +152,9 @@ public:
      * @return The velocity of the body.
      */
     inline const d2Vec2& GetVelocity() const;
+
+    /** @brief Set acceleration of the body. */
+    inline void SetAcceleration(const d2Vec2& acceleration);
 
     /** @brief Sets the angular velocity of the body. */
     inline void SetAngularVelocity(float angularVelocity);
@@ -269,6 +272,11 @@ public:
      */
     inline void SetAwake(bool awake);
 
+    /** @brief Gets the gravity scale of the body. */
+    inline float GetGravityScale() const;
+
+    /** @brief Sets the gravity scale of the body */
+    inline void SetGravityScale(float gravityScale);
 
 private:
     friend class d2World;
@@ -278,12 +286,15 @@ private:
         e_awakeFlag = 0x0001
     };
 
-    uint16 m_flags;
+    uint16 m_flags{};
+    d2BodyType m_type{};
 
     d2Transform m_transform; ///< The transformation of the body.
 
     d2Vec2 velocity {}; ///< The velocity of the body.
     d2Vec2 acceleration {}; ///< The acceleration of the body.
+
+    float m_gravityScale{ 1.0f }; ///< The gravity scale of the body.
 
     float angularVelocity {}; ///< The angular velocity of the body.
     float angularAcceleration {}; ///< The angular acceleration of the body.
@@ -308,7 +319,7 @@ private:
     d2Body* prev { nullptr }; ///< A pointer to the previous body in a linked list of bodies.
     d2Body* next { nullptr }; ///< A pointer to the next body in a linked list of bodies.
 
-    float m_sleepTime; ///< The time that the body has been stationary.
+    float m_sleepTime{}; ///< The time that the body has been stationary.
 };
 
 inline const d2Vec2& d2Body::GetPosition() const
@@ -324,6 +335,11 @@ inline void d2Body::SetPosition(const d2Vec2& position)
 inline const d2Vec2& d2Body::GetVelocity() const
 {
     return velocity;
+}
+
+inline void d2Body::SetAcceleration(const d2Vec2& acceleration)
+{
+    this->acceleration = acceleration;
 }
 
 inline void d2Body::SetAngularVelocity(float angularVelocity)
@@ -414,6 +430,16 @@ inline const d2Body* d2Body::GetPrev() const
 inline float d2Body::GetSleepTime() const
 {
     return m_sleepTime;
+}
+
+inline float d2Body::GetGravityScale() const
+{
+    return m_gravityScale;
+}
+
+inline void d2Body::SetGravityScale(float gravityScale)
+{
+    m_gravityScale = gravityScale;
 }
 
 inline bool d2Body::IsAwake() const

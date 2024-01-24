@@ -1,7 +1,6 @@
 #include "dura2d/d2World.h"
 
 #include "dura2d/d2Body.h"
-#include "dura2d/d2Shape.h"
 #include "dura2d/d2AABB.h"
 #include "dura2d/d2NSquaredBroad.h"
 #include "dura2d/d2Constraint.h"
@@ -116,50 +115,20 @@ d2World::DestroyJoint(d2Constraint *joint)
     m_blockAllocator.Free(joint, sizeof(d2Constraint));
 }
 
-d2Constraint*&
-d2World::GetConstraints()
-{
-    return m_constraints;
-}
-
-void
-d2World::AddForce(const d2Vec2 &force)
-{
-    forces.push_back(force);
-}
-
-void
-d2World::AddTorque(float torque)
-{
-    torques.push_back(torque);
-}
-
 void
 d2World::Update(float dt)
 {
-    // Create a vector of penetration constraints that will be solved frame per frame
-    static std::vector<d2PenetrationConstraint> penetrations {};
-
-    penetrations.clear();
-
     // Loop all m_bodiesList of the world applying forces
-    for (auto body = m_bodiesList; body; body = body->next) {
-        // Apply the weight force to all m_bodiesList
-        d2Vec2 weight = d2Vec2(1.0, body->mass * PIXELS_PER_METER) * m_gravity;
+    for (auto body = m_bodiesList; body; body = body->next)
+    {
+        d2Vec2 weight = (d2Vec2(1.0, body->mass * PIXELS_PER_METER) * m_gravity) * body->m_gravityScale;
         body->AddForce(weight);
-
-        // Apply forces to all m_bodiesList
-        for (auto& force: forces)
-            body->AddForce(force);
-
-        // Apply torque to all m_bodiesList
-        for (auto& torque: torques)
-            body->AddTorque(torque);
 
         body->IntegrateForces(dt);
         body->ComputeAABB();
     }
 
+    d2PenetrationConstraint* penetrations = nullptr;
     {
         auto &pairs = broadphase->ComputePairs();
         for (const auto &pair: pairs) {
@@ -171,8 +140,15 @@ d2World::Update(float dt)
 
             for (const auto &contact: contacts) {
                 // Create a new penetration constraint
-                d2PenetrationConstraint penetration(contact.a, contact.b, contact.start, contact.end, contact.normal);
-                penetrations.push_back(penetration);
+                d2PenetrationConstraint *penetration = new d2PenetrationConstraint(contact.a, contact.b, contact.start, contact.end, contact.normal);
+
+                // Add to world doubly linked list.
+                penetration->prev = nullptr;
+                penetration->next = penetrations;
+                if (penetrations) {
+                    penetrations->prev = penetration;
+                }
+                penetrations = penetration;
             }
         }
     }
@@ -181,23 +157,23 @@ d2World::Update(float dt)
     for (d2Constraint *constraint = m_constraints; constraint; constraint = constraint->GetNext()) {
         constraint->PreSolve(dt);
     }
-    for (auto &constraint: penetrations) {
-        constraint.PreSolve(dt);
+    for (d2Constraint *penetration = penetrations; penetration; penetration = penetration->GetNext()) {
+        penetration->PreSolve(dt);
     }
-    for (int i = 0; i < 50; i++)
+    for (int i = 0; i < 3; i++)
     {
         for (d2Constraint *constraint = m_constraints; constraint; constraint = constraint->GetNext()) {
             constraint->Solve();
         }
-        for (auto &constraint: penetrations) {
-            constraint.Solve();
+        for (d2Constraint *penetration = penetrations; penetration; penetration = penetration->GetNext()) {
+            penetration->Solve();
         }
     }
     for (d2Constraint *constraint = m_constraints; constraint; constraint = constraint->GetNext()) {
         constraint->PostSolve();
     }
-    for (auto &constraint: penetrations) {
-        constraint.PostSolve();
+    for (d2Constraint *penetration = penetrations; penetration; penetration = penetration->GetNext()) {
+        penetration->PostSolve();
     }
 
     // Integrate all the velocities
@@ -232,14 +208,7 @@ d2World::DrawShape(const d2Body* body, const d2Color& color)
             m_debugDraw->DrawSolidCircle(position, radius, angle, color);
             break;
         }
-        case d2ShapeType::BOX: {
-            d2BoxShape *box = (d2BoxShape *) shape;
-            d2Vec2* vertices = box->worldVertices;
-            int vertexCount = box->m_vertexCount;
-
-            m_debugDraw->DrawSolidPolygon(vertices, vertexCount, angle, color);
-            break;
-        }
+        case d2ShapeType::BOX:
         case d2ShapeType::POLYGON:
         {
             d2PolygonShape* polygon = (d2PolygonShape*)shape;
@@ -268,7 +237,7 @@ d2World::DebugDraw()
 
         for (auto body = m_bodiesList; body; body = body->GetNext())
         {
-            d2Color color = body->IsStatic() ? staticColor : dynamicColor;
+            d2Color color = body->m_type == d2BodyType::d2_staticBody ? staticColor : dynamicColor;
             DrawShape(body, color);
         }
     }
@@ -279,10 +248,10 @@ d2World::DebugDraw()
         {
             d2AABB* aabb = body->aabb;
             d2Vec2 vertices[4] = {
-                d2Vec2(aabb->minX, aabb->minY),
-                d2Vec2(aabb->maxX, aabb->minY),
-                d2Vec2(aabb->maxX, aabb->maxY),
-                d2Vec2(aabb->minX, aabb->maxY)
+                    d2Vec2(aabb->minX, aabb->minY),
+                    d2Vec2(aabb->maxX, aabb->minY),
+                    d2Vec2(aabb->maxX, aabb->maxY),
+                    d2Vec2(aabb->minX, aabb->maxY)
             };
 
             m_debugDraw->DrawPolygon(vertices, 4, body->GetRotation(), d2Color(0.9f, 0.3f, 0.9f));
