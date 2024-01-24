@@ -3,8 +3,9 @@ set(TESTBED_SOURCE_FILES
         draw.cpp
         Test.cpp
 
-        tests/Playground.cpp
         tests/Bridge.cpp
+        tests/Collisions.cpp
+        tests/Playground.cpp
         tests/Wrecking_Ball.cpp
 )
 
