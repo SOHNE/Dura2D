@@ -3,6 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <cassert>
+#include <climits>
 
 static constexpr int d2_chunkSize = 16 * 1024;
 static constexpr int d2_maxBlockSize = 640;
