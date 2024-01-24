@@ -12,6 +12,7 @@ Test::~Test()
 {
     delete world;
     world = NULL;
+    Destroy();
 }
 
 void

@@ -16,6 +16,8 @@ public:
     virtual void Input();
     virtual void Render();
 
+    virtual void Destroy() {}
+
 public:
     d2World *world{nullptr};
 };

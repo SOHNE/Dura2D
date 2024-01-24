@@ -33,7 +33,7 @@ public:
         }
     }
 
-    ~Collisions() override
+    void Destroy() override
     {
         delete movingBody;
     }
