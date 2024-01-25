@@ -107,14 +107,17 @@ d2World::Update(float dt)
     // Loop all m_bodiesList of the world applying forces
     for (auto body = m_bodiesList; body; body = body->next)
     {
-        d2Vec2 weight = (d2Vec2(1.0, body->mass * PIXELS_PER_METER) * m_gravity) * body->m_gravityScale;
+        if (body->m_type == d2BodyType::d2_staticBody) continue;
+
+        const float massScaled = body->mass * PIXELS_PER_METER * body->m_gravityScale;
+        const d2Vec2 weight = m_gravity * massScaled;
         body->AddForce(weight);
 
         body->IntegrateForces(dt);
         body->ComputeAABB();
     }
 
-    d2PenetrationConstraint* penetrations = nullptr;
+    std::vector<d2PenetrationConstraint> penetrations{};
     {
         auto &pairs = broadphase->ComputePairs();
         for (const auto &pair: pairs) {
@@ -126,15 +129,9 @@ d2World::Update(float dt)
 
             for (const auto &contact: contacts) {
                 // Create a new penetration constraint
-                d2PenetrationConstraint *penetration = new d2PenetrationConstraint(contact.a, contact.b, contact.start, contact.end, contact.normal);
+                d2PenetrationConstraint penetration(contact.a, contact.b, contact.start, contact.end, contact.normal);
 
-                // Add to world doubly linked list.
-                penetration->prev = nullptr;
-                penetration->next = penetrations;
-                if (penetrations) {
-                    penetrations->prev = penetration;
-                }
-                penetrations = penetration;
+                penetrations.push_back(penetration);
             }
         }
     }
@@ -143,27 +140,29 @@ d2World::Update(float dt)
     for (d2Constraint *constraint = m_constraints; constraint; constraint = constraint->GetNext()) {
         constraint->PreSolve(dt);
     }
-    for (d2Constraint *penetration = penetrations; penetration; penetration = penetration->GetNext()) {
-        penetration->PreSolve(dt);
+    for (auto& penetration: penetrations) {
+        penetration.PreSolve(dt);
     }
     for (int i = 0; i < 3; i++)
     {
         for (d2Constraint *constraint = m_constraints; constraint; constraint = constraint->GetNext()) {
             constraint->Solve();
         }
-        for (d2Constraint *penetration = penetrations; penetration; penetration = penetration->GetNext()) {
-            penetration->Solve();
+        for (auto& penetration: penetrations) {
+            penetration.Solve();
         }
     }
     for (d2Constraint *constraint = m_constraints; constraint; constraint = constraint->GetNext()) {
         constraint->PostSolve();
     }
-    for (d2Constraint *penetration = penetrations; penetration; penetration = penetration->GetNext()) {
-        penetration->PostSolve();
+    for (auto& penetration: penetrations) {
+        penetration.PostSolve();
     }
 
     // Integrate all the velocities
     for (auto body = m_bodiesList; body; body = body->next) {
+        if (body->m_type == d2BodyType::d2_staticBody) continue;
+
         body->IntegrateVelocities(dt);
     }
 }
