@@ -5,7 +5,7 @@ class Bridge : public Test
 public:
     Bridge()
     {
-        int32 numPlanks = 7;
+        int32 numPlanks = 9;
         int32 spacing = 35;
         float totalBridgeLength = (numPlanks + 4.f) * spacing;
 
@@ -34,24 +34,6 @@ public:
         }
 // Create joint between the two middle bodies
         world->CreateJoint(prevBodyStart, prevBodyEnd, prevBodyEnd->GetPosition());
-    }
-
-    void
-    Step() override
-    {
-        Test::Step();
-
-        // Destroy bodies that fall below the screen
-        d2Body *body = world->GetBodies();
-        while (body) {
-            if (body->GetPosition().y > g_draw.screenHeight + 100.0f) {
-                d2Body *next = body->GetNext();
-                world->DestroyBody(body);
-                body = next;
-            } else {
-                body = body->GetNext();
-            }
-        }
     }
 
     void
