@@ -104,6 +104,8 @@ d2World::DestroyJoint(d2Constraint *joint)
 void
 d2World::Update(float dt)
 {
+    d2BlockAllocator allocator;
+
     // Loop all m_bodiesList of the world applying forces
     for (auto body = m_bodiesList; body; body = body->next)
     {
@@ -174,7 +176,7 @@ d2World::SetDebugDraw(d2Draw *debugDraw)
 }
 
 void
-d2World::DrawShape(const d2Body* body, const d2Color& color)
+d2World::DrawShape(const d2Body* body, const bool &mesh, const d2Color& color)
 {
     if (m_debugDraw == nullptr) return;
     if (body == nullptr) return;
@@ -200,7 +202,7 @@ d2World::DrawShape(const d2Body* body, const d2Color& color)
             d2Vec2* vertices = polygon->worldVertices;
             int vertexCount = polygon->m_vertexCount;
 
-            m_debugDraw->DrawSolidPolygon(vertices, vertexCount, angle, color);
+            m_debugDraw->DrawSolidPolygon(vertices, vertexCount, angle, mesh, color);
             break;
         }
         default:
@@ -219,11 +221,12 @@ d2World::DebugDraw()
     {
         d2Color staticColor(1.0f, 0.721568627f, 0.423529412f); // #ffb86c
         d2Color dynamicColor(0.545098039f, 0.91372549f, 0.992156863f); // #8be9fd
+        bool mesh = flags & d2Draw::e_meshBit;
 
         for (auto body = m_bodiesList; body; body = body->GetNext())
         {
             d2Color color = body->m_type == d2BodyType::d2_staticBody ? staticColor : dynamicColor;
-            DrawShape(body, color);
+            DrawShape(body, mesh, color);
         }
     }
 

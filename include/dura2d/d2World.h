@@ -124,7 +124,7 @@ public:
     void SetDebugDraw(d2Draw* debugDraw);
 
     /** @brief Draw a shape. */
-    void DrawShape(const d2Body* body,const d2Color& color);
+    void DrawShape(const d2Body* body, const bool &mesh, const d2Color& color);
 
     /** @brief Debug draw the world. */
     void DebugDraw();

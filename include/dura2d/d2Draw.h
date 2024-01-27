@@ -73,9 +73,10 @@ public:
     enum
     {
         e_shapeBit = 0x0001,        ///< draw shapes
-        e_aabbBit = 0x0002,         ///< draw axis aligned bounding boxes
-        e_transformBit = 0x0004,    ///< draw transforms
-        e_jointBit = 0x0008,        ///< draw joint connections
+        e_meshBit = 0x0002,         ///< draw meshes
+        e_aabbBit = 0x0004,         ///< draw axis aligned bounding boxes
+        e_transformBit = 0x0008,    ///< draw transforms
+        e_jointBit = 0x00010,       ///< draw joints
     };
 
     void SetFlags(uint32 flags);
@@ -88,7 +89,7 @@ public:
 
     virtual void DrawPolygon(const d2Vec2 *vertices, int32 vertexCount, const float &angle, const d2Color &color) = 0;
 
-    virtual void DrawSolidPolygon(const d2Vec2 *vertices, int32 vertexCount, const float &angle, const d2Color &color) = 0;
+    virtual void DrawSolidPolygon(const d2Vec2 *vertices, int32 vertexCount, const float &angle, const bool &mesh, const d2Color &color) = 0;
 
     virtual void DrawCircle(const d2Vec2 &center, float radius, const float &angle, const d2Color &color) = 0;
 

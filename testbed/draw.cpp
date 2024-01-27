@@ -28,7 +28,7 @@ draw::DrawPolygon(const d2Vec2 *vertices, int32 vertexCount, const float &angle,
 }
 
 void
-draw::DrawSolidPolygon(const d2Vec2 *vertices, int32 vertexCount, const float &angle, const d2Color &color)
+draw::DrawSolidPolygon(const d2Vec2 *vertices, int32 vertexCount, const float &angle, const bool &mesh, const d2Color &color)
 {
     const Color fillColor = convertToColor(color * 0.5f);
     const Color borderColor = convertToColor(color);
@@ -51,9 +51,12 @@ draw::DrawSolidPolygon(const d2Vec2 *vertices, int32 vertexCount, const float &a
                 fillColor);
 
         // draw triangle lines
-        /*::DrawLineV(Vector2{vertices[0].x, vertices[0].y},
-                    Vector2{vertices[i + 1].x, vertices[i + 1].y},
-                    borderColor);*/
+        if (mesh)
+        {
+            ::DrawLineV(Vector2{vertices[0].x, vertices[0].y},
+                        Vector2{vertices[i + 1].x, vertices[i + 1].y},
+                        borderColor);
+        }
     }
 }
 

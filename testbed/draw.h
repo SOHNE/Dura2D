@@ -13,7 +13,7 @@ public:
 
     void DrawPolygon(const d2Vec2 *vertices, int32 vertexCount, const float &angle, const d2Color &color) override;
 
-    void DrawSolidPolygon(const d2Vec2 *vertices, int32 vertexCount, const float &angle, const d2Color &color) override;
+    void DrawSolidPolygon(const d2Vec2 *vertices, int32 vertexCount, const float &angle, const bool &mesh, const d2Color &color) override;
 
     void DrawCircle(const d2Vec2 &center, float radius, const float &angle, const d2Color &color) override;
 

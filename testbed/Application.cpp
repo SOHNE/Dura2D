@@ -161,6 +161,9 @@ Application::Render()
                 if (ImGui::CheckboxFlags("Shapes", &g_draw.m_flags, d2Draw::e_shapeBit)) {
                     g_draw.SetFlags(g_draw.m_flags);
                 }
+                if (ImGui::CheckboxFlags("Polygon Meshes", &g_draw.m_flags, d2Draw::e_meshBit)) {
+                    g_draw.SetFlags(g_draw.m_flags);
+                }
                 if (ImGui::CheckboxFlags("AABBs", &g_draw.m_flags, d2Draw::e_aabbBit)) {
                     g_draw.SetFlags(g_draw.m_flags);
                 }
