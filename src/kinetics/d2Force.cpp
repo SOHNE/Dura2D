@@ -1,16 +1,19 @@
 #include "dura2d/d2Force.h"
+
 #include <algorithm>
+
+#include "dura2d/d2Body.h"
 
 d2Vec2
 d2Force::GenerateDragForce(const d2Body &body, float k)
 {
     d2Vec2 dragForce = d2Vec2(0, 0);
-    if (body.GetVelocity().MagnitudeSquared() > 0) {
+    if (body.GetVelocity().LenghtSquared() > 0) {
         // Calculate the drag direction (inverse of velocity unit vector)
         d2Vec2 dragDirection = body.GetVelocity().UnitVector() * -1.0;
 
         // Calculate the drag magnitude, k * |v|^2
-        float dragMagnitude = k * body.GetVelocity().MagnitudeSquared();
+        float dragMagnitude = k * body.GetVelocity().LenghtSquared();
 
         // Generate the final drag force with direction and magnitude
         dragForce = dragDirection * dragMagnitude;
@@ -38,7 +41,7 @@ d2Force::GenerateGravitationalForce(const d2Body &a, const d2Body &b, float G, f
     // Calculate the distance between the two objects
     d2Vec2 d = (b.GetPosition() - a.GetPosition());
 
-    float distanceSquared = d.MagnitudeSquared();
+    float distanceSquared = d.LenghtSquared();
 
     // Clamp the values of the distance (to allow for some insteresting visual effects)
     distanceSquared = std::clamp(distanceSquared, minDistance, maxDistance);
@@ -61,7 +64,7 @@ d2Force::GenerateSpringForce(const d2Body &body, d2Vec2 anchor, float restLength
     d2Vec2 d = body.GetPosition() - anchor;
 
     // Find the spring displacement considering the rest length
-    float displacement = d.Magnitude() - restLength;
+    float displacement = d.Lenght() - restLength;
 
     // Calculate the direction of the spring force
     d2Vec2 springDirection = d.UnitVector();

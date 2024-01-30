@@ -3,9 +3,9 @@ set(DURA2D_SOURCE_FILES
         collision/d2CollisionDetection.cpp
         collision/d2Constraint.cpp
         kinetics/d2Force.cpp
+        math/d2Vec2.cpp
         math/d2MatMN.cpp
         collision/d2Shape.cpp
-        math/d2Vec2.cpp
         math/d2VecN.cpp
         kinetics/d2World.cpp
         collision/d2NSquaredBroad.cpp
@@ -21,10 +21,7 @@ set(DURA2D_HEADER_FILES
         ../include/dura2d/d2Constraint.h
         ../include/dura2d/d2Force.h
         ../include/dura2d/d2Math.h
-        ../include/dura2d/d2MatMN.h
         ../include/dura2d/d2Shape.h
-        ../include/dura2d/d2Vec2.h
-        ../include/dura2d/d2VecN.h
         ../include/dura2d/d2World.h
         ../include/dura2d/d2NSquaredBroad.h
         ../include/dura2d/dura2d.h

@@ -1,4 +1,4 @@
-#include "dura2d/d2VecN.h"
+#include "dura2d/d2Math.h"
 
 d2VecN::d2VecN() : N(0), data(nullptr)
 {}

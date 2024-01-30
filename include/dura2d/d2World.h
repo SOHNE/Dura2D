@@ -4,7 +4,7 @@
 #include <vector>
 
 #include "d2api.h"
-#include "d2Vec2.h"
+#include "d2Math.h"
 #include "memory/d2BlockAllocator.h"
 
 // Forward declarations

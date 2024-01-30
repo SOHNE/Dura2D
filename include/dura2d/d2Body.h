@@ -3,7 +3,6 @@
 
 #include "d2api.h"
 
-#include "d2Vec2.h"
 #include "d2Shape.h"
 #include "d2Math.h"
 #include "d2Types.h"

@@ -1,8 +1,6 @@
 #ifndef DURA2D_D2AABB_H
 #define DURA2D_D2AABB_H
 
-#include "dura2d/d2Vec2.h"
-
 class d2AABB
 {
 public:

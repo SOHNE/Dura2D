@@ -5,7 +5,6 @@
 #include <utility>
 #include <list>
 
-#include "dura2d/d2Vec2.h"
 #include "dura2d/d2Body.h"
 
 class d2AABB;

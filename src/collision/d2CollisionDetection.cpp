@@ -33,7 +33,7 @@ d2CollisionDetection::IsCollidingCircleCircle(d2Body *a, d2Body *b, std::vector<
     const d2Vec2 ab = b->GetPosition() - a->GetPosition();
     const float radiusSum = aCircleShape->radius + bCircleShape->radius;
 
-    bool isColliding = ab.MagnitudeSquared() <= (radiusSum * radiusSum);
+    bool isColliding = ab.LenghtSquared() <= (radiusSum * radiusSum);
 
     if (!isColliding) {
         return false;
@@ -48,7 +48,7 @@ d2CollisionDetection::IsCollidingCircleCircle(d2Body *a, d2Body *b, std::vector<
     contact.start = b->GetPosition() - contact.normal * bCircleShape->radius;
     contact.end = a->GetPosition() + contact.normal * aCircleShape->radius;
 
-    contact.depth = (contact.end - contact.start).Magnitude();
+    contact.depth = (contact.end - contact.start).Lenght();
 
     contacts.push_back(contact);
 
@@ -185,13 +185,13 @@ d2CollisionDetection::IsCollidingPolygonCircle(d2Body *polygon, d2Body *circle, 
         d2Vec2 v2 = minNextVertex - minCurrVertex; // the nearest edge (from curr vertex to next vertex)
         if (v1.Dot(v2) < 0) {
             // Distance from vertex to circle center is greater than radius... no collision
-            if (v1.Magnitude() > circleShape->radius) {
+            if (v1.Lenght() > circleShape->radius) {
                 return false;
             } else {
                 // Detected collision in region A:
                 contact.a = polygon;
                 contact.b = circle;
-                contact.depth = circleShape->radius - v1.Magnitude();
+                contact.depth = circleShape->radius - v1.Lenght();
                 contact.normal = v1.Normalize();
                 contact.start = circle->GetPosition() + (contact.normal * -circleShape->radius);
                 contact.end = contact.start + (contact.normal * contact.depth);
@@ -204,13 +204,13 @@ d2CollisionDetection::IsCollidingPolygonCircle(d2Body *polygon, d2Body *circle, 
             v2 = minCurrVertex - minNextVertex;   // the nearest edge
             if (v1.Dot(v2) < 0) {
                 // Distance from vertex to circle center is greater than radius... no collision
-                if (v1.Magnitude() > circleShape->radius) {
+                if (v1.Lenght() > circleShape->radius) {
                     return false;
                 } else {
                     // Detected collision in region B:
                     contact.a = polygon;
                     contact.b = circle;
-                    contact.depth = circleShape->radius - v1.Magnitude();
+                    contact.depth = circleShape->radius - v1.Lenght();
                     contact.normal = v1.Normalize();
                     contact.start = circle->GetPosition() + (contact.normal * -circleShape->radius);
                     contact.end = contact.start + (contact.normal * contact.depth);

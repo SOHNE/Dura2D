@@ -2,7 +2,6 @@
 #define CONSTRAINT_H
 
 #include "d2Body.h"
-#include "d2MatMN.h"
 
 class d2Constraint
 {

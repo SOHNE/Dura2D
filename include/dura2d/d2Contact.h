@@ -2,8 +2,9 @@
 #define CONTACT_H
 
 #include "dura2d/d2api.h"
-#include "d2Vec2.h"
-#include "d2Body.h"
+
+class d2Body;
+struct d2Vec2;
 
 struct D2_API d2Contact
 {

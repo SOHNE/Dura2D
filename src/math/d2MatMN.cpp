@@ -1,4 +1,4 @@
-#include "dura2d/d2MatMN.h"
+#include "dura2d/d2Math.h"
 
 d2MatMN::d2MatMN() : M(0), N(0), rows(nullptr)
 {}

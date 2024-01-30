@@ -107,11 +107,7 @@ d2Body::ClearTorque()
 d2Vec2
 d2Body::LocalSpaceToWorldSpace(const d2Vec2 &point) const
 {
-    d2Vec2 rotated
-    {
-        m_transform.q.c * point.x - m_transform.q.s * point.y,
-        m_transform.q.s * point.x + m_transform.q.c * point.y
-    };
+    d2Vec2 rotated = point.Rotate(m_transform.q);
     return rotated + m_transform.p;
 }
 
