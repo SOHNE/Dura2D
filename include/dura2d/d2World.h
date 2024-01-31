@@ -92,7 +92,7 @@ public:
      * @brief Update the world simulation by a specified time step.
      * @param dt The time step for the update.
      */
-    void Update(float dt);
+    void Step(float dt, int32 posIterations);
 
     /**
      * @brief Solve the world simulation by a specified time step.

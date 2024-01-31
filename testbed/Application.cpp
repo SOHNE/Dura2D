@@ -3,13 +3,17 @@
 #include <algorithm>
 #include <unordered_set>
 
+#include "settings.h"
+
 static int32 s_selectedTest = 0;
 static Test *s_test = nullptr;
 
 Application::Application()
 {
+    m_settings = new Settings();
+
     InitWindow(screenWidth, screenHeight, "Dura2D");
-    SetTargetFPS(fps);
+    SetTargetFPS(m_settings->targetFPS);
 
     IMGUI_CHECKVERSION();
     rlImGuiSetup(false);
@@ -25,6 +29,8 @@ Application::~Application()
 {
     delete s_test;
     s_test = nullptr;
+
+    delete m_settings;
 }
 
 void
@@ -50,7 +56,7 @@ Application::Input()
 
     if (IsKeyPressed(KEY_S)) {
         m_isPaused = true;
-        s_test->Step();
+        s_test->Step(*m_settings);
     }
 
     if (IsKeyPressed(KEY_R)) {
@@ -69,7 +75,7 @@ Application::Update()
 {
     if (m_isPaused) return;
 
-    s_test->Step();
+    s_test->Step(*m_settings);
 }
 
 void
@@ -106,14 +112,22 @@ Application::Render()
                          0.0f, 100.0f, ImVec2(0, 35));
 
         // Change FPS
-        if (ImGui::SliderInt("FPS", &fps, 24, 240)) {
-            SetTargetFPS(fps);
+        if (ImGui::SliderInt("FPS", &m_settings->targetFPS, 24, 240)) {
+            SetTargetFPS(m_settings->targetFPS);
+        }
+
+        // Change position iterations
+        if (ImGui::SliderInt("Position Iterations", &m_settings->positionIterations, 1, 10)) {
+            s_test->m_positionIterations = m_settings->positionIterations;
+        }
+        if (ImGui::IsItemHovered(ImGuiHoveredFlags_AllowWhenDisabled)) {
+            ImGui::SetTooltip("Higher values can improve stability but decrease performance");
         }
 
         // Bodies count
-        ImGui::Text("Bodies: %d", s_test->world->GetBodyCount());
+        ImGui::Text("Bodies: %d", s_test->m_world->GetBodyCount());
         ImGui::SameLine();
-        ImGui::Text("Joints: %d", s_test->world->GetConstraintCount());
+        ImGui::Text("Joints: %d", s_test->m_world->GetConstraintCount());
 
         // Pause/Resume button (use font awesome)
         if (m_isPaused) {
@@ -137,7 +151,7 @@ Application::Render()
         // Step button (use font awesome)
         if (ImGui::Button(ICON_FA_RIGHT_TO_BRACKET)) {
             m_isPaused = true;
-            s_test->Step();
+            s_test->Step(*m_settings);
         }
         if (ImGui::IsItemHovered(ImGuiHoveredFlags_AllowWhenDisabled)) {
             ImGui::SetTooltip("[S]tep forward");
@@ -210,6 +224,8 @@ Application::Render()
             ImGui::EndTabBar();
         }
         ImGui::End();
+
+        s_test->DrawUI();
 
         // end ImGui Content
         rlImGuiEnd();

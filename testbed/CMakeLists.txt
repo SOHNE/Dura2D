@@ -12,6 +12,7 @@ set(TESTBED_SOURCE_FILES
 set(TESTBED_HEADER_FILES
         Application.h
         draw.h
+        settings.h
         Test.h
 )
 

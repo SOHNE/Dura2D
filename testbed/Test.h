@@ -5,6 +5,9 @@
 #include "draw.h"
 #include "raylib.h"
 
+// Forward declarations
+struct Settings;
+
 class Test
 {
 public:
@@ -12,14 +15,16 @@ public:
 
     virtual ~Test();
 
-    virtual void Step();
+    virtual void Step(Settings& settings);
     virtual void Input();
     virtual void Render();
+    virtual void DrawUI() {}
 
     virtual void Destroy() {}
 
 public:
-    d2World *world{nullptr};
+    d2World *m_world{nullptr};
+    int32 m_positionIterations{3};
 };
 
 typedef Test* TestCreateFcn();

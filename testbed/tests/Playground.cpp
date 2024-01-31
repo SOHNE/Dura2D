@@ -23,42 +23,37 @@ public:
                 vertices[i] = {radius * cosf(angle * i), radius * sinf(angle * i)};
             }
 
-            d2Body *poly = world->CreateBody(d2PolygonShape(vertices, sideCount), {screenWidth / 2.0f, screenHeight / 2.0f}, 0.0f);
+            d2Body *poly = m_world->CreateBody(d2PolygonShape(vertices, sideCount), {screenWidth / 2.0f, screenHeight / 2.0f}, 0.0f);
             poly->SetRestitution(0.2f);
             poly->SetFriction(0.0f);
         }
 
         // create walls
         {
-            world->CreateBody(d2BoxShape(screenWidth, 10.0f), {screenWidth / 2.0f, 5.0f}, 0.0f);
-            world->CreateBody(d2BoxShape(screenWidth, 10.0f), {screenWidth / 2.0f, screenHeight - 5.0f}, 0.0f);
-            world->CreateBody(d2BoxShape(10.0f, screenHeight), {5.0f, screenHeight / 2.0f}, 0.0f);
-            world->CreateBody(d2BoxShape(10.0f, screenHeight), {screenWidth - 5.0f, screenHeight / 2.0f}, 0.0f);
+            m_world->CreateBody(d2BoxShape(screenWidth, 10.0f), {screenWidth / 2.0f, 5.0f}, 0.0f);
+            m_world->CreateBody(d2BoxShape(screenWidth, 10.0f), {screenWidth / 2.0f, screenHeight - 5.0f}, 0.0f);
+            m_world->CreateBody(d2BoxShape(10.0f, screenHeight), {5.0f, screenHeight / 2.0f}, 0.0f);
+            m_world->CreateBody(d2BoxShape(10.0f, screenHeight), {screenWidth - 5.0f, screenHeight / 2.0f}, 0.0f);
         }
 
         // create 1000 boxes
         for (int i = 0; i < 25; ++i) {
-            d2Body *body = world->CreateBody(d2BoxShape(10.0f, 10.0f), {(float) GetRandomValue(0, screenWidth),
-                                                                        (float) GetRandomValue(0, screenHeight)}, 1.0f);
+            d2Body *body = m_world->CreateBody(d2BoxShape(10.0f, 10.0f), {(float) GetRandomValue(0, screenWidth),
+                                                                          (float) GetRandomValue(0, screenHeight)}, 1.0f);
             body->SetRestitution(0.2f);
         }
-    }
-
-    void Step() override
-    {
-        Test::Step();
     }
 
     void Input() override
     {
         if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
             auto mousePos = GetMousePosition();
-            d2Body *body = world->CreateBody(d2BoxShape(50.0f, 50.0f), {mousePos.x, mousePos.y}, 1.0f);
+            d2Body *body = m_world->CreateBody(d2BoxShape(50.0f, 50.0f), {mousePos.x, mousePos.y}, 1.0f);
         }
 
         if (IsMouseButtonPressed(MOUSE_RIGHT_BUTTON)) {
             auto mousePos = GetMousePosition();
-            d2Body *body = world->CreateBody(d2CircleShape(25.0f), {mousePos.x, mousePos.y}, 1.0f);
+            d2Body *body = m_world->CreateBody(d2CircleShape(25.0f), {mousePos.x, mousePos.y}, 1.0f);
         }
     }
 

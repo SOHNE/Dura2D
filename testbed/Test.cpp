@@ -1,21 +1,23 @@
 #include "Test.h"
 
+#include "settings.h"
+
 Test::Test()
 {
-    world = new d2World((d2Vec2){0.0f, -9.81f});
-    world->SetDebugDraw(&g_draw);
+    m_world = new d2World((d2Vec2){0.0f, -9.81f});
+    m_world->SetDebugDraw(&g_draw);
 }
 
 Test::~Test()
 {
-    delete world;
-    world = NULL;
+    delete m_world;
+    m_world = NULL;
 }
 
 void
-Test::Step()
+Test::Step(Settings& settings)
 {
-    world->Update(GetFrameTime());
+    m_world->Step(GetFrameTime(), settings.positionIterations);
 }
 
 void
@@ -28,7 +30,7 @@ void
 Test::Render()
 {
     ClearBackground((Color){45, 45, 48, 255});
-    world->DebugDraw();
+    m_world->DebugDraw();
 }
 
 TestEntry g_availableTests[MAX_TESTS] = { {nullptr} };

@@ -27,7 +27,7 @@ DOCTEST_TEST_CASE("hello world")
         printf("X: %4.2f | Y: %4.2f | Angle: %4.2f\n", position.x, position.y, angle);
 
         // Instruct the world to perform a single step of simulation.
-        world.Update(timeStep);
+        world.Step(timeStep, 3);
     }
 
     // ##### TESTS #####

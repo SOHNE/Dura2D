@@ -14,6 +14,7 @@
 // Forward declarations
 class draw;
 class Test;
+struct Settings;
 
 class Application
 {
@@ -46,7 +47,8 @@ private:
     float frametime_values[180]{0};
     int32 frametime_values_offset{0};
 
-    int32 fps{60};
+    Settings *m_settings{nullptr};
+
     uint8 m_isRunning: 1 {false};
     uint8 m_isPaused: 1 {false};
     uint8 m_showUI: 1 {true};

@@ -102,7 +102,7 @@ d2World::DestroyJoint(d2Constraint *joint)
 }
 
 void
-d2World::Update(float dt)
+d2World::Step(float dt, int32 posIterations = 3)
 {
     d2BlockAllocator allocator;
 
@@ -145,7 +145,7 @@ d2World::Update(float dt)
     for (auto& penetration: penetrations) {
         penetration.PreSolve(dt);
     }
-    for (int i = 0; i < 3; i++)
+    for (int i = 0; i < posIterations; i++)
     {
         for (d2Constraint *constraint = m_constraints; constraint; constraint = constraint->GetNext()) {
             constraint->Solve();
