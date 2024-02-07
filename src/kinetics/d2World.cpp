@@ -102,7 +102,7 @@ d2World::DestroyJoint(d2Constraint *joint)
 }
 
 void
-d2World::Step(float dt, int32 posIterations = 3)
+d2World::Step(float dt, int32 posIterations)
 {
     d2BlockAllocator allocator;
 
