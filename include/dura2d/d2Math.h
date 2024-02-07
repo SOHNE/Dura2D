@@ -260,19 +260,19 @@ struct D2_API d2Rot
      * @brief Get the rotation angle in radians.
      * @return The rotation angle in radians.
      */
-    float GetAngle() const { return d2Atan2(s, c); }
+    inline float GetAngle() const { return d2Atan2(s, c); }
 
     /**
      * @brief Get the x-axis of the rotation.
      * @return The x-axis of the rotation.
      */
-    d2Vec2 GetXAxis() const { return {c, s}; }
+    inline d2Vec2 GetXAxis() const { return {c, s}; }
 
     /**
      * @brief Get the y-axis of the rotation.
      * @return The y-axis of the rotation.
      */
-    d2Vec2 GetYAxis() const { return {-s, c}; }
+    inline d2Vec2 GetYAxis() const { return {-s, c}; }
 
     /**
      * @brief Adds the rotation of another d2Rot object to this object.
@@ -301,7 +301,12 @@ struct D2_API d2Rot
 
     d2Rot& operator+=(float angle)
     {
-        this->Add(d2Rot(angle));
+        float aSin = sinf(angle);
+        float aCos = cosf(angle);
+        float temp_s = s * aCos + c * aSin;
+        float temp_c = c * aCos - s * aSin;
+        s = temp_s;
+        c = temp_c;
         return *this;
     }
 };
