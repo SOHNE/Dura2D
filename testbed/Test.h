@@ -24,7 +24,6 @@ public:
 
 public:
     d2World *m_world{nullptr};
-    int32 m_positionIterations{3};
 };
 
 typedef Test* TestCreateFcn();

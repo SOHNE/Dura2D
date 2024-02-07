@@ -28,9 +28,10 @@ Application::Application()
 Application::~Application()
 {
     delete s_test;
-    s_test = nullptr;
+    s_test = NULL;
 
     delete m_settings;
+    m_settings = NULL;
 }
 
 void
@@ -118,7 +119,7 @@ Application::Render()
 
         // Change position iterations
         if (ImGui::SliderInt("Position Iterations", &m_settings->positionIterations, 1, 10)) {
-            s_test->m_positionIterations = m_settings->positionIterations;
+            m_settings->positionIterations = m_settings->positionIterations;
         }
         if (ImGui::IsItemHovered(ImGuiHoveredFlags_AllowWhenDisabled)) {
             ImGui::SetTooltip("Higher values can improve stability but decrease performance");

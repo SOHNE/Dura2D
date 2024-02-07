@@ -41,7 +41,7 @@ int RegisterTest(const char* category, const char* name, TestCreateFcn* fcn)
     int index = g_testCount;
     if (index >= MAX_TESTS) return -1;
 
-    g_availableTests[index] = {category, name, fcn };
+    g_availableTests[index] = { category, name, fcn };
     ++g_testCount;
     return index;
 }

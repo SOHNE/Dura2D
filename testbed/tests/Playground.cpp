@@ -48,12 +48,12 @@ public:
     {
         if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
             auto mousePos = GetMousePosition();
-            d2Body *body = m_world->CreateBody(d2BoxShape(50.0f, 50.0f), {mousePos.x, mousePos.y}, 1.0f);
+            m_world->CreateBody(d2BoxShape(50.0f, 50.0f), {mousePos.x, mousePos.y}, 1.0f);
         }
 
         if (IsMouseButtonPressed(MOUSE_RIGHT_BUTTON)) {
             auto mousePos = GetMousePosition();
-            d2Body *body = m_world->CreateBody(d2CircleShape(25.0f), {mousePos.x, mousePos.y}, 1.0f);
+            m_world->CreateBody(d2CircleShape(25.0f), {mousePos.x, mousePos.y}, 1.0f);
         }
     }
 
