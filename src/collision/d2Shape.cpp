@@ -2,7 +2,7 @@
 #include <iostream>
 #include <limits>
 
-d2CircleShape::d2CircleShape(float radius)
+d2CircleShape::d2CircleShape(real radius)
 {
     this->radius = radius;
 }
@@ -23,7 +23,7 @@ d2CircleShape::GetType() const
     return CIRCLE;
 }
 
-float
+real
 d2CircleShape::GetMomentOfInertia() const
 {
     // For solid circles, the moment of inertia is 1/2 * r^2
@@ -33,10 +33,10 @@ d2CircleShape::GetMomentOfInertia() const
 
 d2PolygonShape::d2PolygonShape(const d2Vec2* vertices, int vertexCount)
 {
-    float minX = std::numeric_limits<float>::max();
-    float minY = std::numeric_limits<float>::max();
-    float maxX = std::numeric_limits<float>::lowest();
-    float maxY = std::numeric_limits<float>::lowest();
+    real minX = std::numeric_limits<real>::max();
+    real minY = std::numeric_limits<real>::max();
+    real maxX = std::numeric_limits<real>::lowest();
+    real maxY = std::numeric_limits<real>::lowest();
 
     localVertices = new d2Vec2[vertexCount];
     worldVertices = new d2Vec2[vertexCount];
@@ -78,10 +78,10 @@ d2PolygonShape::Clone() const
     return new d2PolygonShape(localVertices, m_vertexCount);
 }
 
-float
+real
 d2PolygonShape::PolygonArea() const
 {
-    float area = 0.0;
+    real area = 0.0;
     for (int i = 0; i < m_vertexCount; i++) {
         int j = (i + 1) % m_vertexCount;
         area += localVertices[i].Cross(localVertices[j]);
@@ -100,11 +100,11 @@ d2PolygonShape::PolygonCentroid() const
     return cg / 6 / PolygonArea();
 }
 
-float
+real
 d2PolygonShape::GetMomentOfInertia() const
 {
-    float acc0 = 0;
-    float acc1 = 0;
+    real acc0 = 0;
+    real acc1 = 0;
     for (int i = 0; i < m_vertexCount; i++) {
         auto a = localVertices[i];
         auto b = localVertices[(i + 1) % m_vertexCount];
@@ -123,20 +123,20 @@ d2PolygonShape::EdgeAt(int index) const
     return worldVertices[nextVertex] - worldVertices[currVertex];
 }
 
-float
+real
 d2PolygonShape::FindMinSeparation(const d2PolygonShape *other, int &indexReferenceEdge, d2Vec2 &supportPoint) const
 {
-    float separation = std::numeric_limits<float>::lowest();
+    real separation = std::numeric_limits<real>::lowest();
     // Loop all the vertices of "this" polygon
     for (int i = 0; i < this->m_vertexCount; i++) {
         d2Vec2 va = this->worldVertices[i];
         d2Vec2 normal = this->EdgeAt(i).Normal();
         // Loop all the vertices of the "other" polygon
-        float minSep = std::numeric_limits<float>::max();
+        real minSep = std::numeric_limits<real>::max();
         d2Vec2 minVertex;
         for (int j = 0; j < other->m_vertexCount; j++) {
             d2Vec2 vb = other->worldVertices[j];
-            float proj = (vb - va).Dot(normal);
+            real proj = (vb - va).Dot(normal);
             if (proj < minSep) {
                 minSep = proj;
                 minVertex = vb;
@@ -155,7 +155,7 @@ int
 d2PolygonShape::FindIncidentEdge(const d2Vec2 &normal) const
 {
     int indexIncidentEdge;
-    float minProj = std::numeric_limits<float>::max();
+    real minProj = std::numeric_limits<real>::max();
     for (int i = 0; i < m_vertexCount; ++i) {
         auto edgeNormal = EdgeAt(i).Normal();
         auto proj = edgeNormal.Dot(normal);
@@ -178,8 +178,8 @@ d2PolygonShape::ClipSegmentToLine(const std::vector<d2Vec2> &contactsIn,
 
     // Calculate the distance of end points to the line
     d2Vec2 normal = (c1 - c0).Normalize();
-    float dist0 = (contactsIn[0] - c0).Cross(normal);
-    float dist1 = (contactsIn[1] - c0).Cross(normal);
+    real dist0 = (contactsIn[0] - c0).Cross(normal);
+    real dist1 = (contactsIn[1] - c0).Cross(normal);
 
     // If the points are behind the plane
     if (dist0 <= 0)
@@ -189,10 +189,10 @@ d2PolygonShape::ClipSegmentToLine(const std::vector<d2Vec2> &contactsIn,
 
     // If the points are on different sides of the plane (one distance is negative and the other is positive)
     if (dist0 * dist1 < 0) {
-        float totalDist = dist0 - dist1;
+        real totalDist = dist0 - dist1;
 
         // Fint the intersection using linear interpolation: lerp(start,end) => start + t*(end-start)
-        float t = dist0 / (totalDist);
+        real t = dist0 / (totalDist);
         d2Vec2 contact = contactsIn[0] + (contactsIn[1] - contactsIn[0]) * t;
         contactsOut[numOut] = contact;
         numOut++;
@@ -213,7 +213,7 @@ d2PolygonShape::UpdateVertices(const d2Transform &transform)
     }
 }
 
-d2BoxShape::d2BoxShape(float width, float height)
+d2BoxShape::d2BoxShape(real width, real height)
 {
     this->width = width;
     this->height = height;
@@ -253,7 +253,7 @@ d2BoxShape::Clone() const
     return new d2BoxShape(width, height);
 }
 
-float
+real
 d2BoxShape::GetMomentOfInertia() const
 {
     // For a rectangle, the moment of inertia is 1/12 * (w^2 + h^2)

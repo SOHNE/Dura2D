@@ -21,7 +21,7 @@ public:
 
     d2VecN GetVelocities() const;
 
-    virtual void PreSolve(const float dt) {}
+    virtual void PreSolve(const real dt) {}
 
     virtual void Solve() {}
 
@@ -43,14 +43,14 @@ class d2JointConstraint : public d2Constraint
 private:
     d2MatMN jacobian;
     d2VecN cachedLambda;
-    float bias;
+    real bias;
 
 public:
     d2JointConstraint();
 
     d2JointConstraint(d2Body *a, d2Body *b, const d2Vec2 &anchorPoint);
 
-    void PreSolve(const float dt) override;
+    void PreSolve(const real dt) override;
 
     void Solve() override;
 
@@ -62,9 +62,9 @@ class d2PenetrationConstraint : public d2Constraint
 private:
     d2MatMN jacobian;
     d2VecN cachedLambda;
-    float bias;
+    real bias;
     d2Vec2 normal;    // Normal direction of the penetration in A's local space
-    float friction; // Friction coefficient between the two penetrating m_bodiesList
+    real friction; // Friction coefficient between the two penetrating m_bodiesList
 
 public:
     d2PenetrationConstraint();
@@ -75,7 +75,7 @@ public:
                             const d2Vec2 &bCollisionPoint,
                             const d2Vec2 &normal);
 
-    void PreSolve(const float dt) override;
+    void PreSolve(const real dt) override;
 
     void Solve() override;
 

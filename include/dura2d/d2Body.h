@@ -35,7 +35,7 @@ public:
      * @param y The initial y-coordinate of the body.
      * @param mass The mass of the body.
      */
-    d2Body(const d2Shape &shape, float x, float y, float mass, d2World* world);
+    d2Body(const d2Shape &shape, real x, real y, real mass, d2World* world);
 
     /**
      * @brief Destructor for the d2Body class.
@@ -57,7 +57,7 @@ public:
      *
      * @param torque The torque to be added.
      */
-    void AddTorque(float torque);
+    void AddTorque(real torque);
 
     /** @brief Clears all forces applied to the body. */
     void ClearForces();
@@ -93,7 +93,7 @@ public:
      *
      * @param j The impulse to be applied.
      */
-    void ApplyImpulseAngular(const float j);
+    void ApplyImpulseAngular(const real j);
 
     /**
      * @brief Applies an impulse at a specific point on the body.
@@ -108,28 +108,28 @@ public:
      *
      * @param dt The time step.
      */
-    void IntegrateLinear(float dt);
+    void IntegrateLinear(real dt);
 
     /**
      * @brief Integrates the angular motion of the body over a time step.
      *
      * @param dt The time step.
      */
-    void IntegrateAngular(float dt);
+    void IntegrateAngular(real dt);
 
     /**
      * @brief Integrates the forces applied to the body over a time step.
      *
      * @param dt The time step.
      */
-    void IntegrateForces(const float dt);
+    void IntegrateForces(const real dt);
 
     /**
      * @brief Integrates the velocities of the body over a time step.
      *
      * @param dt The time step.
      */
-    void IntegrateVelocities(const float dt);
+    void IntegrateVelocities(const real dt);
 
     /**
      * @brief Gets the position of the body.
@@ -156,69 +156,69 @@ public:
     inline void SetAcceleration(const d2Vec2& acceleration);
 
     /** @brief Sets the angular velocity of the body. */
-    inline void SetAngularVelocity(float angularVelocity);
+    inline void SetAngularVelocity(real angularVelocity);
 
     /**
      * @brief Gets the angular velocity of the body.
      *
      * @return The angular velocity of the body.
      */
-    inline float GetAngularVelocity() const;
+    inline real GetAngularVelocity() const;
 
     /**
      * @brief Gets the rotation angle of the body.
      *
      * @return The rotation angle of the body.
      */
-    inline float GetRotation() const;
+    inline real GetRotation() const;
 
     /**
      * @brief Gets the mass of the body.
      *
      * @return The mass of the body.
      */
-    inline float GetMass() const;
+    inline real GetMass() const;
 
     /**
      * @brief Gets the inverse mass of the body.
      *
      * @return The inverse mass of the body.
      */
-    inline float GetInvMass() const;
+    inline real GetInvMass() const;
 
     /**
      * @brief Gets the moment of inertia of the body.
      *
      * @return The moment of inertia of the body.
      */
-    inline float GetI() const;
+    inline real GetI() const;
 
     /**
      * @brief Gets the inverse moment of inertia of the body.
      *
      * @return The inverse moment of inertia of the body.
      */
-    inline float GetInvI() const;
+    inline real GetInvI() const;
 
     /** @brief Sets the coefficient of friction of the body. */
-    inline void SetFriction(float friction);
+    inline void SetFriction(real friction);
 
     /**
      * @brief Gets the coefficient of friction of the body.
      *
      * @return The coefficient of friction of the body.
      */
-    inline float GetFriction() const;
+    inline real GetFriction() const;
 
     /** @brief Sets the coefficient of restitution of the body. */
-    inline void SetRestitution(float restitution);
+    inline void SetRestitution(real restitution);
 
     /**
      * @brief Gets the coefficient of restitution of the body.
      *
      * @return The coefficient of restitution of the body.
      */
-    inline float GetRestitution() const;
+    inline real GetRestitution() const;
 
     /**
      * @brief Gets the shape/geometry of the body.
@@ -255,7 +255,7 @@ public:
      *
      * @return The wake-up time of the body.
      */
-    inline float GetSleepTime() const;
+    inline real GetSleepTime() const;
 
     /**
      * @brief Gets the wake state of the body.
@@ -272,10 +272,10 @@ public:
     inline void SetAwake(bool awake);
 
     /** @brief Gets the gravity scale of the body. */
-    inline float GetGravityScale() const;
+    inline real GetGravityScale() const;
 
     /** @brief Sets the gravity scale of the body */
-    inline void SetGravityScale(float gravityScale);
+    inline void SetGravityScale(real gravityScale);
 
 private:
     friend class d2World;
@@ -293,22 +293,22 @@ private:
     d2Vec2 velocity {}; ///< The velocity of the body.
     d2Vec2 acceleration {}; ///< The acceleration of the body.
 
-    float m_gravityScale{ 1.0f }; ///< The gravity scale of the body.
+    real m_gravityScale{ 1.0f }; ///< The gravity scale of the body.
 
-    float angularVelocity {}; ///< The angular velocity of the body.
-    float angularAcceleration {}; ///< The angular acceleration of the body.
+    real angularVelocity {}; ///< The angular velocity of the body.
+    real angularAcceleration {}; ///< The angular acceleration of the body.
 
     d2Vec2 sumForces {}; ///< The sum of all forces applied to the body.
-    float sumTorque {}; ///< The sum of all torques applied to the body.
+    real sumTorque {}; ///< The sum of all torques applied to the body.
 
-    float mass {}; ///< The mass of the body.
-    float invMass {}; ///< The inverse of the mass of the body.
-    float I {}; ///< The moment of inertia of the body.
-    float invI {}; ///< The inverse of the moment of inertia of the body.
+    real mass {}; ///< The mass of the body.
+    real invMass {}; ///< The inverse of the mass of the body.
+    real I {}; ///< The moment of inertia of the body.
+    real invI {}; ///< The inverse of the moment of inertia of the body.
 
-    float restitution {}; ///< The coefficient of restitution (elasticity) of the body.
+    real restitution {}; ///< The coefficient of restitution (elasticity) of the body.
 
-    float friction {}; ///< The coefficient of friction of the body.
+    real friction {}; ///< The coefficient of friction of the body.
 
     d2AABB *aabb { nullptr }; ///< A pointer to the Axis-Aligned Bounding Box of the body.
 
@@ -318,7 +318,7 @@ private:
     d2Body* prev { nullptr }; ///< A pointer to the previous body in a linked list of bodies.
     d2Body* next { nullptr }; ///< A pointer to the next body in a linked list of bodies.
 
-    float m_sleepTime{}; ///< The time that the body has been stationary.
+    real m_sleepTime{}; ///< The time that the body has been stationary.
 };
 
 inline const d2Vec2& d2Body::GetPosition() const
@@ -341,57 +341,57 @@ inline void d2Body::SetAcceleration(const d2Vec2& acceleration)
     this->acceleration = acceleration;
 }
 
-inline void d2Body::SetAngularVelocity(float angularVelocity)
+inline void d2Body::SetAngularVelocity(real angularVelocity)
 {
     this->angularVelocity = angularVelocity;
 }
 
-inline float d2Body::GetAngularVelocity() const
+inline real d2Body::GetAngularVelocity() const
 {
     return angularVelocity;
 }
 
-inline float d2Body::GetRotation() const
+inline real d2Body::GetRotation() const
 {
     return m_transform.q.GetAngle();
 }
 
-inline float d2Body::GetMass() const
+inline real d2Body::GetMass() const
 {
     return mass;
 }
 
-inline float d2Body::GetInvMass() const
+inline real d2Body::GetInvMass() const
 {
     return invMass;
 }
 
-inline float d2Body::GetI() const
+inline real d2Body::GetI() const
 {
     return I;
 }
 
-inline float d2Body::GetInvI() const
+inline real d2Body::GetInvI() const
 {
     return invI;
 }
 
-inline void d2Body::SetFriction(float friction)
+inline void d2Body::SetFriction(real friction)
 {
     this->friction = friction;
 }
 
-inline float d2Body::GetFriction() const
+inline real d2Body::GetFriction() const
 {
     return friction;
 }
 
-inline void d2Body::SetRestitution(float restitution)
+inline void d2Body::SetRestitution(real restitution)
 {
     this->restitution = restitution;
 }
 
-inline float d2Body::GetRestitution() const
+inline real d2Body::GetRestitution() const
 {
     return restitution;
 }
@@ -426,17 +426,17 @@ inline const d2Body* d2Body::GetPrev() const
     return prev;
 }
 
-inline float d2Body::GetSleepTime() const
+inline real d2Body::GetSleepTime() const
 {
     return m_sleepTime;
 }
 
-inline float d2Body::GetGravityScale() const
+inline real d2Body::GetGravityScale() const
 {
     return m_gravityScale;
 }
 
-inline void d2Body::SetGravityScale(float gravityScale)
+inline void d2Body::SetGravityScale(real gravityScale)
 {
     m_gravityScale = gravityScale;
 }

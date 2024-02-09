@@ -20,7 +20,7 @@ d2World::~d2World()
 }
 
 d2Body*
-d2World::CreateBody(const d2Shape &shape, d2Vec2 position, float mass)
+d2World::CreateBody(const d2Shape &shape, d2Vec2 position, real mass)
 {
     void* ptr = m_blockAllocator.Allocate(sizeof(d2Body));
     d2Body* body = new(ptr) d2Body(shape, position.x, position.y, mass, this);
@@ -102,16 +102,14 @@ d2World::DestroyJoint(d2Constraint *joint)
 }
 
 void
-d2World::Step(float dt, int32 posIterations)
+d2World::Step(real dt, int32 posIterations)
 {
-    d2BlockAllocator allocator;
-
     // Loop all m_bodiesList of the world applying forces
     for (auto body = m_bodiesList; body; body = body->next)
     {
         if (body->m_type == d2BodyType::d2_staticBody) continue;
 
-        const float massScaled = body->mass * PIXELS_PER_METER * body->m_gravityScale;
+        const real massScaled = body->mass * PIXELS_PER_METER * body->m_gravityScale;
         const d2Vec2 weight = m_gravity * massScaled;
         body->AddForce(weight);
 
@@ -178,19 +176,16 @@ d2World::SetDebugDraw(d2Draw *debugDraw)
 void
 d2World::DrawShape(const d2Body* body, const bool &mesh, const d2Color& color)
 {
-    if (m_debugDraw == nullptr) return;
-    if (body == nullptr) return;
-
     d2Shape* shape = body->GetShape();
     d2Vec2 position = body->GetPosition();
-    float angle = body->GetRotation();
+    real angle = body->GetRotation();
 
     switch (shape->GetType())
     {
         case d2ShapeType::CIRCLE:
         {
-            d2CircleShape* circle = (d2CircleShape*)shape;
-            float radius = circle->radius;
+            d2CircleShape *circle = (d2CircleShape*)shape;
+            real radius = circle->radius;
 
             m_debugDraw->DrawSolidCircle(position, radius, angle, color);
             break;
@@ -198,8 +193,8 @@ d2World::DrawShape(const d2Body* body, const bool &mesh, const d2Color& color)
         case d2ShapeType::BOX:
         case d2ShapeType::POLYGON:
         {
-            d2PolygonShape* polygon = (d2PolygonShape*)shape;
-            d2Vec2* vertices = polygon->worldVertices;
+            d2PolygonShape *polygon = (d2PolygonShape*)shape;
+            d2Vec2 *vertices = polygon->worldVertices;
             int vertexCount = polygon->m_vertexCount;
 
             m_debugDraw->DrawSolidPolygon(vertices, vertexCount, angle, mesh, color);
@@ -223,42 +218,44 @@ d2World::DebugDraw()
         d2Color dynamicColor(0.545098039f, 0.91372549f, 0.992156863f); // #8be9fd
         bool mesh = flags & d2Draw::e_meshBit;
 
-        for (auto body = m_bodiesList; body; body = body->GetNext())
+        for (d2Body *b = m_bodiesList; b; b = b->GetNext())
         {
-            d2Color color = body->m_type == d2BodyType::d2_staticBody ? staticColor : dynamicColor;
-            DrawShape(body, mesh, color);
+            d2Color color = b->m_type == d2BodyType::d2_staticBody ? staticColor : dynamicColor;
+            DrawShape(b, mesh, color);
         }
     }
 
     if (flags & d2Draw::e_aabbBit)
     {
-        for (auto body = m_bodiesList; body; body = body->GetNext())
+        d2Color color(0.9f, 0.3f, 0.9f);
+
+        for (d2Body *b = m_bodiesList; b; b = b->GetNext())
         {
-            d2AABB* aabb = body->aabb;
+            d2AABB *aabb = b->aabb;
             d2Vec2 vertices[4] = {
-                    d2Vec2(aabb->minX, aabb->minY),
-                    d2Vec2(aabb->maxX, aabb->minY),
-                    d2Vec2(aabb->maxX, aabb->maxY),
-                    d2Vec2(aabb->minX, aabb->maxY)
+                    d2Vec2(aabb->lowerBound.x, aabb->lowerBound.y),
+                    d2Vec2(aabb->upperBound.x, aabb->lowerBound.y),
+                    d2Vec2(aabb->upperBound.x, aabb->upperBound.y),
+                    d2Vec2(aabb->lowerBound.x, aabb->upperBound.y)
             };
 
-            m_debugDraw->DrawPolygon(vertices, 4, body->GetRotation(), d2Color(0.9f, 0.3f, 0.9f));
+            m_debugDraw->DrawPolygon(vertices, 4, b->GetRotation(), color);
         }
     }
 
     if (flags & d2Draw::e_transformBit)
     {
-        for (auto body = m_bodiesList; body; body = body->GetNext())
+        for (d2Body *b = m_bodiesList; b; b = b->GetNext())
         {
-            d2ShapeType sType = body->GetShape()->GetType();
-            d2Transform transform = body->m_transform;
+            d2ShapeType sType = b->GetShape()->GetType();
+            d2Transform transform = b->m_transform;
 
             switch (sType)
             {
                 case d2ShapeType::POLYGON:
                 case d2ShapeType::BOX:
                 {
-                    d2PolygonShape* polygon = (d2PolygonShape*)body->GetShape();
+                    d2PolygonShape *polygon = dynamic_cast<d2PolygonShape*>(b->GetShape());
                     transform.p += polygon->PolygonCentroid();
                     break;
                 }
@@ -272,9 +269,10 @@ d2World::DebugDraw()
 
     if (flags & d2Draw::e_jointBit)
     {
+        d2Color color(1.0f, 0.474509804f, 0.776470588f); // #ff79c6
         for (d2Constraint *constraint = m_constraints; constraint; constraint = constraint->GetNext())
         {
-            m_debugDraw->DrawSegment(constraint->a->GetPosition(), constraint->b->GetPosition(), d2Color(1.0f, 0.474509804f, 0.776470588f));
+            m_debugDraw->DrawSegment(constraint->a->GetPosition(), constraint->b->GetPosition(), color);
         }
     }
 }

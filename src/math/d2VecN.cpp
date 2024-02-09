@@ -5,13 +5,13 @@ d2VecN::d2VecN() : N(0), data(nullptr)
 
 d2VecN::d2VecN(int N) : N(N)
 {
-    data = new float[N];
+    data = new real[N];
 }
 
 d2VecN::d2VecN(const d2VecN &v)
 {
     N = v.N;
-    data = new float[N];
+    data = new real[N];
     for (int i = 0; i < N; i++)
         data[i] = v.data[i];
 }
@@ -28,10 +28,10 @@ d2VecN::Zero()
         data[i] = 0.0f;
 }
 
-float
+real
 d2VecN::Dot(const d2VecN &v) const
 {
-    float sum = 0.0f;
+    real sum = 0.0f;
     for (int i = 0; i < N; i++)
         sum += data[i] * v.data[i];
     return sum;
@@ -42,14 +42,14 @@ d2VecN::operator=(const d2VecN &v)
 {
     delete[] data;
     N = v.N;
-    data = new float[N];
+    data = new real[N];
     for (int i = 0; i < N; i++)
         data[i] = v.data[i];
     return *this;
 }
 
 d2VecN
-d2VecN::operator*(float n) const
+d2VecN::operator*(real n) const
 {
     d2VecN result = *this;
     result *= n;
@@ -75,7 +75,7 @@ d2VecN::operator-(const d2VecN &v) const
 }
 
 const d2VecN &
-d2VecN::operator*=(float n)
+d2VecN::operator*=(real n)
 {
     for (int i = 0; i < N; i++)
         data[i] *= n;
@@ -98,13 +98,13 @@ d2VecN::operator-=(const d2VecN &v)
     return *this;
 }
 
-float
+real
 d2VecN::operator[](const int index) const
 {
     return data[index];
 }
 
-float &
+real &
 d2VecN::operator[](const int index)
 {
     return data[index];

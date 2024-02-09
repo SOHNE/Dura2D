@@ -5,13 +5,11 @@
 #include <cfloat>
 
 #include "d2api.h"
+#include "d2Types.h"
 
 #define d2Sqrt(x) sqrtf(x)
 #define d2Atan2(y, x) atan2f(y, x)
 #define d2Abs(x) ((x) > 0.0F ? (x) : -(x))
-#define d2Min(a, b) ((a) < (b) ? (a) : (b))
-#define d2Max(a, b) ((a) > (b) ? (a) : (b))
-#define d2Clamp(a, low, high) (d2Max(low, d2Min(a, high)))
 
 #define PI 3.14159265359f
 #define TAU 6.28318530718f
@@ -29,7 +27,7 @@ struct D2_API d2Vec2
      * @param x The x component of the vector.
      * @param y The y component of the vector.
      */
-    d2Vec2(float x, float y) : x(x), y(y) {}
+    d2Vec2(real x, real y) : x(x), y(y) {}
 
     ~d2Vec2() = default;
 
@@ -37,23 +35,16 @@ struct D2_API d2Vec2
     void Zero() { x = 0.0F; y = 0.0F; }
 
     /**
-     * @brief Rotates the vector.
-     * @param rot The rotation to apply.
-     * @return The rotated vector.
-     */
-    d2Vec2 Rotate(const struct d2Rot& rot) const;
-
-    /**
      * @brief Calculates the magnitude of the vector.
      * @return The magnitude of the vector.
      */
-    float Lenght() const { return d2Sqrt(x * x + y * y); }
+    real Lenght() const { return d2Sqrt(x * x + y * y); }
 
     /**
      * @brief Calculates the squared magnitude of the vector.
      * @return The squared magnitude of the vector.
      */
-    float LenghtSquared() const { return x * x + y * y; }
+    real LenghtSquared() const { return x * x + y * y; }
 
     /**
      * @brief Normalizes the vector.
@@ -68,7 +59,7 @@ struct D2_API d2Vec2
     d2Vec2 UnitVector() const
     {
         d2Vec2 result = d2Vec2(0, 0);
-        float length = Lenght();
+        real length = Lenght();
         if (length != 0.0F) {
             result.x = x / length;
             result.y = y / length;
@@ -87,14 +78,14 @@ struct D2_API d2Vec2
      * @param v The other vector.
      * @return The dot product.
      */
-    float Dot(const d2Vec2 &v) const { return x * v.x + y * v.y; }
+    real Dot(const d2Vec2 &v) const { return x * v.x + y * v.y; }
 
     /**
      * @brief Calculates the cross product with another vector.
      * @param v The other vector.
      * @return The cross product.
      */
-    float Cross(const d2Vec2 &v) const { return x * v.y - y * v.x; }
+    real Cross(const d2Vec2 &v) const { return x * v.y - y * v.x; }
 
     // Overloaded operators
     d2Vec2 &operator=(const d2Vec2 &v);
@@ -102,17 +93,17 @@ struct D2_API d2Vec2
     bool operator!=(const d2Vec2 &v) const;
     d2Vec2 operator+(const d2Vec2 &v) const;
     d2Vec2 operator-(const d2Vec2 &v) const;
-    d2Vec2 operator*(const float n) const;
+    d2Vec2 operator*(const real n) const;
     d2Vec2 operator*(const d2Vec2 &v) const;
-    d2Vec2 operator/(const float n) const;
+    d2Vec2 operator/(const real n) const;
     d2Vec2 operator-();
     d2Vec2 &operator+=(const d2Vec2 &v);
     d2Vec2 &operator-=(const d2Vec2 &v);
     d2Vec2 &operator*=(const d2Vec2 &v);
-    d2Vec2 &operator*=(const float n);
-    d2Vec2 &operator/=(const float n);
+    d2Vec2 &operator*=(const real n);
+    d2Vec2 &operator/=(const real n);
 
-    float x, y; // x and y components of the vector
+    real x, y; // x and y components of the vector
 };
 
 /**
@@ -145,21 +136,21 @@ struct D2_API d2VecN
      * @param v The other vector.
      * @return The dot product.
      */
-    float Dot(const d2VecN &v) const;
+    real Dot(const d2VecN &v) const;
 
     // Overloaded operators
     d2VecN &operator=(const d2VecN &v);
     d2VecN operator+(const d2VecN &v) const;
     d2VecN operator-(const d2VecN &v) const;
-    d2VecN operator*(const float n) const;
+    d2VecN operator*(const real n) const;
     const d2VecN &operator+=(const d2VecN &v);
     const d2VecN &operator-=(const d2VecN &v);
-    const d2VecN &operator*=(const float n);
-    float operator[](const int index) const;
-    float &operator[](const int index);
+    const d2VecN &operator*=(const real n);
+    real operator[](const int index) const;
+    real &operator[](const int index);
 
     int N; ///< The dimension of the vector.
-    float *data; ///< The data of the vector.
+    real *data; ///< The data of the vector.
 };
 
 /**
@@ -215,10 +206,10 @@ struct D2_API d2MatMN
 struct D2_API d2Rot
 {
     /** @brief The sine of the rotation angle. */
-    float s;
+    real s;
 
     /** @brief The cosine of the rotation angle. */
-    float c;
+    real c;
 
     /**
      * @brief Default constructor.
@@ -230,20 +221,20 @@ struct D2_API d2Rot
      * @brief Constructor that initializes the rotation with given angle in radians.
      * @param angle The angle in radians.
      */
-    explicit d2Rot(float angle) : s(sinf(angle)), c(cosf(angle)) {}
+    explicit d2Rot(real angle) : s(sinf(angle)), c(cosf(angle)) {}
 
     /**
      * @brief Constructor that initializes the rotation with given sine and cosine values.
      * @param s The sine of the rotation angle.
      * @param c The cosine of the rotation angle.
      */
-    d2Rot(float s, float c) : s(s), c(c) {}
+    d2Rot(real s, real c) : s(s), c(c) {}
 
     /**
      * @brief Set the rotation angle from a given angle in radians.
      * @param angle The angle in radians.
      */
-    void Set(float angle)
+    void Set(real angle)
     {
         s = sinf(angle);
         c = cosf(angle);
@@ -260,7 +251,7 @@ struct D2_API d2Rot
      * @brief Get the rotation angle in radians.
      * @return The rotation angle in radians.
      */
-    inline float GetAngle() const { return d2Atan2(s, c); }
+    inline real GetAngle() const { return d2Atan2(s, c); }
 
     /**
      * @brief Get the x-axis of the rotation.
@@ -280,8 +271,8 @@ struct D2_API d2Rot
      */
     void Add(const d2Rot& other)
     {
-        float temp_s = s * other.c + c * other.s;
-        float temp_c = c * other.c - s * other.s;
+        real temp_s = s * other.c + c * other.s;
+        real temp_c = c * other.c - s * other.s;
         s = temp_s;
         c = temp_c;
     }
@@ -299,14 +290,13 @@ struct D2_API d2Rot
         return *this;
     }
 
-    d2Rot& operator+=(float angle)
+    d2Rot& operator+=(real angle)
     {
-        float aSin = sinf(angle);
-        float aCos = cosf(angle);
-        float temp_s = s * aCos + c * aSin;
-        float temp_c = c * aCos - s * aSin;
-        s = temp_s;
-        c = temp_c;
+        real aSin = sinf(angle);
+        real aCos = cosf(angle);
+        real temp_s = s * aCos + c * aSin;
+        real temp_c = c * aCos - s * aSin;
+        s = temp_s; c = temp_c;
         return *this;
     }
 };
@@ -356,5 +346,54 @@ struct D2_API d2Transform
         this->q = q;
     }
 };
+
+
+template <typename T>
+inline T
+d2Min(T a, T b)
+{
+    return a < b ? a : b;
+}
+
+inline d2Vec2
+d2Min(const d2Vec2& a, const d2Vec2& b)
+{
+    return {d2Min(a.x, b.x), d2Min(a.y, b.y)};
+}
+
+template <typename T>
+inline T d2Max(T a, T b)
+{
+    return a > b ? a : b;
+}
+
+inline d2Vec2
+d2Max(const d2Vec2& a, const d2Vec2& b)
+{
+    return {d2Max(a.x, b.x), d2Max(a.y, b.y)};
+}
+
+template <typename T>
+inline T
+d2Clamp(T value, T lower, T upper)
+{
+    return d2Max(lower, d2Min(value, upper));
+}
+
+// Operators
+inline d2Vec2
+operator * (real s, const d2Vec2& v)
+{
+    return {s * v.x, s * v.y};
+}
+
+// Rotate a d2Vec2
+inline d2Vec2
+d2Rotate(const d2Rot& rot, const d2Vec2& v)
+{
+    real x = rot.c * v.x - rot.s * v.y;
+    real y = rot.s * v.x + rot.c * v.y;
+    return {x, y};
+}
 
 #endif //D2MATH_H

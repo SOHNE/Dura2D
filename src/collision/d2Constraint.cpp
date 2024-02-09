@@ -66,7 +66,7 @@ d2JointConstraint::d2JointConstraint(d2Body *a, d2Body *b, const d2Vec2 &anchorP
 }
 
 void
-d2JointConstraint::PreSolve(const float dt)
+d2JointConstraint::PreSolve(const real dt)
 {
     // Get the anchor point position in world space
     const d2Vec2 pa = a->LocalSpaceToWorldSpace(aPoint);
@@ -81,14 +81,14 @@ d2JointConstraint::PreSolve(const float dt)
     jacobian.rows[0][0] = J1.x; // A linear velocity.x
     jacobian.rows[0][1] = J1.y; // A linear velocity.y
 
-    float J2 = ra.Cross(pa - pb) * 2.0;
+    real J2 = ra.Cross(pa - pb) * 2.0;
     jacobian.rows[0][2] = J2;   // A angular velocity
 
     d2Vec2 J3 = (pb - pa) * 2.0;
     jacobian.rows[0][3] = J3.x; // B linear velocity.x
     jacobian.rows[0][4] = J3.y; // B linear velocity.y
 
-    float J4 = rb.Cross(pb - pa) * 2.0;
+    real J4 = rb.Cross(pb - pa) * 2.0;
     jacobian.rows[0][5] = J4;   // B angular velocity
 
     // Warm starting (apply cached lambda)
@@ -102,9 +102,9 @@ d2JointConstraint::PreSolve(const float dt)
     b->ApplyImpulseAngular(impulses[5]);                   // B angular impulse
 
     // Compute the bias term (baumgarte stabilization)
-    const float beta = 0.02f;
-    float C = (pb - pa).Dot(pb - pa);
-    C = std::max(0.0f, C - 0.01f);
+    const real beta = 0.02f;
+    real C = (pb - pa).Dot(pb - pa);
+    C = d2Max<real>(0.0f, C - 0.01f);
     bias = (beta / dt) * C;
 }
 
@@ -138,7 +138,7 @@ void
 d2JointConstraint::PostSolve()
 {
     // Limit the warm starting to reasonable limits
-    cachedLambda[0] = std::clamp(cachedLambda[0], -10000.0f, 10000.0f);
+    cachedLambda[0] = d2Clamp<real>(cachedLambda[0], -10000.0f, 10000.0f);
 }
 
 d2PenetrationConstraint::d2PenetrationConstraint() : d2Constraint(), jacobian(2, 6), cachedLambda(2), bias(0.0f)
@@ -164,7 +164,7 @@ d2PenetrationConstraint::d2PenetrationConstraint(d2Body *a,
 }
 
 void
-d2PenetrationConstraint::PreSolve(const float dt)
+d2PenetrationConstraint::PreSolve(const real dt)
 {
     // Get the collision points and normal in world space
     const d2Vec2 pa = a->LocalSpaceToWorldSpace(aPoint);
@@ -207,9 +207,9 @@ d2PenetrationConstraint::PreSolve(const float dt)
     b->ApplyImpulseAngular(impulses[5]);                   // B angular impulse
 
     // Compute the bias term (baumgarte stabilization)
-    const float beta = 1.0f;
-    float C = (pb - pa).Dot(-n);
-    C = std::min(0.0f, C + 0.01f);
+    const real beta = 1.0f;
+    real C = (pb - pa).Dot(-n);
+    C = d2Min<real>(0.0f, C + 0.01f);
     bias = (beta / dt) * C;
 }
 
@@ -236,7 +236,7 @@ d2PenetrationConstraint::Solve()
 
     // Keep friction values between -(λn*µ) and (λn*µ)
     if (friction > 0.0) {
-        const float maxFriction = cachedLambda[0] * friction;
+        const real maxFriction = cachedLambda[0] * friction;
         cachedLambda[1] = std::clamp(cachedLambda[1], -maxFriction, maxFriction);
     }
 

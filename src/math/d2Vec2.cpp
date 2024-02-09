@@ -1,18 +1,10 @@
 #include "dura2d/d2Math.h"
 
-d2Vec2
-d2Vec2::Rotate(const d2Rot& rot) const
-{
-    d2Vec2 result;
-    result.x = x * rot.c - y * rot.s;
-    result.y = x * rot.s + y * rot.c;
-    return result;
-}
 
 d2Vec2 &
 d2Vec2::Normalize()
 {
-    float length = Lenght();
+    real length = Lenght();
     if (length != 0.0) {
         x /= length;
         y /= length;
@@ -59,7 +51,7 @@ d2Vec2::operator-(const d2Vec2 &v) const
 }
 
 d2Vec2
-d2Vec2::operator*(const float n) const
+d2Vec2::operator*(const real n) const
 {
     d2Vec2 result;
     result.x = x * n;
@@ -77,7 +69,7 @@ d2Vec2::operator*(const d2Vec2 &v) const
 }
 
 d2Vec2
-d2Vec2::operator/(const float n) const
+d2Vec2::operator/(const real n) const
 {
     d2Vec2 result;
     result.x = x / n;
@@ -102,7 +94,7 @@ d2Vec2::operator-=(const d2Vec2 &v)
 }
 
 d2Vec2 &
-d2Vec2::operator*=(const float n)
+d2Vec2::operator*=(const real n)
 {
     x *= n;
     y *= n;
@@ -118,7 +110,7 @@ d2Vec2::operator*=(const d2Vec2 &v)
 }
 
 d2Vec2 &
-d2Vec2::operator/=(const float n)
+d2Vec2::operator/=(const real n)
 {
     x /= n;
     y /= n;

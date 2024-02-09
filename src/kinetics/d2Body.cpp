@@ -5,7 +5,7 @@
 #include "dura2d/d2AABB.h"
 #include "dura2d/d2World.h"
 
-d2Body::d2Body(const d2Shape &shape, float x, float y, float mass, d2World *world) : world(world)
+d2Body::d2Body(const d2Shape &shape, real x, real y, real mass, d2World *world) : world(world)
 {
     this->m_transform = d2Transform((d2Vec2(x, y)), d2Rot(0.F));
 
@@ -24,7 +24,7 @@ d2Body::d2Body(const d2Shape &shape, float x, float y, float mass, d2World *worl
     this->mass = mass;
     this->invMass = (mass != 0.F) ? 1.F / mass : 0.F;
     {
-        const float epsilon = 0.005f;
+        const real epsilon = 0.005f;
         d2Abs(invMass - 0.0) < epsilon
             ? m_type = d2_staticBody
             : m_type = d2_dynamicBody;
@@ -60,23 +60,28 @@ d2Body::ComputeAABB()
         case BOX:
         {
             auto* box = dynamic_cast<d2PolygonShape*>(shape);
-            auto minX = std::min(box->worldVertices[0].x, std::min(box->worldVertices[1].x, std::min(box->worldVertices[2].x, box->worldVertices[3].x)));
-            auto minY = std::min(box->worldVertices[0].y, std::min(box->worldVertices[1].y, std::min(box->worldVertices[2].y, box->worldVertices[3].y)));
-            auto maxX = std::max(box->worldVertices[0].x, std::max(box->worldVertices[1].x, std::max(box->worldVertices[2].x, box->worldVertices[3].x)));
-            auto maxY = std::max(box->worldVertices[0].y, std::max(box->worldVertices[1].y, std::max(box->worldVertices[2].y, box->worldVertices[3].y)));
-            aabb = new d2AABB(minX, minY, maxX, maxY);
+            d2Vec2 minVertex = box->worldVertices[0];
+            d2Vec2 maxVertex = box->worldVertices[0];
+
+            for (int i = 1; i < 4; ++i) {
+                minVertex = d2Min(minVertex, box->worldVertices[i]);
+                maxVertex = d2Max(maxVertex, box->worldVertices[i]);
+            }
+
+            aabb = new d2AABB(minVertex, maxVertex);
             break;
         }
         case CIRCLE:
         {
             auto* circle = dynamic_cast<d2CircleShape*>(shape);
-            aabb = new d2AABB(m_transform.p.x - circle->radius, m_transform.p.y - circle->radius, m_transform.p.x + circle->radius, m_transform.p.y + circle->radius);
+            d2Vec2 lowerBound = m_transform.p - d2Vec2(circle->radius, circle->radius);
+            d2Vec2 upperBound = m_transform.p + d2Vec2(circle->radius, circle->radius);
+            aabb = new d2AABB(lowerBound, upperBound);
             break;
         }
         default:
             std::cout << "d2Shape type not supported" << std::endl;
             break;
-
     }
 }
 
@@ -87,7 +92,7 @@ d2Body::AddForce(const d2Vec2 &force)
 }
 
 void
-d2Body::AddTorque(float torque)
+d2Body::AddTorque(real torque)
 {
     sumTorque += torque;
 }
@@ -107,7 +112,7 @@ d2Body::ClearTorque()
 d2Vec2
 d2Body::LocalSpaceToWorldSpace(const d2Vec2 &point) const
 {
-    d2Vec2 rotated = point.Rotate(m_transform.q);
+    d2Vec2 rotated = d2Rotate(m_transform.q, point);
     return rotated + m_transform.p;
 }
 
@@ -126,7 +131,7 @@ d2Body::ApplyImpulseLinear(const d2Vec2 &j)
 }
 
 void
-d2Body::ApplyImpulseAngular(const float j)
+d2Body::ApplyImpulseAngular(const real j)
 {
     if (m_type == d2_staticBody) return;
     angularVelocity += j * invI;
@@ -141,7 +146,7 @@ d2Body::ApplyImpulseAtPoint(const d2Vec2 &j, const d2Vec2 &r)
 }
 
 void
-d2Body::IntegrateForces(const float dt)
+d2Body::IntegrateForces(const real dt)
 {
     if (m_type == d2_staticBody) return;
 
@@ -163,7 +168,7 @@ d2Body::IntegrateForces(const float dt)
 }
 
 void
-d2Body::IntegrateVelocities(const float dt)
+d2Body::IntegrateVelocities(const real dt)
 {
     if (m_type == d2_staticBody) return;
 

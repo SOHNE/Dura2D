@@ -39,7 +39,7 @@ public:
      * @param mass The mass of the body.
      * @return Pointer to the created body.
      */
-    d2Body* CreateBody(const d2Shape& shape, d2Vec2 position, float mass);
+    d2Body* CreateBody(const d2Shape& shape, d2Vec2 position, real mass);
 
     /**
      * @brief Destroy a body.
@@ -86,20 +86,20 @@ public:
      * @brief Add an external torque to be applied to m_bodiesList.
      * @param torque The torque to be applied.
      */
-    void AddTorque(float torque);
+    void AddTorque(real torque);
 
     /**
      * @brief Update the world simulation by a specified time step.
      * @param dt The time step for the update.
      * @param posIterations The number of position iterations for the update.
      */
-    void Step(float dt, int32 posIterations = 3);
+    void Step(real dt, int32 posIterations = 3);
 
     /**
      * @brief Solve the world simulation by a specified time step.
      * @param dt The time step for the solve.
      */
-    void Solve(float dt);
+    void Solve(real dt);
 
     /**
      * @brief Check for collisions between m_bodiesList.

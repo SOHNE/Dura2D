@@ -85,7 +85,7 @@ d2MatMN::SolveGaussSeidel(const d2MatMN &A, const d2VecN &b)
     // Iterate N times
     for (int iterations = 0; iterations < N; iterations++) {
         for (int i = 0; i < N; i++) {
-            float dx = (b[i] / A.rows[i][i]) - (A.rows[i].Dot(X) / A.rows[i][i]);
+            real dx = (b[i] / A.rows[i][i]) - (A.rows[i].Dot(X) / A.rows[i][i]);
             if (dx == dx) {
                 X[i] += dx;
             }

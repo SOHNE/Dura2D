@@ -15,7 +15,7 @@ struct D2_API d2Contact
     d2Vec2 end;
 
     d2Vec2 normal;
-    float depth;
+    real depth;
 };
 
 #endif

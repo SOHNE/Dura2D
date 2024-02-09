@@ -31,7 +31,7 @@ d2CollisionDetection::IsCollidingCircleCircle(d2Body *a, d2Body *b, std::vector<
     d2CircleShape *bCircleShape = (d2CircleShape *) b->GetShape();
 
     const d2Vec2 ab = b->GetPosition() - a->GetPosition();
-    const float radiusSum = aCircleShape->radius + bCircleShape->radius;
+    const real radiusSum = aCircleShape->radius + bCircleShape->radius;
 
     bool isColliding = ab.LenghtSquared() <= (radiusSum * radiusSum);
 
@@ -62,11 +62,11 @@ d2CollisionDetection::IsCollidingPolygonPolygon(d2Body *a, d2Body *b, std::vecto
     auto *bPolygonShape = (d2PolygonShape *) b->GetShape();
     int aIndexReferenceEdge, bIndexReferenceEdge;
     d2Vec2 aSupportPoint, bSupportPoint;
-    float abSeparation = aPolygonShape->FindMinSeparation(bPolygonShape, aIndexReferenceEdge, aSupportPoint);
+    real abSeparation = aPolygonShape->FindMinSeparation(bPolygonShape, aIndexReferenceEdge, aSupportPoint);
     if (abSeparation >= 0) {
         return false;
     }
-    float baSeparation = bPolygonShape->FindMinSeparation(aPolygonShape, bIndexReferenceEdge, bSupportPoint);
+    real baSeparation = bPolygonShape->FindMinSeparation(aPolygonShape, bIndexReferenceEdge, bSupportPoint);
     if (baSeparation >= 0) {
         return false;
     }
@@ -114,7 +114,7 @@ d2CollisionDetection::IsCollidingPolygonPolygon(d2Body *a, d2Body *b, std::vecto
 
     // Loop all clipped points, but only consider those where separation is negative (objects are penetrating each other)
     for (auto &vclip: clippedPoints) {
-        float separation = (vclip - vref).Dot(referenceEdge.Normal());
+        real separation = (vclip - vref).Dot(referenceEdge.Normal());
         if (separation <= 0) {
             d2Contact contact;
             contact.a = a;
@@ -144,7 +144,7 @@ d2CollisionDetection::IsCollidingPolygonCircle(d2Body *polygon, d2Body *circle, 
     bool isOutside = false;
     d2Vec2 minCurrVertex;
     d2Vec2 minNextVertex;
-    float distanceCircleEdge = std::numeric_limits<float>::lowest();
+    real distanceCircleEdge = std::numeric_limits<real>::lowest();
 
     // Loop all the edges of the polygon/box finding the nearest edge to the circle center
     for (int i = 0; i < vertexCount; i++) {
@@ -155,7 +155,7 @@ d2CollisionDetection::IsCollidingPolygonCircle(d2Body *polygon, d2Body *circle, 
 
         // Compare the circle center with the rectangle vertex
         d2Vec2 vertexToCircleCenter = circle->GetPosition() - polygonVertices[currVertex];
-        float projection = vertexToCircleCenter.Dot(normal);
+        real projection = vertexToCircleCenter.Dot(normal);
 
         // If we found a dot product projection that is in the positive/outside side of the normal
         if (projection > 0) {

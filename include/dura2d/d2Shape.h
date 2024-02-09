@@ -25,14 +25,14 @@ struct D2_API d2Shape
 
     virtual void UpdateVertices(const d2Transform &transform) = 0;
 
-    virtual float GetMomentOfInertia() const = 0;
+    virtual real GetMomentOfInertia() const = 0;
 };
 
 struct D2_API d2CircleShape : public d2Shape
 {
-    float radius;
+    real radius;
 
-    d2CircleShape(const float radius);
+    d2CircleShape(const real radius);
 
     virtual ~d2CircleShape();
 
@@ -42,13 +42,13 @@ struct D2_API d2CircleShape : public d2Shape
 
     void UpdateVertices(const d2Transform &transform) override { };
 
-    float GetMomentOfInertia() const override;
+    real GetMomentOfInertia() const override;
 };
 
 struct D2_API d2PolygonShape : public d2Shape
 {
-    float width;
-    float height;
+    real width;
+    real height;
 
     int m_vertexCount;
 
@@ -67,7 +67,7 @@ struct D2_API d2PolygonShape : public d2Shape
 
     d2Vec2 EdgeAt(int index) const;
 
-    float FindMinSeparation(const d2PolygonShape *other, int &indexReferenceEdge, d2Vec2 &supportPoint) const;
+    real FindMinSeparation(const d2PolygonShape *other, int &indexReferenceEdge, d2Vec2 &supportPoint) const;
 
     int FindIncidentEdge(const d2Vec2 &normal) const;
 
@@ -76,11 +76,11 @@ struct D2_API d2PolygonShape : public d2Shape
                           const d2Vec2 &c0,
                           const d2Vec2 &c1) const;
 
-    float PolygonArea() const;
+    real PolygonArea() const;
 
     d2Vec2 PolygonCentroid() const;
 
-    float GetMomentOfInertia() const override;
+    real GetMomentOfInertia() const override;
 
     void UpdateVertices(const d2Transform &transform) override;
 
@@ -89,7 +89,7 @@ struct D2_API d2PolygonShape : public d2Shape
 
 struct D2_API d2BoxShape : public d2PolygonShape
 {
-    d2BoxShape(float width, float height);
+    d2BoxShape(real width, real height);
 
     virtual ~d2BoxShape();
 
@@ -97,7 +97,7 @@ struct D2_API d2BoxShape : public d2PolygonShape
 
     d2Shape *Clone() const override;
 
-    float GetMomentOfInertia() const override;
+    real GetMomentOfInertia() const override;
 };
 
 #endif

@@ -7,5 +7,6 @@ typedef signed int int32;
 typedef unsigned char uint8;
 typedef unsigned short uint16;
 typedef unsigned int uint32;
+typedef float real;
 
 #endif //D2TYPES_H
