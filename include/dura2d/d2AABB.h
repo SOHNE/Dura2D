@@ -4,10 +4,16 @@
 #include "d2api.h"
 #include "d2Math.h"
 
+class d2Body;
+
 struct D2_API d2AABB
 {
     d2Vec2 lowerBound{};
     d2Vec2 upperBound{};
+
+    void *userData{};
+
+    d2Body *Collider{};
 
     d2AABB() = default;
 
@@ -66,5 +72,12 @@ struct D2_API d2AABB
         return xContains && yContains;
     }
 };
+
+inline d2AABB Union(const d2AABB& aabb1, const d2AABB& aabb2)
+{
+    d2AABB aabb;
+    aabb.Combine(aabb1, aabb2);
+    return aabb;
+}
 
 #endif //D2AABB_H
