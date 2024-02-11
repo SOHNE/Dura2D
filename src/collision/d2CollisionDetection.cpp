@@ -4,10 +4,13 @@
 bool
 d2CollisionDetection::IsColliding(d2Body *a, d2Body *b, std::vector<d2Contact> &contacts)
 {
-    bool aIsCircle = a->GetShape()->GetType() == CIRCLE;
-    bool bIsCircle = b->GetShape()->GetType() == CIRCLE;
-    bool aIsPolygon = a->GetShape()->GetType() == POLYGON || a->GetShape()->GetType() == BOX;
-    bool bIsPolygon = b->GetShape()->GetType() == POLYGON || b->GetShape()->GetType() == BOX;
+    d2ShapeType aType = a->GetShape()->GetType();
+    d2ShapeType bType = b->GetShape()->GetType();
+
+    bool aIsCircle = aType == CIRCLE;
+    bool bIsCircle = bType == CIRCLE;
+    bool aIsPolygon = aType == POLYGON || aType == BOX;
+    bool bIsPolygon = bType == POLYGON || bType == BOX;
 
     if (aIsCircle && bIsCircle) {
         return IsCollidingCircleCircle(a, b, contacts);
