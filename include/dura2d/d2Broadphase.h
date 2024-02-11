@@ -7,8 +7,6 @@
 
 #include "dura2d/d2Body.h"
 
-class d2AABB;
-
 typedef std::pair<d2Body*, d2Body*> ColliderPair;
 typedef std::list<ColliderPair> ColliderPairList;
 
