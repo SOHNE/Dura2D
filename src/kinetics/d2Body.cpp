@@ -40,6 +40,7 @@ d2Body::d2Body(const d2Shape &shape, real x, real y, real mass, d2World *world) 
     this->m_sleepTime = 0.0F;
 
     // Create the d2AABB for this body
+    aabb = new d2AABB();
     ComputeAABB();
 }
 
@@ -52,8 +53,6 @@ d2Body::~d2Body()
 void
 d2Body::ComputeAABB()
 {
-    if (aabb != nullptr) delete aabb;
-
     switch (shape->GetType())
     {
         case POLYGON:
@@ -68,7 +67,8 @@ d2Body::ComputeAABB()
                 maxVertex = d2Max(maxVertex, box->worldVertices[i]);
             }
 
-            aabb = new d2AABB(minVertex, maxVertex);
+            aabb->lowerBound = minVertex;
+            aabb->upperBound = maxVertex;
             break;
         }
         case CIRCLE:
@@ -76,13 +76,17 @@ d2Body::ComputeAABB()
             auto* circle = dynamic_cast<d2CircleShape*>(shape);
             d2Vec2 lowerBound = m_transform.p - d2Vec2(circle->radius, circle->radius);
             d2Vec2 upperBound = m_transform.p + d2Vec2(circle->radius, circle->radius);
-            aabb = new d2AABB(lowerBound, upperBound);
+            aabb->lowerBound = lowerBound;
+            aabb->upperBound = upperBound;
             break;
         }
         default:
             std::cout << "d2Shape type not supported" << std::endl;
             break;
     }
+
+    if (aabb->Collider == nullptr)
+        aabb->Collider = this;
 }
 
 void
