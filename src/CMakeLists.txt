@@ -26,6 +26,7 @@ set(DURA2D_HEADER_FILES
         ../include/dura2d/d2NSquaredBroad.h
         ../include/dura2d/dura2d.h
         ../include/dura2d/memory/d2BlockAllocator.h
+        ../include/dura2d/d2Timer.h
         ../include/dura2d/d2Types.h
         ../include/dura2d/d2Draw.h
 )
