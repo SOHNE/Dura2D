@@ -22,10 +22,11 @@ public:
         movingBody->SetRestitution(1.0f);
         movingBody->SetGravityScale(0.f);
 
+        float s = 7.0f; // Define your spacing here
         for (int i = 0; i < 150; ++i) {
-            d2Body *body = m_world->CreateBody(d2CircleShape(5.0f),
-                                               {(float) (screenWidth / 2.0F) + (i % 10) * 10,
-                             (movingBody->GetPosition().y / 1.25F) + (i / 10) * 10}, 0.05F);
+            d2Body *body = m_world->CreateBody(d2CircleShape(5),
+                                               {(float) (screenWidth / 2.0F) + (i % 10) * (5 + s),
+                                                (movingBody->GetPosition().y / 1.25f) + (i / 10) * (5 + s)}, 0.01F);
             body->SetRestitution(1.0f);
             body->SetGravityScale(0.f);
         }
