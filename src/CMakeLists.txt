@@ -1,5 +1,6 @@
 set(DURA2D_SOURCE_FILES
         kinetics/d2Body.cpp
+        collision/d2AABBTree.cpp
         collision/d2CollisionDetection.cpp
         collision/d2Constraint.cpp
         kinetics/d2Force.cpp
@@ -16,6 +17,7 @@ set(DURA2D_HEADER_FILES
         ../include/dura2d/d2api.h
         ../include/dura2d/d2Body.h
         ../include/dura2d/d2AABB.h
+        ../include/dura2d/d2AABBTree.h
         ../include/dura2d/d2Broadphase.h
         ../include/dura2d/d2CollisionDetection.h
         ../include/dura2d/d2Constraint.h
