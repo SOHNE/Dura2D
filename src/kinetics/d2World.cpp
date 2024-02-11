@@ -3,15 +3,20 @@
 #include "dura2d/d2Body.h"
 #include "dura2d/d2AABB.h"
 #include "dura2d/d2NSquaredBroad.h"
+#include "dura2d/d2AABBTree.h"
 #include "dura2d/d2Constraint.h"
 #include "dura2d/d2Constants.h"
 #include "dura2d/d2CollisionDetection.h"
 #include "dura2d/d2Draw.h"
 
+#include "dura2d/d2Timer.h"
+
+#include <iostream>
+
 d2World::d2World(const d2Vec2 &gravity)
 {
     m_gravity = gravity * -1.0f;
-    broadphase = new d2NSquaredBroad();
+    broadphase = new d2AABBTree();
 }
 
 d2World::~d2World()
@@ -110,27 +115,31 @@ d2World::Step(real dt, int32 posIterations)
         if (body->m_type == d2BodyType::d2_staticBody) continue;
 
         const real massScaled = body->mass * PIXELS_PER_METER * body->m_gravityScale;
-        const d2Vec2 weight = m_gravity * massScaled;
-        body->AddForce(weight);
+        body->AddForce(m_gravity * massScaled);
 
         body->IntegrateForces(dt);
         body->ComputeAABB();
     }
 
-    std::vector<d2PenetrationConstraint> penetrations{};
+    broadphase->Update();
+
+    std::vector<d2PenetrationConstraint> penetrations;
     {
-        auto &pairs = broadphase->ComputePairs();
-        for (const auto &pair: pairs) {
+        //d2Timer timer;
+
+        ColliderPairList pairs;
+        pairs = broadphase->ComputePairs();
+        for (const auto &pair: pairs)
+        {
             auto a = pair.first;
             auto b = pair.second;
 
-            std::vector<d2Contact> contacts{};
+            std::vector<d2Contact> contacts;
             if (!d2CollisionDetection::IsColliding(a, b, contacts)) continue;
 
             for (const auto &contact: contacts) {
                 // Create a new penetration constraint
                 d2PenetrationConstraint penetration(contact.a, contact.b, contact.start, contact.end, contact.normal);
-
                 penetrations.push_back(penetration);
             }
         }
@@ -240,6 +249,15 @@ d2World::DebugDraw()
             };
 
             m_debugDraw->DrawPolygon(vertices, 4, b->GetRotation(), color);
+        }
+    }
+
+    if (flags & d2Draw::e_aabbTreeBit)
+    {
+        // check if broadphase is d2AABBTree
+        if (auto tree = dynamic_cast<d2AABBTree*>(broadphase))
+        {
+            tree->DrawTree(*m_debugDraw);
         }
     }
 

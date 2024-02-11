@@ -179,7 +179,10 @@ Application::Render()
                 if (ImGui::CheckboxFlags("Polygon Meshes", &g_draw.m_flags, d2Draw::e_meshBit)) {
                     g_draw.SetFlags(g_draw.m_flags);
                 }
-                if (ImGui::CheckboxFlags("AABBs", &g_draw.m_flags, d2Draw::e_aabbBit)) {
+                if (ImGui::CheckboxFlags("Bodies AABBs", &g_draw.m_flags, d2Draw::e_aabbBit)) {
+                    g_draw.SetFlags(g_draw.m_flags);
+                }
+                if (ImGui::CheckboxFlags("AABB Tree", &g_draw.m_flags, d2Draw::e_aabbTreeBit)) {
                     g_draw.SetFlags(g_draw.m_flags);
                 }
                 if (ImGui::CheckboxFlags("Transforms", &g_draw.m_flags, d2Draw::e_transformBit)) {

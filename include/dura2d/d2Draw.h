@@ -75,8 +75,9 @@ public:
         e_shapeBit = 0x0001,        ///< draw shapes
         e_meshBit = 0x0002,         ///< draw meshes
         e_aabbBit = 0x0004,         ///< draw axis aligned bounding boxes
-        e_transformBit = 0x0008,    ///< draw transforms
-        e_jointBit = 0x00010,       ///< draw joints
+        e_aabbTreeBit = 0x0008,     ///< draw AABB tree
+        e_transformBit = 0x0010,    ///< draw transforms
+        e_jointBit = 0x0020,        ///< draw joints
     };
 
     void SetFlags(uint32 flags);
