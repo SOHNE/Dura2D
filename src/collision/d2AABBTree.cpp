@@ -253,7 +253,7 @@ d2AABBTree::Pick(const d2Vec2 &point) const
     return nullptr;
 }
 
-void d2AABBTree::DrawTree(d2Draw &draw) const
+void d2AABBTree::Draw(const d2Draw &draw) const
 {
     std::queue<std::pair<d2Node*, int>> q{};
 

@@ -255,10 +255,7 @@ d2World::DebugDraw()
     if (flags & d2Draw::e_aabbTreeBit)
     {
         // check if broadphase is d2AABBTree
-        if (auto tree = dynamic_cast<d2AABBTree*>(broadphase))
-        {
-            tree->DrawTree(*m_debugDraw);
-        }
+        broadphase->Draw(*m_debugDraw);
     }
 
     if (flags & d2Draw::e_transformBit)

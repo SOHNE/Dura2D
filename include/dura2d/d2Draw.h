@@ -88,17 +88,17 @@ public:
 
     void ClearFlags(uint32 flags);
 
-    virtual void DrawPolygon(const d2Vec2 *vertices, int32 vertexCount, const float &angle, const d2Color &color) = 0;
+    virtual void DrawPolygon(const d2Vec2 *vertices, int32 vertexCount, const float &angle, const d2Color &color) const = 0;
 
-    virtual void DrawSolidPolygon(const d2Vec2 *vertices, int32 vertexCount, const float &angle, const bool &mesh, const d2Color &color) = 0;
+    virtual void DrawSolidPolygon(const d2Vec2 *vertices, int32 vertexCount, const float &angle, const bool &mesh, const d2Color &color) const = 0;
 
-    virtual void DrawCircle(const d2Vec2 &center, float radius, const float &angle, const d2Color &color) = 0;
+    virtual void DrawCircle(const d2Vec2 &center, float radius, const float &angle, const d2Color &color) const = 0;
 
-    virtual void DrawSolidCircle(const d2Vec2 &center, float radius, const float &angle, const d2Color &color) = 0;
+    virtual void DrawSolidCircle(const d2Vec2 &center, float radius, const float &angle, const d2Color &color) const = 0;
 
-    virtual void DrawTransform(const d2Transform & transform) = 0;
+    virtual void DrawTransform(const d2Transform & transform) const = 0;
 
-    virtual void DrawSegment(const d2Vec2 &p1, const d2Vec2 &p2, const d2Color &color) = 0;
+    virtual void DrawSegment(const d2Vec2 &p1, const d2Vec2 &p2, const d2Color &color) const = 0;
 
 protected:
     uint32 m_flags{e_shapeBit};

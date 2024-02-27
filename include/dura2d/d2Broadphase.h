@@ -7,6 +7,8 @@
 
 #include "dura2d/d2Body.h"
 
+class d2Draw;
+
 typedef std::pair<d2Body*, d2Body*> ColliderPair;
 typedef std::list<ColliderPair> ColliderPairList;
 
@@ -36,6 +38,8 @@ public:
     // with a query d2AABB
     typedef std::vector<d2Body *> ColliderList;
     virtual void Query(const d2AABB &aabb, ColliderList &output) const = 0;
+
+    virtual void Draw(const d2Draw &draw) const = 0;
 };
 
 

@@ -17,7 +17,7 @@ draw::~draw()
 }
 
 void
-draw::DrawPolygon(const d2Vec2 *vertices, int32 vertexCount, const float &angle, const d2Color &color)
+draw::DrawPolygon(const d2Vec2 *vertices, int32 vertexCount, const float &angle, const d2Color &color) const
 {
     const Color c = convertToColor(color);
 
@@ -28,7 +28,7 @@ draw::DrawPolygon(const d2Vec2 *vertices, int32 vertexCount, const float &angle,
 }
 
 void
-draw::DrawSolidPolygon(const d2Vec2 *vertices, int32 vertexCount, const float &angle, const bool &mesh, const d2Color &color)
+draw::DrawSolidPolygon(const d2Vec2 *vertices, int32 vertexCount, const float &angle, const bool &mesh, const d2Color &color) const
 {
     const Color fillColor = convertToColor(color * 0.5f);
     const Color borderColor = convertToColor(color);
@@ -62,20 +62,20 @@ draw::DrawSolidPolygon(const d2Vec2 *vertices, int32 vertexCount, const float &a
 
 
 void
-draw::DrawCircle(const d2Vec2 &center, float radius, const float &angle, const d2Color &color)
+draw::DrawCircle(const d2Vec2 &center, float radius, const float &angle, const d2Color &color) const
 {
     ::DrawCircleV(Vector2{center.x, center.y}, radius, convertToColor(color));
 }
 
 void
-draw::DrawSolidCircle(const d2Vec2 &center, float radius, const float &angle, const d2Color &color)
+draw::DrawSolidCircle(const d2Vec2 &center, float radius, const float &angle, const d2Color &color) const
 {
     ::DrawCircle(center.x, center.y, radius, convertToColor(color * 0.5f));
     ::DrawCircleLines(center.x, center.y, radius, convertToColor(color));
 }
 
 void
-draw::DrawTransform(const d2Transform &transform)
+draw::DrawTransform(const d2Transform &transform) const
 {
     constexpr float axisScale = 25.0f;
     constexpr Color red = {255, 85, 85, 255};
@@ -91,13 +91,13 @@ draw::DrawTransform(const d2Transform &transform)
 }
 
 void
-draw::DrawSegment(const d2Vec2 &p1, const d2Vec2 &p2, const d2Color &color)
+draw::DrawSegment(const d2Vec2 &p1, const d2Vec2 &p2, const d2Color &color) const
 {
     ::DrawLineV((Vector2) {p1.x, p1.y}, (Vector2) {p2.x, p2.y}, convertToColor(color));
 }
 
 ::Color
-draw::convertToColor(const d2Color &color)
+draw::convertToColor(const d2Color &color) const
 {
     d2Color c = color * 255;
     return {

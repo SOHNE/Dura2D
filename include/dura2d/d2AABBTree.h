@@ -85,7 +85,7 @@ public:
     d2Body* Pick(const d2Vec2 &point) const override;
     void Query(const d2AABB &aabb, ColliderList &output) const override {}
 
-    void DrawTree(d2Draw &draw) const;
+    void Draw(const d2Draw &draw) const override;
 
 private:
 
