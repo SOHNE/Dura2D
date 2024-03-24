@@ -9,18 +9,35 @@ class d2Timer
 public:
     d2Timer()
     {
-        start = std::chrono::high_resolution_clock::now();
+        start();
     }
 
     ~d2Timer()
     {
+        stop();
+        std::cout << "Duration: " << getDuration() << " ns" << std::endl;
+    }
+
+    void start()
+    {
+        m_start = std::chrono::high_resolution_clock::now();
+    }
+
+    void stop()
+    {
         auto end = std::chrono::high_resolution_clock::now();
-        auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
-        std::cout << "Execution time: " << duration.count() << " microseconds" << std::endl;
+        m_duration = std::chrono::duration_cast<std::chrono::nanoseconds>(end - m_start);
+    }
+
+    [[nodiscard]]
+    long long getDuration() const
+    {
+        return m_duration.count();
     }
 
 private:
-    std::chrono::high_resolution_clock::time_point start;
+    std::chrono::high_resolution_clock::time_point m_start { };
+    std::chrono::nanoseconds m_duration { 0 };
 };
 
 #endif //D2TIMER_H
