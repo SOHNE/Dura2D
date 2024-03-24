@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <unordered_set>
+#include "dura2d/d2Timer.h"
 
 #include "settings.h"
 
@@ -194,33 +195,55 @@ Application::Render()
                 ImGui::EndTabItem();
             }
 
-            if (ImGui::BeginTabItem("Scenes")) {
-                ImGuiTreeNodeFlags nodeFlags = ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick |
-                                               ImGuiTreeNodeFlags_DefaultOpen;
+            if (ImGui::BeginTabItem("Scenes"))
+            {
+                static ImGuiTreeNodeFlags nodeFlags = ImGuiTreeNodeFlags_OpenOnArrow |
+                                                      ImGuiTreeNodeFlags_OpenOnDoubleClick |
+                                                      ImGuiTreeNodeFlags_DefaultOpen;
+                int categoryIndex = 0;
+                const char* category = g_availableTests[categoryIndex].category;
+                int i = 0;
+                do
+                {
+                    bool categorySelected = strcmp(category, g_availableTests[s_selectedTest].category) == 0;
+                    ImGuiTreeNodeFlags nodeSelectionFlags = categorySelected ? ImGuiTreeNodeFlags_Selected : 0;
+                    bool nodeOpen = ImGui::TreeNodeEx(category, nodeFlags | nodeSelectionFlags);
 
-                std::unordered_set<std::string> processedCategories;
-
-                for (int i = 0; i < g_testCount; ++i) {
-                    std::string category = g_availableTests[i].category;
-                    if (processedCategories.find(category) != processedCategories.end()) {
-                        continue;
-                    }
-
-                    processedCategories.insert(category);
-
-                    if (ImGui::TreeNodeEx(category.c_str(), nodeFlags)) {
-                        for (int j = 0; j < g_testCount; ++j) {
-                            if (strcmp(g_availableTests[j].category, g_availableTests[i].category) == 0) {
-                                if (ImGui::Selectable(g_availableTests[j].name)) {
-                                    s_selectedTest = j;
-                                    delete s_test;
-                                    s_test = g_availableTests[j].createFcn();
-                                }
+                    if (nodeOpen)
+                    {
+                        static ImGuiTreeNodeFlags leafNodeFlags = ImGuiTreeNodeFlags_Leaf | ImGuiTreeNodeFlags_NoTreePushOnOpen;
+                        while (i < g_testCount && strcmp(category, g_availableTests[i].category) == 0)
+                        {
+                            ImGuiTreeNodeFlags selectionFlags = 0;
+                            if (s_selectedTest == i)
+                            {
+                                selectionFlags = ImGuiTreeNodeFlags_Selected;
                             }
+                            ImGui::TreeNodeEx((void*)(intptr_t)i, leafNodeFlags | selectionFlags, "%s", g_availableTests[i].name);
+                            if (ImGui::IsItemClicked())
+                            {
+                                s_selectedTest = i;
+                                delete s_test;
+                                s_test = g_availableTests[i].createFcn();
+                            }
+                            ++i;
                         }
                         ImGui::TreePop();
                     }
-                }
+                    else
+                    {
+                        while (i < g_testCount && strcmp(category, g_availableTests[i].category) == 0)
+                        {
+                            ++i;
+                        }
+                    }
+
+                    if (i < g_testCount)
+                    {
+                        category = g_availableTests[i].category;
+                        categoryIndex = i;
+                    }
+                } while (i < g_testCount);
 
                 ImGui::EndTabItem();
             }
