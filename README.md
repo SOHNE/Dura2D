@@ -1,8 +1,10 @@
 # SOHNE | Dura2D
 
-Dura2D is a learning-focused 2D physics engine project. It was developed as a hands-on experiment alongside the [Pikuma's course] and [Allen Game Physics] blog series, aiming to provide a deep understanding of physics simulation principles. Some of the architecture and logic decisions were based on code studies on [Box2D] by Erin Catto, further enhancing the robustness and efficiency of the engine.
+Dura2D is a project dedicated to the exploration and understanding of 2D physics in game development. It was developed as a hands-on experiment alongside the [Pikuma's course] and [Ming-Lun "Allen" Chou Game Physics] blog series, aiming to provide a deep understanding of physics simulation principles. The engine’s architecture and logic draw upon insights from Erin Catto’s [Box2D], which contributes to its reliability and performance.
 
-Drawing inspiration from [Game Engine Architecture] by Jason Gregory, Dura2D focuses on learning and continuous development, offering features like a robust constraint system for realistic simulations, warm starting for improved simulation speed, and a stable performance foundation.
+Influenced by Jason Gregory’s [Game Engine Architecture], Dura2D is committed to educational growth and iterative improvement. It boasts a powerful constraint system for lifelike simulations, employs warm starting techniques for faster computations, and provides a consistently stable performance base.
+
+The repository serves as a personal sandbox for experimentation, blending lessons from various sources with my unique approaches. While it’s not intended as a comprehensive guide to physics simulation, it aims to reinforce the theoretical underpinnings for those interested in the field.
 
 [![Live demo](https://img.shields.io/badge/-Live%20Demo-8f60fc?style=for-the-badge&logo=glitch&logoColor=white&colorA=392467&colorB=7E30E1)](https://dura2d.glitch.me/)
 
@@ -90,11 +92,11 @@ main()
 
 Dura2D provides several configuration options that you can set when running CMake. Here's a list of the available options:
 
-- `DURA2D_BUILD_UNIT_TESTS`: Build the Dura2D unit tests. Default is `ON`.
-- `DURA2D_BUILD_TESTBED`: Build the Dura2D testbed. Default is `ON`.
-- `BUILD_SHARED_LIBS`: Build Dura2D as a shared library. Default is `OFF`.
+- `DURA2D_BUILD_UNIT_TESTS`: Build the Dura2D unit tests. _**Default is `ON`**_.
+- `DURA2D_BUILD_TESTBED`: Build the Dura2D testbed. _**Default is `ON`**_.
+- `BUILD_SHARED_LIBS`: Build Dura2D as a shared library. _**Default is `OFF`**_.
 
-You can set these options when configuring the project with CMake. For example, to build the unit tests and the testbed, but not the macOS bundle or the shared library, you would run:
+You can set these options when configuring the project with CMake. For example, to customize the build, you would run:
 
 ```bash
 cmake .. -DDURA2D_BUILD_UNIT_TESTS=ON -DDURA2D_BUILD_TESTBED=ON -DBUILD_SHARED_LIBS=OFF
@@ -110,7 +112,7 @@ cmake .. -DDURA2D_BUILD_UNIT_TESTS=ON -DDURA2D_BUILD_TESTBED=ON -DBUILD_SHARED_L
 
 [//]:  (Externals)
 [Pikuma's course]: https://pikuma.com/courses/game-physics-engine-programming
-[Allen Game Physics]: https://allenchou.net/game-physics-series/
+[Ming-Lun "Allen" Chou Game Physics]: https://allenchou.net/game-physics-series/
 [Box2D]: https://box2d.org/
 [Game Engine Architecture]: https://www.gameenginebook.com/
 [CMake]: https://cmake.org/
