@@ -20,7 +20,7 @@ To install Dura2D, you'll need to have CMake version 3.15 or higher installed on
 
 Follow these steps:
 
-1. Clone the repository: `git clone --recurse-submodules https://github.com/sohne/dura2d.git`
+1. Clone the repository: `git clone --recurse-submodules -j8 https://github.com/sohne/dura2d.git`
 2. Navigate to the project directory: `cd dura2d`
 3. Create a new directory for the build: `mkdir build && cd build`
 4. Run CMake to configure the project: `cmake ..`
