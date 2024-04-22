@@ -15,7 +15,7 @@ public:
 
     virtual ~Test();
 
-    virtual void Step(Settings& settings);
+    virtual void Step(const float & dt, Settings& settings);
     virtual void Input();
     virtual void Render();
     virtual void DrawUI() {}

@@ -32,11 +32,11 @@ public:
         }
     }
 
-    void Step(Settings& settings) override
+    void Step(const float& dt, Settings& settings) override
     {
-        Test::Step(settings);
+        Test::Step(dt, settings);
 
-        movingBody->AddForce({2500, 0});
+    movingBody->AddForce( (d2Vec2){2500, 0} );
     }
 
     static Test* Create()

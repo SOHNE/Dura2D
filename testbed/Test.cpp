@@ -15,9 +15,9 @@ Test::~Test()
 }
 
 void
-Test::Step(Settings& settings)
+Test::Step(const float& dt, Settings& settings)
 {
-    m_world->Step(GetFrameTime(), settings.positionIterations);
+    m_world->Step(dt, settings.positionIterations);
 }
 
 void

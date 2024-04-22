@@ -4,11 +4,13 @@
 #include <unordered_set>
 #include "dura2d/d2Timer.h"
 
+#include "raylib.h"
 #include "settings.h"
 
 static int32 s_selectedTest = 0;
 static Test *s_test = nullptr;
 
+/// TODO: Move the UI to a proper place to maintin the Application class clean.
 Application::Application()
 {
     m_settings = new Settings();
@@ -56,9 +58,10 @@ Application::Input()
         TogglePause();
     }
 
-    if (IsKeyPressed(KEY_S)) {
+  if (IsKeyPressed(KEY_S) ||IsKeyPressedRepeat(KEY_S) ) {
         m_isPaused = true;
-        s_test->Step(*m_settings);
+        const float deltaTime = ( 1.F / m_settings->targetFPS );
+        s_test->Step(deltaTime, *m_settings);
     }
 
     if (IsKeyPressed(KEY_R)) {
@@ -77,7 +80,7 @@ Application::Update()
 {
     if (m_isPaused) return;
 
-    s_test->Step(*m_settings);
+  s_test->Step(GetFrameTime(), *m_settings);
 }
 
 void
@@ -153,7 +156,8 @@ Application::Render()
         // Step button (use font awesome)
         if (ImGui::Button(ICON_FA_RIGHT_TO_BRACKET)) {
             m_isPaused = true;
-            s_test->Step(*m_settings);
+            const float deltaTime = ( 1.F / m_settings->targetFPS );
+            s_test->Step(deltaTime, *m_settings);
         }
         if (ImGui::IsItemHovered(ImGuiHoveredFlags_AllowWhenDisabled)) {
             ImGui::SetTooltip("[S]tep forward");
