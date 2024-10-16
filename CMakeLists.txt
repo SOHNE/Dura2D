@@ -56,6 +56,7 @@ add_subdirectory(src dura2d)
 # Installation Configuration
 # --------------------------------------------------------------------
 string(TOLOWER ${PROJECT_NAME}/version.h VERSION_HEADER_LOCATION)
+string(TOLOWER ${PROJECT_NAME}/export.h EXPORT_HEADER_LOCATION)
 
 packageProject(
   NAME ${PROJECT_NAME}
@@ -65,6 +66,7 @@ packageProject(
   INCLUDE_DIR ${PROJECT_SOURCE_DIR}/include
   INCLUDE_DESTINATION include/${PROJECT_NAME}-${PROJECT_VERSION}
   VERSION_HEADER "${VERSION_HEADER_LOCATION}"
+  EXPORT_HEADER "${EXPORT_HEADER_LOCATION}"
   COMPATIBILITY SameMajorVersion
 )
 
