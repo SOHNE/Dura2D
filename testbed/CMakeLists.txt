@@ -105,20 +105,6 @@ set_target_properties(${PROJECT_NAME}
 target_link_libraries(${PROJECT_NAME} PUBLIC Dura2D::Dura2D raylib IMGUI rlImGui)
 
 # --------------------------------------------------------------------
-# Asset Handling
-# --------------------------------------------------------------------
-set(ASSETS_DIR ${CMAKE_CURRENT_SOURCE_DIR}/assets)
-if(EXISTS ${ASSETS_DIR})
-    add_custom_command(
-        TARGET ${PROJECT_NAME}
-        POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/assets ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/assets
-    )
-else()
-    message(STATUS "No assets directory found!")
-endif()
-
-# --------------------------------------------------------------------
 # Platform-Specific Configuration
 # --------------------------------------------------------------------
 if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
@@ -129,10 +115,6 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 endif()
 
 if(EMSCRIPTEN)
-    if(EXISTS ${ASSETS_DIR})
-        set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS "--preload-file assets --use-preload-plugins")
-    endif()
-
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} --emrun -s USE_GLFW=3 -s ASSERTIONS=1 -s WASM=1 -s ASYNCIFY -s GL_ENABLE_GET_PROC_ADDRESS=1 -s ALLOW_MEMORY_GROWTH")
     set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O3")
     set_target_properties(${PROJECT_NAME} PROPERTIES SUFFIX ".html")
