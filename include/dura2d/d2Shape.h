@@ -40,7 +40,7 @@ struct D2_API d2CircleShape : public d2Shape
 
     d2Shape *Clone() const override;
 
-    void UpdateVertices(const d2Transform &transform) override { };
+    void UpdateVertices(const d2Transform &transform) override { (void)transform; };
 
     real GetMomentOfInertia() const override;
 };

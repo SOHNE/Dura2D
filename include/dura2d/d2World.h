@@ -10,7 +10,7 @@
 // Forward declarations
 struct d2Color;
 class d2Body;
-class d2Shape;
+struct d2Shape;
 class d2Broadphase;
 class d2Constraint;
 class d2Draw;

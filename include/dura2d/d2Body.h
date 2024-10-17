@@ -9,7 +9,7 @@
 
 // Forward declarations
 class d2World;
-class d2AABB;
+struct d2AABB;
 
 // enums
 enum d2BodyType

@@ -21,7 +21,7 @@ public:
 
     d2VecN GetVelocities() const;
 
-    virtual void PreSolve(const real dt) {}
+    virtual void PreSolve(const real dt) { (void)dt; }
 
     virtual void Solve() {}
 

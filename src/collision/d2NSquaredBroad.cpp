@@ -12,7 +12,7 @@ d2NSquaredBroad::Add(d2Body *body)
 void
 d2NSquaredBroad::Remove(d2Body *body)
 {
-    for (auto i = 0; i < bodies.size(); ++i) {
+    for (int i = 0; i < (int)bodies.size(); ++i) {
         if (bodies[i] == body) {
             bodies.erase(bodies.begin() + i);
             break;
@@ -31,11 +31,11 @@ d2NSquaredBroad::ComputePairs(void)
 {
     m_pairs.clear();
 
-    for (auto i = 0; i < bodies.size(); ++i)
+    for (int i = 0; i < (int)bodies.size(); ++i)
     {
         //if (!bodies[i]->IsAwake()) continue;
 
-        for (auto j = i + 1; j < bodies.size(); ++j)
+        for (int j = i + 1; j < (int)bodies.size(); ++j)
         {
             d2AABB *a = bodies[i]->GetAABB();
             d2AABB *b = bodies[j]->GetAABB();

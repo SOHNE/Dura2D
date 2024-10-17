@@ -83,7 +83,7 @@ public:
     void Update(void) override;
     ColliderPairList& ComputePairs(void) override;
     d2Body* Pick(const d2Vec2 &point) const override;
-    void Query(const d2AABB &aabb, ColliderList &output) const override {}
+    void Query(const d2AABB &aabb, ColliderList &output) const override { (void)aabb; (void)output; }
 
     void Draw(const d2Draw &draw) const override;
 
