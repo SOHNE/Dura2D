@@ -15,8 +15,10 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 include(../cmake/tools.cmake)
 include(../cmake/CPM.cmake)
 
-cpmaddpackage(NAME Dura2D SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR}/..)
-cpmaddpackage("gh:raysan5/raylib#5.0")
+CPMAddPackage(NAME Dura2D SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR}/..)
+CPMAddPackage("gh:raysan5/raylib#5.0")
+
+CPMAddPackage("gh:TheLartians/GroupSourcesByFolder.cmake@1.0")
 
 # --------------------------------------------------------------------
 # IMGUI Setup
@@ -150,4 +152,5 @@ endif()
 # --------------------------------------------------------------------
 # Source Grouping
 # --------------------------------------------------------------------
-source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${TESTBED_SOURCE_FILES} ${TESTBED_HEADER_FILES})
+GroupSourcesByFolder(${PROJECT_NAME})
+
