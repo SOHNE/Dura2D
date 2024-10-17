@@ -1,0 +1,56 @@
+# Doxygen Configuration File
+
+# Project Information
+GENERATE_TREEVIEW      = YES
+PROJECT_NAME           = @DOXYGEN_PROJECT_NAME@
+PROJECT_NUMBER         = v@Dura2D_VERSION@
+PROJECT_BRIEF          = @CMAKE_PROJECT_DESCRIPTION@
+
+# HTML Customization
+HTML_EXTRA_STYLESHEET  = @doxygen-awesome-css_SOURCE_DIR@/doxygen-awesome.css \
+                         @doxygen-awesome-css_SOURCE_DIR@/doxygen-awesome-sidebar-only-darkmode-toggle.css \
+                         @doxygen-awesome-css_SOURCE_DIR@/doxygen-awesome-sidebar-only.css \
+                         @doxygen-awesome-css_SOURCE_DIR@/doxygen-awesome-sidebar-only-darkmode-toggle.css \
+                         @DOXYGEN_CUSTOM_DIR@/custom.css
+
+HTML_EXTRA_FILES       = @doxygen-awesome-css_SOURCE_DIR@/doxygen-awesome-darkmode-toggle.js \
+                         @doxygen-awesome-css_SOURCE_DIR@/doxygen-awesome-paragraph-link.js \
+                         @doxygen-awesome-css_SOURCE_DIR@/doxygen-awesome-interactive-toc.js \
+                         @doxygen-awesome-css_SOURCE_DIR@/doxygen-awesome-fragment-copy-button.js
+                         @doxygen-awesome-css_SOURCE_DIR@/doxygen-awesome-tabs.js
+
+# Input Files
+INPUT                  = @DOXYGEN_PROJECT_ROOT@/README.md \
+                         @DOXYGEN_PROJECT_ROOT@/include
+
+# HTML Header and Footer
+HTML_HEADER            = @CMAKE_CURRENT_LIST_DIR@/doxygen-custom/header.html
+
+# Color Scheme
+HTML_COLORSTYLE        = LIGHT
+
+# Example Patterns
+EXAMPLE_PATTERNS       = *
+
+# Main Page
+USE_MDFILE_AS_MAINPAGE = @DOXYGEN_PROJECT_ROOT@/README.md
+
+# Extraction and Recursion
+EXTRACT_ALL = YES
+RECURSIVE = YES
+M_SHOW_UNDOCUMENTED = YES
+
+# Output Directory
+OUTPUT_DIRECTORY = @DOXYGEN_OUTPUT_DIRECTORY@
+CREATE_SUBDIRS = NO
+
+# Full Path Names
+FULL_PATH_NAMES = YES
+STRIP_FROM_PATH = @DOXYGEN_PROJECT_ROOT@/include @DOXYGEN_PROJECT_ROOT@
+
+# Project Logo
+PROJECT_LOGO           = @CMAKE_CURRENT_LIST_DIR@/logo.svg
+PROJECT_ICON           = @CMAKE_CURRENT_LIST_DIR@/logo.svg
+
+# Graphviz Image Format
+DOT_IMAGE_FORMAT       = svg
