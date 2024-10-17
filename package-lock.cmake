@@ -8,6 +8,13 @@ CPMDeclarePackage(PackageProject.cmake
   SYSTEM YES
   EXCLUDE_FROM_ALL YES
 )
+# GroupSourcesByFolder.cmake
+CPMDeclarePackage(GroupSourcesByFolder.cmake
+  VERSION 1.0
+  GITHUB_REPOSITORY TheLartians/GroupSourcesByFolder.cmake
+  SYSTEM YES
+  EXCLUDE_FROM_ALL YES
+)
 # Ccache.cmake
 CPMDeclarePackage(Ccache.cmake
   VERSION 1.2.5

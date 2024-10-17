@@ -30,10 +30,9 @@ include(cmake/CPM.cmake)
 CPMUsePackageLock(package-lock.cmake)
 
 CPMAddPackage("gh:TheLartians/PackageProject.cmake@1.12.0")
+CPMAddPackage("gh:TheLartians/GroupSourcesByFolder.cmake@1.0")
 
 include(cmake/tools.cmake)
-
-# TODO: Add unit-test dependency
 
 # --------------------------------------------------------------------
 # Output Directories
