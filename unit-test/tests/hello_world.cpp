@@ -1,6 +1,6 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 
-#include "../doctest.h"
+#include <doctest/doctest.h>
 
 #include <cstdio>
 #include "dura2d/dura2d.h"
@@ -12,7 +12,7 @@ DOCTEST_TEST_CASE("hello world")
     d2World world(gravity);
 
     // Create a body
-    d2Body *pBody = world.CreateBody(d2CircleShape(45), (d2Vec2){0.F, 0.F}, 10.0F);
+    d2Body *pBody = world.CreateBody(d2CircleShape(45), {0.F, 0.F}, 10.0F);
     pBody->SetAngularVelocity(1.0F);
 
     // also known as delta time, or the time between frames
