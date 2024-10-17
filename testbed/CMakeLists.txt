@@ -4,10 +4,17 @@
 cmake_minimum_required(VERSION 3.26)
 project(Dura2DTestBed LANGUAGES CXX)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+# --------------------------------------------------------------------
+# Output Directories
+# --------------------------------------------------------------------
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/bin)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/bin)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/bin)
 
 # --------------------------------------------------------------------
 # Import Tools and Dependencies
@@ -17,7 +24,6 @@ include(../cmake/CPM.cmake)
 
 CPMAddPackage(NAME Dura2D SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR}/..)
 CPMAddPackage("gh:raysan5/raylib#5.0")
-
 CPMAddPackage("gh:TheLartians/GroupSourcesByFolder.cmake@1.0")
 
 # --------------------------------------------------------------------
@@ -75,23 +81,24 @@ endif()
 # Testbed Setup
 # --------------------------------------------------------------------
 set(TESTBED_SOURCE_FILES
-    Application.cpp
-    draw.cpp
-    Test.cpp
-    tests/Bridge.cpp
-    tests/Collisions.cpp
-    tests/Playground.cpp
-    tests/Wrecking_Ball.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Application.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/draw.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Test.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/tests/Bridge.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/tests/Collisions.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/tests/Playground.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/tests/Wrecking_Ball.cpp
 )
 
 set(TESTBED_HEADER_FILES
-    Application.h
-    draw.h
-    settings.h
-    Test.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Application.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/draw.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/settings.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Test.h
 )
 
-add_executable(${PROJECT_NAME} main.cpp ${TESTBED_SOURCE_FILES})
+add_executable(${PROJECT_NAME} ${TESTBED_SOURCE_FILES} ${TESTBED_HEADER_FILES})
 target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 set_target_properties(${PROJECT_NAME}
