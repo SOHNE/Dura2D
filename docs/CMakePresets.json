@@ -2,18 +2,15 @@
   "version": 3,
   "cmakeMinimumRequired": {
     "major": 3,
-    "minor": 14,
+    "minor": 26,
     "patch": 0
   },
   "configurePresets": [
     {
-      "name": "default",
-      "displayName": "Default Config",
-      "description": "Default build using Ninja generator",
-      "generator": "Ninja",
+      "name": "gendocs",
+      "displayName": "Generate documentations Config",
       "binaryDir": "${sourceParentDir}/build/doc",
       "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Debug",
         "DOXYGEN_PROJECT_NAME": "Dura2D",
         "DOXYGEN_PROJECT_ROOT": "${sourceDir}",
         "DOXYGEN_CUSTOM_DIR": "${sourceDir}/docs/doxygen-custom",
@@ -23,12 +20,12 @@
   ],
   "buildPresets": [
     {
-      "name": "default",
-      "configurePreset": "default"
+      "name": "gendocs",
+      "configurePreset": "gendocs"
     },
     {
       "name": "docs",
-      "configurePreset": "default",
+      "configurePreset": "gendocs",
       "targets": ["doxygenDocs"]
     }
   ]
