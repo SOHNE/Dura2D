@@ -56,6 +56,9 @@ target_include_directories(${PROJECT_NAME}
 # Enforce standards conformance on MSVC
 target_compile_options(${PROJECT_NAME} PUBLIC "$<$<COMPILE_LANG_AND_ID:CXX,MSVC>:/permissive->")
 
+# Generates a partially processed version of dura2d main header
+target_precompile_headers(${PROJECT_NAME} PRIVATE ${DURA_INCLUDE_DIR}/dura2d.h)
+
 set_target_properties(${PROJECT_NAME} PROPERTIES
   CXX_STANDARD 20
   CXX_STANDARD_REQUIRED YES
