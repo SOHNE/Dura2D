@@ -1,7 +1,7 @@
 # --------------------------------------------------------------------
 # Project Setup
 # --------------------------------------------------------------------
-cmake_minimum_required(VERSION 3.14...3.26)
+cmake_minimum_required(VERSION 3.26)
 project(Dura2DUnitTests LANGUAGES CXX)
 
 # --------------------------------------------------------------------
@@ -40,7 +40,7 @@ add_executable(${PROJECT_NAME} ${UNIT_TESTS_SOURCES})
 target_link_libraries(${PROJECT_NAME} doctest::doctest Dura2D::Dura2D)
 
 set_target_properties(${PROJECT_NAME} PROPERTIES
-    CXX_STANDARD 20
+    CXX_STANDARD 17
     CXX_STANDARD_REQUIRED ON
     CXX_EXTENSIONS NO
 )

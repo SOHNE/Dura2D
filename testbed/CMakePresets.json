@@ -1,0 +1,107 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 23,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "base",
+      "hidden": true,
+      "generator": "Ninja",
+      "binaryDir": "${sourceParentDir}/build/${presetName}",
+      "installDir": "${sourceParentDir}/install/${presetName}",
+      "cacheVariables": {
+        "CMAKE_CXX_STANDARD": "20",
+        "CMAKE_CXX_STANDARD_REQUIRED": "ON",
+        "CMAKE_CXX_EXTENSIONS": "OFF",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+      }
+    },
+    {
+      "name": "debug",
+      "displayName": "Debug",
+      "description": "Debug configuration for testbed project",
+      "inherits": "base",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "release",
+      "displayName": "Release",
+      "description": "Release configuration for testbed project",
+      "inherits": "base",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    },
+    {
+      "name": "web-base",
+      "hidden": true,
+      "inherits": "base",
+      "toolchainFile": "$env{EMSDK}/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake",
+      "cacheVariables": {
+        "PLATFORM": "Web"
+      }
+    },
+    {
+      "name": "web-debug",
+      "displayName": "Emscripten Debug",
+      "description": "Emscripten debug configuration for testbed project",
+      "inherits": "web-base",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "web-release",
+      "displayName": "Emscripten Release",
+      "description": "Emscripten release configuration for testbed project",
+      "inherits": "web-base",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "debug",
+      "displayName": "Build Testbed (Debug)",
+      "description": "Build the testbed project in Debug configuration",
+      "configurePreset": "debug",
+      "jobs": 4
+    },
+    {
+      "name": "release",
+      "displayName": "Build Testbed (Release)",
+      "description": "Build the testbed project in Release configuration",
+      "configurePreset": "release",
+      "jobs": 4
+    },
+    {
+      "name": "web-debug",
+      "displayName": "Build Testbed (Web Debug)",
+      "description": "Build the testbed project in Emscripten Debug configuration",
+      "configurePreset": "web-debug",
+      "jobs": 4
+    },
+    {
+      "name": "web-release",
+      "displayName": "Build Testbed (Emscripten Release)",
+      "description": "Build the testbed project in Emscripten Release configuration",
+      "configurePreset": "web-release",
+      "jobs": 4
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "default",
+      "description": "Default test preset",
+      "configurePreset": "debug",
+      "output": {"outputOnFailure": true},
+      "execution": {"noTestsAction": "error", "stopOn Failure": true}
+    }
+  ]
+}

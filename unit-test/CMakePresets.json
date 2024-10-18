@@ -1,0 +1,62 @@
+{
+  "version": 3,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 26,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "default",
+      "displayName": "Default Config",
+      "description": "Default build using Ninja generator",
+      "generator": "Ninja",
+      "binaryDir": "${sourceParentDir}/build/unit-test",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "ENABLE_TEST_COVERAGE": "OFF",
+        "TEST_INSTALLED_VERSION": "OFF"
+      }
+    },
+    {
+      "name": "with-coverage",
+      "inherits": "default",
+      "displayName": "Build with test coverage",
+      "description": "Enable test coverage",
+      "cacheVariables": {
+        "ENABLE_TEST_COVERAGE": "ON"
+      }
+    },
+    {
+      "name": "installed-version",
+      "inherits": "default",
+      "displayName": "Test installed version",
+      "description": "Test the version found by find_package",
+      "cacheVariables": {
+        "TEST_INSTALLED_VERSION": "ON"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "default",
+      "configurePreset": "default"
+    },
+    {
+      "name": "with-coverage",
+      "configurePreset": "with-coverage"
+    },
+    {
+      "name": "installed-version",
+      "configurePreset": "installed-version"
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "default",
+      "configurePreset": "default",
+      "output": {"outputOnFailure": true},
+      "execution": {"noTestsAction": "error", "stopOnFailure": true}
+    }
+  ]
+}
