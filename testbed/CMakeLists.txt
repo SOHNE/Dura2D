@@ -81,25 +81,28 @@ endif()
 # Testbed Setup
 # --------------------------------------------------------------------
 set(TESTBED_SOURCE_FILES
-    ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Application.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/draw.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Test.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/tests/Bridge.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/tests/Collisions.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/tests/Playground.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/tests/Wrecking_Ball.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Application/main.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Application/Application.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Application/draw.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/tests/Test.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/tests/cases/Bridge.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/tests/cases/Collisions.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/tests/cases/Playground.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/tests/cases/Wrecking_Ball.cpp
 )
 
 set(TESTBED_HEADER_FILES
-    ${CMAKE_CURRENT_SOURCE_DIR}/Application.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/draw.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/settings.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/Test.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/settings.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/Application.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/draw.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/Test.h
 )
 
 add_executable(${PROJECT_NAME} ${TESTBED_SOURCE_FILES} ${TESTBED_HEADER_FILES})
-target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(${PROJECT_NAME}
+    PUBLIC
+      ${CMAKE_CURRENT_SOURCE_DIR}/include
+)
 
 set_target_properties(${PROJECT_NAME}
     PROPERTIES
