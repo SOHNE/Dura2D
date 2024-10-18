@@ -49,8 +49,11 @@ FULL_PATH_NAMES = YES
 STRIP_FROM_PATH = @DOXYGEN_PROJECT_ROOT@/include @DOXYGEN_PROJECT_ROOT@
 
 # Project Logo
-PROJECT_LOGO           = @CMAKE_CURRENT_LIST_DIR@/logo.svg
-PROJECT_ICON           = @CMAKE_CURRENT_LIST_DIR@/logo.svg
+PROJECT_LOGO           = @CMAKE_CURRENT_LIST_DIR@/assets/logo.svg
+PROJECT_ICON           = @CMAKE_CURRENT_LIST_DIR@/assets/logo.svg
 
 # Graphviz Image Format
 DOT_IMAGE_FORMAT       = svg
+
+IMAGE_PATH             = @CMAKE_CURRENT_LIST_DIR@/assets \
+                         @DOXYGEN_PROJECT_ROOT@/res
