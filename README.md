@@ -1,50 +1,114 @@
-# SOHNE | Dura2D
+# Dura2D
 
-Dura2D is a project dedicated to the exploration and understanding of 2D physics in game development. It was developed as a hands-on experiment alongside the [Pikuma's course] and [Ming-Lun "Allen" Chou Game Physics] blog series, aiming to provide a deep understanding of physics simulation principles. The engine’s architecture and logic draw upon insights from Erin Catto’s [Box2D], which contributes to its reliability and performance.
+<div align="center">
 
-Influenced by Jason Gregory’s [Game Engine Architecture], Dura2D is committed to educational growth and iterative improvement. It boasts a powerful constraint system for lifelike simulations, employs warm starting techniques for faster computations, and provides a consistently stable performance base.
+![Dura2D](docs/assets/logo.svg)
 
-The repository serves as a personal sandbox for experimentation, blending lessons from various sources with my unique approaches. While it’s not intended as a comprehensive guide to physics simulation, it aims to reinforce the theoretical underpinnings for those interested in the field.
+_An educational 2D Game Physics Engine_
 
-[![Live demo](https://img.shields.io/badge/-Live%20Demo-8f60fc?style=for-the-badge&logo=glitch&logoColor=white&colorA=392467&colorB=7E30E1)](https://dura2d.glitch.me/)
+<br />
 
-## Features
+[![MacOS Status](https://github.com/SOHNE/Dura2D/workflows/MacOS/badge.svg)](https://github.com/SOHNE/Dura2D/actions)
+[![Windows Status](https://github.com/SOHNE/Dura2D/workflows/Windows/badge.svg)](https://github.com/SOHNE/Dura2D/actions)
+[![Ubuntu Status](https://github.com/SOHNE/Dura2D/workflows/Ubuntu/badge.svg)](https://github.com/SOHNE/Dura2D/actions)
+[![Install Status](https://github.com/SOHNE/Dura2D/workflows/Install/badge.svg)](https://github.com/SOHNE/Dura2D/actions)
 
-- **Constraint System**: A robust system that enables realistic simulations of physical interactions.
-- **Warm Starting**: Improves the speed of the physics simulation by using results from previous frames to kick-start the current frame.
-- **Stability**: The engine is designed with stability in mind and performs at a decent level.
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/SOHNE/Dura2D?style=flat)](https://github.com/SOHNE/Dura2D/releases/latest)
+[![License](https://img.shields.io/github/license/SOHNE/Dura2D?style=flat)](https://github.com/SOHNE/Dura2D/blob/main/LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/SOHNE/Dura2D?style=social)](https://github.com/SOHNE/Dura2D/stargazers)
 
-## Installation
+[Live Demo](https://dura2d.glitch.me/) | [Documentation](https://github.com/SOHNE/Dura2D/wiki) | [Report Bug](https://github.com/SOHNE/Dura2D/issues)
 
-To install Dura2D, you'll need to have CMake version 3.15 or higher installed on your system. You can download it from the official [CMake] website.
+<div class="title_screenshot">
 
-Follow these steps:
+  ![Screenshot of Dura2D Test Bed](res/Wrecking_Ball.png)
 
-1. Clone the repository: `git clone --recurse-submodules -j8 https://github.com/sohne/dura2d.git`
-2. Navigate to the project directory: `cd dura2d`
-3. Create a new directory for the build: `mkdir build && cd build`
-4. Run CMake to configure the project: `cmake ..`
-5. Build the project: `make`
+</div>
 
-## Usage
+</div>
 
-You can use the Dura2D library in your own projects for educational purposes, as it's designed to deepen your understanding of physics simulation.
+## 🚀 Introduction
 
-However, please note that Dura2D is not intended for production use. It's a learning tool and may not be as robust or reliable as production-ready physics engines. Keep in mind that this project is purely educational and may contain bugs or limitations that could affect its functionality.
+This 2D physics engine is an educational tool for exploring the principles behind game physics simulation. The project provides a hands-on approach to understanding fundamental 2D physics concepts, drawing inspiration from sources such as:
 
-### Add Dura2D as a Subdirectory in Your Project
+- [Pikuma's Game Physics Engine Programming course](https://pikuma.com/courses/game-physics-engine-programming)
+- [Ming-Lun "Allen" Chou's Game Physics Series](https://allenchou.net/game-physics-series/)
+- [Erin Catto's Box2D](https://box2d.org/)
+- [Jason Gregory's Game Engine Architecture](https://www.gameenginebook.com/)
 
-In your own project directory, create a CMakeLists.txt file if you don't already have one. Add the following lines to include Dura2D as a subdirectory in your project:
+## 🌟 Features
 
+- **Robust Constraint System**: Experience realistic physical interactions through constraint solver.
+- **Warm Starting**: Enjoy faster simulations with our implementation of warm starting techniques.
+- **Dynamic AABB Tree**: Enhances performance by efficiently updating bounding volume hierarchies in real-time during simulations.
+
+## 📦 Installation
+
+### CPM.cmake (Recommended)
+
+This method is recommended for its simplicity and ease of version management.
+
+1. First, set up [CPM.cmake] in your project:
+
+   ```bash
+   mkdir -p cmake
+   wget -O cmake/CPM.cmake https://github.com/cpm-cmake/CPM.cmake/releases/latest/download/get_cpm.cmake
+   ```
+
+2. In your `CMakeLists.txt`, add the following lines after `project(...)`:
+
+   ```cmake
+   include(cmake/CPM.cmake)
+
+   CPMAddPackage("gh:SOHNE/Dura2D@0.1.0")
+
+   add_executable(your_target main.cpp)
+   target_link_libraries(your_target PRIVATE Dura2D::Dura2D)
+   ```
+
+### Vendored
+
+Choose one of the following vendored approaches based on your preference:
+
+#### Git Submodule
+
+1. Add Dura2D as a submodule to your project:
+   ```bash
+   git submodule add https://github.com/SOHNE/Dura2D.git vendor/Dura2D
+   git submodule update --init --recursive
+   ```
+
+2. In your project's `CMakeLists.txt`, add the submodule directory:
+   ```cmake
+   add_subdirectory(vendor/Dura2D)
+   ```
+
+#### Git Subtree
+
+If you prefer to have more control over updates and want to include Dura2D directly in your repository:
+
+1. Add Dura2D as a subtree to your project:
+   ```bash
+   git subtree add --prefix vendor/Dura2D https://github.com/SOHNE/Dura2D.git main --squash
+   ```
+
+2. To update Dura2D in the future:
+   ```bash
+   git subtree pull --prefix vendor/Dura2D https://github.com/SOHNE/Dura2D.git main --squash
+   ```
+
+3. In your project's `CMakeLists.txt`, add the subtree directory:
+   ```cmake
+   add_subdirectory(vendor/Dura2D)
+   ```
+
+For both vendored approaches, link your target with Dura2D:
 ```cmake
-add_subdirectory(path/to/dura2d)
-target_link_libraries(your_project_name PRIVATE dura2d)
+target_link_libraries(your_target PRIVATE Dura2D)
 ```
-_Replace **path/to/dura2d** with the actual path to the Dura2D directory relative to your project._
+## 🎮 Usage
 
-### Use Dura2D in Your Code
-
-You can now use Dura2D in your project by including its header files and linking against the Dura2D library. Here's an example of how you might use Dura2D in a C++ source file:
+Here's a quick example:
 
 ```cpp
 #include <cstdio>
@@ -54,66 +118,158 @@ int
 main()
 {
     // Set up the world with gravity
-    d2Vec2 gravity(0.0F, -9.8F);
+    d2Vec2 gravity(0.F, -9.8F);
     d2World world(gravity);
 
     // Create a circular body (Shape, Position, Mass)
-    d2Body* pBody = world.CreateBody(d2CircleShape(45), {0, 0}, 10.0F);
-    pBody->SetAngularVelocity(10.0F);
+    d2Body * pBody = world.CreateBody(d2CircleShape(45), {0, 0}, 10.F);
+    pBody->SetAngularVelocity(10.F);
 
-    // Game loop
+    // Time step for the simulation
+    constexpr float timeStep = 1.F / 60.F;
+
+    // Simulate the physics for 5 seconds
+    for (int i = 0; i < 60 * 5; ++i)
     {
-        // Time step for the simulation
-        constexpr float timeStep = 1.0F / 60.0F;
+        // Update the world for the next time step
+        world.Step(timeStep);
 
-        // Position and angle of the body
-        d2Vec2 position {};
-        float angle {};
-    
-        // Simulate the physics for 60 frames
-        for (int32 i = 0; i < 60; ++i)
+        // Print the position and angle of the body every second
+        if (i % 60 == 0)
         {
-            // Update the world for the next time step
-            world.Step(timeStep);
-            
-            // Print the position and angle of the body
-            position = pBody->GetPosition();
-            angle = pBody->GetRotation();
+            d2Vec2 position = pBody->GetPosition();
+            float  angle    = pBody->GetRotation();
+
             printf("Position: (%.2f, %.2f) | Angle: %.2f\n", position.x, position.y, angle);
         }
     }
 
     return 0;
 }
-
 ```
 
-## CMake Options
+## ⚒️ Building
 
-Dura2D provides several configuration options that you can set when running CMake. Here's a list of the available options:
+### Prerequisites
+- [CMake] 3.26+
+- For [test bed web](#web-builds-for-testbed) builds: [Emscripten]/EMSDK properly set up in your environment
 
-- `DURA2D_BUILD_UNIT_TESTS`: Build the Dura2D unit tests. _**Default is `ON`**_.
-- `DURA2D_BUILD_TESTBED`: Build the Dura2D testbed. _**Default is `ON`**_.
-- `BUILD_SHARED_LIBS`: Build Dura2D as a shared library. _**Default is `OFF`**_.
-
-You can set these options when configuring the project with CMake. For example, to customize the build, you would run:
-
+### Cloning the Repository
 ```bash
-cmake .. -DDURA2D_BUILD_UNIT_TESTS=ON -DDURA2D_BUILD_TESTBED=ON -DBUILD_SHARED_LIBS=OFF
+git clone https://github.com/SOHNE/Dura2D.git
+cd Dura2D
 ```
 
-## Todos
+### Dura2D Library
 
-- [ ] **Proper Broadphase and Narrow Phase Collision Detection**: Improve the efficiency of the engine by reducing the number of collision checks and ensuring accurate collision responses.
-- [ ] **Contact Caching**: Optimize the engine by storing collision information and reusing it in subsequent frames.
-- [ ] **Island State**: Implement an island state for bodies to improve the efficiency of the simulation.
-- [ ] **Awake State**: Add an awake state for bodies to control their activity in the simulation.
-- [ ] **Manifold Implementation**: Implement a contact manifold to hold information about the contact points between two colliding bodies.
+1. Configure the lib project:
 
-[//]:  (Externals)
-[Pikuma's course]: https://pikuma.com/courses/game-physics-engine-programming
-[Ming-Lun "Allen" Chou Game Physics]: https://allenchou.net/game-physics-series/
-[Box2D]: https://box2d.org/
-[Game Engine Architecture]: https://www.gameenginebook.com/
+  ```bash
+  cmake -S. --preset <debug  |  release>
+  ```
+
+2. Build the project:
+   ```bash
+	cmake --build build/lib/<debug | release>
+   ```
+
+#### CMake Options
+
+- `BUILD_SHARED_LIBS`: Build Dura2D as a shared library (default: OFF)
+- `USE_CCACHE`: Enable compiler cache to improve build times (default: ON for top-level builds)
+
+  Example configuration:
+  ```bash
+  cmake .. -DBUILD_SHARED_LIBS=ON -DUSE_CCACHE=ON
+  ```
+
+### Testbed
+
+1. Configure the testbed project:
+   ```bash
+   cmake -S testbed --preset <debug | release>
+   ```
+
+2. Build the testbed:
+   ```bash
+   cmake --build build/testbed/<debug | release>
+   ```
+
+#### Web Builds for Testbed
+
+For [Emscripten]/HTML5 builds:
+
+1. Configure:
+   ```bash
+   cmake -S testbed --preset <web-debug | web-release>
+   ```
+
+2. Build:
+   ```bash
+   cmake --build build/testbed/<web-debug | web-release>
+   ```
+
+
+### Running Unit Tests
+
+1. Configure the unit tests:
+	  ```bash
+	   cmake -S unit-test --preset <default  |  with-coverage  |  installed-version>
+	 ```
+
+2. Build the tests:
+   ```bash
+   cmake --build build/unit-test/<default | with-coverage | installed-version>
+   ```
+
+3. Run the tests:
+   ```bash
+   ctest --test-dir build/unit-test/<default | with-coverage | installed-version>
+   ```
+
+### Generating Documentation
+
+1. Configure the documentation build:
+   ```bash
+   cmake -S docs --preset gendocs
+   ```
+
+2. Generate the documentation:
+   ```bash
+   cmake --build build/doc
+   ```
+
+3. The generated documentation will be available at:
+   ```
+   build/doc/doxygen/html/index.html
+   ```
+
+### Additional Notes
+
+- All build artifacts are organized in the `build` directory, with subdirectories for each component (*main library*, *testbed*, *unit tests*, and *documentation*).
+- Use the `--preset` option with `cmake` commands to easily switch between different configurations.
+- For any build issues, ensure all [prerequisites] are correctly installed and environment variables (like EMSDK for web/HTML5 builds) are properly set.
+
+## 🛣️ Roadmap
+
+- [ ] Introduce contact caching for optimization
+- [ ] Develop an island state system for bodies
+- [ ] Add an awake state for bodies
+- [ ] Create a robust manifold implementation
+
+## 🤝 Contributing
+
+We welcome contributions! Whether it's bug fixes, feature additions, or documentation improvements, your input is valuable.
+
+## 🙏 Acknowledgements
+
+A huge thank you to the open-source community and the authors of the resources that inspired this project. Your work continues to educate and inspire.
+
+[//]: (Externals)
+[CPM.cmake]: https://github.com/cpm-cmake/CPM.cmake/
 [CMake]: https://cmake.org/
-[//]:  (EOF)
+[Emscripten]: https://emscripten.org/
+
+[prerequisites]: #prerequisites
+
+[//]: (EOF)
