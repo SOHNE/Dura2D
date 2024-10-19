@@ -11,7 +11,7 @@
       "displayName": "Default Config",
       "description": "Default build using Ninja generator",
       "generator": "Ninja",
-      "binaryDir": "${sourceParentDir}/build/unit-test",
+      "binaryDir": "${sourceParentDir}/build/unit-test/${presetName}",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
         "ENABLE_TEST_COVERAGE": "OFF",

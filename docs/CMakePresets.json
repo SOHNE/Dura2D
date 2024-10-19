@@ -9,19 +9,15 @@
     {
       "name": "gendocs",
       "displayName": "Generate documentations Config",
-      "binaryDir": "${sourceParentDir}/build/doc",
-      "cacheVariables": {
-        "DOXYGEN_PROJECT_NAME": "Dura2D",
-        "DOXYGEN_PROJECT_ROOT": "${sourceDir}",
-        "DOXYGEN_CUSTOM_DIR": "${sourceDir}/docs/doxygen-custom",
-        "DOXYGEN_OUTPUT_DIRECTORY": "${sourceDir}/build/docs/doxygen"
-      }
+      "binaryDir": "${sourceParentDir}/build/doc"
     }
   ],
   "buildPresets": [
     {
       "name": "gendocs",
-      "configurePreset": "gendocs"
+      "configurePreset": "gendocs",
+
+      "targets": ["doxygenDocs"]
     },
     {
       "name": "docs",

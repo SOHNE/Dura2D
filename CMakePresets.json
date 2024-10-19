@@ -11,7 +11,7 @@
       "displayName": "Default Config",
       "description": "Debug build using Ninja generator",
       "generator": "Ninja",
-      "binaryDir": "${sourceDir}/build",
+      "binaryDir": "${sourceDir}/build/lib/${presetName}",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
         "DURA_IS_MAIN": "ON",
