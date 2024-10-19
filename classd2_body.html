@@ -1,0 +1,1451 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Dura2D" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/your-repo-image-link" />
+<meta property="og:description" content="Dura2D is an educational 2D game physics library with intuitive examples." />
+<meta property="og:url" content="https://github.com/SOHNE/Dura2D" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/your-repo-image-link" />
+<meta name="twitter:title" content="Dura2D" />
+<meta name="twitter:description" content="Dura2D is an educational 2D game physics library with intuitive examples." />
+<!-- END twitter metadata -->
+<title>Dura2D: d2Body Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/SOHNE/Dura2D" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="80" height="80" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Dura2D
+   &#160;<span id="projectnumber">v0.1.0</span>
+   </div>
+   <div id="projectbrief">An educational 2D game physics library</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('classd2_body.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#friends">Friends</a> &#124;
+<a href="classd2_body-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">d2Body Class Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>A class representing a 2D rigid body.  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="d2_body_8h_source.html">d2Body.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:ad6c2bb39edd38bac31b6ce8676ce7d17" id="r_ad6c2bb39edd38bac31b6ce8676ce7d17"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad6c2bb39edd38bac31b6ce8676ce7d17">d2Body</a> (const <a class="el" href="structd2_shape.html">d2Shape</a> &amp;shape, <a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> x, <a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> y, <a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> mass, <a class="el" href="classd2_world.html">d2World</a> *world)</td></tr>
+<tr class="memdesc:ad6c2bb39edd38bac31b6ce8676ce7d17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for the <a class="el" href="classd2_body.html" title="A class representing a 2D rigid body.">d2Body</a> class.  <br /></td></tr>
+<tr class="separator:ad6c2bb39edd38bac31b6ce8676ce7d17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbd4d7f6142d75c4f9ee7b06723a5966" id="r_abbd4d7f6142d75c4f9ee7b06723a5966"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abbd4d7f6142d75c4f9ee7b06723a5966">~d2Body</a> ()</td></tr>
+<tr class="memdesc:abbd4d7f6142d75c4f9ee7b06723a5966"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor for the <a class="el" href="classd2_body.html" title="A class representing a 2D rigid body.">d2Body</a> class.  <br /></td></tr>
+<tr class="separator:abbd4d7f6142d75c4f9ee7b06723a5966"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4df0746b221bb072a4c26ec94fc1182" id="r_af4df0746b221bb072a4c26ec94fc1182"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af4df0746b221bb072a4c26ec94fc1182">ComputeAABB</a> ()</td></tr>
+<tr class="memdesc:af4df0746b221bb072a4c26ec94fc1182"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the Axis-Aligned Bounding Box of the body.  <br /></td></tr>
+<tr class="separator:af4df0746b221bb072a4c26ec94fc1182"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ee38698d73c4e74cc10f5f85f63ac96" id="r_a6ee38698d73c4e74cc10f5f85f63ac96"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6ee38698d73c4e74cc10f5f85f63ac96">AddForce</a> (const <a class="el" href="structd2_vec2.html">d2Vec2</a> &amp;force)</td></tr>
+<tr class="memdesc:a6ee38698d73c4e74cc10f5f85f63ac96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a force to the body.  <br /></td></tr>
+<tr class="separator:a6ee38698d73c4e74cc10f5f85f63ac96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4084f06d154455399eac6c21f5143408" id="r_a4084f06d154455399eac6c21f5143408"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4084f06d154455399eac6c21f5143408">AddTorque</a> (<a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> torque)</td></tr>
+<tr class="memdesc:a4084f06d154455399eac6c21f5143408"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a torque to the body.  <br /></td></tr>
+<tr class="separator:a4084f06d154455399eac6c21f5143408"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2db5061978bd33ba6a59939c825b6188" id="r_a2db5061978bd33ba6a59939c825b6188"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2db5061978bd33ba6a59939c825b6188">ClearForces</a> ()</td></tr>
+<tr class="memdesc:a2db5061978bd33ba6a59939c825b6188"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears all forces applied to the body.  <br /></td></tr>
+<tr class="separator:a2db5061978bd33ba6a59939c825b6188"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6daa9011eb7cba28f9ce96cdd7c5f40f" id="r_a6daa9011eb7cba28f9ce96cdd7c5f40f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6daa9011eb7cba28f9ce96cdd7c5f40f">ClearTorque</a> ()</td></tr>
+<tr class="memdesc:a6daa9011eb7cba28f9ce96cdd7c5f40f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears all torques applied to the body.  <br /></td></tr>
+<tr class="separator:a6daa9011eb7cba28f9ce96cdd7c5f40f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4136d05281f3e6b19cdc1485654d9d7a" id="r_a4136d05281f3e6b19cdc1485654d9d7a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structd2_vec2.html">d2Vec2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4136d05281f3e6b19cdc1485654d9d7a">LocalSpaceToWorldSpace</a> (const <a class="el" href="structd2_vec2.html">d2Vec2</a> &amp;point) const</td></tr>
+<tr class="memdesc:a4136d05281f3e6b19cdc1485654d9d7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a point from local space to world space.  <br /></td></tr>
+<tr class="separator:a4136d05281f3e6b19cdc1485654d9d7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acdd89eb1582a15dbd3bd005a24ad331b" id="r_acdd89eb1582a15dbd3bd005a24ad331b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structd2_vec2.html">d2Vec2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acdd89eb1582a15dbd3bd005a24ad331b">WorldSpaceToLocalSpace</a> (const <a class="el" href="structd2_vec2.html">d2Vec2</a> &amp;point) const</td></tr>
+<tr class="memdesc:acdd89eb1582a15dbd3bd005a24ad331b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a point from world space to local space.  <br /></td></tr>
+<tr class="separator:acdd89eb1582a15dbd3bd005a24ad331b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36d64384d18467fb0065880a75a4799a" id="r_a36d64384d18467fb0065880a75a4799a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a36d64384d18467fb0065880a75a4799a">ApplyImpulseLinear</a> (const <a class="el" href="structd2_vec2.html">d2Vec2</a> &amp;j)</td></tr>
+<tr class="memdesc:a36d64384d18467fb0065880a75a4799a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies a linear impulse to the body.  <br /></td></tr>
+<tr class="separator:a36d64384d18467fb0065880a75a4799a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53816b342ac87bdd30116be8fd25bbf4" id="r_a53816b342ac87bdd30116be8fd25bbf4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a53816b342ac87bdd30116be8fd25bbf4">ApplyImpulseAngular</a> (const <a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> j)</td></tr>
+<tr class="memdesc:a53816b342ac87bdd30116be8fd25bbf4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies an angular impulse to the body.  <br /></td></tr>
+<tr class="separator:a53816b342ac87bdd30116be8fd25bbf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af419d1ffef6810631c3b632df6ccad11" id="r_af419d1ffef6810631c3b632df6ccad11"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af419d1ffef6810631c3b632df6ccad11">ApplyImpulseAtPoint</a> (const <a class="el" href="structd2_vec2.html">d2Vec2</a> &amp;j, const <a class="el" href="structd2_vec2.html">d2Vec2</a> &amp;r)</td></tr>
+<tr class="memdesc:af419d1ffef6810631c3b632df6ccad11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies an impulse at a specific point on the body.  <br /></td></tr>
+<tr class="separator:af419d1ffef6810631c3b632df6ccad11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a131deecb693e27e6103835019dc6046f" id="r_a131deecb693e27e6103835019dc6046f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a131deecb693e27e6103835019dc6046f">IntegrateLinear</a> (<a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> dt)</td></tr>
+<tr class="memdesc:a131deecb693e27e6103835019dc6046f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Integrates the linear motion of the body over a time step.  <br /></td></tr>
+<tr class="separator:a131deecb693e27e6103835019dc6046f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b54dd04f2397fe3002f5ffd942b20e2" id="r_a5b54dd04f2397fe3002f5ffd942b20e2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5b54dd04f2397fe3002f5ffd942b20e2">IntegrateAngular</a> (<a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> dt)</td></tr>
+<tr class="memdesc:a5b54dd04f2397fe3002f5ffd942b20e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Integrates the angular motion of the body over a time step.  <br /></td></tr>
+<tr class="separator:a5b54dd04f2397fe3002f5ffd942b20e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a578af4ec9d76811cb1dd52cb512daf88" id="r_a578af4ec9d76811cb1dd52cb512daf88"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a578af4ec9d76811cb1dd52cb512daf88">IntegrateForces</a> (const <a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> dt)</td></tr>
+<tr class="memdesc:a578af4ec9d76811cb1dd52cb512daf88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Integrates the forces applied to the body over a time step.  <br /></td></tr>
+<tr class="separator:a578af4ec9d76811cb1dd52cb512daf88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e576f372a1016bf6fa6c26fb8bb4385" id="r_a8e576f372a1016bf6fa6c26fb8bb4385"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8e576f372a1016bf6fa6c26fb8bb4385">IntegrateVelocities</a> (const <a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> dt)</td></tr>
+<tr class="memdesc:a8e576f372a1016bf6fa6c26fb8bb4385"><td class="mdescLeft">&#160;</td><td class="mdescRight">Integrates the velocities of the body over a time step.  <br /></td></tr>
+<tr class="separator:a8e576f372a1016bf6fa6c26fb8bb4385"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ec4c849be3f4fff6778d4384a518bd3" id="r_a0ec4c849be3f4fff6778d4384a518bd3"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structd2_vec2.html">d2Vec2</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0ec4c849be3f4fff6778d4384a518bd3">GetPosition</a> () const</td></tr>
+<tr class="memdesc:a0ec4c849be3f4fff6778d4384a518bd3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the position of the body.  <br /></td></tr>
+<tr class="separator:a0ec4c849be3f4fff6778d4384a518bd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e3abe2213aea7030fbe33621bab49cc" id="r_a7e3abe2213aea7030fbe33621bab49cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7e3abe2213aea7030fbe33621bab49cc">SetPosition</a> (const <a class="el" href="structd2_vec2.html">d2Vec2</a> &amp;position)</td></tr>
+<tr class="memdesc:a7e3abe2213aea7030fbe33621bab49cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the position of the body.  <br /></td></tr>
+<tr class="separator:a7e3abe2213aea7030fbe33621bab49cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21e405919f230894cdccf21fc2592639" id="r_a21e405919f230894cdccf21fc2592639"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structd2_vec2.html">d2Vec2</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a21e405919f230894cdccf21fc2592639">GetVelocity</a> () const</td></tr>
+<tr class="memdesc:a21e405919f230894cdccf21fc2592639"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the velocity of the body.  <br /></td></tr>
+<tr class="separator:a21e405919f230894cdccf21fc2592639"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8222b9cc178b13ed1d02d2086884fe81" id="r_a8222b9cc178b13ed1d02d2086884fe81"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8222b9cc178b13ed1d02d2086884fe81">SetAcceleration</a> (const <a class="el" href="structd2_vec2.html">d2Vec2</a> &amp;acceleration)</td></tr>
+<tr class="memdesc:a8222b9cc178b13ed1d02d2086884fe81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set acceleration of the body.  <br /></td></tr>
+<tr class="separator:a8222b9cc178b13ed1d02d2086884fe81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeeecbe670c36c32a1389fc946674acaf" id="r_aeeecbe670c36c32a1389fc946674acaf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeeecbe670c36c32a1389fc946674acaf">SetAngularVelocity</a> (<a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> angularVelocity)</td></tr>
+<tr class="memdesc:aeeecbe670c36c32a1389fc946674acaf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the angular velocity of the body.  <br /></td></tr>
+<tr class="separator:aeeecbe670c36c32a1389fc946674acaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4546546b23a3945a41a4028cfe5f9afb" id="r_a4546546b23a3945a41a4028cfe5f9afb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4546546b23a3945a41a4028cfe5f9afb">GetAngularVelocity</a> () const</td></tr>
+<tr class="memdesc:a4546546b23a3945a41a4028cfe5f9afb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the angular velocity of the body.  <br /></td></tr>
+<tr class="separator:a4546546b23a3945a41a4028cfe5f9afb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49b221e3b96b0f4975661c42f59f57f0" id="r_a49b221e3b96b0f4975661c42f59f57f0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a49b221e3b96b0f4975661c42f59f57f0">GetRotation</a> () const</td></tr>
+<tr class="memdesc:a49b221e3b96b0f4975661c42f59f57f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the rotation angle of the body.  <br /></td></tr>
+<tr class="separator:a49b221e3b96b0f4975661c42f59f57f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28bad9d2049be79800b91ca0be520a23" id="r_a28bad9d2049be79800b91ca0be520a23"><td class="memItemLeft" align="right" valign="top"><a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a28bad9d2049be79800b91ca0be520a23">GetMass</a> () const</td></tr>
+<tr class="memdesc:a28bad9d2049be79800b91ca0be520a23"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the mass of the body.  <br /></td></tr>
+<tr class="separator:a28bad9d2049be79800b91ca0be520a23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad32f1612aaf45ec343ad265500187187" id="r_ad32f1612aaf45ec343ad265500187187"><td class="memItemLeft" align="right" valign="top"><a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad32f1612aaf45ec343ad265500187187">GetInvMass</a> () const</td></tr>
+<tr class="memdesc:ad32f1612aaf45ec343ad265500187187"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the inverse mass of the body.  <br /></td></tr>
+<tr class="separator:ad32f1612aaf45ec343ad265500187187"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3dc40000ef2b2a550f95ca054aa19084" id="r_a3dc40000ef2b2a550f95ca054aa19084"><td class="memItemLeft" align="right" valign="top"><a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3dc40000ef2b2a550f95ca054aa19084">GetI</a> () const</td></tr>
+<tr class="memdesc:a3dc40000ef2b2a550f95ca054aa19084"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the moment of inertia of the body.  <br /></td></tr>
+<tr class="separator:a3dc40000ef2b2a550f95ca054aa19084"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7829400a6d030499a66fae91ee3a9831" id="r_a7829400a6d030499a66fae91ee3a9831"><td class="memItemLeft" align="right" valign="top"><a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7829400a6d030499a66fae91ee3a9831">GetInvI</a> () const</td></tr>
+<tr class="memdesc:a7829400a6d030499a66fae91ee3a9831"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the inverse moment of inertia of the body.  <br /></td></tr>
+<tr class="separator:a7829400a6d030499a66fae91ee3a9831"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6afbf1c0eb5564d572f847f92fb7c435" id="r_a6afbf1c0eb5564d572f847f92fb7c435"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6afbf1c0eb5564d572f847f92fb7c435">SetFriction</a> (<a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> friction)</td></tr>
+<tr class="memdesc:a6afbf1c0eb5564d572f847f92fb7c435"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the coefficient of friction of the body.  <br /></td></tr>
+<tr class="separator:a6afbf1c0eb5564d572f847f92fb7c435"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ae992b2e2ea57691b1f217b6fd50fdf" id="r_a6ae992b2e2ea57691b1f217b6fd50fdf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6ae992b2e2ea57691b1f217b6fd50fdf">GetFriction</a> () const</td></tr>
+<tr class="memdesc:a6ae992b2e2ea57691b1f217b6fd50fdf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the coefficient of friction of the body.  <br /></td></tr>
+<tr class="separator:a6ae992b2e2ea57691b1f217b6fd50fdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a4f4d462af6d30d1c2160df13d4e6c3" id="r_a4a4f4d462af6d30d1c2160df13d4e6c3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4a4f4d462af6d30d1c2160df13d4e6c3">SetRestitution</a> (<a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> restitution)</td></tr>
+<tr class="memdesc:a4a4f4d462af6d30d1c2160df13d4e6c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the coefficient of restitution of the body.  <br /></td></tr>
+<tr class="separator:a4a4f4d462af6d30d1c2160df13d4e6c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49aab372f6c7ab524bfec582bd42b143" id="r_a49aab372f6c7ab524bfec582bd42b143"><td class="memItemLeft" align="right" valign="top"><a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a49aab372f6c7ab524bfec582bd42b143">GetRestitution</a> () const</td></tr>
+<tr class="memdesc:a49aab372f6c7ab524bfec582bd42b143"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the coefficient of restitution of the body.  <br /></td></tr>
+<tr class="separator:a49aab372f6c7ab524bfec582bd42b143"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae467c1f292c9f14515567b8a28c6d9cd" id="r_ae467c1f292c9f14515567b8a28c6d9cd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structd2_shape.html">d2Shape</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae467c1f292c9f14515567b8a28c6d9cd">GetShape</a> () const</td></tr>
+<tr class="memdesc:ae467c1f292c9f14515567b8a28c6d9cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the shape/geometry of the body.  <br /></td></tr>
+<tr class="separator:ae467c1f292c9f14515567b8a28c6d9cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98039cbf68c1ad48e712829a231ccf70" id="r_a98039cbf68c1ad48e712829a231ccf70"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structd2_a_a_b_b.html">d2AABB</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a98039cbf68c1ad48e712829a231ccf70">GetAABB</a> () const</td></tr>
+<tr class="memdesc:a98039cbf68c1ad48e712829a231ccf70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the Axis-Aligned Bounding Box of the body.  <br /></td></tr>
+<tr class="separator:a98039cbf68c1ad48e712829a231ccf70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ed9f0e66d7d1d76f8ea6417117c2ce7" id="r_a2ed9f0e66d7d1d76f8ea6417117c2ce7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classd2_body.html">d2Body</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2ed9f0e66d7d1d76f8ea6417117c2ce7">GetNext</a> ()</td></tr>
+<tr class="memdesc:a2ed9f0e66d7d1d76f8ea6417117c2ce7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the next body in a linked list of bodies.  <br /></td></tr>
+<tr class="separator:a2ed9f0e66d7d1d76f8ea6417117c2ce7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ffc97609dc3cb4a983b72a82d75c435" id="r_a0ffc97609dc3cb4a983b72a82d75c435"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classd2_body.html">d2Body</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0ffc97609dc3cb4a983b72a82d75c435">GetNext</a> () const</td></tr>
+<tr class="separator:a0ffc97609dc3cb4a983b72a82d75c435"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a905429b4a41c47fc5869bf90cda9926b" id="r_a905429b4a41c47fc5869bf90cda9926b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classd2_body.html">d2Body</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a905429b4a41c47fc5869bf90cda9926b">GetPrev</a> ()</td></tr>
+<tr class="memdesc:a905429b4a41c47fc5869bf90cda9926b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the previous body in a linked list of bodies.  <br /></td></tr>
+<tr class="separator:a905429b4a41c47fc5869bf90cda9926b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75c5ab36a6cd955e0b87aac97a9dd88d" id="r_a75c5ab36a6cd955e0b87aac97a9dd88d"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classd2_body.html">d2Body</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a75c5ab36a6cd955e0b87aac97a9dd88d">GetPrev</a> () const</td></tr>
+<tr class="separator:a75c5ab36a6cd955e0b87aac97a9dd88d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b597cb71b063b6fcae661e5db854ea0" id="r_a9b597cb71b063b6fcae661e5db854ea0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9b597cb71b063b6fcae661e5db854ea0">GetSleepTime</a> () const</td></tr>
+<tr class="memdesc:a9b597cb71b063b6fcae661e5db854ea0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets wake-up time of the body.  <br /></td></tr>
+<tr class="separator:a9b597cb71b063b6fcae661e5db854ea0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5cf562ec4098fb53bc7baab186046f8c" id="r_a5cf562ec4098fb53bc7baab186046f8c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5cf562ec4098fb53bc7baab186046f8c">IsAwake</a> () const</td></tr>
+<tr class="memdesc:a5cf562ec4098fb53bc7baab186046f8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the wake state of the body.  <br /></td></tr>
+<tr class="separator:a5cf562ec4098fb53bc7baab186046f8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4540e026cc7df2533483177b715bc093" id="r_a4540e026cc7df2533483177b715bc093"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4540e026cc7df2533483177b715bc093">SetAwake</a> (bool awake)</td></tr>
+<tr class="memdesc:a4540e026cc7df2533483177b715bc093"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the wake state of the body.  <br /></td></tr>
+<tr class="separator:a4540e026cc7df2533483177b715bc093"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1b8f5a6d5846b2285d361ee9722d17f" id="r_ad1b8f5a6d5846b2285d361ee9722d17f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad1b8f5a6d5846b2285d361ee9722d17f">GetGravityScale</a> () const</td></tr>
+<tr class="memdesc:ad1b8f5a6d5846b2285d361ee9722d17f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the gravity scale of the body.  <br /></td></tr>
+<tr class="separator:ad1b8f5a6d5846b2285d361ee9722d17f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24cb3740a68233648911bb2f2a2e14ed" id="r_a24cb3740a68233648911bb2f2a2e14ed"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a24cb3740a68233648911bb2f2a2e14ed">SetGravityScale</a> (<a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> gravityScale)</td></tr>
+<tr class="memdesc:a24cb3740a68233648911bb2f2a2e14ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the gravity scale of the body.  <br /></td></tr>
+<tr class="separator:a24cb3740a68233648911bb2f2a2e14ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:af19d0355c46d7622e77062dc50a90a15" id="r_af19d0355c46d7622e77062dc50a90a15"><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af19d0355c46d7622e77062dc50a90a15">d2World</a></td></tr>
+<tr class="separator:af19d0355c46d7622e77062dc50a90a15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A class representing a 2D rigid body. </p>
+<p>This class encapsulates the properties and behaviors of a 2D rigid body. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ad6c2bb39edd38bac31b6ce8676ce7d17" name="ad6c2bb39edd38bac31b6ce8676ce7d17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad6c2bb39edd38bac31b6ce8676ce7d17">&#9670;&#160;</a></span>d2Body()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">d2Body::d2Body </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structd2_shape.html">d2Shape</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>shape</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a></td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a></td>          <td class="paramname"><span class="paramname"><em>y</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a></td>          <td class="paramname"><span class="paramname"><em>mass</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classd2_world.html">d2World</a> *</td>          <td class="paramname"><span class="paramname"><em>world</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor for the <a class="el" href="classd2_body.html" title="A class representing a 2D rigid body.">d2Body</a> class. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">shape</td><td>The shape/geometry of the body. </td></tr>
+    <tr><td class="paramname">x</td><td>The initial x-coordinate of the body. </td></tr>
+    <tr><td class="paramname">y</td><td>The initial y-coordinate of the body. </td></tr>
+    <tr><td class="paramname">mass</td><td>The mass of the body. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="abbd4d7f6142d75c4f9ee7b06723a5966" name="abbd4d7f6142d75c4f9ee7b06723a5966"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abbd4d7f6142d75c4f9ee7b06723a5966">&#9670;&#160;</a></span>~d2Body()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">d2Body::~d2Body </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Destructor for the <a class="el" href="classd2_body.html" title="A class representing a 2D rigid body.">d2Body</a> class. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a6ee38698d73c4e74cc10f5f85f63ac96" name="a6ee38698d73c4e74cc10f5f85f63ac96"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ee38698d73c4e74cc10f5f85f63ac96">&#9670;&#160;</a></span>AddForce()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void d2Body::AddForce </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structd2_vec2.html">d2Vec2</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>force</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds a force to the body. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">force</td><td>The force to be added. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4084f06d154455399eac6c21f5143408" name="a4084f06d154455399eac6c21f5143408"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4084f06d154455399eac6c21f5143408">&#9670;&#160;</a></span>AddTorque()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void d2Body::AddTorque </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a></td>          <td class="paramname"><span class="paramname"><em>torque</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds a torque to the body. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">torque</td><td>The torque to be added. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a53816b342ac87bdd30116be8fd25bbf4" name="a53816b342ac87bdd30116be8fd25bbf4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53816b342ac87bdd30116be8fd25bbf4">&#9670;&#160;</a></span>ApplyImpulseAngular()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void d2Body::ApplyImpulseAngular </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a></td>          <td class="paramname"><span class="paramname"><em>j</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Applies an angular impulse to the body. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">j</td><td>The impulse to be applied. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af419d1ffef6810631c3b632df6ccad11" name="af419d1ffef6810631c3b632df6ccad11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af419d1ffef6810631c3b632df6ccad11">&#9670;&#160;</a></span>ApplyImpulseAtPoint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void d2Body::ApplyImpulseAtPoint </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structd2_vec2.html">d2Vec2</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>j</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structd2_vec2.html">d2Vec2</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>r</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Applies an impulse at a specific point on the body. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">j</td><td>The impulse to be applied. </td></tr>
+    <tr><td class="paramname">r</td><td>The point at which the impulse is applied. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a36d64384d18467fb0065880a75a4799a" name="a36d64384d18467fb0065880a75a4799a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36d64384d18467fb0065880a75a4799a">&#9670;&#160;</a></span>ApplyImpulseLinear()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void d2Body::ApplyImpulseLinear </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structd2_vec2.html">d2Vec2</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>j</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Applies a linear impulse to the body. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">j</td><td>The impulse to be applied. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2db5061978bd33ba6a59939c825b6188" name="a2db5061978bd33ba6a59939c825b6188"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2db5061978bd33ba6a59939c825b6188">&#9670;&#160;</a></span>ClearForces()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void d2Body::ClearForces </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Clears all forces applied to the body. </p>
+
+</div>
+</div>
+<a id="a6daa9011eb7cba28f9ce96cdd7c5f40f" name="a6daa9011eb7cba28f9ce96cdd7c5f40f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6daa9011eb7cba28f9ce96cdd7c5f40f">&#9670;&#160;</a></span>ClearTorque()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void d2Body::ClearTorque </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Clears all torques applied to the body. </p>
+
+</div>
+</div>
+<a id="af4df0746b221bb072a4c26ec94fc1182" name="af4df0746b221bb072a4c26ec94fc1182"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4df0746b221bb072a4c26ec94fc1182">&#9670;&#160;</a></span>ComputeAABB()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void d2Body::ComputeAABB </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Computes the Axis-Aligned Bounding Box of the body. </p>
+
+</div>
+</div>
+<a id="a98039cbf68c1ad48e712829a231ccf70" name="a98039cbf68c1ad48e712829a231ccf70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a98039cbf68c1ad48e712829a231ccf70">&#9670;&#160;</a></span>GetAABB()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structd2_a_a_b_b.html">d2AABB</a> * d2Body::GetAABB </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the Axis-Aligned Bounding Box of the body. </p>
+<dl class="section return"><dt>Returns</dt><dd>A pointer to the Axis-Aligned Bounding Box of the body. </dd></dl>
+
+</div>
+</div>
+<a id="a4546546b23a3945a41a4028cfe5f9afb" name="a4546546b23a3945a41a4028cfe5f9afb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4546546b23a3945a41a4028cfe5f9afb">&#9670;&#160;</a></span>GetAngularVelocity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> d2Body::GetAngularVelocity </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the angular velocity of the body. </p>
+<dl class="section return"><dt>Returns</dt><dd>The angular velocity of the body. </dd></dl>
+
+</div>
+</div>
+<a id="a6ae992b2e2ea57691b1f217b6fd50fdf" name="a6ae992b2e2ea57691b1f217b6fd50fdf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ae992b2e2ea57691b1f217b6fd50fdf">&#9670;&#160;</a></span>GetFriction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> d2Body::GetFriction </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the coefficient of friction of the body. </p>
+<dl class="section return"><dt>Returns</dt><dd>The coefficient of friction of the body. </dd></dl>
+
+</div>
+</div>
+<a id="ad1b8f5a6d5846b2285d361ee9722d17f" name="ad1b8f5a6d5846b2285d361ee9722d17f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1b8f5a6d5846b2285d361ee9722d17f">&#9670;&#160;</a></span>GetGravityScale()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> d2Body::GetGravityScale </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the gravity scale of the body. </p>
+
+</div>
+</div>
+<a id="a3dc40000ef2b2a550f95ca054aa19084" name="a3dc40000ef2b2a550f95ca054aa19084"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3dc40000ef2b2a550f95ca054aa19084">&#9670;&#160;</a></span>GetI()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> d2Body::GetI </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the moment of inertia of the body. </p>
+<dl class="section return"><dt>Returns</dt><dd>The moment of inertia of the body. </dd></dl>
+
+</div>
+</div>
+<a id="a7829400a6d030499a66fae91ee3a9831" name="a7829400a6d030499a66fae91ee3a9831"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7829400a6d030499a66fae91ee3a9831">&#9670;&#160;</a></span>GetInvI()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> d2Body::GetInvI </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the inverse moment of inertia of the body. </p>
+<dl class="section return"><dt>Returns</dt><dd>The inverse moment of inertia of the body. </dd></dl>
+
+</div>
+</div>
+<a id="ad32f1612aaf45ec343ad265500187187" name="ad32f1612aaf45ec343ad265500187187"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad32f1612aaf45ec343ad265500187187">&#9670;&#160;</a></span>GetInvMass()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> d2Body::GetInvMass </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the inverse mass of the body. </p>
+<dl class="section return"><dt>Returns</dt><dd>The inverse mass of the body. </dd></dl>
+
+</div>
+</div>
+<a id="a28bad9d2049be79800b91ca0be520a23" name="a28bad9d2049be79800b91ca0be520a23"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28bad9d2049be79800b91ca0be520a23">&#9670;&#160;</a></span>GetMass()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> d2Body::GetMass </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the mass of the body. </p>
+<dl class="section return"><dt>Returns</dt><dd>The mass of the body. </dd></dl>
+
+</div>
+</div>
+<a id="a2ed9f0e66d7d1d76f8ea6417117c2ce7" name="a2ed9f0e66d7d1d76f8ea6417117c2ce7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ed9f0e66d7d1d76f8ea6417117c2ce7">&#9670;&#160;</a></span>GetNext() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classd2_body.html">d2Body</a> * d2Body::GetNext </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the next body in a linked list of bodies. </p>
+<dl class="section return"><dt>Returns</dt><dd>A pointer to the next body in a linked list of bodies. </dd></dl>
+
+</div>
+</div>
+<a id="a0ffc97609dc3cb4a983b72a82d75c435" name="a0ffc97609dc3cb4a983b72a82d75c435"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ffc97609dc3cb4a983b72a82d75c435">&#9670;&#160;</a></span>GetNext() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classd2_body.html">d2Body</a> * d2Body::GetNext </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0ec4c849be3f4fff6778d4384a518bd3" name="a0ec4c849be3f4fff6778d4384a518bd3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ec4c849be3f4fff6778d4384a518bd3">&#9670;&#160;</a></span>GetPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="structd2_vec2.html">d2Vec2</a> &amp; d2Body::GetPosition </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the position of the body. </p>
+<dl class="section return"><dt>Returns</dt><dd>The position of the body. </dd></dl>
+
+</div>
+</div>
+<a id="a905429b4a41c47fc5869bf90cda9926b" name="a905429b4a41c47fc5869bf90cda9926b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a905429b4a41c47fc5869bf90cda9926b">&#9670;&#160;</a></span>GetPrev() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classd2_body.html">d2Body</a> * d2Body::GetPrev </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the previous body in a linked list of bodies. </p>
+<dl class="section return"><dt>Returns</dt><dd>A pointer to the previous body in a linked list of bodies. </dd></dl>
+
+</div>
+</div>
+<a id="a75c5ab36a6cd955e0b87aac97a9dd88d" name="a75c5ab36a6cd955e0b87aac97a9dd88d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75c5ab36a6cd955e0b87aac97a9dd88d">&#9670;&#160;</a></span>GetPrev() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classd2_body.html">d2Body</a> * d2Body::GetPrev </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a49aab372f6c7ab524bfec582bd42b143" name="a49aab372f6c7ab524bfec582bd42b143"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49aab372f6c7ab524bfec582bd42b143">&#9670;&#160;</a></span>GetRestitution()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> d2Body::GetRestitution </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the coefficient of restitution of the body. </p>
+<dl class="section return"><dt>Returns</dt><dd>The coefficient of restitution of the body. </dd></dl>
+
+</div>
+</div>
+<a id="a49b221e3b96b0f4975661c42f59f57f0" name="a49b221e3b96b0f4975661c42f59f57f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49b221e3b96b0f4975661c42f59f57f0">&#9670;&#160;</a></span>GetRotation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> d2Body::GetRotation </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the rotation angle of the body. </p>
+<dl class="section return"><dt>Returns</dt><dd>The rotation angle of the body. </dd></dl>
+
+</div>
+</div>
+<a id="ae467c1f292c9f14515567b8a28c6d9cd" name="ae467c1f292c9f14515567b8a28c6d9cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae467c1f292c9f14515567b8a28c6d9cd">&#9670;&#160;</a></span>GetShape()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structd2_shape.html">d2Shape</a> * d2Body::GetShape </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the shape/geometry of the body. </p>
+<dl class="section return"><dt>Returns</dt><dd>A pointer to the shape/geometry of the body. </dd></dl>
+
+</div>
+</div>
+<a id="a9b597cb71b063b6fcae661e5db854ea0" name="a9b597cb71b063b6fcae661e5db854ea0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b597cb71b063b6fcae661e5db854ea0">&#9670;&#160;</a></span>GetSleepTime()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> d2Body::GetSleepTime </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets wake-up time of the body. </p>
+<dl class="section return"><dt>Returns</dt><dd>The wake-up time of the body. </dd></dl>
+
+</div>
+</div>
+<a id="a21e405919f230894cdccf21fc2592639" name="a21e405919f230894cdccf21fc2592639"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21e405919f230894cdccf21fc2592639">&#9670;&#160;</a></span>GetVelocity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="structd2_vec2.html">d2Vec2</a> &amp; d2Body::GetVelocity </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the velocity of the body. </p>
+<dl class="section return"><dt>Returns</dt><dd>The velocity of the body. </dd></dl>
+
+</div>
+</div>
+<a id="a5b54dd04f2397fe3002f5ffd942b20e2" name="a5b54dd04f2397fe3002f5ffd942b20e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b54dd04f2397fe3002f5ffd942b20e2">&#9670;&#160;</a></span>IntegrateAngular()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void d2Body::IntegrateAngular </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a></td>          <td class="paramname"><span class="paramname"><em>dt</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Integrates the angular motion of the body over a time step. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dt</td><td>The time step. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a578af4ec9d76811cb1dd52cb512daf88" name="a578af4ec9d76811cb1dd52cb512daf88"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a578af4ec9d76811cb1dd52cb512daf88">&#9670;&#160;</a></span>IntegrateForces()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void d2Body::IntegrateForces </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a></td>          <td class="paramname"><span class="paramname"><em>dt</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Integrates the forces applied to the body over a time step. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dt</td><td>The time step. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a131deecb693e27e6103835019dc6046f" name="a131deecb693e27e6103835019dc6046f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a131deecb693e27e6103835019dc6046f">&#9670;&#160;</a></span>IntegrateLinear()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void d2Body::IntegrateLinear </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a></td>          <td class="paramname"><span class="paramname"><em>dt</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Integrates the linear motion of the body over a time step. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dt</td><td>The time step. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8e576f372a1016bf6fa6c26fb8bb4385" name="a8e576f372a1016bf6fa6c26fb8bb4385"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e576f372a1016bf6fa6c26fb8bb4385">&#9670;&#160;</a></span>IntegrateVelocities()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void d2Body::IntegrateVelocities </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a></td>          <td class="paramname"><span class="paramname"><em>dt</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Integrates the velocities of the body over a time step. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dt</td><td>The time step. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a5cf562ec4098fb53bc7baab186046f8c" name="a5cf562ec4098fb53bc7baab186046f8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5cf562ec4098fb53bc7baab186046f8c">&#9670;&#160;</a></span>IsAwake()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool d2Body::IsAwake </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the wake state of the body. </p>
+<dl class="section return"><dt>Returns</dt><dd>The wake state of the body. </dd></dl>
+
+</div>
+</div>
+<a id="a4136d05281f3e6b19cdc1485654d9d7a" name="a4136d05281f3e6b19cdc1485654d9d7a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4136d05281f3e6b19cdc1485654d9d7a">&#9670;&#160;</a></span>LocalSpaceToWorldSpace()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structd2_vec2.html">d2Vec2</a> d2Body::LocalSpaceToWorldSpace </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structd2_vec2.html">d2Vec2</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>point</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Converts a point from local space to world space. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">point</td><td>The point in local space. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The point in world space. </dd></dl>
+
+</div>
+</div>
+<a id="a8222b9cc178b13ed1d02d2086884fe81" name="a8222b9cc178b13ed1d02d2086884fe81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8222b9cc178b13ed1d02d2086884fe81">&#9670;&#160;</a></span>SetAcceleration()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void d2Body::SetAcceleration </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structd2_vec2.html">d2Vec2</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>acceleration</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set acceleration of the body. </p>
+
+</div>
+</div>
+<a id="aeeecbe670c36c32a1389fc946674acaf" name="aeeecbe670c36c32a1389fc946674acaf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeeecbe670c36c32a1389fc946674acaf">&#9670;&#160;</a></span>SetAngularVelocity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void d2Body::SetAngularVelocity </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a></td>          <td class="paramname"><span class="paramname"><em>angularVelocity</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the angular velocity of the body. </p>
+
+</div>
+</div>
+<a id="a4540e026cc7df2533483177b715bc093" name="a4540e026cc7df2533483177b715bc093"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4540e026cc7df2533483177b715bc093">&#9670;&#160;</a></span>SetAwake()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void d2Body::SetAwake </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>awake</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the wake state of the body. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">awake</td><td>The wake state of the body. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6afbf1c0eb5564d572f847f92fb7c435" name="a6afbf1c0eb5564d572f847f92fb7c435"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6afbf1c0eb5564d572f847f92fb7c435">&#9670;&#160;</a></span>SetFriction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void d2Body::SetFriction </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a></td>          <td class="paramname"><span class="paramname"><em>friction</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the coefficient of friction of the body. </p>
+
+</div>
+</div>
+<a id="a24cb3740a68233648911bb2f2a2e14ed" name="a24cb3740a68233648911bb2f2a2e14ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24cb3740a68233648911bb2f2a2e14ed">&#9670;&#160;</a></span>SetGravityScale()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void d2Body::SetGravityScale </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a></td>          <td class="paramname"><span class="paramname"><em>gravityScale</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the gravity scale of the body. </p>
+
+</div>
+</div>
+<a id="a7e3abe2213aea7030fbe33621bab49cc" name="a7e3abe2213aea7030fbe33621bab49cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e3abe2213aea7030fbe33621bab49cc">&#9670;&#160;</a></span>SetPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void d2Body::SetPosition </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structd2_vec2.html">d2Vec2</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>position</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the position of the body. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">position</td><td>The position of the body. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4a4f4d462af6d30d1c2160df13d4e6c3" name="a4a4f4d462af6d30d1c2160df13d4e6c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a4f4d462af6d30d1c2160df13d4e6c3">&#9670;&#160;</a></span>SetRestitution()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void d2Body::SetRestitution </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a></td>          <td class="paramname"><span class="paramname"><em>restitution</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the coefficient of restitution of the body. </p>
+
+</div>
+</div>
+<a id="acdd89eb1582a15dbd3bd005a24ad331b" name="acdd89eb1582a15dbd3bd005a24ad331b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acdd89eb1582a15dbd3bd005a24ad331b">&#9670;&#160;</a></span>WorldSpaceToLocalSpace()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structd2_vec2.html">d2Vec2</a> d2Body::WorldSpaceToLocalSpace </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structd2_vec2.html">d2Vec2</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>point</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Converts a point from world space to local space. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">point</td><td>The point in world space. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The point in local space. </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Friends And Related Symbol Documentation</h2>
+<a id="af19d0355c46d7622e77062dc50a90a15" name="af19d0355c46d7622e77062dc50a90a15"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af19d0355c46d7622e77062dc50a90a15">&#9670;&#160;</a></span>d2World</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">friend class <a class="el" href="classd2_world.html">d2World</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>dura2d/<a class="el" href="d2_body_8h_source.html">d2Body.h</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="classd2_body.html">d2Body</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+  </ul>
+</div>
+</body>
+</html>

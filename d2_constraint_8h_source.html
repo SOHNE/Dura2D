@@ -1,0 +1,275 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Dura2D" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/your-repo-image-link" />
+<meta property="og:description" content="Dura2D is an educational 2D game physics library with intuitive examples." />
+<meta property="og:url" content="https://github.com/SOHNE/Dura2D" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/your-repo-image-link" />
+<meta name="twitter:title" content="Dura2D" />
+<meta name="twitter:description" content="Dura2D is an educational 2D game physics library with intuitive examples." />
+<!-- END twitter metadata -->
+<title>Dura2D: dura2d/d2Constraint.h Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/SOHNE/Dura2D" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="80" height="80" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Dura2D
+   &#160;<span id="projectnumber">v0.1.0</span>
+   </div>
+   <div id="projectbrief">An educational 2D game physics library</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('d2_constraint_8h_source.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">d2Constraint.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="d2_constraint_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef CONSTRAINT_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define CONSTRAINT_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="d2_body_8h.html">d2Body.h</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="foldopen" id="foldopen00006" data-start="{" data-end="};">
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno"><a class="line" href="classd2_constraint.html">    6</a></span><span class="keyword">class </span><a class="code hl_class" href="classd2_constraint.html">d2Constraint</a></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>{</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="classd2_constraint.html#a09bf03f993047e69f6b3d6f9eb9c1753">    9</a></span>    <a class="code hl_class" href="classd2_body.html">d2Body</a> *<a class="code hl_variable" href="classd2_constraint.html#a09bf03f993047e69f6b3d6f9eb9c1753">a</a>;</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="classd2_constraint.html#a87a0442d062a1dedfcf53f2d2de87708">   10</a></span>    <a class="code hl_class" href="classd2_body.html">d2Body</a> *<a class="code hl_variable" href="classd2_constraint.html#a87a0442d062a1dedfcf53f2d2de87708">b</a>;</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="classd2_constraint.html#a687ee30897ee3d8dfb41d4a7eb339a93">   12</a></span>    <a class="code hl_struct" href="structd2_vec2.html">d2Vec2</a> <a class="code hl_variable" href="classd2_constraint.html#a687ee30897ee3d8dfb41d4a7eb339a93">aPoint</a>; <span class="comment">// The constraint point in A&#39;s local space</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="classd2_constraint.html#a0e14643002a4748e90d5cdcc4d92c739">   13</a></span>    <a class="code hl_struct" href="structd2_vec2.html">d2Vec2</a> <a class="code hl_variable" href="classd2_constraint.html#a0e14643002a4748e90d5cdcc4d92c739">bPoint</a>; <span class="comment">// The constraint point in B&#39;s local space</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="classd2_constraint.html#acddb037e205fa06e8b813c1df2f5697d">   15</a></span>    <a class="code hl_class" href="classd2_constraint.html">d2Constraint</a>* <a class="code hl_variable" href="classd2_constraint.html#acddb037e205fa06e8b813c1df2f5697d">next</a>;</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="classd2_constraint.html#ae28116764da60a50c0419673d13fe16d">   16</a></span>    <a class="code hl_class" href="classd2_constraint.html">d2Constraint</a>* <a class="code hl_variable" href="classd2_constraint.html#ae28116764da60a50c0419673d13fe16d">prev</a>;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="classd2_constraint.html#aded2f013129ca91ff1af6b3033600f26">   18</a></span>    <span class="keyword">virtual</span> <a class="code hl_function" href="classd2_constraint.html#aded2f013129ca91ff1af6b3033600f26">~d2Constraint</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="classd2_constraint.html#afacfe5c192bbd7be14484254027aa451">   20</a></span>    <a class="code hl_struct" href="structd2_mat_m_n.html">d2MatMN</a> <a class="code hl_function" href="classd2_constraint.html#afacfe5c192bbd7be14484254027aa451">GetInvM</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="classd2_constraint.html#a1f61113c9fba13676613092c9b2457f3">   22</a></span>    <a class="code hl_struct" href="structd2_vec_n.html">d2VecN</a> <a class="code hl_function" href="classd2_constraint.html#a1f61113c9fba13676613092c9b2457f3">GetVelocities</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="classd2_constraint.html#a5940b2b0ff6485d210ddf6e02ef72b60">   24</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classd2_constraint.html#a5940b2b0ff6485d210ddf6e02ef72b60">PreSolve</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> dt) { (void)dt; }</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="classd2_constraint.html#a987885f764e2f1d3f09f8e9cfa153d71">   26</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classd2_constraint.html#a987885f764e2f1d3f09f8e9cfa153d71">Solve</a>() {}</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="classd2_constraint.html#a8300d85e6677d9d18dedd1d721fba4e7">   28</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classd2_constraint.html#a8300d85e6677d9d18dedd1d721fba4e7">PostSolve</a>() {}</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classd2_constraint.html#a7f4c58d4a00c1c5568e0e7e571e4a5ff">   30</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classd2_constraint.html#a7f4c58d4a00c1c5568e0e7e571e4a5ff">SetNext</a>(<a class="code hl_class" href="classd2_constraint.html">d2Constraint</a>* <a class="code hl_variable" href="classd2_constraint.html#acddb037e205fa06e8b813c1df2f5697d">next</a>) { this-&gt;next = <a class="code hl_variable" href="classd2_constraint.html#acddb037e205fa06e8b813c1df2f5697d">next</a>; }</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="classd2_constraint.html#a7b100699c072d9811423579a02f533c5">   32</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classd2_constraint.html#a7b100699c072d9811423579a02f533c5">SetPrev</a>(<a class="code hl_class" href="classd2_constraint.html">d2Constraint</a>* <a class="code hl_variable" href="classd2_constraint.html#ae28116764da60a50c0419673d13fe16d">prev</a>) { this-&gt;prev = <a class="code hl_variable" href="classd2_constraint.html#ae28116764da60a50c0419673d13fe16d">prev</a>; }</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="classd2_constraint.html#ae895c5589c4d846313341621eb3d7dcf">   34</a></span>    <a class="code hl_class" href="classd2_constraint.html">d2Constraint</a>* <a class="code hl_function" href="classd2_constraint.html#ae895c5589c4d846313341621eb3d7dcf">GetNext</a>() { <span class="keywordflow">return</span> <a class="code hl_variable" href="classd2_constraint.html#acddb037e205fa06e8b813c1df2f5697d">next</a>; }</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="classd2_constraint.html#a39dd741f64d15a5c959595bde115a1eb">   35</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classd2_constraint.html">d2Constraint</a>* <a class="code hl_function" href="classd2_constraint.html#a39dd741f64d15a5c959595bde115a1eb">GetNext</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classd2_constraint.html#acddb037e205fa06e8b813c1df2f5697d">next</a>; }</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="classd2_constraint.html#ab67108e0cab90d4a9855db5737e98ed1">   37</a></span>    <a class="code hl_class" href="classd2_constraint.html">d2Constraint</a>* <a class="code hl_function" href="classd2_constraint.html#ab67108e0cab90d4a9855db5737e98ed1">GetPrev</a>() { <span class="keywordflow">return</span> <a class="code hl_variable" href="classd2_constraint.html#ae28116764da60a50c0419673d13fe16d">prev</a>; }</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="classd2_constraint.html#acc45e02cd6ebbf4d67c5eb025e031922">   38</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classd2_constraint.html">d2Constraint</a>* <a class="code hl_function" href="classd2_constraint.html#acc45e02cd6ebbf4d67c5eb025e031922">GetPrev</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classd2_constraint.html#ae28116764da60a50c0419673d13fe16d">prev</a>; }</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>};</div>
+</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="foldopen" id="foldopen00041" data-start="{" data-end="};">
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="classd2_joint_constraint.html">   41</a></span><span class="keyword">class </span><a class="code hl_class" href="classd2_joint_constraint.html">d2JointConstraint</a> : <span class="keyword">public</span> <a class="code hl_class" href="classd2_constraint.html">d2Constraint</a></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>{</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <a class="code hl_struct" href="structd2_mat_m_n.html">d2MatMN</a> jacobian;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <a class="code hl_struct" href="structd2_vec_n.html">d2VecN</a> cachedLambda;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <a class="code hl_typedef" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> bias;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="classd2_joint_constraint.html#aec66445d7c77b6bebd8d542a5cc4649f">   49</a></span>    <a class="code hl_function" href="classd2_joint_constraint.html#aec66445d7c77b6bebd8d542a5cc4649f">d2JointConstraint</a>();</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="classd2_joint_constraint.html#a6503e77c20360bc84c0fe3543160f8f2">   51</a></span>    <a class="code hl_function" href="classd2_joint_constraint.html#a6503e77c20360bc84c0fe3543160f8f2">d2JointConstraint</a>(<a class="code hl_class" href="classd2_body.html">d2Body</a> *<a class="code hl_variable" href="classd2_constraint.html#a09bf03f993047e69f6b3d6f9eb9c1753">a</a>, <a class="code hl_class" href="classd2_body.html">d2Body</a> *<a class="code hl_variable" href="classd2_constraint.html#a87a0442d062a1dedfcf53f2d2de87708">b</a>, <span class="keyword">const</span> <a class="code hl_struct" href="structd2_vec2.html">d2Vec2</a> &amp;anchorPoint);</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="classd2_joint_constraint.html#a7a537e3b47e6ba1bced6672b8ddb569e">   53</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classd2_joint_constraint.html#a7a537e3b47e6ba1bced6672b8ddb569e">PreSolve</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> dt) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="classd2_joint_constraint.html#a5e40ba8683581ec160bcc2e3c901b30a">   55</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classd2_joint_constraint.html#a5e40ba8683581ec160bcc2e3c901b30a">Solve</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="classd2_joint_constraint.html#a65e01af1fcc07f41782b9f2ee5dd0e64">   57</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classd2_joint_constraint.html#a65e01af1fcc07f41782b9f2ee5dd0e64">PostSolve</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>};</div>
+</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="foldopen" id="foldopen00060" data-start="{" data-end="};">
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="classd2_penetration_constraint.html">   60</a></span><span class="keyword">class </span><a class="code hl_class" href="classd2_penetration_constraint.html">d2PenetrationConstraint</a> : <span class="keyword">public</span> <a class="code hl_class" href="classd2_constraint.html">d2Constraint</a></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>{</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <a class="code hl_struct" href="structd2_mat_m_n.html">d2MatMN</a> jacobian;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <a class="code hl_struct" href="structd2_vec_n.html">d2VecN</a> cachedLambda;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <a class="code hl_typedef" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> bias;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <a class="code hl_struct" href="structd2_vec2.html">d2Vec2</a> normal;    <span class="comment">// Normal direction of the penetration in A&#39;s local space</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <a class="code hl_typedef" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> friction; <span class="comment">// Friction coefficient between the two penetrating m_bodiesList</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="classd2_penetration_constraint.html#a301005f87faeaa174f30aff7d5985dc4">   70</a></span>    <a class="code hl_function" href="classd2_penetration_constraint.html#a301005f87faeaa174f30aff7d5985dc4">d2PenetrationConstraint</a>();</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="classd2_penetration_constraint.html#a914a8e065c0afe9c52261ed892794800">   72</a></span>    <a class="code hl_function" href="classd2_penetration_constraint.html#a914a8e065c0afe9c52261ed892794800">d2PenetrationConstraint</a>(<a class="code hl_class" href="classd2_body.html">d2Body</a> *<a class="code hl_variable" href="classd2_constraint.html#a09bf03f993047e69f6b3d6f9eb9c1753">a</a>,</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>                            <a class="code hl_class" href="classd2_body.html">d2Body</a> *<a class="code hl_variable" href="classd2_constraint.html#a87a0442d062a1dedfcf53f2d2de87708">b</a>,</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>                            <span class="keyword">const</span> <a class="code hl_struct" href="structd2_vec2.html">d2Vec2</a> &amp;aCollisionPoint,</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>                            <span class="keyword">const</span> <a class="code hl_struct" href="structd2_vec2.html">d2Vec2</a> &amp;bCollisionPoint,</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>                            <span class="keyword">const</span> <a class="code hl_struct" href="structd2_vec2.html">d2Vec2</a> &amp;normal);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="classd2_penetration_constraint.html#ad5e8970253f28ec9c9ddb056f1218736">   78</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classd2_penetration_constraint.html#ad5e8970253f28ec9c9ddb056f1218736">PreSolve</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> dt) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="classd2_penetration_constraint.html#a75b56058e323dc37fc07d997b8933d86">   80</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classd2_penetration_constraint.html#a75b56058e323dc37fc07d997b8933d86">Solve</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="classd2_penetration_constraint.html#aac0768f1d5dfd180127788f163ef8523">   82</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classd2_penetration_constraint.html#aac0768f1d5dfd180127788f163ef8523">PostSolve</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>};</div>
+</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassd2_body_html"><div class="ttname"><a href="classd2_body.html">d2Body</a></div><div class="ttdoc">A class representing a 2D rigid body.</div><div class="ttdef"><b>Definition</b> d2Body.h:28</div></div>
+<div class="ttc" id="aclassd2_constraint_html"><div class="ttname"><a href="classd2_constraint.html">d2Constraint</a></div><div class="ttdef"><b>Definition</b> d2Constraint.h:7</div></div>
+<div class="ttc" id="aclassd2_constraint_html_a09bf03f993047e69f6b3d6f9eb9c1753"><div class="ttname"><a href="classd2_constraint.html#a09bf03f993047e69f6b3d6f9eb9c1753">d2Constraint::a</a></div><div class="ttdeci">d2Body * a</div><div class="ttdef"><b>Definition</b> d2Constraint.h:9</div></div>
+<div class="ttc" id="aclassd2_constraint_html_a0e14643002a4748e90d5cdcc4d92c739"><div class="ttname"><a href="classd2_constraint.html#a0e14643002a4748e90d5cdcc4d92c739">d2Constraint::bPoint</a></div><div class="ttdeci">d2Vec2 bPoint</div><div class="ttdef"><b>Definition</b> d2Constraint.h:13</div></div>
+<div class="ttc" id="aclassd2_constraint_html_a1f61113c9fba13676613092c9b2457f3"><div class="ttname"><a href="classd2_constraint.html#a1f61113c9fba13676613092c9b2457f3">d2Constraint::GetVelocities</a></div><div class="ttdeci">d2VecN GetVelocities() const</div></div>
+<div class="ttc" id="aclassd2_constraint_html_a39dd741f64d15a5c959595bde115a1eb"><div class="ttname"><a href="classd2_constraint.html#a39dd741f64d15a5c959595bde115a1eb">d2Constraint::GetNext</a></div><div class="ttdeci">const d2Constraint * GetNext() const</div><div class="ttdef"><b>Definition</b> d2Constraint.h:35</div></div>
+<div class="ttc" id="aclassd2_constraint_html_a5940b2b0ff6485d210ddf6e02ef72b60"><div class="ttname"><a href="classd2_constraint.html#a5940b2b0ff6485d210ddf6e02ef72b60">d2Constraint::PreSolve</a></div><div class="ttdeci">virtual void PreSolve(const real dt)</div><div class="ttdef"><b>Definition</b> d2Constraint.h:24</div></div>
+<div class="ttc" id="aclassd2_constraint_html_a687ee30897ee3d8dfb41d4a7eb339a93"><div class="ttname"><a href="classd2_constraint.html#a687ee30897ee3d8dfb41d4a7eb339a93">d2Constraint::aPoint</a></div><div class="ttdeci">d2Vec2 aPoint</div><div class="ttdef"><b>Definition</b> d2Constraint.h:12</div></div>
+<div class="ttc" id="aclassd2_constraint_html_a7b100699c072d9811423579a02f533c5"><div class="ttname"><a href="classd2_constraint.html#a7b100699c072d9811423579a02f533c5">d2Constraint::SetPrev</a></div><div class="ttdeci">void SetPrev(d2Constraint *prev)</div><div class="ttdef"><b>Definition</b> d2Constraint.h:32</div></div>
+<div class="ttc" id="aclassd2_constraint_html_a7f4c58d4a00c1c5568e0e7e571e4a5ff"><div class="ttname"><a href="classd2_constraint.html#a7f4c58d4a00c1c5568e0e7e571e4a5ff">d2Constraint::SetNext</a></div><div class="ttdeci">void SetNext(d2Constraint *next)</div><div class="ttdef"><b>Definition</b> d2Constraint.h:30</div></div>
+<div class="ttc" id="aclassd2_constraint_html_a8300d85e6677d9d18dedd1d721fba4e7"><div class="ttname"><a href="classd2_constraint.html#a8300d85e6677d9d18dedd1d721fba4e7">d2Constraint::PostSolve</a></div><div class="ttdeci">virtual void PostSolve()</div><div class="ttdef"><b>Definition</b> d2Constraint.h:28</div></div>
+<div class="ttc" id="aclassd2_constraint_html_a87a0442d062a1dedfcf53f2d2de87708"><div class="ttname"><a href="classd2_constraint.html#a87a0442d062a1dedfcf53f2d2de87708">d2Constraint::b</a></div><div class="ttdeci">d2Body * b</div><div class="ttdef"><b>Definition</b> d2Constraint.h:10</div></div>
+<div class="ttc" id="aclassd2_constraint_html_a987885f764e2f1d3f09f8e9cfa153d71"><div class="ttname"><a href="classd2_constraint.html#a987885f764e2f1d3f09f8e9cfa153d71">d2Constraint::Solve</a></div><div class="ttdeci">virtual void Solve()</div><div class="ttdef"><b>Definition</b> d2Constraint.h:26</div></div>
+<div class="ttc" id="aclassd2_constraint_html_ab67108e0cab90d4a9855db5737e98ed1"><div class="ttname"><a href="classd2_constraint.html#ab67108e0cab90d4a9855db5737e98ed1">d2Constraint::GetPrev</a></div><div class="ttdeci">d2Constraint * GetPrev()</div><div class="ttdef"><b>Definition</b> d2Constraint.h:37</div></div>
+<div class="ttc" id="aclassd2_constraint_html_acc45e02cd6ebbf4d67c5eb025e031922"><div class="ttname"><a href="classd2_constraint.html#acc45e02cd6ebbf4d67c5eb025e031922">d2Constraint::GetPrev</a></div><div class="ttdeci">const d2Constraint * GetPrev() const</div><div class="ttdef"><b>Definition</b> d2Constraint.h:38</div></div>
+<div class="ttc" id="aclassd2_constraint_html_acddb037e205fa06e8b813c1df2f5697d"><div class="ttname"><a href="classd2_constraint.html#acddb037e205fa06e8b813c1df2f5697d">d2Constraint::next</a></div><div class="ttdeci">d2Constraint * next</div><div class="ttdef"><b>Definition</b> d2Constraint.h:15</div></div>
+<div class="ttc" id="aclassd2_constraint_html_aded2f013129ca91ff1af6b3033600f26"><div class="ttname"><a href="classd2_constraint.html#aded2f013129ca91ff1af6b3033600f26">d2Constraint::~d2Constraint</a></div><div class="ttdeci">virtual ~d2Constraint()=default</div></div>
+<div class="ttc" id="aclassd2_constraint_html_ae28116764da60a50c0419673d13fe16d"><div class="ttname"><a href="classd2_constraint.html#ae28116764da60a50c0419673d13fe16d">d2Constraint::prev</a></div><div class="ttdeci">d2Constraint * prev</div><div class="ttdef"><b>Definition</b> d2Constraint.h:16</div></div>
+<div class="ttc" id="aclassd2_constraint_html_ae895c5589c4d846313341621eb3d7dcf"><div class="ttname"><a href="classd2_constraint.html#ae895c5589c4d846313341621eb3d7dcf">d2Constraint::GetNext</a></div><div class="ttdeci">d2Constraint * GetNext()</div><div class="ttdef"><b>Definition</b> d2Constraint.h:34</div></div>
+<div class="ttc" id="aclassd2_constraint_html_afacfe5c192bbd7be14484254027aa451"><div class="ttname"><a href="classd2_constraint.html#afacfe5c192bbd7be14484254027aa451">d2Constraint::GetInvM</a></div><div class="ttdeci">d2MatMN GetInvM() const</div></div>
+<div class="ttc" id="aclassd2_joint_constraint_html"><div class="ttname"><a href="classd2_joint_constraint.html">d2JointConstraint</a></div><div class="ttdef"><b>Definition</b> d2Constraint.h:42</div></div>
+<div class="ttc" id="aclassd2_joint_constraint_html_a5e40ba8683581ec160bcc2e3c901b30a"><div class="ttname"><a href="classd2_joint_constraint.html#a5e40ba8683581ec160bcc2e3c901b30a">d2JointConstraint::Solve</a></div><div class="ttdeci">void Solve() override</div></div>
+<div class="ttc" id="aclassd2_joint_constraint_html_a6503e77c20360bc84c0fe3543160f8f2"><div class="ttname"><a href="classd2_joint_constraint.html#a6503e77c20360bc84c0fe3543160f8f2">d2JointConstraint::d2JointConstraint</a></div><div class="ttdeci">d2JointConstraint(d2Body *a, d2Body *b, const d2Vec2 &amp;anchorPoint)</div></div>
+<div class="ttc" id="aclassd2_joint_constraint_html_a65e01af1fcc07f41782b9f2ee5dd0e64"><div class="ttname"><a href="classd2_joint_constraint.html#a65e01af1fcc07f41782b9f2ee5dd0e64">d2JointConstraint::PostSolve</a></div><div class="ttdeci">void PostSolve() override</div></div>
+<div class="ttc" id="aclassd2_joint_constraint_html_a7a537e3b47e6ba1bced6672b8ddb569e"><div class="ttname"><a href="classd2_joint_constraint.html#a7a537e3b47e6ba1bced6672b8ddb569e">d2JointConstraint::PreSolve</a></div><div class="ttdeci">void PreSolve(const real dt) override</div></div>
+<div class="ttc" id="aclassd2_joint_constraint_html_aec66445d7c77b6bebd8d542a5cc4649f"><div class="ttname"><a href="classd2_joint_constraint.html#aec66445d7c77b6bebd8d542a5cc4649f">d2JointConstraint::d2JointConstraint</a></div><div class="ttdeci">d2JointConstraint()</div></div>
+<div class="ttc" id="aclassd2_penetration_constraint_html"><div class="ttname"><a href="classd2_penetration_constraint.html">d2PenetrationConstraint</a></div><div class="ttdef"><b>Definition</b> d2Constraint.h:61</div></div>
+<div class="ttc" id="aclassd2_penetration_constraint_html_a301005f87faeaa174f30aff7d5985dc4"><div class="ttname"><a href="classd2_penetration_constraint.html#a301005f87faeaa174f30aff7d5985dc4">d2PenetrationConstraint::d2PenetrationConstraint</a></div><div class="ttdeci">d2PenetrationConstraint()</div></div>
+<div class="ttc" id="aclassd2_penetration_constraint_html_a75b56058e323dc37fc07d997b8933d86"><div class="ttname"><a href="classd2_penetration_constraint.html#a75b56058e323dc37fc07d997b8933d86">d2PenetrationConstraint::Solve</a></div><div class="ttdeci">void Solve() override</div></div>
+<div class="ttc" id="aclassd2_penetration_constraint_html_a914a8e065c0afe9c52261ed892794800"><div class="ttname"><a href="classd2_penetration_constraint.html#a914a8e065c0afe9c52261ed892794800">d2PenetrationConstraint::d2PenetrationConstraint</a></div><div class="ttdeci">d2PenetrationConstraint(d2Body *a, d2Body *b, const d2Vec2 &amp;aCollisionPoint, const d2Vec2 &amp;bCollisionPoint, const d2Vec2 &amp;normal)</div></div>
+<div class="ttc" id="aclassd2_penetration_constraint_html_aac0768f1d5dfd180127788f163ef8523"><div class="ttname"><a href="classd2_penetration_constraint.html#aac0768f1d5dfd180127788f163ef8523">d2PenetrationConstraint::PostSolve</a></div><div class="ttdeci">void PostSolve() override</div></div>
+<div class="ttc" id="aclassd2_penetration_constraint_html_ad5e8970253f28ec9c9ddb056f1218736"><div class="ttname"><a href="classd2_penetration_constraint.html#ad5e8970253f28ec9c9ddb056f1218736">d2PenetrationConstraint::PreSolve</a></div><div class="ttdeci">void PreSolve(const real dt) override</div></div>
+<div class="ttc" id="ad2_body_8h_html"><div class="ttname"><a href="d2_body_8h.html">d2Body.h</a></div></div>
+<div class="ttc" id="ad2_types_8h_html_a031f8951175b43076c2084a6c2173410"><div class="ttname"><a href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a></div><div class="ttdeci">float real</div><div class="ttdef"><b>Definition</b> d2Types.h:10</div></div>
+<div class="ttc" id="astructd2_mat_m_n_html"><div class="ttname"><a href="structd2_mat_m_n.html">d2MatMN</a></div><div class="ttdoc">Represents an MxN matrix.</div><div class="ttdef"><b>Definition</b> d2Math.h:161</div></div>
+<div class="ttc" id="astructd2_vec2_html"><div class="ttname"><a href="structd2_vec2.html">d2Vec2</a></div><div class="ttdoc">Represents a 2D vector.</div><div class="ttdef"><b>Definition</b> d2Math.h:22</div></div>
+<div class="ttc" id="astructd2_vec_n_html"><div class="ttname"><a href="structd2_vec_n.html">d2VecN</a></div><div class="ttdoc">Represents an N-dimensional vector.</div><div class="ttdef"><b>Definition</b> d2Math.h:114</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_5823b325713a34c58cbd10fd323a181b.html">dura2d</a></li><li class="navelem"><a class="el" href="d2_constraint_8h.html">d2Constraint.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+  </ul>
+</div>
+</body>
+</html>

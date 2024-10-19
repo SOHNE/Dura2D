@@ -1,0 +1,358 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Dura2D" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/your-repo-image-link" />
+<meta property="og:description" content="Dura2D is an educational 2D game physics library with intuitive examples." />
+<meta property="og:url" content="https://github.com/SOHNE/Dura2D" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/your-repo-image-link" />
+<meta name="twitter:title" content="Dura2D" />
+<meta name="twitter:description" content="Dura2D is an educational 2D game physics library with intuitive examples." />
+<!-- END twitter metadata -->
+<title>Dura2D: Dura2D</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/SOHNE/Dura2D" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="80" height="80" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Dura2D
+   &#160;<span id="projectnumber">v0.1.0</span>
+   </div>
+   <div id="projectbrief">An educational 2D game physics library</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('index.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div><div class="header">
+  <div class="headertitle"><div class="title">Dura2D </div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p><a class="anchor" id="md__r_e_a_d_m_e"></a></p>
+<div align="center"></div><div align="center"><div class="image">
+<object type="image/svg+xml" data="logo.svg" style="pointer-events: none;"></object>
+<div class="caption">
+Dura2D</div></div>
+    </div><div align="center"><em>An educational 2D Game Physics Engine</em></div><div align="center"><br  />
+</div><div align="center"><a href="https://github.com/SOHNE/Dura2D/actions"><img src="https://github.com/SOHNE/Dura2D/workflows/MacOS/badge.svg" alt="MacOS Status" style="pointer-events: none;" class="inline"/></a> <a href="https://github.com/SOHNE/Dura2D/actions"><img src="https://github.com/SOHNE/Dura2D/workflows/Windows/badge.svg" alt="Windows Status" style="pointer-events: none;" class="inline"/></a> <a href="https://github.com/SOHNE/Dura2D/actions"><img src="https://github.com/SOHNE/Dura2D/workflows/Ubuntu/badge.svg" alt="Ubuntu Status" style="pointer-events: none;" class="inline"/></a> <a href="https://github.com/SOHNE/Dura2D/actions"><img src="https://github.com/SOHNE/Dura2D/workflows/Install/badge.svg" alt="Install Status" style="pointer-events: none;" class="inline"/></a></div><div align="center"><a href="https://github.com/SOHNE/Dura2D/releases/latest"><img src="https://img.shields.io/github/v/release/SOHNE/Dura2D?style=flat" alt="GitHub release (latest by date)" class="inline"/></a> <a href="https://github.com/SOHNE/Dura2D/blob/main/LICENSE"><img src="https://img.shields.io/github/license/SOHNE/Dura2D?style=flat" alt="License" class="inline"/></a> <a href="https://github.com/SOHNE/Dura2D/stargazers"><img src="https://img.shields.io/github/stars/SOHNE/Dura2D?style=social" alt="GitHub stars" class="inline"/></a></div><div align="center"><a href="https://dura2d.glitch.me/">Live Demo</a> | <a href="https://github.com/SOHNE/Dura2D/wiki">Documentation</a> | <a href="https://github.com/SOHNE/Dura2D/issues">Report Bug</a></div><div align="center"><div class="title_screenshot"></div></div><div align="center"><div class="title_screenshot"><div class="image">
+<img src="Wrecking_Ball.png" alt=""/>
+<div class="caption">
+Screenshot of Dura2D Test Bed</div></div>
+    </div></div><div align="center"><div class="title_screenshot"></div></div><div align="center"></div><h1><a class="anchor" id="autotoc_md1"></a>
+🚀 Introduction</h1>
+<p>This 2D physics engine is an educational tool for exploring the principles behind game physics simulation. The project provides a hands-on approach to understanding fundamental 2D physics concepts, drawing inspiration from sources such as:</p>
+<ul>
+<li><a href="https://pikuma.com/courses/game-physics-engine-programming">Pikuma's Game Physics Engine Programming course</a></li>
+<li><a href="https://allenchou.net/game-physics-series/">Ming-Lun "Allen" Chou's Game Physics Series</a></li>
+<li><a href="https://box2d.org/">Erin Catto's Box2D</a></li>
+<li><a href="https://www.gameenginebook.com/">Jason Gregory's Game Engine Architecture</a></li>
+</ul>
+<h1><a class="anchor" id="autotoc_md2"></a>
+🌟 Features</h1>
+<ul>
+<li><b>Robust Constraint System</b>: Experience realistic physical interactions through constraint solver.</li>
+<li><b>Warm Starting</b>: Enjoy faster simulations with our implementation of warm starting techniques.</li>
+<li><b>Dynamic AABB Tree</b>: Enhances performance by efficiently updating bounding volume hierarchies in real-time during simulations.</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md3"></a>
+📦 Installation</h1>
+<h2><a class="anchor" id="autotoc_md4"></a>
+CPM.cmake (Recommended)</h2>
+<p>This method is recommended for its simplicity and ease of version management.</p>
+<ol type="1">
+<li><p class="startli">First, set up <a href="https://github.com/cpm-cmake/CPM.cmake/">CPM.cmake</a> in your project:</p>
+<div class="fragment"><div class="line">mkdir -p cmake</div>
+<div class="line">wget -O cmake/CPM.cmake https://github.com/cpm-cmake/CPM.cmake/releases/latest/download/get_cpm.cmake</div>
+</div><!-- fragment --></li>
+<li><p class="startli">In your <code>CMakeLists.txt</code>, add the following lines after <code>project(...)</code>:</p>
+<div class="fragment"><div class="line">include(cmake/CPM.cmake)</div>
+<div class="line"> </div>
+<div class="line">CPMAddPackage(&quot;gh:SOHNE/Dura2D@0.1.0&quot;)</div>
+<div class="line"> </div>
+<div class="line">add_executable(your_target main.cpp)</div>
+<div class="line">target_link_libraries(your_target PRIVATE Dura2D::Dura2D)</div>
+</div><!-- fragment --></li>
+</ol>
+<h2><a class="anchor" id="autotoc_md5"></a>
+Vendored</h2>
+<p>Choose one of the following vendored approaches based on your preference:</p>
+<h3><a class="anchor" id="autotoc_md6"></a>
+Git Submodule</h3>
+<ol type="1">
+<li>Add Dura2D as a submodule to your project: <div class="fragment"><div class="line">git submodule add https://github.com/SOHNE/Dura2D.git vendor/Dura2D</div>
+<div class="line">git submodule update --init --recursive</div>
+</div><!-- fragment --></li>
+<li>In your project's <code>CMakeLists.txt</code>, add the submodule directory: <div class="fragment"><div class="line">add_subdirectory(vendor/Dura2D)</div>
+</div><!-- fragment --></li>
+</ol>
+<h3><a class="anchor" id="autotoc_md7"></a>
+Git Subtree</h3>
+<p>If you prefer to have more control over updates and want to include Dura2D directly in your repository:</p>
+<ol type="1">
+<li>Add Dura2D as a subtree to your project: <div class="fragment"><div class="line">git subtree add --prefix vendor/Dura2D https://github.com/SOHNE/Dura2D.git main --squash</div>
+</div><!-- fragment --></li>
+<li>To update Dura2D in the future: <div class="fragment"><div class="line">git subtree pull --prefix vendor/Dura2D https://github.com/SOHNE/Dura2D.git main --squash</div>
+</div><!-- fragment --></li>
+<li>In your project's <code>CMakeLists.txt</code>, add the subtree directory: <div class="fragment"><div class="line">add_subdirectory(vendor/Dura2D)</div>
+</div><!-- fragment --></li>
+</ol>
+<p>For both vendored approaches, link your target with Dura2D: </p><div class="fragment"><div class="line">target_link_libraries(your_target PRIVATE Dura2D)</div>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md8"></a>
+🎮 Usage</h1>
+<p>Here's a quick example:</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;cstdio&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &quot;<a class="code" href="dura2d_8h.html">dura2d/dura2d.h</a>&quot;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span></div>
+<div class="line">main()</div>
+<div class="line">{</div>
+<div class="line">    <span class="comment">// Set up the world with gravity</span></div>
+<div class="line">    <a class="code hl_struct" href="structd2_vec2.html">d2Vec2</a> gravity(0.F, -9.8F);</div>
+<div class="line">    <a class="code hl_class" href="classd2_world.html">d2World</a> world(gravity);</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Create a circular body (Shape, Position, Mass)</span></div>
+<div class="line">    <a class="code hl_class" href="classd2_body.html">d2Body</a> * pBody = world.CreateBody(<a class="code hl_struct" href="structd2_circle_shape.html">d2CircleShape</a>(45), {0, 0}, 10.F);</div>
+<div class="line">    pBody-&gt;<a class="code hl_function" href="classd2_body.html#aeeecbe670c36c32a1389fc946674acaf">SetAngularVelocity</a>(10.F);</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Time step for the simulation</span></div>
+<div class="line">    <span class="keyword">constexpr</span> <span class="keywordtype">float</span> timeStep = 1.F / 60.F;</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Simulate the physics for 5 seconds</span></div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 60 * 5; ++i)</div>
+<div class="line">    {</div>
+<div class="line">        <span class="comment">// Update the world for the next time step</span></div>
+<div class="line">        world.Step(timeStep);</div>
+<div class="line"> </div>
+<div class="line">        <span class="comment">// Print the position and angle of the body every second</span></div>
+<div class="line">        <span class="keywordflow">if</span> (i % 60 == 0)</div>
+<div class="line">        {</div>
+<div class="line">            <a class="code hl_struct" href="structd2_vec2.html">d2Vec2</a> position = pBody-&gt;<a class="code hl_function" href="classd2_body.html#a0ec4c849be3f4fff6778d4384a518bd3">GetPosition</a>();</div>
+<div class="line">            <span class="keywordtype">float</span>  angle    = pBody-&gt;<a class="code hl_function" href="classd2_body.html#a49b221e3b96b0f4975661c42f59f57f0">GetRotation</a>();</div>
+<div class="line"> </div>
+<div class="line">            printf(<span class="stringliteral">&quot;Position: (%.2f, %.2f) | Angle: %.2f\n&quot;</span>, position.<a class="code hl_variable" href="structd2_vec2.html#af40a46121c6dcd1644ba03ae8a55f335">x</a>, position.<a class="code hl_variable" href="structd2_vec2.html#a25cd34b4892757792963748bd72544b3">y</a>, angle);</div>
+<div class="line">        }</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordflow">return</span> 0;</div>
+<div class="line">}</div>
+<div class="ttc" id="aclassd2_body_html"><div class="ttname"><a href="classd2_body.html">d2Body</a></div><div class="ttdoc">A class representing a 2D rigid body.</div><div class="ttdef"><b>Definition</b> d2Body.h:28</div></div>
+<div class="ttc" id="aclassd2_body_html_a0ec4c849be3f4fff6778d4384a518bd3"><div class="ttname"><a href="classd2_body.html#a0ec4c849be3f4fff6778d4384a518bd3">d2Body::GetPosition</a></div><div class="ttdeci">const d2Vec2 &amp; GetPosition() const</div><div class="ttdoc">Gets the position of the body.</div><div class="ttdef"><b>Definition</b> d2Body.h:324</div></div>
+<div class="ttc" id="aclassd2_body_html_a49b221e3b96b0f4975661c42f59f57f0"><div class="ttname"><a href="classd2_body.html#a49b221e3b96b0f4975661c42f59f57f0">d2Body::GetRotation</a></div><div class="ttdeci">real GetRotation() const</div><div class="ttdoc">Gets the rotation angle of the body.</div><div class="ttdef"><b>Definition</b> d2Body.h:354</div></div>
+<div class="ttc" id="aclassd2_body_html_aeeecbe670c36c32a1389fc946674acaf"><div class="ttname"><a href="classd2_body.html#aeeecbe670c36c32a1389fc946674acaf">d2Body::SetAngularVelocity</a></div><div class="ttdeci">void SetAngularVelocity(real angularVelocity)</div><div class="ttdoc">Sets the angular velocity of the body.</div><div class="ttdef"><b>Definition</b> d2Body.h:344</div></div>
+<div class="ttc" id="aclassd2_world_html"><div class="ttname"><a href="classd2_world.html">d2World</a></div><div class="ttdoc">Represents a 2D physics world.</div><div class="ttdef"><b>Definition</b> d2World.h:22</div></div>
+<div class="ttc" id="adura2d_8h_html"><div class="ttname"><a href="dura2d_8h.html">dura2d.h</a></div></div>
+<div class="ttc" id="astructd2_circle_shape_html"><div class="ttname"><a href="structd2_circle_shape.html">d2CircleShape</a></div><div class="ttdef"><b>Definition</b> d2Shape.h:32</div></div>
+<div class="ttc" id="astructd2_vec2_html"><div class="ttname"><a href="structd2_vec2.html">d2Vec2</a></div><div class="ttdoc">Represents a 2D vector.</div><div class="ttdef"><b>Definition</b> d2Math.h:22</div></div>
+<div class="ttc" id="astructd2_vec2_html_a25cd34b4892757792963748bd72544b3"><div class="ttname"><a href="structd2_vec2.html#a25cd34b4892757792963748bd72544b3">d2Vec2::y</a></div><div class="ttdeci">real y</div><div class="ttdef"><b>Definition</b> d2Math.h:106</div></div>
+<div class="ttc" id="astructd2_vec2_html_af40a46121c6dcd1644ba03ae8a55f335"><div class="ttname"><a href="structd2_vec2.html#af40a46121c6dcd1644ba03ae8a55f335">d2Vec2::x</a></div><div class="ttdeci">real x</div><div class="ttdef"><b>Definition</b> d2Math.h:106</div></div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md9"></a>
+⚒️ Building</h1>
+<h2><a class="anchor" id="autotoc_md10"></a>
+Prerequisites</h2>
+<ul>
+<li><a href="https://cmake.org/">CMake</a> 3.26+</li>
+<li>For test bed web builds: <a href="https://emscripten.org/">Emscripten</a>/EMSDK properly set up in your environment</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md11"></a>
+Cloning the Repository</h2>
+<div class="fragment"><div class="line">git clone https://github.com/SOHNE/Dura2D.git</div>
+<div class="line">cd Dura2D</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md12"></a>
+Dura2D Library</h2>
+<ol type="1">
+<li><p class="startli">Configure the lib project:</p>
+<div class="fragment"><div class="line">cmake -S. --preset &lt;debug  |  release&gt;</div>
+</div><!-- fragment --></li>
+<li>Build the project: <div class="fragment"><div class="line">cmake --build build/lib/&lt;debug | release&gt;</div>
+</div><!-- fragment --></li>
+</ol>
+<h3><a class="anchor" id="autotoc_md13"></a>
+CMake Options</h3>
+<ul>
+<li><code>BUILD_SHARED_LIBS</code>: Build Dura2D as a shared library (default: OFF)</li>
+<li><p class="startli"><code>USE_CCACHE</code>: Enable compiler cache to improve build times (default: ON for top-level builds)</p>
+<p class="startli">Example configuration: </p><div class="fragment"><div class="line">cmake .. -DBUILD_SHARED_LIBS=ON -DUSE_CCACHE=ON</div>
+</div><!-- fragment --></li>
+</ul>
+<h2><a class="anchor" id="autotoc_md14"></a>
+Testbed</h2>
+<ol type="1">
+<li>Configure the testbed project: <div class="fragment"><div class="line">cmake -S testbed --preset &lt;debug | release&gt;</div>
+</div><!-- fragment --></li>
+<li>Build the testbed: <div class="fragment"><div class="line">cmake --build build/testbed/&lt;debug | release&gt;</div>
+</div><!-- fragment --></li>
+</ol>
+<h3><a class="anchor" id="autotoc_md15"></a>
+Web Builds for Testbed</h3>
+<p>For <a href="https://emscripten.org/">Emscripten</a>/HTML5 builds:</p>
+<ol type="1">
+<li>Configure: <div class="fragment"><div class="line">cmake -S testbed --preset &lt;web-debug | web-release&gt;</div>
+</div><!-- fragment --></li>
+<li>Build: <div class="fragment"><div class="line">cmake --build build/testbed/&lt;web-debug | web-release&gt;</div>
+</div><!-- fragment --></li>
+</ol>
+<h2><a class="anchor" id="autotoc_md16"></a>
+Running Unit Tests</h2>
+<ol type="1">
+<li>Configure the unit tests: <div class="fragment"><div class="line">cmake -S unit-test --preset &lt;default  |  with-coverage  |  installed-version&gt;</div>
+</div><!-- fragment --></li>
+<li>Build the tests: <div class="fragment"><div class="line">cmake --build build/unit-test/&lt;default | with-coverage | installed-version&gt;</div>
+</div><!-- fragment --></li>
+<li>Run the tests: <div class="fragment"><div class="line">ctest --test-dir build/unit-test/&lt;default | with-coverage | installed-version&gt;</div>
+</div><!-- fragment --></li>
+</ol>
+<h2><a class="anchor" id="autotoc_md17"></a>
+Generating Documentation</h2>
+<ol type="1">
+<li>Configure the documentation build: <div class="fragment"><div class="line">cmake -S docs --preset gendocs</div>
+</div><!-- fragment --></li>
+<li>Generate the documentation: <div class="fragment"><div class="line">cmake --build build/doc</div>
+</div><!-- fragment --></li>
+<li>The generated documentation will be available at: <div class="fragment"><div class="line">build/doc/doxygen/html/index.html</div>
+</div><!-- fragment --></li>
+</ol>
+<h2><a class="anchor" id="autotoc_md18"></a>
+Additional Notes</h2>
+<ul>
+<li>All build artifacts are organized in the <code>build</code> directory, with subdirectories for each component (<em>main library</em>, <em>testbed</em>, <em>unit tests</em>, and <em>documentation</em>).</li>
+<li>Use the <code>--preset</code> option with <code>cmake</code> commands to easily switch between different configurations.</li>
+<li>For any build issues, ensure all prerequisites are correctly installed and environment variables (like EMSDK for web/HTML5 builds) are properly set.</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md19"></a>
+🛣️ Roadmap</h1>
+<ul class="check">
+<li class="unchecked">Introduce contact caching for optimization</li>
+</ul>
+<ul class="check">
+<li class="unchecked">Develop an island state system for bodies</li>
+</ul>
+<ul class="check">
+<li class="unchecked">Add an awake state for bodies</li>
+</ul>
+<ul class="check">
+<li class="unchecked">Create a robust manifold implementation</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md20"></a>
+🤝 Contributing</h1>
+<p>We welcome contributions! Whether it's bug fixes, feature additions, or documentation improvements, your input is valuable.</p>
+<h1><a class="anchor" id="autotoc_md21"></a>
+🙏 Acknowledgements</h1>
+<p>A huge thank you to the open-source community and the authors of the resources that inspired this project. Your work continues to educate and inspire. </p>
+</div></div><!-- PageDoc -->
+<a href="doxygen_crawl.html"></a>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+  </ul>
+</div>
+</body>
+</html>

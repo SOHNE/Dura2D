@@ -1,0 +1,525 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Dura2D" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/your-repo-image-link" />
+<meta property="og:description" content="Dura2D is an educational 2D game physics library with intuitive examples." />
+<meta property="og:url" content="https://github.com/SOHNE/Dura2D" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/your-repo-image-link" />
+<meta name="twitter:title" content="Dura2D" />
+<meta name="twitter:description" content="Dura2D is an educational 2D game physics library with intuitive examples." />
+<!-- END twitter metadata -->
+<title>Dura2D: d2VecN Struct Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/SOHNE/Dura2D" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="80" height="80" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Dura2D
+   &#160;<span id="projectnumber">v0.1.0</span>
+   </div>
+   <div id="projectbrief">An educational 2D game physics library</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('structd2_vec_n.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="structd2_vec_n-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">d2VecN Struct Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Represents an N-dimensional vector.  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="d2_math_8h_source.html">d2Math.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a223022ba2202982eab68310905aee055" id="r_a223022ba2202982eab68310905aee055"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a223022ba2202982eab68310905aee055">d2VecN</a> ()</td></tr>
+<tr class="separator:a223022ba2202982eab68310905aee055"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8dd10cc01b46353492a89d61b1e14a5" id="r_ad8dd10cc01b46353492a89d61b1e14a5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad8dd10cc01b46353492a89d61b1e14a5">d2VecN</a> (int <a class="el" href="#a7203ebf41a418521743cd7addb63e23d">N</a>)</td></tr>
+<tr class="memdesc:ad8dd10cc01b46353492a89d61b1e14a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor that initializes the vector with given dimension.  <br /></td></tr>
+<tr class="separator:ad8dd10cc01b46353492a89d61b1e14a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c912a28b81cccecab0c9bd5b6be91e3" id="r_a4c912a28b81cccecab0c9bd5b6be91e3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4c912a28b81cccecab0c9bd5b6be91e3">d2VecN</a> (const <a class="el" href="structd2_vec_n.html">d2VecN</a> &amp;v)</td></tr>
+<tr class="memdesc:a4c912a28b81cccecab0c9bd5b6be91e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor.  <br /></td></tr>
+<tr class="separator:a4c912a28b81cccecab0c9bd5b6be91e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a885d37545928155c16c000ca5fbad71c" id="r_a885d37545928155c16c000ca5fbad71c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a885d37545928155c16c000ca5fbad71c">~d2VecN</a> ()</td></tr>
+<tr class="separator:a885d37545928155c16c000ca5fbad71c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29291342c7c65a2b49823766d334ff7b" id="r_a29291342c7c65a2b49823766d334ff7b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a29291342c7c65a2b49823766d334ff7b">Zero</a> ()</td></tr>
+<tr class="memdesc:a29291342c7c65a2b49823766d334ff7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets all components of the vector to zero.  <br /></td></tr>
+<tr class="separator:a29291342c7c65a2b49823766d334ff7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab690160784d9549ba7f770a4d504881" id="r_aab690160784d9549ba7f770a4d504881"><td class="memItemLeft" align="right" valign="top"><a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aab690160784d9549ba7f770a4d504881">Dot</a> (const <a class="el" href="structd2_vec_n.html">d2VecN</a> &amp;v) const</td></tr>
+<tr class="memdesc:aab690160784d9549ba7f770a4d504881"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the dot product with another vector.  <br /></td></tr>
+<tr class="separator:aab690160784d9549ba7f770a4d504881"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81fb9efe4e81513bbface1d5191e6392" id="r_a81fb9efe4e81513bbface1d5191e6392"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structd2_vec_n.html">d2VecN</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a81fb9efe4e81513bbface1d5191e6392">operator=</a> (const <a class="el" href="structd2_vec_n.html">d2VecN</a> &amp;v)</td></tr>
+<tr class="separator:a81fb9efe4e81513bbface1d5191e6392"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b131e0a3a50eac2883d5198697ec259" id="r_a6b131e0a3a50eac2883d5198697ec259"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structd2_vec_n.html">d2VecN</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6b131e0a3a50eac2883d5198697ec259">operator+</a> (const <a class="el" href="structd2_vec_n.html">d2VecN</a> &amp;v) const</td></tr>
+<tr class="separator:a6b131e0a3a50eac2883d5198697ec259"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a81badb62b6e7e9398409ada16ab160" id="r_a1a81badb62b6e7e9398409ada16ab160"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structd2_vec_n.html">d2VecN</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1a81badb62b6e7e9398409ada16ab160">operator-</a> (const <a class="el" href="structd2_vec_n.html">d2VecN</a> &amp;v) const</td></tr>
+<tr class="separator:a1a81badb62b6e7e9398409ada16ab160"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2078e30802b4027daf0d96ab244d4b10" id="r_a2078e30802b4027daf0d96ab244d4b10"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structd2_vec_n.html">d2VecN</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2078e30802b4027daf0d96ab244d4b10">operator*</a> (const <a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> n) const</td></tr>
+<tr class="separator:a2078e30802b4027daf0d96ab244d4b10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2946f104bdc632d00f726b08eedaa0c1" id="r_a2946f104bdc632d00f726b08eedaa0c1"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structd2_vec_n.html">d2VecN</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2946f104bdc632d00f726b08eedaa0c1">operator+=</a> (const <a class="el" href="structd2_vec_n.html">d2VecN</a> &amp;v)</td></tr>
+<tr class="separator:a2946f104bdc632d00f726b08eedaa0c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3132e7e70e878315fd73ce2bc64bc7de" id="r_a3132e7e70e878315fd73ce2bc64bc7de"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structd2_vec_n.html">d2VecN</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3132e7e70e878315fd73ce2bc64bc7de">operator-=</a> (const <a class="el" href="structd2_vec_n.html">d2VecN</a> &amp;v)</td></tr>
+<tr class="separator:a3132e7e70e878315fd73ce2bc64bc7de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acce18d30928d17aa9a53e83758b5e03f" id="r_acce18d30928d17aa9a53e83758b5e03f"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structd2_vec_n.html">d2VecN</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acce18d30928d17aa9a53e83758b5e03f">operator*=</a> (const <a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> n)</td></tr>
+<tr class="separator:acce18d30928d17aa9a53e83758b5e03f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a515dd70c4a07f278855d796a2647ce" id="r_a0a515dd70c4a07f278855d796a2647ce"><td class="memItemLeft" align="right" valign="top"><a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0a515dd70c4a07f278855d796a2647ce">operator[]</a> (const int index) const</td></tr>
+<tr class="separator:a0a515dd70c4a07f278855d796a2647ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05706f915b03e590385c9c3296991d6a" id="r_a05706f915b03e590385c9c3296991d6a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a05706f915b03e590385c9c3296991d6a">operator[]</a> (const int index)</td></tr>
+<tr class="separator:a05706f915b03e590385c9c3296991d6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a7203ebf41a418521743cd7addb63e23d" id="r_a7203ebf41a418521743cd7addb63e23d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7203ebf41a418521743cd7addb63e23d">N</a></td></tr>
+<tr class="memdesc:a7203ebf41a418521743cd7addb63e23d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The dimension of the vector.  <br /></td></tr>
+<tr class="separator:a7203ebf41a418521743cd7addb63e23d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16e7b6e4673219a1b5da2d8c035554df" id="r_a16e7b6e4673219a1b5da2d8c035554df"><td class="memItemLeft" align="right" valign="top"><a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a16e7b6e4673219a1b5da2d8c035554df">data</a></td></tr>
+<tr class="memdesc:a16e7b6e4673219a1b5da2d8c035554df"><td class="mdescLeft">&#160;</td><td class="mdescRight">The data of the vector.  <br /></td></tr>
+<tr class="separator:a16e7b6e4673219a1b5da2d8c035554df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Represents an N-dimensional vector. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a223022ba2202982eab68310905aee055" name="a223022ba2202982eab68310905aee055"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a223022ba2202982eab68310905aee055">&#9670;&#160;</a></span>d2VecN() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">d2VecN::d2VecN </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad8dd10cc01b46353492a89d61b1e14a5" name="ad8dd10cc01b46353492a89d61b1e14a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8dd10cc01b46353492a89d61b1e14a5">&#9670;&#160;</a></span>d2VecN() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">d2VecN::d2VecN </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>N</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor that initializes the vector with given dimension. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">N</td><td>The dimension of the vector. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4c912a28b81cccecab0c9bd5b6be91e3" name="a4c912a28b81cccecab0c9bd5b6be91e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c912a28b81cccecab0c9bd5b6be91e3">&#9670;&#160;</a></span>d2VecN() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">d2VecN::d2VecN </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structd2_vec_n.html">d2VecN</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>v</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Copy constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v</td><td>The vector to copy from. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a885d37545928155c16c000ca5fbad71c" name="a885d37545928155c16c000ca5fbad71c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a885d37545928155c16c000ca5fbad71c">&#9670;&#160;</a></span>~d2VecN()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">d2VecN::~d2VecN </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="aab690160784d9549ba7f770a4d504881" name="aab690160784d9549ba7f770a4d504881"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab690160784d9549ba7f770a4d504881">&#9670;&#160;</a></span>Dot()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> d2VecN::Dot </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structd2_vec_n.html">d2VecN</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>v</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calculates the dot product with another vector. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v</td><td>The other vector. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The dot product. </dd></dl>
+
+</div>
+</div>
+<a id="a2078e30802b4027daf0d96ab244d4b10" name="a2078e30802b4027daf0d96ab244d4b10"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2078e30802b4027daf0d96ab244d4b10">&#9670;&#160;</a></span>operator*()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structd2_vec_n.html">d2VecN</a> d2VecN::operator* </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a></td>          <td class="paramname"><span class="paramname"><em>n</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acce18d30928d17aa9a53e83758b5e03f" name="acce18d30928d17aa9a53e83758b5e03f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acce18d30928d17aa9a53e83758b5e03f">&#9670;&#160;</a></span>operator*=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="structd2_vec_n.html">d2VecN</a> &amp; d2VecN::operator*= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a></td>          <td class="paramname"><span class="paramname"><em>n</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6b131e0a3a50eac2883d5198697ec259" name="a6b131e0a3a50eac2883d5198697ec259"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b131e0a3a50eac2883d5198697ec259">&#9670;&#160;</a></span>operator+()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structd2_vec_n.html">d2VecN</a> d2VecN::operator+ </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structd2_vec_n.html">d2VecN</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>v</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2946f104bdc632d00f726b08eedaa0c1" name="a2946f104bdc632d00f726b08eedaa0c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2946f104bdc632d00f726b08eedaa0c1">&#9670;&#160;</a></span>operator+=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="structd2_vec_n.html">d2VecN</a> &amp; d2VecN::operator+= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structd2_vec_n.html">d2VecN</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>v</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1a81badb62b6e7e9398409ada16ab160" name="a1a81badb62b6e7e9398409ada16ab160"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a81badb62b6e7e9398409ada16ab160">&#9670;&#160;</a></span>operator-()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structd2_vec_n.html">d2VecN</a> d2VecN::operator- </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structd2_vec_n.html">d2VecN</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>v</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3132e7e70e878315fd73ce2bc64bc7de" name="a3132e7e70e878315fd73ce2bc64bc7de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3132e7e70e878315fd73ce2bc64bc7de">&#9670;&#160;</a></span>operator-=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="structd2_vec_n.html">d2VecN</a> &amp; d2VecN::operator-= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structd2_vec_n.html">d2VecN</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>v</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a81fb9efe4e81513bbface1d5191e6392" name="a81fb9efe4e81513bbface1d5191e6392"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81fb9efe4e81513bbface1d5191e6392">&#9670;&#160;</a></span>operator=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structd2_vec_n.html">d2VecN</a> &amp; d2VecN::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structd2_vec_n.html">d2VecN</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>v</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a05706f915b03e590385c9c3296991d6a" name="a05706f915b03e590385c9c3296991d6a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05706f915b03e590385c9c3296991d6a">&#9670;&#160;</a></span>operator[]() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> &amp; d2VecN::operator[] </td>
+          <td>(</td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>index</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0a515dd70c4a07f278855d796a2647ce" name="a0a515dd70c4a07f278855d796a2647ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a515dd70c4a07f278855d796a2647ce">&#9670;&#160;</a></span>operator[]() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> d2VecN::operator[] </td>
+          <td>(</td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>index</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a29291342c7c65a2b49823766d334ff7b" name="a29291342c7c65a2b49823766d334ff7b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29291342c7c65a2b49823766d334ff7b">&#9670;&#160;</a></span>Zero()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void d2VecN::Zero </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets all components of the vector to zero. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a16e7b6e4673219a1b5da2d8c035554df" name="a16e7b6e4673219a1b5da2d8c035554df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16e7b6e4673219a1b5da2d8c035554df">&#9670;&#160;</a></span>data</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a>* d2VecN::data</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The data of the vector. </p>
+
+</div>
+</div>
+<a id="a7203ebf41a418521743cd7addb63e23d" name="a7203ebf41a418521743cd7addb63e23d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7203ebf41a418521743cd7addb63e23d">&#9670;&#160;</a></span>N</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int d2VecN::N</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The dimension of the vector. </p>
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li>dura2d/<a class="el" href="d2_math_8h_source.html">d2Math.h</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="structd2_vec_n.html">d2VecN</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,555 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Dura2D" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/your-repo-image-link" />
+<meta property="og:description" content="Dura2D is an educational 2D game physics library with intuitive examples." />
+<meta property="og:url" content="https://github.com/SOHNE/Dura2D" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/your-repo-image-link" />
+<meta name="twitter:title" content="Dura2D" />
+<meta name="twitter:description" content="Dura2D is an educational 2D game physics library with intuitive examples." />
+<!-- END twitter metadata -->
+<title>Dura2D: dura2d/d2Body.h Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/SOHNE/Dura2D" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="80" height="80" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Dura2D
+   &#160;<span id="projectnumber">v0.1.0</span>
+   </div>
+   <div id="projectbrief">An educational 2D game physics library</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('d2_body_8h_source.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">d2Body.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="d2_body_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef BODY_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define BODY_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="d2api_8h.html">d2api.h</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="d2_shape_8h.html">d2Shape.h</a>&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="d2_math_8h.html">d2Math.h</a>&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="d2_types_8h.html">d2Types.h</a>&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">// Forward declarations</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">class </span><a class="code hl_class" href="classd2_world.html">d2World</a>;</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">struct </span><a class="code hl_struct" href="structd2_a_a_b_b.html">d2AABB</a>;</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">// enums</span></div>
+<div class="foldopen" id="foldopen00015" data-start="{" data-end="};">
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="d2_body_8h.html#a4d8ce29321d2d0e26270ca14699c42e1">   15</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="d2_body_8h.html#a4d8ce29321d2d0e26270ca14699c42e1">d2BodyType</a></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>{</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="d2_body_8h.html#a4d8ce29321d2d0e26270ca14699c42e1a013ffef04f9f8945a6198f7eca2738b6">   17</a></span>    <a class="code hl_enumvalue" href="d2_body_8h.html#a4d8ce29321d2d0e26270ca14699c42e1a013ffef04f9f8945a6198f7eca2738b6">d2_staticBody</a> = 0,      <span class="comment">//&lt; A static body does not move or rotate.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <a class="code hl_enumvalue" href="d2_body_8h.html#a4d8ce29321d2d0e26270ca14699c42e1a4bc00acbc5d1c4a4cd3ad9c52a2da3b4">d2_dynamicBody</a>      <span class="comment">//&lt; A dynamic body is fully simulated.</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="d2_body_8h.html#a4d8ce29321d2d0e26270ca14699c42e1a4bc00acbc5d1c4a4cd3ad9c52a2da3b4">   19</a></span>};</div>
+</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="foldopen" id="foldopen00027" data-start="{" data-end="};">
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="classd2_body.html">   27</a></span><span class="keyword">class </span><a class="code hl_define" href="d2api_8h.html#a220617da415571ab110aebb0efa4b443">D2_API</a> <a class="code hl_class" href="classd2_body.html">d2Body</a></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>{</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="classd2_body.html#ad6c2bb39edd38bac31b6ce8676ce7d17">   38</a></span>    <a class="code hl_function" href="classd2_body.html#ad6c2bb39edd38bac31b6ce8676ce7d17">d2Body</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structd2_shape.html">d2Shape</a> &amp;shape, <a class="code hl_typedef" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> x, <a class="code hl_typedef" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> y, <a class="code hl_typedef" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> mass, <a class="code hl_class" href="classd2_world.html">d2World</a>* world);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="classd2_body.html#abbd4d7f6142d75c4f9ee7b06723a5966">   43</a></span>    <a class="code hl_function" href="classd2_body.html#abbd4d7f6142d75c4f9ee7b06723a5966">~d2Body</a>();</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="classd2_body.html#af4df0746b221bb072a4c26ec94fc1182">   46</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classd2_body.html#af4df0746b221bb072a4c26ec94fc1182">ComputeAABB</a>();</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="classd2_body.html#a6ee38698d73c4e74cc10f5f85f63ac96">   53</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classd2_body.html#a6ee38698d73c4e74cc10f5f85f63ac96">AddForce</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structd2_vec2.html">d2Vec2</a> &amp;force);</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="classd2_body.html#a4084f06d154455399eac6c21f5143408">   60</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classd2_body.html#a4084f06d154455399eac6c21f5143408">AddTorque</a>(<a class="code hl_typedef" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> torque);</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="classd2_body.html#a2db5061978bd33ba6a59939c825b6188">   63</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classd2_body.html#a2db5061978bd33ba6a59939c825b6188">ClearForces</a>();</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="classd2_body.html#a6daa9011eb7cba28f9ce96cdd7c5f40f">   66</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classd2_body.html#a6daa9011eb7cba28f9ce96cdd7c5f40f">ClearTorque</a>();</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="classd2_body.html#a4136d05281f3e6b19cdc1485654d9d7a">   74</a></span>    <a class="code hl_struct" href="structd2_vec2.html">d2Vec2</a> <a class="code hl_function" href="classd2_body.html#a4136d05281f3e6b19cdc1485654d9d7a">LocalSpaceToWorldSpace</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structd2_vec2.html">d2Vec2</a> &amp;point) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="classd2_body.html#acdd89eb1582a15dbd3bd005a24ad331b">   82</a></span>    <a class="code hl_struct" href="structd2_vec2.html">d2Vec2</a> <a class="code hl_function" href="classd2_body.html#acdd89eb1582a15dbd3bd005a24ad331b">WorldSpaceToLocalSpace</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structd2_vec2.html">d2Vec2</a> &amp;point) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="classd2_body.html#a36d64384d18467fb0065880a75a4799a">   89</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classd2_body.html#a36d64384d18467fb0065880a75a4799a">ApplyImpulseLinear</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structd2_vec2.html">d2Vec2</a> &amp;j);</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="classd2_body.html#a53816b342ac87bdd30116be8fd25bbf4">   96</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classd2_body.html#a53816b342ac87bdd30116be8fd25bbf4">ApplyImpulseAngular</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> j);</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="classd2_body.html#af419d1ffef6810631c3b632df6ccad11">  104</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classd2_body.html#af419d1ffef6810631c3b632df6ccad11">ApplyImpulseAtPoint</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structd2_vec2.html">d2Vec2</a> &amp;j, <span class="keyword">const</span> <a class="code hl_struct" href="structd2_vec2.html">d2Vec2</a> &amp;r);</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno"><a class="line" href="classd2_body.html#a131deecb693e27e6103835019dc6046f">  111</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classd2_body.html#a131deecb693e27e6103835019dc6046f">IntegrateLinear</a>(<a class="code hl_typedef" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> dt);</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno"><a class="line" href="classd2_body.html#a5b54dd04f2397fe3002f5ffd942b20e2">  118</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classd2_body.html#a5b54dd04f2397fe3002f5ffd942b20e2">IntegrateAngular</a>(<a class="code hl_typedef" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> dt);</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno"><a class="line" href="classd2_body.html#a578af4ec9d76811cb1dd52cb512daf88">  125</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classd2_body.html#a578af4ec9d76811cb1dd52cb512daf88">IntegrateForces</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> dt);</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno"><a class="line" href="classd2_body.html#a8e576f372a1016bf6fa6c26fb8bb4385">  132</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classd2_body.html#a8e576f372a1016bf6fa6c26fb8bb4385">IntegrateVelocities</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> dt);</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    <span class="keyword">inline</span> <span class="keyword">const</span> <a class="code hl_struct" href="structd2_vec2.html">d2Vec2</a>&amp; GetPosition() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span> </div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    <span class="keyword">inline</span> <span class="keywordtype">void</span> SetPosition(<span class="keyword">const</span> <a class="code hl_struct" href="structd2_vec2.html">d2Vec2</a>&amp; position);</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    <span class="keyword">inline</span> <span class="keyword">const</span> <a class="code hl_struct" href="structd2_vec2.html">d2Vec2</a>&amp; GetVelocity() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span> </div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    <span class="keyword">inline</span> <span class="keywordtype">void</span> SetAcceleration(<span class="keyword">const</span> <a class="code hl_struct" href="structd2_vec2.html">d2Vec2</a>&amp; acceleration);</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span> </div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    <span class="keyword">inline</span> <span class="keywordtype">void</span> SetAngularVelocity(<a class="code hl_typedef" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> angularVelocity);</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    <span class="keyword">inline</span> <a class="code hl_typedef" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> GetAngularVelocity() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span> </div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    <span class="keyword">inline</span> <a class="code hl_typedef" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> GetRotation() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span> </div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>    <span class="keyword">inline</span> <a class="code hl_typedef" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> GetMass() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span> </div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    <span class="keyword">inline</span> <a class="code hl_typedef" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> GetInvMass() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span> </div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    <span class="keyword">inline</span> <a class="code hl_typedef" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> GetI() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span> </div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    <span class="keyword">inline</span> <a class="code hl_typedef" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> GetInvI() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span> </div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    <span class="keyword">inline</span> <span class="keywordtype">void</span> SetFriction(<a class="code hl_typedef" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> friction);</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span> </div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    <span class="keyword">inline</span> <a class="code hl_typedef" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> GetFriction() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span> </div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>    <span class="keyword">inline</span> <span class="keywordtype">void</span> SetRestitution(<a class="code hl_typedef" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> restitution);</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span> </div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    <span class="keyword">inline</span> <a class="code hl_typedef" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> GetRestitution() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span> </div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    <span class="keyword">inline</span> <a class="code hl_struct" href="structd2_shape.html">d2Shape</a>* GetShape() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span> </div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    <span class="keyword">inline</span> <a class="code hl_struct" href="structd2_a_a_b_b.html">d2AABB</a>* GetAABB() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span> </div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>    <span class="keyword">inline</span> <a class="code hl_class" href="classd2_body.html">d2Body</a>* GetNext();</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>    <span class="keyword">inline</span> <span class="keyword">const</span> <a class="code hl_class" href="classd2_body.html">d2Body</a>* GetNext() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span> </div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>    <span class="keyword">inline</span> <a class="code hl_class" href="classd2_body.html">d2Body</a>* GetPrev();</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>    <span class="keyword">inline</span> <span class="keyword">const</span> <a class="code hl_class" href="classd2_body.html">d2Body</a>* GetPrev() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span> </div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>    <span class="keyword">inline</span> <a class="code hl_typedef" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> GetSleepTime() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span> </div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>    <span class="keyword">inline</span> <span class="keywordtype">bool</span> IsAwake() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span> </div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>    <span class="keyword">inline</span> <span class="keywordtype">void</span> SetAwake(<span class="keywordtype">bool</span> awake);</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span> </div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>    <span class="keyword">inline</span> <a class="code hl_typedef" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> GetGravityScale() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span> </div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>    <span class="keyword">inline</span> <span class="keywordtype">void</span> SetGravityScale(<a class="code hl_typedef" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> gravityScale);</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span> </div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno"><a class="line" href="classd2_body.html#af19d0355c46d7622e77062dc50a90a15">  281</a></span>    <span class="keyword">friend</span> <span class="keyword">class </span><a class="code hl_class" href="classd2_world.html">d2World</a>;</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span> </div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>    <span class="keyword">enum</span></div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>    {</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>        e_awakeFlag = 0x0001</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>    };</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span> </div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>    <a class="code hl_typedef" href="d2_types_8h.html#a05f6b0ae8f6a6e135b0e290c25fe0e4e">uint16</a> m_flags{};</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>    <a class="code hl_enumeration" href="d2_body_8h.html#a4d8ce29321d2d0e26270ca14699c42e1">d2BodyType</a> m_type{};</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span> </div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>    <a class="code hl_struct" href="structd2_transform.html">d2Transform</a> m_transform; </div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span> </div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>    <a class="code hl_struct" href="structd2_vec2.html">d2Vec2</a> velocity {}; </div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>    <a class="code hl_struct" href="structd2_vec2.html">d2Vec2</a> acceleration {}; </div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span> </div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>    <a class="code hl_typedef" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> m_gravityScale{ 1.0f }; </div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span> </div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>    <a class="code hl_typedef" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> angularVelocity {}; </div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>    <a class="code hl_typedef" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> angularAcceleration {}; </div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span> </div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>    <a class="code hl_struct" href="structd2_vec2.html">d2Vec2</a> sumForces {}; </div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>    <a class="code hl_typedef" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> sumTorque {}; </div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span> </div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>    <a class="code hl_typedef" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> mass {}; </div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>    <a class="code hl_typedef" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> invMass {}; </div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>    <a class="code hl_typedef" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> I {}; </div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>    <a class="code hl_typedef" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> invI {}; </div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span> </div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>    <a class="code hl_typedef" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> restitution {}; </div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span> </div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>    <a class="code hl_typedef" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> friction {}; </div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span> </div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>    <a class="code hl_struct" href="structd2_a_a_b_b.html">d2AABB</a> *aabb { <span class="keyword">nullptr</span> }; </div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span> </div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>    <a class="code hl_struct" href="structd2_shape.html">d2Shape</a> *shape { <span class="keyword">nullptr</span> }; </div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span> </div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>    <a class="code hl_class" href="classd2_world.html">d2World</a>* world { <span class="keyword">nullptr</span> }; </div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>    <a class="code hl_class" href="classd2_body.html">d2Body</a>* prev { <span class="keyword">nullptr</span> }; </div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>    <a class="code hl_class" href="classd2_body.html">d2Body</a>* next { <span class="keyword">nullptr</span> }; </div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span> </div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>    <a class="code hl_typedef" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> m_sleepTime{}; </div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>};</div>
+</div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span> </div>
+<div class="foldopen" id="foldopen00324" data-start="{" data-end="}">
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno"><a class="line" href="classd2_body.html#a0ec4c849be3f4fff6778d4384a518bd3">  324</a></span><span class="keyword">inline</span> <span class="keyword">const</span> <a class="code hl_struct" href="structd2_vec2.html">d2Vec2</a>&amp; <a class="code hl_function" href="classd2_body.html#a0ec4c849be3f4fff6778d4384a518bd3">d2Body::GetPosition</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>    <span class="keywordflow">return</span> m_transform.<a class="code hl_variable" href="structd2_transform.html#a44bd11478a0862c9ef01087485ac7d7d">p</a>;</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>}</div>
+</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span> </div>
+<div class="foldopen" id="foldopen00329" data-start="{" data-end="}">
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno"><a class="line" href="classd2_body.html#a7e3abe2213aea7030fbe33621bab49cc">  329</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classd2_body.html#a7e3abe2213aea7030fbe33621bab49cc">d2Body::SetPosition</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structd2_vec2.html">d2Vec2</a>&amp; position)</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>{</div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>    m_transform.<a class="code hl_variable" href="structd2_transform.html#a44bd11478a0862c9ef01087485ac7d7d">p</a> = position;</div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>}</div>
+</div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span> </div>
+<div class="foldopen" id="foldopen00334" data-start="{" data-end="}">
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno"><a class="line" href="classd2_body.html#a21e405919f230894cdccf21fc2592639">  334</a></span><span class="keyword">inline</span> <span class="keyword">const</span> <a class="code hl_struct" href="structd2_vec2.html">d2Vec2</a>&amp; <a class="code hl_function" href="classd2_body.html#a21e405919f230894cdccf21fc2592639">d2Body::GetVelocity</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>    <span class="keywordflow">return</span> velocity;</div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span>}</div>
+</div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span> </div>
+<div class="foldopen" id="foldopen00339" data-start="{" data-end="}">
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno"><a class="line" href="classd2_body.html#a8222b9cc178b13ed1d02d2086884fe81">  339</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classd2_body.html#a8222b9cc178b13ed1d02d2086884fe81">d2Body::SetAcceleration</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structd2_vec2.html">d2Vec2</a>&amp; acceleration)</div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span>{</div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>    this-&gt;acceleration = acceleration;</div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span>}</div>
+</div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span> </div>
+<div class="foldopen" id="foldopen00344" data-start="{" data-end="}">
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno"><a class="line" href="classd2_body.html#aeeecbe670c36c32a1389fc946674acaf">  344</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classd2_body.html#aeeecbe670c36c32a1389fc946674acaf">d2Body::SetAngularVelocity</a>(<a class="code hl_typedef" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> angularVelocity)</div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>{</div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>    this-&gt;angularVelocity = angularVelocity;</div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>}</div>
+</div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span> </div>
+<div class="foldopen" id="foldopen00349" data-start="{" data-end="}">
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno"><a class="line" href="classd2_body.html#a4546546b23a3945a41a4028cfe5f9afb">  349</a></span><span class="keyword">inline</span> <a class="code hl_typedef" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> <a class="code hl_function" href="classd2_body.html#a4546546b23a3945a41a4028cfe5f9afb">d2Body::GetAngularVelocity</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>    <span class="keywordflow">return</span> angularVelocity;</div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>}</div>
+</div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span> </div>
+<div class="foldopen" id="foldopen00354" data-start="{" data-end="}">
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno"><a class="line" href="classd2_body.html#a49b221e3b96b0f4975661c42f59f57f0">  354</a></span><span class="keyword">inline</span> <a class="code hl_typedef" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> <a class="code hl_function" href="classd2_body.html#a49b221e3b96b0f4975661c42f59f57f0">d2Body::GetRotation</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>    <span class="keywordflow">return</span> m_transform.<a class="code hl_variable" href="structd2_transform.html#a4e7a02c19928597cddc55356eb1e48c1">q</a>.<a class="code hl_function" href="structd2_rot.html#ac7a00b4899f4b66247cf276a1cd7762f">GetAngle</a>();</div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>}</div>
+</div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span> </div>
+<div class="foldopen" id="foldopen00359" data-start="{" data-end="}">
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno"><a class="line" href="classd2_body.html#a28bad9d2049be79800b91ca0be520a23">  359</a></span><span class="keyword">inline</span> <a class="code hl_typedef" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> <a class="code hl_function" href="classd2_body.html#a28bad9d2049be79800b91ca0be520a23">d2Body::GetMass</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span>    <span class="keywordflow">return</span> mass;</div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span>}</div>
+</div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span> </div>
+<div class="foldopen" id="foldopen00364" data-start="{" data-end="}">
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno"><a class="line" href="classd2_body.html#ad32f1612aaf45ec343ad265500187187">  364</a></span><span class="keyword">inline</span> <a class="code hl_typedef" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> <a class="code hl_function" href="classd2_body.html#ad32f1612aaf45ec343ad265500187187">d2Body::GetInvMass</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span>    <span class="keywordflow">return</span> invMass;</div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span>}</div>
+</div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span> </div>
+<div class="foldopen" id="foldopen00369" data-start="{" data-end="}">
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno"><a class="line" href="classd2_body.html#a3dc40000ef2b2a550f95ca054aa19084">  369</a></span><span class="keyword">inline</span> <a class="code hl_typedef" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> <a class="code hl_function" href="classd2_body.html#a3dc40000ef2b2a550f95ca054aa19084">d2Body::GetI</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span>    <span class="keywordflow">return</span> I;</div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span>}</div>
+</div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span> </div>
+<div class="foldopen" id="foldopen00374" data-start="{" data-end="}">
+<div class="line"><a id="l00374" name="l00374"></a><span class="lineno"><a class="line" href="classd2_body.html#a7829400a6d030499a66fae91ee3a9831">  374</a></span><span class="keyword">inline</span> <a class="code hl_typedef" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> <a class="code hl_function" href="classd2_body.html#a7829400a6d030499a66fae91ee3a9831">d2Body::GetInvI</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span>    <span class="keywordflow">return</span> invI;</div>
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span>}</div>
+</div>
+<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span> </div>
+<div class="foldopen" id="foldopen00379" data-start="{" data-end="}">
+<div class="line"><a id="l00379" name="l00379"></a><span class="lineno"><a class="line" href="classd2_body.html#a6afbf1c0eb5564d572f847f92fb7c435">  379</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classd2_body.html#a6afbf1c0eb5564d572f847f92fb7c435">d2Body::SetFriction</a>(<a class="code hl_typedef" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> friction)</div>
+<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span>{</div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span>    this-&gt;friction = friction;</div>
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span>}</div>
+</div>
+<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span> </div>
+<div class="foldopen" id="foldopen00384" data-start="{" data-end="}">
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno"><a class="line" href="classd2_body.html#a6ae992b2e2ea57691b1f217b6fd50fdf">  384</a></span><span class="keyword">inline</span> <a class="code hl_typedef" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> <a class="code hl_function" href="classd2_body.html#a6ae992b2e2ea57691b1f217b6fd50fdf">d2Body::GetFriction</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span>    <span class="keywordflow">return</span> friction;</div>
+<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span>}</div>
+</div>
+<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span> </div>
+<div class="foldopen" id="foldopen00389" data-start="{" data-end="}">
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno"><a class="line" href="classd2_body.html#a4a4f4d462af6d30d1c2160df13d4e6c3">  389</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classd2_body.html#a4a4f4d462af6d30d1c2160df13d4e6c3">d2Body::SetRestitution</a>(<a class="code hl_typedef" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> restitution)</div>
+<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span>{</div>
+<div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span>    this-&gt;restitution = restitution;</div>
+<div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span>}</div>
+</div>
+<div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span> </div>
+<div class="foldopen" id="foldopen00394" data-start="{" data-end="}">
+<div class="line"><a id="l00394" name="l00394"></a><span class="lineno"><a class="line" href="classd2_body.html#a49aab372f6c7ab524bfec582bd42b143">  394</a></span><span class="keyword">inline</span> <a class="code hl_typedef" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> <a class="code hl_function" href="classd2_body.html#a49aab372f6c7ab524bfec582bd42b143">d2Body::GetRestitution</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span>    <span class="keywordflow">return</span> restitution;</div>
+<div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span>}</div>
+</div>
+<div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span> </div>
+<div class="foldopen" id="foldopen00399" data-start="{" data-end="}">
+<div class="line"><a id="l00399" name="l00399"></a><span class="lineno"><a class="line" href="classd2_body.html#ae467c1f292c9f14515567b8a28c6d9cd">  399</a></span><span class="keyword">inline</span> <a class="code hl_struct" href="structd2_shape.html">d2Shape</a>* <a class="code hl_function" href="classd2_body.html#ae467c1f292c9f14515567b8a28c6d9cd">d2Body::GetShape</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span>    <span class="keywordflow">return</span> shape;</div>
+<div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span>}</div>
+</div>
+<div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span> </div>
+<div class="foldopen" id="foldopen00404" data-start="{" data-end="}">
+<div class="line"><a id="l00404" name="l00404"></a><span class="lineno"><a class="line" href="classd2_body.html#a98039cbf68c1ad48e712829a231ccf70">  404</a></span><span class="keyword">inline</span> <a class="code hl_struct" href="structd2_a_a_b_b.html">d2AABB</a>* <a class="code hl_function" href="classd2_body.html#a98039cbf68c1ad48e712829a231ccf70">d2Body::GetAABB</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span>    <span class="keywordflow">return</span> aabb;</div>
+<div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span>}</div>
+</div>
+<div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span> </div>
+<div class="foldopen" id="foldopen00409" data-start="{" data-end="}">
+<div class="line"><a id="l00409" name="l00409"></a><span class="lineno"><a class="line" href="classd2_body.html#a2ed9f0e66d7d1d76f8ea6417117c2ce7">  409</a></span><span class="keyword">inline</span> <a class="code hl_class" href="classd2_body.html">d2Body</a>* <a class="code hl_function" href="classd2_body.html#a2ed9f0e66d7d1d76f8ea6417117c2ce7">d2Body::GetNext</a>()</div>
+<div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span>{</div>
+<div class="line"><a id="l00411" name="l00411"></a><span class="lineno">  411</span>    <span class="keywordflow">return</span> next;</div>
+<div class="line"><a id="l00412" name="l00412"></a><span class="lineno">  412</span>}</div>
+</div>
+<div class="line"><a id="l00413" name="l00413"></a><span class="lineno">  413</span> </div>
+<div class="foldopen" id="foldopen00414" data-start="{" data-end="}">
+<div class="line"><a id="l00414" name="l00414"></a><span class="lineno"><a class="line" href="classd2_body.html#a0ffc97609dc3cb4a983b72a82d75c435">  414</a></span><span class="keyword">inline</span> <span class="keyword">const</span> <a class="code hl_class" href="classd2_body.html">d2Body</a>* <a class="code hl_function" href="classd2_body.html#a2ed9f0e66d7d1d76f8ea6417117c2ce7">d2Body::GetNext</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00415" name="l00415"></a><span class="lineno">  415</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00416" name="l00416"></a><span class="lineno">  416</span>    <span class="keywordflow">return</span> next;</div>
+<div class="line"><a id="l00417" name="l00417"></a><span class="lineno">  417</span>}</div>
+</div>
+<div class="line"><a id="l00418" name="l00418"></a><span class="lineno">  418</span> </div>
+<div class="foldopen" id="foldopen00419" data-start="{" data-end="}">
+<div class="line"><a id="l00419" name="l00419"></a><span class="lineno"><a class="line" href="classd2_body.html#a905429b4a41c47fc5869bf90cda9926b">  419</a></span><span class="keyword">inline</span> <a class="code hl_class" href="classd2_body.html">d2Body</a>* <a class="code hl_function" href="classd2_body.html#a905429b4a41c47fc5869bf90cda9926b">d2Body::GetPrev</a>()</div>
+<div class="line"><a id="l00420" name="l00420"></a><span class="lineno">  420</span>{</div>
+<div class="line"><a id="l00421" name="l00421"></a><span class="lineno">  421</span>    <span class="keywordflow">return</span> prev;</div>
+<div class="line"><a id="l00422" name="l00422"></a><span class="lineno">  422</span>}</div>
+</div>
+<div class="line"><a id="l00423" name="l00423"></a><span class="lineno">  423</span> </div>
+<div class="foldopen" id="foldopen00424" data-start="{" data-end="}">
+<div class="line"><a id="l00424" name="l00424"></a><span class="lineno"><a class="line" href="classd2_body.html#a75c5ab36a6cd955e0b87aac97a9dd88d">  424</a></span><span class="keyword">inline</span> <span class="keyword">const</span> <a class="code hl_class" href="classd2_body.html">d2Body</a>* <a class="code hl_function" href="classd2_body.html#a905429b4a41c47fc5869bf90cda9926b">d2Body::GetPrev</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00425" name="l00425"></a><span class="lineno">  425</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00426" name="l00426"></a><span class="lineno">  426</span>    <span class="keywordflow">return</span> prev;</div>
+<div class="line"><a id="l00427" name="l00427"></a><span class="lineno">  427</span>}</div>
+</div>
+<div class="line"><a id="l00428" name="l00428"></a><span class="lineno">  428</span> </div>
+<div class="foldopen" id="foldopen00429" data-start="{" data-end="}">
+<div class="line"><a id="l00429" name="l00429"></a><span class="lineno"><a class="line" href="classd2_body.html#a9b597cb71b063b6fcae661e5db854ea0">  429</a></span><span class="keyword">inline</span> <a class="code hl_typedef" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> <a class="code hl_function" href="classd2_body.html#a9b597cb71b063b6fcae661e5db854ea0">d2Body::GetSleepTime</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00430" name="l00430"></a><span class="lineno">  430</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00431" name="l00431"></a><span class="lineno">  431</span>    <span class="keywordflow">return</span> m_sleepTime;</div>
+<div class="line"><a id="l00432" name="l00432"></a><span class="lineno">  432</span>}</div>
+</div>
+<div class="line"><a id="l00433" name="l00433"></a><span class="lineno">  433</span> </div>
+<div class="foldopen" id="foldopen00434" data-start="{" data-end="}">
+<div class="line"><a id="l00434" name="l00434"></a><span class="lineno"><a class="line" href="classd2_body.html#ad1b8f5a6d5846b2285d361ee9722d17f">  434</a></span><span class="keyword">inline</span> <a class="code hl_typedef" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> <a class="code hl_function" href="classd2_body.html#ad1b8f5a6d5846b2285d361ee9722d17f">d2Body::GetGravityScale</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00435" name="l00435"></a><span class="lineno">  435</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00436" name="l00436"></a><span class="lineno">  436</span>    <span class="keywordflow">return</span> m_gravityScale;</div>
+<div class="line"><a id="l00437" name="l00437"></a><span class="lineno">  437</span>}</div>
+</div>
+<div class="line"><a id="l00438" name="l00438"></a><span class="lineno">  438</span> </div>
+<div class="foldopen" id="foldopen00439" data-start="{" data-end="}">
+<div class="line"><a id="l00439" name="l00439"></a><span class="lineno"><a class="line" href="classd2_body.html#a24cb3740a68233648911bb2f2a2e14ed">  439</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classd2_body.html#a24cb3740a68233648911bb2f2a2e14ed">d2Body::SetGravityScale</a>(<a class="code hl_typedef" href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a> gravityScale)</div>
+<div class="line"><a id="l00440" name="l00440"></a><span class="lineno">  440</span>{</div>
+<div class="line"><a id="l00441" name="l00441"></a><span class="lineno">  441</span>    m_gravityScale = gravityScale;</div>
+<div class="line"><a id="l00442" name="l00442"></a><span class="lineno">  442</span>}</div>
+</div>
+<div class="line"><a id="l00443" name="l00443"></a><span class="lineno">  443</span> </div>
+<div class="foldopen" id="foldopen00444" data-start="{" data-end="}">
+<div class="line"><a id="l00444" name="l00444"></a><span class="lineno"><a class="line" href="classd2_body.html#a5cf562ec4098fb53bc7baab186046f8c">  444</a></span><span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classd2_body.html#a5cf562ec4098fb53bc7baab186046f8c">d2Body::IsAwake</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00445" name="l00445"></a><span class="lineno">  445</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00446" name="l00446"></a><span class="lineno">  446</span>    <span class="keywordflow">return</span> (m_flags &amp; e_awakeFlag) == e_awakeFlag;</div>
+<div class="line"><a id="l00447" name="l00447"></a><span class="lineno">  447</span>}</div>
+</div>
+<div class="line"><a id="l00448" name="l00448"></a><span class="lineno">  448</span> </div>
+<div class="foldopen" id="foldopen00449" data-start="{" data-end="}">
+<div class="line"><a id="l00449" name="l00449"></a><span class="lineno"><a class="line" href="classd2_body.html#a4540e026cc7df2533483177b715bc093">  449</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classd2_body.html#a4540e026cc7df2533483177b715bc093">d2Body::SetAwake</a>(<span class="keywordtype">bool</span> awake)</div>
+<div class="line"><a id="l00450" name="l00450"></a><span class="lineno">  450</span>{</div>
+<div class="line"><a id="l00451" name="l00451"></a><span class="lineno">  451</span>    <span class="keywordflow">if</span> (awake)</div>
+<div class="line"><a id="l00452" name="l00452"></a><span class="lineno">  452</span>    {</div>
+<div class="line"><a id="l00453" name="l00453"></a><span class="lineno">  453</span>        m_flags |= e_awakeFlag;</div>
+<div class="line"><a id="l00454" name="l00454"></a><span class="lineno">  454</span>        m_sleepTime = 0.0f;</div>
+<div class="line"><a id="l00455" name="l00455"></a><span class="lineno">  455</span>    }</div>
+<div class="line"><a id="l00456" name="l00456"></a><span class="lineno">  456</span>    <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00457" name="l00457"></a><span class="lineno">  457</span>    {</div>
+<div class="line"><a id="l00458" name="l00458"></a><span class="lineno">  458</span>        m_flags &amp;= ~e_awakeFlag;</div>
+<div class="line"><a id="l00459" name="l00459"></a><span class="lineno">  459</span>        m_sleepTime = 0.0f;</div>
+<div class="line"><a id="l00460" name="l00460"></a><span class="lineno">  460</span>        velocity = <a class="code hl_struct" href="structd2_vec2.html">d2Vec2</a>(0, 0);</div>
+<div class="line"><a id="l00461" name="l00461"></a><span class="lineno">  461</span>        angularVelocity = 0.0f;</div>
+<div class="line"><a id="l00462" name="l00462"></a><span class="lineno">  462</span>        sumForces = <a class="code hl_struct" href="structd2_vec2.html">d2Vec2</a>(0, 0);</div>
+<div class="line"><a id="l00463" name="l00463"></a><span class="lineno">  463</span>        sumTorque = 0.0f;</div>
+<div class="line"><a id="l00464" name="l00464"></a><span class="lineno">  464</span>    }</div>
+<div class="line"><a id="l00465" name="l00465"></a><span class="lineno">  465</span>}</div>
+</div>
+<div class="line"><a id="l00466" name="l00466"></a><span class="lineno">  466</span> </div>
+<div class="line"><a id="l00467" name="l00467"></a><span class="lineno">  467</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassd2_body_html"><div class="ttname"><a href="classd2_body.html">d2Body</a></div><div class="ttdoc">A class representing a 2D rigid body.</div><div class="ttdef"><b>Definition</b> d2Body.h:28</div></div>
+<div class="ttc" id="aclassd2_body_html_a0ec4c849be3f4fff6778d4384a518bd3"><div class="ttname"><a href="classd2_body.html#a0ec4c849be3f4fff6778d4384a518bd3">d2Body::GetPosition</a></div><div class="ttdeci">const d2Vec2 &amp; GetPosition() const</div><div class="ttdoc">Gets the position of the body.</div><div class="ttdef"><b>Definition</b> d2Body.h:324</div></div>
+<div class="ttc" id="aclassd2_body_html_a131deecb693e27e6103835019dc6046f"><div class="ttname"><a href="classd2_body.html#a131deecb693e27e6103835019dc6046f">d2Body::IntegrateLinear</a></div><div class="ttdeci">void IntegrateLinear(real dt)</div><div class="ttdoc">Integrates the linear motion of the body over a time step.</div></div>
+<div class="ttc" id="aclassd2_body_html_a21e405919f230894cdccf21fc2592639"><div class="ttname"><a href="classd2_body.html#a21e405919f230894cdccf21fc2592639">d2Body::GetVelocity</a></div><div class="ttdeci">const d2Vec2 &amp; GetVelocity() const</div><div class="ttdoc">Gets the velocity of the body.</div><div class="ttdef"><b>Definition</b> d2Body.h:334</div></div>
+<div class="ttc" id="aclassd2_body_html_a24cb3740a68233648911bb2f2a2e14ed"><div class="ttname"><a href="classd2_body.html#a24cb3740a68233648911bb2f2a2e14ed">d2Body::SetGravityScale</a></div><div class="ttdeci">void SetGravityScale(real gravityScale)</div><div class="ttdoc">Sets the gravity scale of the body.</div><div class="ttdef"><b>Definition</b> d2Body.h:439</div></div>
+<div class="ttc" id="aclassd2_body_html_a28bad9d2049be79800b91ca0be520a23"><div class="ttname"><a href="classd2_body.html#a28bad9d2049be79800b91ca0be520a23">d2Body::GetMass</a></div><div class="ttdeci">real GetMass() const</div><div class="ttdoc">Gets the mass of the body.</div><div class="ttdef"><b>Definition</b> d2Body.h:359</div></div>
+<div class="ttc" id="aclassd2_body_html_a2db5061978bd33ba6a59939c825b6188"><div class="ttname"><a href="classd2_body.html#a2db5061978bd33ba6a59939c825b6188">d2Body::ClearForces</a></div><div class="ttdeci">void ClearForces()</div><div class="ttdoc">Clears all forces applied to the body.</div></div>
+<div class="ttc" id="aclassd2_body_html_a2ed9f0e66d7d1d76f8ea6417117c2ce7"><div class="ttname"><a href="classd2_body.html#a2ed9f0e66d7d1d76f8ea6417117c2ce7">d2Body::GetNext</a></div><div class="ttdeci">d2Body * GetNext()</div><div class="ttdoc">Gets the next body in a linked list of bodies.</div><div class="ttdef"><b>Definition</b> d2Body.h:409</div></div>
+<div class="ttc" id="aclassd2_body_html_a36d64384d18467fb0065880a75a4799a"><div class="ttname"><a href="classd2_body.html#a36d64384d18467fb0065880a75a4799a">d2Body::ApplyImpulseLinear</a></div><div class="ttdeci">void ApplyImpulseLinear(const d2Vec2 &amp;j)</div><div class="ttdoc">Applies a linear impulse to the body.</div></div>
+<div class="ttc" id="aclassd2_body_html_a3dc40000ef2b2a550f95ca054aa19084"><div class="ttname"><a href="classd2_body.html#a3dc40000ef2b2a550f95ca054aa19084">d2Body::GetI</a></div><div class="ttdeci">real GetI() const</div><div class="ttdoc">Gets the moment of inertia of the body.</div><div class="ttdef"><b>Definition</b> d2Body.h:369</div></div>
+<div class="ttc" id="aclassd2_body_html_a4084f06d154455399eac6c21f5143408"><div class="ttname"><a href="classd2_body.html#a4084f06d154455399eac6c21f5143408">d2Body::AddTorque</a></div><div class="ttdeci">void AddTorque(real torque)</div><div class="ttdoc">Adds a torque to the body.</div></div>
+<div class="ttc" id="aclassd2_body_html_a4136d05281f3e6b19cdc1485654d9d7a"><div class="ttname"><a href="classd2_body.html#a4136d05281f3e6b19cdc1485654d9d7a">d2Body::LocalSpaceToWorldSpace</a></div><div class="ttdeci">d2Vec2 LocalSpaceToWorldSpace(const d2Vec2 &amp;point) const</div><div class="ttdoc">Converts a point from local space to world space.</div></div>
+<div class="ttc" id="aclassd2_body_html_a4540e026cc7df2533483177b715bc093"><div class="ttname"><a href="classd2_body.html#a4540e026cc7df2533483177b715bc093">d2Body::SetAwake</a></div><div class="ttdeci">void SetAwake(bool awake)</div><div class="ttdoc">Sets the wake state of the body.</div><div class="ttdef"><b>Definition</b> d2Body.h:449</div></div>
+<div class="ttc" id="aclassd2_body_html_a4546546b23a3945a41a4028cfe5f9afb"><div class="ttname"><a href="classd2_body.html#a4546546b23a3945a41a4028cfe5f9afb">d2Body::GetAngularVelocity</a></div><div class="ttdeci">real GetAngularVelocity() const</div><div class="ttdoc">Gets the angular velocity of the body.</div><div class="ttdef"><b>Definition</b> d2Body.h:349</div></div>
+<div class="ttc" id="aclassd2_body_html_a49aab372f6c7ab524bfec582bd42b143"><div class="ttname"><a href="classd2_body.html#a49aab372f6c7ab524bfec582bd42b143">d2Body::GetRestitution</a></div><div class="ttdeci">real GetRestitution() const</div><div class="ttdoc">Gets the coefficient of restitution of the body.</div><div class="ttdef"><b>Definition</b> d2Body.h:394</div></div>
+<div class="ttc" id="aclassd2_body_html_a49b221e3b96b0f4975661c42f59f57f0"><div class="ttname"><a href="classd2_body.html#a49b221e3b96b0f4975661c42f59f57f0">d2Body::GetRotation</a></div><div class="ttdeci">real GetRotation() const</div><div class="ttdoc">Gets the rotation angle of the body.</div><div class="ttdef"><b>Definition</b> d2Body.h:354</div></div>
+<div class="ttc" id="aclassd2_body_html_a4a4f4d462af6d30d1c2160df13d4e6c3"><div class="ttname"><a href="classd2_body.html#a4a4f4d462af6d30d1c2160df13d4e6c3">d2Body::SetRestitution</a></div><div class="ttdeci">void SetRestitution(real restitution)</div><div class="ttdoc">Sets the coefficient of restitution of the body.</div><div class="ttdef"><b>Definition</b> d2Body.h:389</div></div>
+<div class="ttc" id="aclassd2_body_html_a53816b342ac87bdd30116be8fd25bbf4"><div class="ttname"><a href="classd2_body.html#a53816b342ac87bdd30116be8fd25bbf4">d2Body::ApplyImpulseAngular</a></div><div class="ttdeci">void ApplyImpulseAngular(const real j)</div><div class="ttdoc">Applies an angular impulse to the body.</div></div>
+<div class="ttc" id="aclassd2_body_html_a578af4ec9d76811cb1dd52cb512daf88"><div class="ttname"><a href="classd2_body.html#a578af4ec9d76811cb1dd52cb512daf88">d2Body::IntegrateForces</a></div><div class="ttdeci">void IntegrateForces(const real dt)</div><div class="ttdoc">Integrates the forces applied to the body over a time step.</div></div>
+<div class="ttc" id="aclassd2_body_html_a5b54dd04f2397fe3002f5ffd942b20e2"><div class="ttname"><a href="classd2_body.html#a5b54dd04f2397fe3002f5ffd942b20e2">d2Body::IntegrateAngular</a></div><div class="ttdeci">void IntegrateAngular(real dt)</div><div class="ttdoc">Integrates the angular motion of the body over a time step.</div></div>
+<div class="ttc" id="aclassd2_body_html_a5cf562ec4098fb53bc7baab186046f8c"><div class="ttname"><a href="classd2_body.html#a5cf562ec4098fb53bc7baab186046f8c">d2Body::IsAwake</a></div><div class="ttdeci">bool IsAwake() const</div><div class="ttdoc">Gets the wake state of the body.</div><div class="ttdef"><b>Definition</b> d2Body.h:444</div></div>
+<div class="ttc" id="aclassd2_body_html_a6ae992b2e2ea57691b1f217b6fd50fdf"><div class="ttname"><a href="classd2_body.html#a6ae992b2e2ea57691b1f217b6fd50fdf">d2Body::GetFriction</a></div><div class="ttdeci">real GetFriction() const</div><div class="ttdoc">Gets the coefficient of friction of the body.</div><div class="ttdef"><b>Definition</b> d2Body.h:384</div></div>
+<div class="ttc" id="aclassd2_body_html_a6afbf1c0eb5564d572f847f92fb7c435"><div class="ttname"><a href="classd2_body.html#a6afbf1c0eb5564d572f847f92fb7c435">d2Body::SetFriction</a></div><div class="ttdeci">void SetFriction(real friction)</div><div class="ttdoc">Sets the coefficient of friction of the body.</div><div class="ttdef"><b>Definition</b> d2Body.h:379</div></div>
+<div class="ttc" id="aclassd2_body_html_a6daa9011eb7cba28f9ce96cdd7c5f40f"><div class="ttname"><a href="classd2_body.html#a6daa9011eb7cba28f9ce96cdd7c5f40f">d2Body::ClearTorque</a></div><div class="ttdeci">void ClearTorque()</div><div class="ttdoc">Clears all torques applied to the body.</div></div>
+<div class="ttc" id="aclassd2_body_html_a6ee38698d73c4e74cc10f5f85f63ac96"><div class="ttname"><a href="classd2_body.html#a6ee38698d73c4e74cc10f5f85f63ac96">d2Body::AddForce</a></div><div class="ttdeci">void AddForce(const d2Vec2 &amp;force)</div><div class="ttdoc">Adds a force to the body.</div></div>
+<div class="ttc" id="aclassd2_body_html_a7829400a6d030499a66fae91ee3a9831"><div class="ttname"><a href="classd2_body.html#a7829400a6d030499a66fae91ee3a9831">d2Body::GetInvI</a></div><div class="ttdeci">real GetInvI() const</div><div class="ttdoc">Gets the inverse moment of inertia of the body.</div><div class="ttdef"><b>Definition</b> d2Body.h:374</div></div>
+<div class="ttc" id="aclassd2_body_html_a7e3abe2213aea7030fbe33621bab49cc"><div class="ttname"><a href="classd2_body.html#a7e3abe2213aea7030fbe33621bab49cc">d2Body::SetPosition</a></div><div class="ttdeci">void SetPosition(const d2Vec2 &amp;position)</div><div class="ttdoc">Sets the position of the body.</div><div class="ttdef"><b>Definition</b> d2Body.h:329</div></div>
+<div class="ttc" id="aclassd2_body_html_a8222b9cc178b13ed1d02d2086884fe81"><div class="ttname"><a href="classd2_body.html#a8222b9cc178b13ed1d02d2086884fe81">d2Body::SetAcceleration</a></div><div class="ttdeci">void SetAcceleration(const d2Vec2 &amp;acceleration)</div><div class="ttdoc">Set acceleration of the body.</div><div class="ttdef"><b>Definition</b> d2Body.h:339</div></div>
+<div class="ttc" id="aclassd2_body_html_a8e576f372a1016bf6fa6c26fb8bb4385"><div class="ttname"><a href="classd2_body.html#a8e576f372a1016bf6fa6c26fb8bb4385">d2Body::IntegrateVelocities</a></div><div class="ttdeci">void IntegrateVelocities(const real dt)</div><div class="ttdoc">Integrates the velocities of the body over a time step.</div></div>
+<div class="ttc" id="aclassd2_body_html_a905429b4a41c47fc5869bf90cda9926b"><div class="ttname"><a href="classd2_body.html#a905429b4a41c47fc5869bf90cda9926b">d2Body::GetPrev</a></div><div class="ttdeci">d2Body * GetPrev()</div><div class="ttdoc">Gets the previous body in a linked list of bodies.</div><div class="ttdef"><b>Definition</b> d2Body.h:419</div></div>
+<div class="ttc" id="aclassd2_body_html_a98039cbf68c1ad48e712829a231ccf70"><div class="ttname"><a href="classd2_body.html#a98039cbf68c1ad48e712829a231ccf70">d2Body::GetAABB</a></div><div class="ttdeci">d2AABB * GetAABB() const</div><div class="ttdoc">Gets the Axis-Aligned Bounding Box of the body.</div><div class="ttdef"><b>Definition</b> d2Body.h:404</div></div>
+<div class="ttc" id="aclassd2_body_html_a9b597cb71b063b6fcae661e5db854ea0"><div class="ttname"><a href="classd2_body.html#a9b597cb71b063b6fcae661e5db854ea0">d2Body::GetSleepTime</a></div><div class="ttdeci">real GetSleepTime() const</div><div class="ttdoc">Gets wake-up time of the body.</div><div class="ttdef"><b>Definition</b> d2Body.h:429</div></div>
+<div class="ttc" id="aclassd2_body_html_abbd4d7f6142d75c4f9ee7b06723a5966"><div class="ttname"><a href="classd2_body.html#abbd4d7f6142d75c4f9ee7b06723a5966">d2Body::~d2Body</a></div><div class="ttdeci">~d2Body()</div><div class="ttdoc">Destructor for the d2Body class.</div></div>
+<div class="ttc" id="aclassd2_body_html_acdd89eb1582a15dbd3bd005a24ad331b"><div class="ttname"><a href="classd2_body.html#acdd89eb1582a15dbd3bd005a24ad331b">d2Body::WorldSpaceToLocalSpace</a></div><div class="ttdeci">d2Vec2 WorldSpaceToLocalSpace(const d2Vec2 &amp;point) const</div><div class="ttdoc">Converts a point from world space to local space.</div></div>
+<div class="ttc" id="aclassd2_body_html_ad1b8f5a6d5846b2285d361ee9722d17f"><div class="ttname"><a href="classd2_body.html#ad1b8f5a6d5846b2285d361ee9722d17f">d2Body::GetGravityScale</a></div><div class="ttdeci">real GetGravityScale() const</div><div class="ttdoc">Gets the gravity scale of the body.</div><div class="ttdef"><b>Definition</b> d2Body.h:434</div></div>
+<div class="ttc" id="aclassd2_body_html_ad32f1612aaf45ec343ad265500187187"><div class="ttname"><a href="classd2_body.html#ad32f1612aaf45ec343ad265500187187">d2Body::GetInvMass</a></div><div class="ttdeci">real GetInvMass() const</div><div class="ttdoc">Gets the inverse mass of the body.</div><div class="ttdef"><b>Definition</b> d2Body.h:364</div></div>
+<div class="ttc" id="aclassd2_body_html_ad6c2bb39edd38bac31b6ce8676ce7d17"><div class="ttname"><a href="classd2_body.html#ad6c2bb39edd38bac31b6ce8676ce7d17">d2Body::d2Body</a></div><div class="ttdeci">d2Body(const d2Shape &amp;shape, real x, real y, real mass, d2World *world)</div><div class="ttdoc">Constructor for the d2Body class.</div></div>
+<div class="ttc" id="aclassd2_body_html_ae467c1f292c9f14515567b8a28c6d9cd"><div class="ttname"><a href="classd2_body.html#ae467c1f292c9f14515567b8a28c6d9cd">d2Body::GetShape</a></div><div class="ttdeci">d2Shape * GetShape() const</div><div class="ttdoc">Gets the shape/geometry of the body.</div><div class="ttdef"><b>Definition</b> d2Body.h:399</div></div>
+<div class="ttc" id="aclassd2_body_html_aeeecbe670c36c32a1389fc946674acaf"><div class="ttname"><a href="classd2_body.html#aeeecbe670c36c32a1389fc946674acaf">d2Body::SetAngularVelocity</a></div><div class="ttdeci">void SetAngularVelocity(real angularVelocity)</div><div class="ttdoc">Sets the angular velocity of the body.</div><div class="ttdef"><b>Definition</b> d2Body.h:344</div></div>
+<div class="ttc" id="aclassd2_body_html_af419d1ffef6810631c3b632df6ccad11"><div class="ttname"><a href="classd2_body.html#af419d1ffef6810631c3b632df6ccad11">d2Body::ApplyImpulseAtPoint</a></div><div class="ttdeci">void ApplyImpulseAtPoint(const d2Vec2 &amp;j, const d2Vec2 &amp;r)</div><div class="ttdoc">Applies an impulse at a specific point on the body.</div></div>
+<div class="ttc" id="aclassd2_body_html_af4df0746b221bb072a4c26ec94fc1182"><div class="ttname"><a href="classd2_body.html#af4df0746b221bb072a4c26ec94fc1182">d2Body::ComputeAABB</a></div><div class="ttdeci">void ComputeAABB()</div><div class="ttdoc">Computes the Axis-Aligned Bounding Box of the body.</div></div>
+<div class="ttc" id="aclassd2_world_html"><div class="ttname"><a href="classd2_world.html">d2World</a></div><div class="ttdoc">Represents a 2D physics world.</div><div class="ttdef"><b>Definition</b> d2World.h:22</div></div>
+<div class="ttc" id="ad2_body_8h_html_a4d8ce29321d2d0e26270ca14699c42e1"><div class="ttname"><a href="d2_body_8h.html#a4d8ce29321d2d0e26270ca14699c42e1">d2BodyType</a></div><div class="ttdeci">d2BodyType</div><div class="ttdef"><b>Definition</b> d2Body.h:16</div></div>
+<div class="ttc" id="ad2_body_8h_html_a4d8ce29321d2d0e26270ca14699c42e1a013ffef04f9f8945a6198f7eca2738b6"><div class="ttname"><a href="d2_body_8h.html#a4d8ce29321d2d0e26270ca14699c42e1a013ffef04f9f8945a6198f7eca2738b6">d2_staticBody</a></div><div class="ttdeci">@ d2_staticBody</div><div class="ttdef"><b>Definition</b> d2Body.h:17</div></div>
+<div class="ttc" id="ad2_body_8h_html_a4d8ce29321d2d0e26270ca14699c42e1a4bc00acbc5d1c4a4cd3ad9c52a2da3b4"><div class="ttname"><a href="d2_body_8h.html#a4d8ce29321d2d0e26270ca14699c42e1a4bc00acbc5d1c4a4cd3ad9c52a2da3b4">d2_dynamicBody</a></div><div class="ttdeci">@ d2_dynamicBody</div><div class="ttdef"><b>Definition</b> d2Body.h:18</div></div>
+<div class="ttc" id="ad2_math_8h_html"><div class="ttname"><a href="d2_math_8h.html">d2Math.h</a></div></div>
+<div class="ttc" id="ad2_shape_8h_html"><div class="ttname"><a href="d2_shape_8h.html">d2Shape.h</a></div></div>
+<div class="ttc" id="ad2_types_8h_html"><div class="ttname"><a href="d2_types_8h.html">d2Types.h</a></div></div>
+<div class="ttc" id="ad2_types_8h_html_a031f8951175b43076c2084a6c2173410"><div class="ttname"><a href="d2_types_8h.html#a031f8951175b43076c2084a6c2173410">real</a></div><div class="ttdeci">float real</div><div class="ttdef"><b>Definition</b> d2Types.h:10</div></div>
+<div class="ttc" id="ad2_types_8h_html_a05f6b0ae8f6a6e135b0e290c25fe0e4e"><div class="ttname"><a href="d2_types_8h.html#a05f6b0ae8f6a6e135b0e290c25fe0e4e">uint16</a></div><div class="ttdeci">unsigned short uint16</div><div class="ttdef"><b>Definition</b> d2Types.h:8</div></div>
+<div class="ttc" id="ad2api_8h_html"><div class="ttname"><a href="d2api_8h.html">d2api.h</a></div></div>
+<div class="ttc" id="ad2api_8h_html_a220617da415571ab110aebb0efa4b443"><div class="ttname"><a href="d2api_8h.html#a220617da415571ab110aebb0efa4b443">D2_API</a></div><div class="ttdeci">#define D2_API</div><div class="ttdef"><b>Definition</b> d2api.h:27</div></div>
+<div class="ttc" id="astructd2_a_a_b_b_html"><div class="ttname"><a href="structd2_a_a_b_b.html">d2AABB</a></div><div class="ttdef"><b>Definition</b> d2AABB.h:10</div></div>
+<div class="ttc" id="astructd2_rot_html_ac7a00b4899f4b66247cf276a1cd7762f"><div class="ttname"><a href="structd2_rot.html#ac7a00b4899f4b66247cf276a1cd7762f">d2Rot::GetAngle</a></div><div class="ttdeci">real GetAngle() const</div><div class="ttdoc">Get the rotation angle in radians.</div><div class="ttdef"><b>Definition</b> d2Math.h:254</div></div>
+<div class="ttc" id="astructd2_shape_html"><div class="ttname"><a href="structd2_shape.html">d2Shape</a></div><div class="ttdef"><b>Definition</b> d2Shape.h:18</div></div>
+<div class="ttc" id="astructd2_transform_html"><div class="ttname"><a href="structd2_transform.html">d2Transform</a></div><div class="ttdoc">Represents a transformation in 2D space.</div><div class="ttdef"><b>Definition</b> d2Math.h:309</div></div>
+<div class="ttc" id="astructd2_transform_html_a44bd11478a0862c9ef01087485ac7d7d"><div class="ttname"><a href="structd2_transform.html#a44bd11478a0862c9ef01087485ac7d7d">d2Transform::p</a></div><div class="ttdeci">d2Vec2 p</div><div class="ttdoc">The translation of the body.</div><div class="ttdef"><b>Definition</b> d2Math.h:311</div></div>
+<div class="ttc" id="astructd2_transform_html_a4e7a02c19928597cddc55356eb1e48c1"><div class="ttname"><a href="structd2_transform.html#a4e7a02c19928597cddc55356eb1e48c1">d2Transform::q</a></div><div class="ttdeci">d2Rot q</div><div class="ttdoc">The rotation of the body.</div><div class="ttdef"><b>Definition</b> d2Math.h:314</div></div>
+<div class="ttc" id="astructd2_vec2_html"><div class="ttname"><a href="structd2_vec2.html">d2Vec2</a></div><div class="ttdoc">Represents a 2D vector.</div><div class="ttdef"><b>Definition</b> d2Math.h:22</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_5823b325713a34c58cbd10fd323a181b.html">dura2d</a></li><li class="navelem"><a class="el" href="d2_body_8h.html">d2Body.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+  </ul>
+</div>
+</body>
+</html>
