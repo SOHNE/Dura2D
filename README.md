@@ -17,11 +17,11 @@ _An educational 2D Game Physics Engine_
 [![License](https://img.shields.io/github/license/SOHNE/Dura2D?style=flat)](https://github.com/SOHNE/Dura2D/blob/main/LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/SOHNE/Dura2D?style=social)](https://github.com/SOHNE/Dura2D/stargazers)
 
-[Live Demo](https://dura2d.glitch.me/) | [Documentation](https://github.com/SOHNE/Dura2D/wiki) | [Report Bug](https://github.com/SOHNE/Dura2D/issues)
+[Live Demo](https://dura2d.glitch.me/) | [Documentation](https://sohne.github.io/Dura2D) | [Report Bug](https://github.com/SOHNE/Dura2D/issues)
 
 <div class="title_screenshot">
 
-  ![Screenshot of Dura2D Test Bed](res/Wrecking_Ball.png)
+  ![GIF of Dura2D Test Bed](res/dura2d.gif)
 
 </div>
 
