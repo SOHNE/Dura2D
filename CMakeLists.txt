@@ -5,7 +5,7 @@ project(Dura2D
         LANGUAGES CXX
 )
 
-# Determine if LuGL is the main project
+# Determine is the main project
 set(DURA_IS_MAIN ${PROJECT_IS_TOP_LEVEL})
 
 # --------------------------------------------------------------------
