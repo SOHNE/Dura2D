@@ -56,7 +56,6 @@ endif()
 cpmaddpackage(
     NAME rlImGui
     URL https://github.com/raylib-extras/rlImGui/archive/refs/heads/main.zip
-    URL_HASH SHA256=6ad30587261ecee9c4ec6c1e3db0499fa7a27ea51865698b7e450432dbbb3a63
 )
 
 if(rlImGui_ADDED)
