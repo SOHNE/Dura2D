@@ -23,17 +23,17 @@ include(../cmake/tools.cmake)
 include(../cmake/CPM.cmake)
 
 CPMAddPackage(NAME Dura2D SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR}/..)
-CPMAddPackage("gh:raysan5/raylib#5.0")
+CPMAddPackage("gh:raysan5/raylib#5.5")
 CPMAddPackage("gh:TheLartians/GroupSourcesByFolder.cmake@1.0")
 
 # --------------------------------------------------------------------
 # IMGUI Setup
 # --------------------------------------------------------------------
-cpmaddpackage(NAME IMGUI URL "https://github.com/ocornut/imgui/archive/refs/tags/v1.91.3.zip")
+CPMAddPackage(NAME IMGUI URL "https://github.com/ocornut/imgui/archive/refs/tags/v1.92.2b.zip" DOWNLOAD_ONLY)
 
 if(IMGUI_ADDED)
-    add_library(IMGUI STATIC)
-    target_sources(IMGUI
+  add_library(IMGUI STATIC)
+  target_sources(IMGUI
         PRIVATE
             ${IMGUI_SOURCE_DIR}/imgui_draw.cpp
             ${IMGUI_SOURCE_DIR}/imgui_tables.cpp
@@ -41,39 +41,41 @@ if(IMGUI_ADDED)
             ${IMGUI_SOURCE_DIR}/imgui.cpp
             ${IMGUI_SOURCE_DIR}/backends/imgui_impl_opengl3.cpp
     )
-    target_include_directories(IMGUI
+  target_include_directories(IMGUI
         PUBLIC
             ${IMGUI_SOURCE_DIR}
             ${IMGUI_SOURCE_DIR}/backends
     )
-    find_package(OpenGL REQUIRED)
-    target_link_libraries(IMGUI PUBLIC ${OPENGL_gl_LIBRARY} ${CMAKE_DL_LIBS})
+  find_package(OpenGL REQUIRED)
+  target_link_libraries(IMGUI PUBLIC ${OPENGL_gl_LIBRARY} ${CMAKE_DL_LIBS})
 endif()
 
 # --------------------------------------------------------------------
 # rlImGui Setup
 # --------------------------------------------------------------------
-cpmaddpackage(
+CPMAddPackage(
     NAME rlImGui
-    URL https://github.com/raylib-extras/rlImGui/archive/refs/heads/main.zip
+    URL https://github.com/raylib-extras/rlImGui/archive/4d8a61842903978bc42adf3347cd34f4e6524efc.zip
+    URL_HASH SHA256=bc9d457e19464aef2f7e8b04df31b7abe496142e6667330bc2d7a12cb34310c9
+    DOWNLOAD_ONLY
 )
 
 if(rlImGui_ADDED)
-    set(RLIMGUI_SOURCE_FILES ${rlImGui_SOURCE_DIR}/rlImGui.cpp)
-    set(RLIMGUI_HEADER_FILES
+  set(RLIMGUI_SOURCE_FILES ${rlImGui_SOURCE_DIR}/rlImGui.cpp)
+  set(RLIMGUI_HEADER_FILES
         ${rlImGui_SOURCE_DIR}/rlImGui.h
         ${rlImGui_SOURCE_DIR}/rlImGuiColors.h
         ${rlImGui_SOURCE_DIR}/extras/FA6FreeSolidFontData.h
         ${rlImGui_SOURCE_DIR}/extras/IconsFontAwesome6.h
     )
-    add_library(rlImGui STATIC ${RLIMGUI_SOURCE_FILES} ${RLIMGUI_HEADER_FILES})
-    target_include_directories(rlImGui
+  add_library(rlImGui STATIC ${RLIMGUI_SOURCE_FILES} ${RLIMGUI_HEADER_FILES})
+  target_include_directories(rlImGui
         PUBLIC
             $<BUILD_INTERFACE:${rlImGui_SOURCE_DIR}>
             ${IMGUI_SOURCE_DIR}
             ${IMGUI_SOURCE_DIR}/backends
     )
-    target_link_libraries(rlImGui PUBLIC IMGUI raylib)
+  target_link_libraries(rlImGui PUBLIC IMGUI raylib)
 endif()
 
 # --------------------------------------------------------------------
@@ -117,27 +119,27 @@ target_link_libraries(${PROJECT_NAME} PUBLIC Dura2D::Dura2D raylib IMGUI rlImGui
 # Platform-Specific Configuration
 # --------------------------------------------------------------------
 if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
-    set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
-    set_property(DIRECTORY PROPERTY VS_STARTUP_PROJECT ${CMAKE_PROJECT_NAME})
-    set_property(TARGET ${PROJECT_NAME} PROPERTY WIN32_EXECUTABLE true)
-    target_link_options(${PROJECT_NAME} PUBLIC -static -static-libgcc -static-libstdc++)
+  set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+  set_property(DIRECTORY PROPERTY VS_STARTUP_PROJECT ${CMAKE_PROJECT_NAME})
+  set_property(TARGET ${PROJECT_NAME} PROPERTY WIN32_EXECUTABLE true)
+  target_link_options(${PROJECT_NAME} PUBLIC -static -static-libgcc -static-libstdc++)
 endif()
 
 if(EMSCRIPTEN)
-    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} --emrun -s USE_GLFW=3 -s ASSERTIONS=1 -s WASM=1 -s ASYNCIFY -s GL_ENABLE_GET_PROC_ADDRESS=1 -s ALLOW_MEMORY_GROWTH")
-    set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O3")
-    set_target_properties(${PROJECT_NAME} PROPERTIES SUFFIX ".html")
-    set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME "index")
+  set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} --emrun -s USE_GLFW=3 -s ASSERTIONS=1 -s WASM=1 -s ASYNCIFY -s GL_ENABLE_GET_PROC_ADDRESS=1 -s ALLOW_MEMORY_GROWTH")
+  set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O3")
+  set_target_properties(${PROJECT_NAME} PROPERTIES SUFFIX ".html")
+  set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME "index")
 endif()
 
 if(APPLE)
-    list(APPEND APPLE_FRAMEWORKS
+  list(APPEND APPLE_FRAMEWORKS
         "-framework Cocoa"
         "-framework IOKit"
         "-framework CoreFoundation"
         "-framework CoreVideo"
     )
-    target_link_libraries(${PROJECT_NAME} PRIVATE ${APPLE_FRAMEWORKS})
+  target_link_libraries(${PROJECT_NAME} PRIVATE ${APPLE_FRAMEWORKS})
 endif()
 
 # --------------------------------------------------------------------
