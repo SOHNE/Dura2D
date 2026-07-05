@@ -1,0 +1,102 @@
+---
+BasedOnStyle: GNU
+
+# Alignment
+AlignAfterOpenBracket: Align
+AlignArrayOfStructures: Right
+AlignConsecutiveAssignments:
+  Enabled: true
+  AcrossEmptyLines: true
+  AcrossComments: false
+AlignConsecutiveBitFields:
+  Enabled: true
+  PadOperators: true
+AlignConsecutiveDeclarations:
+  Enabled: true
+  AlignCompound: true
+  AlignFunctionPointers: true
+  PadOperators: true
+AlignConsecutiveMacros:
+  Enabled: true
+  AcrossEmptyLines: true
+  AcrossComments: true
+  PadOperators: true
+AlignConsecutiveShortCaseStatements:
+  Enabled: true
+  AcrossEmptyLines: true
+  AcrossComments: true
+AlignEscapedNewlines: Right
+AlignOperands: Align
+AlignTrailingComments:
+  Kind: Always
+  OverEmptyLines: 2
+
+# Short-form allowances
+AllowShortBlocksOnASingleLine: false
+AllowShortCaseLabelsOnASingleLine: true
+AllowShortFunctionsOnASingleLine: All
+AllowShortIfStatementsOnASingleLine: true
+AllowShortLambdasOnASingleLine: All
+AllowShortLoopsOnASingleLine: false
+
+# Line breaking
+AlwaysBreakAfterReturnType: AllDefinitions
+AlwaysBreakBeforeMultilineStrings: false
+AlwaysBreakTemplateDeclarations: MultiLine
+BinPackArguments: false
+BreakBeforeBinaryOperators: All
+BreakBinaryOperations: OnePerLine
+BreakConstructorInitializers: BeforeComma
+
+# Braces
+BraceWrapping:
+  AfterCaseLabel: true
+
+# Code metrics
+ColumnLimit: 120
+
+# Comments
+CommentPragmas: "^ IWYU pragma:"
+
+# C++ features
+Cpp11BracedListStyle: true
+
+# File formatting
+DeriveLineEnding: true
+InsertNewlineAtEOF: true
+
+# Macros
+ForEachMacros: [RANGES_FOR, FOREACH]
+
+# Includes
+SortIncludes: CaseSensitive
+IncludeBlocks: Preserve
+IncludeCategories:
+  - Regex:           '^"dura2d\.h"'
+    Priority:        0
+  - Regex:           '^"(dura2d\/)'
+    Priority:        1
+  - Regex:           '^<.*'
+    Priority:        3
+  - Regex:           '^".*'
+    Priority:        2
+
+# Indentation
+IndentCaseBlocks: true
+IndentPPDirectives: AfterHash
+IndentWidth: 4
+NamespaceIndentation: All
+
+# Type qualifiers
+PointerAlignment: Middle
+QualifierAlignment: Left
+
+# Comments
+ReflowComments: false
+
+# Spacing
+SpaceBeforeCpp11BracedList: true
+SpaceBeforeParens: Never
+SpacesInAngles: true
+SpacesInContainerLiterals: true
+SpacesInParentheses: true
