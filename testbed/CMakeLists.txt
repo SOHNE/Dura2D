@@ -23,13 +23,13 @@ include(../cmake/tools.cmake)
 include(../cmake/CPM.cmake)
 
 CPMAddPackage(NAME Dura2D SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR}/..)
-CPMAddPackage("gh:raysan5/raylib#5.5")
+CPMAddPackage("gh:raysan5/raylib#6.0")
 CPMAddPackage("gh:TheLartians/GroupSourcesByFolder.cmake@1.0")
 
 # --------------------------------------------------------------------
 # IMGUI Setup
 # --------------------------------------------------------------------
-CPMAddPackage(NAME IMGUI URL "https://github.com/ocornut/imgui/archive/refs/tags/v1.92.2b.zip" DOWNLOAD_ONLY)
+CPMAddPackage(NAME IMGUI URL "https://github.com/ocornut/imgui/archive/refs/tags/v1.92.7.zip" DOWNLOAD_ONLY)
 
 if(IMGUI_ADDED)
   add_library(IMGUI STATIC)
@@ -55,8 +55,7 @@ endif()
 # --------------------------------------------------------------------
 CPMAddPackage(
     NAME rlImGui
-    URL https://github.com/raylib-extras/rlImGui/archive/4d8a61842903978bc42adf3347cd34f4e6524efc.zip
-    URL_HASH SHA256=bc9d457e19464aef2f7e8b04df31b7abe496142e6667330bc2d7a12cb34310c9
+    URL https://github.com/raylib-extras/rlImGui/archive/refs/tags/Raylib_6_0.zip
     DOWNLOAD_ONLY
 )
 

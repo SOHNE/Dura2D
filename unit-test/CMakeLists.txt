@@ -19,7 +19,7 @@ include(../cmake/CPM.cmake)
 # --------------------------------------------------------------------
 # Dependencies
 # --------------------------------------------------------------------
-CPMAddPackage("gh:doctest/doctest@2.4.11")
+CPMAddPackage("gh:doctest/doctest@2.5.2")
 CPMAddPackage("gh:TheLartians/GroupSourcesByFolder.cmake@1.0")
 
 if(TEST_INSTALLED_VERSION)
