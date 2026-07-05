@@ -5,6 +5,7 @@
 
 #include "d2api.h"
 #include "d2Math.h"
+#include "d2Constraint.h"
 #include "memory/d2BlockAllocator.h"
 
 // Forward declarations
@@ -12,7 +13,6 @@ struct d2Color;
 class d2Body;
 struct d2Shape;
 class d2Broadphase;
-class d2Constraint;
 class d2Draw;
 
 /**
@@ -118,6 +118,15 @@ public:
      */
     int32 GetBodyCount() const;
 
+    /**
+     * @brief Enable or disable sleeping. Disabling wakes every body.
+     * @param allow Whether bodies may fall asleep.
+     */
+    void SetAllowSleeping(bool allow);
+
+    /** @brief Whether bodies may fall asleep. */
+    bool IsSleepingAllowed() const { return m_allowSleep; }
+
     /** @brief
      * Set the debug draw object.
      * @param debugDraw The debug draw object.
@@ -144,7 +153,11 @@ public:
     d2Constraint *m_constraints { nullptr }; /**< List of constraints in the world. */
     int32 m_constraintCount { 0 }; /**< Number of constraints in the world. */
 
+    std::vector<d2PenetrationConstraint> m_penetrations; /**< Last step's contacts, kept for warm starting. */
+
     d2Draw* m_debugDraw { nullptr }; /**< Debug draw object. */
+
+    bool m_allowSleep { true }; /**< Whether bodies may fall asleep. */
 };
 
 inline d2Body* d2World::GetBodies() const

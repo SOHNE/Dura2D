@@ -49,6 +49,8 @@ private:
 
     Settings *m_settings{nullptr};
 
+    float m_accumulator{0.0f}; // leftover frame time for the fixed physics timestep
+
     uint8 m_isRunning: 1 {false};
     uint8 m_isPaused: 1 {false};
     uint8 m_showUI: 1 {true};

@@ -62,7 +62,7 @@ d2Body::ComputeAABB()
             d2Vec2 minVertex = box->worldVertices[0];
             d2Vec2 maxVertex = box->worldVertices[0];
 
-            for (int i = 1; i < 4; ++i) {
+            for (int i = 1; i < box->m_vertexCount; ++i) {
                 minVertex = d2Min(minVertex, box->worldVertices[i]);
                 maxVertex = d2Max(maxVertex, box->worldVertices[i]);
             }
@@ -92,12 +92,14 @@ d2Body::ComputeAABB()
 void
 d2Body::AddForce(const d2Vec2 &force)
 {
+    if (!IsAwake()) SetAwake(true);
     sumForces += force;
 }
 
 void
 d2Body::AddTorque(real torque)
 {
+    if (!IsAwake()) SetAwake(true);
     sumTorque += torque;
 }
 
@@ -145,6 +147,7 @@ void
 d2Body::ApplyImpulseAtPoint(const d2Vec2 &j, const d2Vec2 &r)
 {
     if (m_type == d2_staticBody) return;
+    if (!IsAwake()) SetAwake(true);
     velocity += j * invMass;
     angularVelocity += r.Cross(j) * invI;
 }

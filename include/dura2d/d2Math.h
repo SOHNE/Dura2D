@@ -29,6 +29,8 @@ struct D2_API d2Vec2
      */
     d2Vec2(real x, real y) : x(x), y(y) {}
 
+    d2Vec2(const d2Vec2 &v) = default;
+
     ~d2Vec2() = default;
 
     /** @brief Sets all components of the vector to zero. */

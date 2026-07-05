@@ -60,10 +60,12 @@ public:
 class d2PenetrationConstraint : public d2Constraint
 {
 private:
+    friend class d2World; // for contact warm starting
+
     d2MatMN jacobian;
     d2VecN cachedLambda;
     real bias;
-    d2Vec2 normal;    // Normal direction of the penetration in A's local space
+    d2Vec2 normal;    // Normal direction of the penetration in world space
     real friction; // Friction coefficient between the two penetrating m_bodiesList
 
 public:

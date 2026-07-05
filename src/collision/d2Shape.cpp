@@ -154,7 +154,7 @@ d2PolygonShape::FindMinSeparation(const d2PolygonShape *other, int &indexReferen
 int
 d2PolygonShape::FindIncidentEdge(const d2Vec2 &normal) const
 {
-    int indexIncidentEdge;
+    int indexIncidentEdge = 0;
     real minProj = std::numeric_limits<real>::max();
     for (int i = 0; i < m_vertexCount; ++i) {
         auto edgeNormal = EdgeAt(i).Normal();

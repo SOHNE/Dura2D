@@ -12,6 +12,7 @@
 #include "dura2d/d2Timer.h"
 
 #include <iostream>
+#include <unordered_map>
 
 d2World::d2World(const d2Vec2 &gravity)
 {
@@ -103,16 +104,22 @@ d2World::DestroyJoint(d2Constraint *joint)
 
     // Destroy the joint.
     joint->~d2Constraint();
-    m_blockAllocator.Free(joint, sizeof(d2Constraint));
+    m_blockAllocator.Free(joint, sizeof(d2JointConstraint));
 }
 
 void
 d2World::Step(real dt, int32 posIterations)
 {
+    // ponytail: jointed bodies never sleep; per-island sleeping would fix this
+    for (d2Constraint *constraint = m_constraints; constraint; constraint = constraint->GetNext()) {
+        constraint->a->SetAwake(true);
+        constraint->b->SetAwake(true);
+    }
+
     // Loop all m_bodiesList of the world applying forces
     for (auto body = m_bodiesList; body; body = body->next)
     {
-        if (body->m_type == d2BodyType::d2_staticBody) continue;
+        if (body->m_type == d2BodyType::d2_staticBody || !body->IsAwake()) continue;
 
         const real massScaled = body->mass * PIXELS_PER_METER * body->m_gravityScale;
         body->AddForce(m_gravity * massScaled);
@@ -134,12 +141,31 @@ d2World::Step(real dt, int32 posIterations)
             auto a = pair.first;
             auto b = pair.second;
 
+            // Skip pairs with no awake dynamic body; contacts between sleeping/static bodies stay untouched
+            const bool aActive = a->m_type == d2BodyType::d2_dynamicBody && a->IsAwake();
+            const bool bActive = b->m_type == d2BodyType::d2_dynamicBody && b->IsAwake();
+            if (!aActive && !bActive) continue;
+
             std::vector<d2Contact> contacts;
             if (!d2CollisionDetection::IsColliding(a, b, contacts)) continue;
+
+            // An awake body touching a sleeping one wakes it up
+            if (!a->IsAwake()) a->SetAwake(true);
+            if (!b->IsAwake()) b->SetAwake(true);
 
             for (const auto &contact: contacts) {
                 // Create a new penetration constraint
                 d2PenetrationConstraint penetration(contact.a, contact.b, contact.start, contact.end, contact.normal);
+
+                // Warm starting: reuse last step's accumulated impulse for a matching contact
+                // ponytail: linear scan over last step's contacts, hash by body pair if this shows up in profiles
+                for (const auto &old: m_penetrations) {
+                    if (old.a != penetration.a || old.b != penetration.b) continue;
+                    if ((old.aPoint - penetration.aPoint).LenghtSquared() > 1.0f) continue;
+                    penetration.cachedLambda = old.cachedLambda;
+                    break;
+                }
+
                 penetrations.push_back(penetration);
             }
         }
@@ -168,11 +194,60 @@ d2World::Step(real dt, int32 posIterations)
         penetration.PostSolve();
     }
 
-    // Integrate all the velocities
+    // Integrate all the velocities and update sleep timers
     for (auto body = m_bodiesList; body; body = body->next) {
-        if (body->m_type == d2BodyType::d2_staticBody) continue;
+        if (body->m_type == d2BodyType::d2_staticBody || !body->IsAwake()) continue;
 
         body->IntegrateVelocities(dt);
+
+        const bool belowTolerance =
+                body->velocity.LenghtSquared() < SLEEP_LINEAR_TOLERANCE * SLEEP_LINEAR_TOLERANCE &&
+                d2Abs(body->angularVelocity) < SLEEP_ANGULAR_TOLERANCE;
+        body->m_sleepTime = belowTolerance ? body->m_sleepTime + dt : 0.0f;
+    }
+
+    // Sleep whole contact islands at once: a body sleeping alone in a stack would be
+    // woken right back by its still-awake neighbors, so nothing would ever stay asleep.
+    // ponytail: union-find rebuilt per step; fine until body counts get large
+    if (m_allowSleep) {
+        std::unordered_map<d2Body*, d2Body*> parent;
+        for (auto body = m_bodiesList; body; body = body->next) {
+            if (body->m_type == d2BodyType::d2_dynamicBody && body->IsAwake()) parent[body] = body;
+        }
+        auto find = [&parent](d2Body *x) {
+            while (parent[x] != x) { parent[x] = parent[parent[x]]; x = parent[x]; }
+            return x;
+        };
+        for (auto &penetration: penetrations) {
+            if (parent.count(penetration.a) && parent.count(penetration.b)) {
+                parent[find(penetration.a)] = find(penetration.b);
+            }
+        }
+        std::unordered_map<d2Body*, real> islandSleepTime; // min sleep time per island root
+        for (auto &node: parent) {
+            d2Body *root = find(node.first);
+            auto it = islandSleepTime.find(root);
+            if (it == islandSleepTime.end()) islandSleepTime[root] = node.first->m_sleepTime;
+            else it->second = d2Min(it->second, node.first->m_sleepTime);
+        }
+        for (auto &node: parent) {
+            if (islandSleepTime[find(node.first)] >= TIME_TO_SLEEP) node.first->SetAwake(false);
+        }
+    }
+
+    // Keep this step's contacts to warm start the next step
+    m_penetrations = std::move(penetrations);
+}
+
+void
+d2World::SetAllowSleeping(bool allow)
+{
+    if (allow == m_allowSleep) return;
+    m_allowSleep = allow;
+    if (allow) return;
+
+    for (auto body = m_bodiesList; body; body = body->next) {
+        body->SetAwake(true);
     }
 }
 
@@ -225,11 +300,13 @@ d2World::DebugDraw()
     {
         d2Color staticColor(1.0f, 0.721568627f, 0.423529412f); // #ffb86c
         d2Color dynamicColor(0.545098039f, 0.91372549f, 0.992156863f); // #8be9fd
+        d2Color sleepingColor(0.5f, 0.5f, 0.55f); // grayed out
         bool mesh = flags & d2Draw::e_meshBit;
 
         for (d2Body *b = m_bodiesList; b; b = b->GetNext())
         {
-            d2Color color = b->m_type == d2BodyType::d2_staticBody ? staticColor : dynamicColor;
+            d2Color color = b->m_type == d2BodyType::d2_staticBody ? staticColor
+                          : b->IsAwake() ? dynamicColor : sleepingColor;
             DrawShape(b, mesh, color);
         }
     }

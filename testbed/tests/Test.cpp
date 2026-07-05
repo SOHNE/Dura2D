@@ -17,6 +17,7 @@ Test::~Test()
 void
 Test::Step(const float& dt, Settings& settings)
 {
+    m_world->SetAllowSleeping(settings.allowSleep);
     m_world->Step(dt, settings.positionIterations);
 }
 

@@ -10,10 +10,12 @@ struct Settings
     {
         targetFPS = 60;
         positionIterations = 3;
+        allowSleep = true;
     }
 
     int targetFPS {60};
     int positionIterations {3};
+    bool allowSleep {true};
 };
 
 

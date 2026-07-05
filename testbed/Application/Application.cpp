@@ -80,7 +80,13 @@ Application::Update()
 {
     if (m_isPaused) return;
 
-  s_test->Step(GetFrameTime(), *m_settings);
+    // Fixed timestep with an accumulator: the solver is only stable for a steady dt
+    const float fixedDt = 1.0f / m_settings->targetFPS;
+    m_accumulator += std::min(GetFrameTime(), 0.25f); // cap hitches to avoid a death spiral
+    while (m_accumulator >= fixedDt) {
+        s_test->Step(fixedDt, *m_settings);
+        m_accumulator -= fixedDt;
+    }
 }
 
 void
@@ -195,6 +201,11 @@ Application::Render()
                 }
                 if (ImGui::CheckboxFlags("Joints", &g_draw.m_flags, d2Draw::e_jointBit)) {
                     g_draw.SetFlags(g_draw.m_flags);
+                }
+                ImGui::Separator();
+                ImGui::Checkbox("Allow Sleep", &m_settings->allowSleep);
+                if (ImGui::IsItemHovered(ImGuiHoveredFlags_AllowWhenDisabled)) {
+                    ImGui::SetTooltip("Idle bodies fall asleep (drawn grayed out) and skip simulation");
                 }
                 ImGui::EndTabItem();
             }
