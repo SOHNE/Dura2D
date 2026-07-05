@@ -158,7 +158,7 @@ d2PenetrationConstraint::d2PenetrationConstraint(d2Body *a,
     this->b = b;
     this->aPoint = a->WorldSpaceToLocalSpace(aCollisionPoint);
     this->bPoint = b->WorldSpaceToLocalSpace(bCollisionPoint);
-    this->normal = a->WorldSpaceToLocalSpace(normal);
+    this->normal = normal;
     cachedLambda.Zero();
     friction = 0.0f;
 }
@@ -166,10 +166,10 @@ d2PenetrationConstraint::d2PenetrationConstraint(d2Body *a,
 void
 d2PenetrationConstraint::PreSolve(const real dt)
 {
-    // Get the collision points and normal in world space
+    // Get the collision points in world space (the normal is already in world space)
     const d2Vec2 pa = a->LocalSpaceToWorldSpace(aPoint);
     const d2Vec2 pb = b->LocalSpaceToWorldSpace(bPoint);
-    d2Vec2 n = a->LocalSpaceToWorldSpace(normal);
+    d2Vec2 n = normal;
 
     const d2Vec2 ra = pa - a->GetPosition();
     const d2Vec2 rb = pb - b->GetPosition();
