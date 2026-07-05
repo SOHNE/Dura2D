@@ -10,7 +10,7 @@ d2MatMN::d2MatMN(int M, int N) : M(M), N(N)
         rows[i] = d2VecN(N);
 }
 
-d2MatMN::d2MatMN(const d2MatMN &m)
+d2MatMN::d2MatMN(const d2MatMN &m) : M(0), N(0), rows(nullptr)
 {
     *this = m;
 }
@@ -41,6 +41,9 @@ d2MatMN::Transpose() const
 const d2MatMN&
 d2MatMN::operator=(const d2MatMN &m)
 {
+    if (this == &m) return *this;
+
+    delete[] rows;
     M = m.M;
     N = m.N;
     rows = new d2VecN[M];
