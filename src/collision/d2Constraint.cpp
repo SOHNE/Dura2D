@@ -207,9 +207,11 @@ d2PenetrationConstraint::PreSolve(const real dt)
     b->ApplyImpulseAngular(impulses[5]);                   // B angular impulse
 
     // Compute the bias term (baumgarte stabilization)
-    const real beta = 1.0f;
+    // Slop is in pixels (50 px/m): allow ~a quarter pixel of rest penetration or the
+    // solver pumps velocity into the stack forever correcting invisible overlap
+    const real beta = 0.2f;
     real C = (pb - pa).Dot(-n);
-    C = d2Min<real>(0.0f, C + 0.01f);
+    C = d2Min<real>(0.0f, C + 0.25f);
     bias = (beta / dt) * C;
 }
 
