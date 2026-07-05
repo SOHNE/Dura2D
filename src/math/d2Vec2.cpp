@@ -1,19 +1,19 @@
 #include "dura2d/d2Math.h"
 
-
 d2Vec2 &
 d2Vec2::Normalize()
 {
     real length = Lenght();
-    if (length != 0.0) {
-        x /= length;
-        y /= length;
-    }
+    if( length != 0.0 )
+        {
+            x /= length;
+            y /= length;
+        }
     return *this;
 }
 
 d2Vec2 &
-d2Vec2::operator=(const d2Vec2 &v)
+d2Vec2::operator=( const d2Vec2 & v )
 {
     x = v.x;
     y = v.y;
@@ -21,19 +21,19 @@ d2Vec2::operator=(const d2Vec2 &v)
 }
 
 bool
-d2Vec2::operator==(const d2Vec2 &v) const
+d2Vec2::operator==( const d2Vec2 & v ) const
 {
     return x == v.x && y == v.y;
 }
 
 bool
-d2Vec2::operator!=(const d2Vec2 &v) const
+d2Vec2::operator!=( const d2Vec2 & v ) const
 {
-    return !(*this == v);
+    return !( *this == v );
 }
 
 d2Vec2
-d2Vec2::operator+(const d2Vec2 &v) const
+d2Vec2::operator+( const d2Vec2 & v ) const
 {
     d2Vec2 result;
     result.x = x + v.x;
@@ -42,7 +42,7 @@ d2Vec2::operator+(const d2Vec2 &v) const
 }
 
 d2Vec2
-d2Vec2::operator-(const d2Vec2 &v) const
+d2Vec2::operator-( const d2Vec2 & v ) const
 {
     d2Vec2 result;
     result.x = x - v.x;
@@ -51,7 +51,7 @@ d2Vec2::operator-(const d2Vec2 &v) const
 }
 
 d2Vec2
-d2Vec2::operator*(const real n) const
+d2Vec2::operator*( const real n ) const
 {
     d2Vec2 result;
     result.x = x * n;
@@ -60,7 +60,7 @@ d2Vec2::operator*(const real n) const
 }
 
 d2Vec2
-d2Vec2::operator*(const d2Vec2 &v) const
+d2Vec2::operator*( const d2Vec2 & v ) const
 {
     d2Vec2 result;
     result.x = x * v.x;
@@ -69,7 +69,7 @@ d2Vec2::operator*(const d2Vec2 &v) const
 }
 
 d2Vec2
-d2Vec2::operator/(const real n) const
+d2Vec2::operator/( const real n ) const
 {
     d2Vec2 result;
     result.x = x / n;
@@ -78,7 +78,7 @@ d2Vec2::operator/(const real n) const
 }
 
 d2Vec2 &
-d2Vec2::operator+=(const d2Vec2 &v)
+d2Vec2::operator+=( const d2Vec2 & v )
 {
     x += v.x;
     y += v.y;
@@ -86,7 +86,7 @@ d2Vec2::operator+=(const d2Vec2 &v)
 }
 
 d2Vec2 &
-d2Vec2::operator-=(const d2Vec2 &v)
+d2Vec2::operator-=( const d2Vec2 & v )
 {
     x -= v.x;
     y -= v.y;
@@ -94,7 +94,7 @@ d2Vec2::operator-=(const d2Vec2 &v)
 }
 
 d2Vec2 &
-d2Vec2::operator*=(const real n)
+d2Vec2::operator*=( const real n )
 {
     x *= n;
     y *= n;
@@ -102,7 +102,7 @@ d2Vec2::operator*=(const real n)
 }
 
 d2Vec2 &
-d2Vec2::operator*=(const d2Vec2 &v)
+d2Vec2::operator*=( const d2Vec2 & v )
 {
     x *= v.x;
     y *= v.y;
@@ -110,7 +110,7 @@ d2Vec2::operator*=(const d2Vec2 &v)
 }
 
 d2Vec2 &
-d2Vec2::operator/=(const real n)
+d2Vec2::operator/=( const real n )
 {
     x /= n;
     y /= n;

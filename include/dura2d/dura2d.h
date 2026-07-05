@@ -12,8 +12,8 @@
 #include "d2Broadphase.h"
 
 #include "d2Body.h"
-#include "d2World.h"
 #include "d2Shape.h"
+#include "d2World.h"
 
 #include "d2Constraint.h"
 

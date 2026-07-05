@@ -5,15 +5,15 @@
 
 class d2Constraint
 {
-public:
-    d2Body *a;
-    d2Body *b;
+  public:
+    d2Body * a;
+    d2Body * b;
 
     d2Vec2 aPoint; // The constraint point in A's local space
     d2Vec2 bPoint; // The constraint point in B's local space
 
-    d2Constraint* next;
-    d2Constraint* prev;
+    d2Constraint * next;
+    d2Constraint * prev;
 
     virtual ~d2Constraint() = default;
 
@@ -21,36 +21,70 @@ public:
 
     d2VecN GetVelocities() const;
 
-    virtual void PreSolve(const real dt) { (void)dt; }
+    virtual void
+    PreSolve( const real dt )
+    {
+        (void)dt;
+    }
 
-    virtual void Solve() {}
+    virtual void
+    Solve()
+    {
+    }
 
-    virtual void PostSolve() {}
+    virtual void
+    PostSolve()
+    {
+    }
 
-    void SetNext(d2Constraint* next) { this->next = next; }
+    void
+    SetNext( d2Constraint * next )
+    {
+        this->next = next;
+    }
 
-    void SetPrev(d2Constraint* prev) { this->prev = prev; }
+    void
+    SetPrev( d2Constraint * prev )
+    {
+        this->prev = prev;
+    }
 
-    d2Constraint* GetNext() { return next; }
-    const d2Constraint* GetNext() const { return next; }
+    d2Constraint *
+    GetNext()
+    {
+        return next;
+    }
+    const d2Constraint *
+    GetNext() const
+    {
+        return next;
+    }
 
-    d2Constraint* GetPrev() { return prev; }
-    const d2Constraint* GetPrev() const { return prev; }
+    d2Constraint *
+    GetPrev()
+    {
+        return prev;
+    }
+    const d2Constraint *
+    GetPrev() const
+    {
+        return prev;
+    }
 };
 
 class d2JointConstraint : public d2Constraint
 {
-private:
+  private:
     d2MatMN jacobian;
-    d2VecN cachedLambda;
-    real bias;
+    d2VecN  cachedLambda;
+    real    bias;
 
-public:
+  public:
     d2JointConstraint();
 
-    d2JointConstraint(d2Body *a, d2Body *b, const d2Vec2 &anchorPoint);
+    d2JointConstraint( d2Body * a, d2Body * b, const d2Vec2 & anchorPoint );
 
-    void PreSolve(const real dt) override;
+    void PreSolve( const real dt ) override;
 
     void Solve() override;
 
@@ -59,25 +93,22 @@ public:
 
 class d2PenetrationConstraint : public d2Constraint
 {
-private:
+  private:
     friend class d2World; // for contact warm starting
 
     d2MatMN jacobian;
-    d2VecN cachedLambda;
-    real bias;
-    d2Vec2 normal;    // Normal direction of the penetration in world space
-    real friction; // Friction coefficient between the two penetrating m_bodiesList
+    d2VecN  cachedLambda;
+    real    bias;
+    d2Vec2  normal;   // Normal direction of the penetration in world space
+    real    friction; // Friction coefficient between the two penetrating m_bodiesList
 
-public:
+  public:
     d2PenetrationConstraint();
 
-    d2PenetrationConstraint(d2Body *a,
-                            d2Body *b,
-                            const d2Vec2 &aCollisionPoint,
-                            const d2Vec2 &bCollisionPoint,
-                            const d2Vec2 &normal);
+    d2PenetrationConstraint( d2Body * a, d2Body * b, const d2Vec2 & aCollisionPoint, const d2Vec2 & bCollisionPoint,
+                             const d2Vec2 & normal );
 
-    void PreSolve(const real dt) override;
+    void PreSolve( const real dt ) override;
 
     void Solve() override;
 

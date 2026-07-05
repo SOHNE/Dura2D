@@ -3,9 +3,9 @@
 
 #include <vector>
 
-#include "d2api.h"
-#include "d2Math.h"
 #include "d2Constraint.h"
+#include "d2Math.h"
+#include "d2api.h"
 #include "memory/d2BlockAllocator.h"
 
 // Forward declarations
@@ -20,12 +20,12 @@ class d2Draw;
  */
 class D2_API d2World
 {
-public:
+  public:
     /**
      * @brief Constructor that initializes the world with specified gravity.
      * @param gravity The gravitational acceleration.
      */
-    explicit d2World(const d2Vec2& gravity);
+    explicit d2World( const d2Vec2 & gravity );
 
     /**
      * @brief Destructor to clean up resources.
@@ -39,14 +39,14 @@ public:
      * @param mass The mass of the body.
      * @return Pointer to the created body.
      */
-    d2Body* CreateBody(const d2Shape& shape, d2Vec2 position, real mass);
+    d2Body * CreateBody( const d2Shape & shape, d2Vec2 position, real mass );
 
     /**
      * @brief Destroy a body.
      * @param body The body to destroy.
      * @warning This will automatically remove the body from the world, along with its shape.
      */
-    void DestroyBody(d2Body* body);
+    void DestroyBody( d2Body * body );
 
     /**
      * @brief Create a joint between two bodies.
@@ -55,20 +55,20 @@ public:
      * @param anchorPoint The anchor point for the joint.
      * @return Pointer to the created joint.
      */
-    d2Constraint* CreateJoint(d2Body* bodyA, d2Body* bodyB, d2Vec2 anchorPoint);
+    d2Constraint * CreateJoint( d2Body * bodyA, d2Body * bodyB, d2Vec2 anchorPoint );
 
     /**
      * @brief Destroy a joint.
      * @param joint The joint to destroy.
      * @warning This will automatically remove the joint from the world.
      */
-    void DestroyJoint(d2Constraint* joint);
+    void DestroyJoint( d2Constraint * joint );
 
     /**
      * @brief Get a reference to the list of constraints.
      * @return Reference to the list of constraints.
      */
-    d2Constraint*& GetConstraints();
+    d2Constraint *& GetConstraints();
 
     /**
      * @brief Get the number of constraints in the world.
@@ -80,26 +80,26 @@ public:
      * @brief Add an external force to be applied to m_bodiesList.
      * @param force The force to be applied.
      */
-    void AddForce(const d2Vec2& force);
+    void AddForce( const d2Vec2 & force );
 
     /**
      * @brief Add an external torque to be applied to m_bodiesList.
      * @param torque The torque to be applied.
      */
-    void AddTorque(real torque);
+    void AddTorque( real torque );
 
     /**
      * @brief Update the world simulation by a specified time step.
      * @param dt The time step for the update.
      * @param posIterations The number of position iterations for the update.
      */
-    void Step(real dt, int32 posIterations = 3);
+    void Step( real dt, int32 posIterations = 3 );
 
     /**
      * @brief Solve the world simulation by a specified time step.
      * @param dt The time step for the solve.
      */
-    void Solve(real dt);
+    void Solve( real dt );
 
     /**
      * @brief Check for collisions between m_bodiesList.
@@ -110,7 +110,7 @@ public:
      * @brief Get pointer to the array of m_bodiesList.
      * @return Pointer to the array of m_bodiesList.
      */
-    d2Body* GetBodies() const;
+    d2Body * GetBodies() const;
 
     /**
      * @brief Get the number of m_bodiesList in the world.
@@ -122,60 +122,68 @@ public:
      * @brief Enable or disable sleeping. Disabling wakes every body.
      * @param allow Whether bodies may fall asleep.
      */
-    void SetAllowSleeping(bool allow);
+    void SetAllowSleeping( bool allow );
 
     /** @brief Whether bodies may fall asleep. */
-    bool IsSleepingAllowed() const { return m_allowSleep; }
+    bool
+    IsSleepingAllowed() const
+    {
+        return m_allowSleep;
+    }
 
     /** @brief
      * Set the debug draw object.
      * @param debugDraw The debug draw object.
      */
-    void SetDebugDraw(d2Draw* debugDraw);
+    void SetDebugDraw( d2Draw * debugDraw );
 
     /** @brief Draw a shape. */
-    void DrawShape(const d2Body* body, const bool &mesh, const d2Color& color);
+    void DrawShape( const d2Body * body, const bool & mesh, const d2Color & color );
 
     /** @brief Debug draw the world. */
     void DebugDraw();
 
-public:
-    d2World(const d2World& other) = delete;
-    d2World& operator=(const d2World& other) = delete;
+  public:
+    d2World( const d2World & other )             = delete;
+    d2World & operator=( const d2World & other ) = delete;
 
-    d2Vec2 m_gravity {0.0f, -9.8f }; /**< Acceleration due to gravity. */
-    d2Broadphase* broadphase; /**< Broad-phase collision detection algorithm. */
-    d2BlockAllocator m_blockAllocator; /**< Memory m_blockAllocator for small objects. */
+    d2Vec2           m_gravity { 0.0f, -9.8f };            /**< Acceleration due to gravity. */
+    d2Broadphase *   broadphase;                           /**< Broad-phase collision detection algorithm. */
+    d2BlockAllocator m_blockAllocator;                     /**< Memory m_blockAllocator for small objects. */
 
-    d2Body* m_bodiesList { nullptr }; /**< Array of m_bodiesList in the world. */
-    int32 m_bodyCount { 0 }; /**< Number of m_bodiesList in the world. */
+    d2Body * m_bodiesList { nullptr };                     /**< Array of m_bodiesList in the world. */
+    int32    m_bodyCount { 0 };                            /**< Number of m_bodiesList in the world. */
 
-    d2Constraint *m_constraints { nullptr }; /**< List of constraints in the world. */
-    int32 m_constraintCount { 0 }; /**< Number of constraints in the world. */
+    d2Constraint * m_constraints { nullptr };              /**< List of constraints in the world. */
+    int32          m_constraintCount { 0 };                /**< Number of constraints in the world. */
 
-    std::vector<d2PenetrationConstraint> m_penetrations; /**< Last step's contacts, kept for warm starting. */
+    std::vector< d2PenetrationConstraint > m_penetrations; /**< Last step's contacts, kept for warm starting. */
 
-    d2Draw* m_debugDraw { nullptr }; /**< Debug draw object. */
+    d2Draw * m_debugDraw { nullptr };                      /**< Debug draw object. */
 
-    bool m_allowSleep { true }; /**< Whether bodies may fall asleep. */
+    bool m_allowSleep { true };                            /**< Whether bodies may fall asleep. */
 };
 
-inline d2Body* d2World::GetBodies() const
+inline d2Body *
+d2World::GetBodies() const
 {
     return m_bodiesList;
 }
 
-inline int32 d2World::GetBodyCount() const
+inline int32
+d2World::GetBodyCount() const
 {
     return m_bodyCount;
 }
 
-inline d2Constraint*& d2World::GetConstraints()
+inline d2Constraint *&
+d2World::GetConstraints()
 {
     return m_constraints;
 }
 
-inline int32 d2World::GetConstraintCount() const
+inline int32
+d2World::GetConstraintCount() const
 {
     return m_constraintCount;
 }
