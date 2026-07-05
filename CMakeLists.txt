@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.26)
 project(Dura2D
-        VERSION 0.1.0
+        VERSION 0.2.0
         DESCRIPTION "An educational 2D physics engine"
         LANGUAGES CXX
 )
