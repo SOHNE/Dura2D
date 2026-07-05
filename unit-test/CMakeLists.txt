@@ -33,6 +33,7 @@ endif()
 # --------------------------------------------------------------------
 set(UNIT_TESTS_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/tests/hello_world.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/tests/stability.cpp
 )
 
 add_executable(${PROJECT_NAME} ${UNIT_TESTS_SOURCES})

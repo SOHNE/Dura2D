@@ -86,6 +86,7 @@ set(TESTBED_SOURCE_FILES
     ${CMAKE_CURRENT_SOURCE_DIR}/Application/Application.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Application/draw.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/tests/Test.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/tests/cases/Box_Stack.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/tests/cases/Bridge.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/tests/cases/Collisions.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/tests/cases/Playground.cpp
