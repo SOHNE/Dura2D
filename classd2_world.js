@@ -16,16 +16,20 @@ var classd2_world =
     [ "GetBodyCount", "classd2_world.html#ad8e7dfda91979f20450876648582ecd3", null ],
     [ "GetConstraintCount", "classd2_world.html#a5d5ba879c125e0dfe3e0637d5678c9eb", null ],
     [ "GetConstraints", "classd2_world.html#aabfe9fa55f64c822f9afabb031449345", null ],
+    [ "IsSleepingAllowed", "classd2_world.html#a292903fc7378019f79e130cee9277fbb", null ],
     [ "operator=", "classd2_world.html#acff8f5aa3ad7317594357512013aa1f2", null ],
+    [ "SetAllowSleeping", "classd2_world.html#aca208d62b1ad6cbded368161a0591aa4", null ],
     [ "SetDebugDraw", "classd2_world.html#a113dbc084dbc024cbe59671927940be0", null ],
     [ "Solve", "classd2_world.html#adec97cd3187c6656f948c0d6f0b7d7c8", null ],
     [ "Step", "classd2_world.html#a8dc80edda4b8feb6453d260d38878579", null ],
     [ "broadphase", "classd2_world.html#ad3b4408088b85c9b91356cd362e00afc", null ],
+    [ "m_allowSleep", "classd2_world.html#a3c58220435c25a98d97b8d978c433c2f", null ],
     [ "m_blockAllocator", "classd2_world.html#a669032ec33b9351c71b4b57e12c6f2a9", null ],
     [ "m_bodiesList", "classd2_world.html#a58170bf8c749ad7246785b09fd771e6e", null ],
     [ "m_bodyCount", "classd2_world.html#a47fe320fd045c51444af35919215c92f", null ],
     [ "m_constraintCount", "classd2_world.html#a745a8ac12b11c9c12e7ae4b2ce208b86", null ],
     [ "m_constraints", "classd2_world.html#a1a93d20c44ffa7150070f4766bdca3ea", null ],
     [ "m_debugDraw", "classd2_world.html#a64eba0ab477eee2565550cfec36c0047", null ],
-    [ "m_gravity", "classd2_world.html#a40684eeebb19a74ce3317fe3b5769128", null ]
+    [ "m_gravity", "classd2_world.html#a40684eeebb19a74ce3317fe3b5769128", null ],
+    [ "m_penetrations", "classd2_world.html#ab54e1fa736f87d8e24045cfedebb8e00", null ]
 ];

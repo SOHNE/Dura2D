@@ -14,5 +14,6 @@ var searchData=
   ['iscollidingcirclecircle_11',['IsCollidingCircleCircle',['../structd2_collision_detection.html#a37ff2fc863bff8d1e94cbb3018cb70dc',1,'d2CollisionDetection']]],
   ['iscollidingpolygoncircle_12',['IsCollidingPolygonCircle',['../structd2_collision_detection.html#aa967f8c4c334b630d9ec8d6db1c9190a',1,'d2CollisionDetection']]],
   ['iscollidingpolygonpolygon_13',['IsCollidingPolygonPolygon',['../structd2_collision_detection.html#a36b10fa143e63c5ec4077b3085c15866',1,'d2CollisionDetection']]],
-  ['isleaf_14',['IsLeaf',['../structd2_node.html#a2dc8767105d8b0d77a0caecfd96ab8d5',1,'d2Node']]]
+  ['isleaf_14',['IsLeaf',['../structd2_node.html#a2dc8767105d8b0d77a0caecfd96ab8d5',1,'d2Node']]],
+  ['issleepingallowed_15',['IsSleepingAllowed',['../classd2_world.html#a292903fc7378019f79e130cee9277fbb',1,'d2World']]]
 ];

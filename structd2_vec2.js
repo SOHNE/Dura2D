@@ -2,6 +2,7 @@ var structd2_vec2 =
 [
     [ "d2Vec2", "structd2_vec2.html#a4de2b4d0db4db34a6dc52e5337f38b86", null ],
     [ "d2Vec2", "structd2_vec2.html#a4a31daa9a98ff1a18c20c32668c0ee73", null ],
+    [ "d2Vec2", "structd2_vec2.html#a41f8e926bf54a1cb58f9ca4b7ee020b1", null ],
     [ "~d2Vec2", "structd2_vec2.html#a3b8318baf53b94873b5bc501c7bfe0b7", null ],
     [ "Cross", "structd2_vec2.html#ad9365fda0a421f9d67422e01000a798d", null ],
     [ "Dot", "structd2_vec2.html#a104a3b5252d083b956584cdd52ed4bc1", null ],

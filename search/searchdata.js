@@ -4,13 +4,13 @@ var indexSectionsWithContent =
   1: "d",
   2: "dr",
   3: "acdefgilnopqrstuwz~",
-  4: "abcdefghlmnpqrsuwxy",
+  4: "abcdefghlmnpqrstuwxy",
   5: "ciru",
   6: "d",
   7: "de",
   8: "d",
   9: "dpt",
-  10: "d"
+  10: "abcdfgilnoprstuvw⚒🌟🎮📦🙏🚀🛣🤝"
 };
 
 var indexSectionNames =

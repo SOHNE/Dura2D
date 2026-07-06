@@ -20,7 +20,7 @@ var searchData=
   ['d2rotate_17',['d2Rotate',['../d2_math_8h.html#a5dfeaa45a52bb72f284353ae4ff562cc',1,'d2Math.h']]],
   ['d2timer_18',['d2Timer',['../classd2_timer.html#aec6dfffc9c61c2cc13b7447bf04207ed',1,'d2Timer']]],
   ['d2transform_19',['d2Transform',['../structd2_transform.html#a786dece06506223134552baca24df2cd',1,'d2Transform::d2Transform()'],['../structd2_transform.html#accdc8432ec751cf08db084c38f4cc0ca',1,'d2Transform::d2Transform(const d2Vec2 &amp;p, const d2Rot &amp;q)']]],
-  ['d2vec2_20',['d2Vec2',['../structd2_vec2.html#a4de2b4d0db4db34a6dc52e5337f38b86',1,'d2Vec2::d2Vec2()'],['../structd2_vec2.html#a4a31daa9a98ff1a18c20c32668c0ee73',1,'d2Vec2::d2Vec2(real x, real y)']]],
+  ['d2vec2_20',['d2Vec2',['../structd2_vec2.html#a4de2b4d0db4db34a6dc52e5337f38b86',1,'d2Vec2::d2Vec2()'],['../structd2_vec2.html#a4a31daa9a98ff1a18c20c32668c0ee73',1,'d2Vec2::d2Vec2(real x, real y)'],['../structd2_vec2.html#a41f8e926bf54a1cb58f9ca4b7ee020b1',1,'d2Vec2::d2Vec2(const d2Vec2 &amp;v)=default']]],
   ['d2vecn_21',['d2VecN',['../structd2_vec_n.html#a223022ba2202982eab68310905aee055',1,'d2VecN::d2VecN()'],['../structd2_vec_n.html#ad8dd10cc01b46353492a89d61b1e14a5',1,'d2VecN::d2VecN(int N)'],['../structd2_vec_n.html#a4c912a28b81cccecab0c9bd5b6be91e3',1,'d2VecN::d2VecN(const d2VecN &amp;v)']]],
   ['d2world_22',['d2World',['../classd2_world.html#a816e44db90c89c55cbcf5e243246a069',1,'d2World::d2World(const d2Vec2 &amp;gravity)'],['../classd2_world.html#a6491c3a774e52c297d3747c3fe239b1b',1,'d2World::d2World(const d2World &amp;other)=delete']]],
   ['debugdraw_23',['DebugDraw',['../classd2_world.html#a3ea57e9f9831a7f9a92cf1f55bd5f216',1,'d2World']]],
